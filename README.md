@@ -16,6 +16,7 @@ Include the library and you're good to go!
 Here's a couple of simple examples to give an idea of how VerbalExpressions work:
 
 ### Testing if we have valid URL
+
 ```javascript
 // Create an example of how to test for correctly formed URLs
 var tester = VerEx()
@@ -53,6 +54,7 @@ alert( result ); // Outputs "Replace duck with a duck"
 ```
 
 ### Shorthand for string replace:
+
 ```javascript
 var result = VerEx().find( "red" ).replace( "We have a red house", "blue" );
 alert( result2 ); // Outputs "We have a blue house"
@@ -68,4 +70,4 @@ Clone the repo and fork:
 Pull requests are warmly welcome!
 
 [ben-nadel]:http://www.bennadel.com/
-[extending]:blog/2292-Extending-JavaScript-Arrays-While-Keeping-Native-Bracket-Notation-Functionality.htm
+[extending]:http://www.bennadel.com/blog/2292-Extending-JavaScript-Arrays-While-Keeping-Native-Bracket-Notation-Functionality.htm
