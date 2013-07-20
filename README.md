@@ -60,6 +60,10 @@ var result = VerEx().find( "red" ).replace( "We have a red house", "blue" );
 alert( result2 ); // Outputs "We have a blue house"
 ```
 
+## API documentation
+
+You can find the API documentation at the [wiki pages](https://github.com/jehna/VerbalExpressions/wiki).
+
 ## A little word for a big help
 I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great article about extending native JS objects][extending]
 
