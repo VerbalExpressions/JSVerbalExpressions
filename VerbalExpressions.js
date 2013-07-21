@@ -63,6 +63,7 @@ window.VerbalExpression = (function(){
         // Sanitation function for adding
         // anything safely to the expression
         sanitize : function( value ) {
+            if(value.source) return value.source;
             return value.replace(/[^\w]/g, function(character) { return "\\" + character; });
         },
         
@@ -97,7 +98,7 @@ window.VerbalExpression = (function(){
         // behaviour to split the "scentences"
         // naturally.
         then : function( value ) {
-            value = this.sanitize(value);
+            value = this.sanitize( value );
             this.add( "(" + value + ")" );
             return( this );
         },
@@ -125,7 +126,7 @@ window.VerbalExpression = (function(){
         
         // Anything but these characters
         anythingBut : function( value ) {
-            value = this.sanitize(value);
+            value = this.sanitize( value );
             this.add( "([^" + value + "]*)" );
             return( this );
         },
@@ -178,7 +179,7 @@ window.VerbalExpression = (function(){
             return( this.anyOf( value ) );
         },
         
-        // Usage: .range( from, to [, from, to ...] )
+        // Usage: .range( from, to [, from, to ... ] )
         range : function() {
             
             var value = "[";
@@ -242,7 +243,7 @@ window.VerbalExpression = (function(){
         },
         
         // Multiline, also reversed
-        searhOneLine : function( enable ) {
+        searchOneLine : function( enable ) {
             
             if(enable != false) this.removeModifier( "m" );
             else this.addModifier( "m" );
@@ -267,6 +268,18 @@ window.VerbalExpression = (function(){
                     value += "+";
             }
             this.add( value );
+            return( this );
+        },
+        
+        // Adds alternative expressions
+        or : function( value ) {
+            
+            if(this._prefixes.indexOf("(") == -1) this._prefixes += "(";
+            if(this._suffixes.indexOf(")") == -1) this._suffixes = ")" + this._suffixes;
+            
+            this.add( ")|(" );
+            if(value) this.then( value );
+            
             return( this );
         }
         
