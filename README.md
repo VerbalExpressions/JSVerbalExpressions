@@ -57,7 +57,7 @@ alert( result ); // Outputs "Replace duck with a duck"
 
 ```javascript
 var result = VerEx().find( "red" ).replace( "We have a red house", "blue" );
-alert( result2 ); // Outputs "We have a blue house"
+alert( result ); // Outputs "We have a blue house"
 ```
 
 ## API documentation
