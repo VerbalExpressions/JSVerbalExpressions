@@ -8,7 +8,7 @@ VerbalExpressions is a JavaScript librarty that helps to construct hard regular 
 
 Include the library and you're good to go!
 ```HTML
-<scrit type="text/javascript" src="VerbalExpressions.js"></script>
+<script type="text/javascript" src="VerbalExpressions.js"></script>
 ```
 
 ## Examples
