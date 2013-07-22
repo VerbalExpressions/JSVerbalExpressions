@@ -2,7 +2,7 @@ VerbalExpressions v0.1
 =====================
 
 ## JavaScript Regular expressions made easy
-VerbalExpressions is a JavaScript librarty that helps to construct hard regular expressions.
+VerbalExpressions is a JavaScript library that helps to construct hard regular expressions.
 
 ## How to get started
 
