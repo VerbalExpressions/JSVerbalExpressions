@@ -1,6 +1,6 @@
 import java.util.regex.Pattern
 
-class VerbalExpression {
+class VerbalExpressions {
     String prefixes, source, suffixes, pattern = ""
     int modifiers = Pattern.MULTILINE
     Pattern p
@@ -10,7 +10,7 @@ class VerbalExpression {
         return Pattern.quote(value)
     }
 
-    VerbalExpression add(String value) {
+    VerbalExpressions add(String value) {
         this.source = this.source ? this.source + value : value
         if (this.source) {
             String pattern = ""
@@ -23,84 +23,84 @@ class VerbalExpression {
         return this
     }
 
-    VerbalExpression startOfLine(boolean enable = true) {
+    VerbalExpressions startOfLine(boolean enable = true) {
         this.prefixes = enable ? "^" : ""
         this.add( "" )
         return this
     }
 
-    VerbalExpression endOfLine(boolean enable = true) {
+    VerbalExpressions endOfLine(boolean enable = true) {
         this.suffixes = enable ? "\$" : ""
         this.add( "" )
         return this
     }
 
-    VerbalExpression then(String value) {
+    VerbalExpressions then(String value) {
         value = sanitize(value)
         this.add( "(" + value + ")" )
         return this
     }
 
-    VerbalExpression find(String value) {
+    VerbalExpressions find(String value) {
         this.then(value)
         return this
     }
 
-    VerbalExpression maybe(String value) {
+    VerbalExpressions maybe(String value) {
         value = sanitize(value)
         this.add( "(" + value + ")?" )
         return this
     }
 
-    VerbalExpression anything() {
+    VerbalExpressions anything() {
         this.add( "(.*)" )
         return this
     }
 
-    VerbalExpression anythingBut(String value) {
+    VerbalExpressions anythingBut(String value) {
         value = sanitize(value)
         this.add( "([^" + value + "]*)" )
         return this
     }
 
-    VerbalExpression replace(String source, String value) {
+    VerbalExpressions replace(String source, String value) {
         this.add( "" )
         this.source.replaceAll(pattern,value)
         return this
     }
 
-    VerbalExpression lineBreak() {
+    VerbalExpressions lineBreak() {
         this.add( "(\\n|(\\r\\n))" )
         return this
     }
 
-    VerbalExpression br() {
+    VerbalExpressions br() {
         this.lineBreak()
         return this
     }
 
-    VerbalExpression tab() {
+    VerbalExpressions tab() {
         this.add( "\\t" )
         return this
     }
 
-    VerbalExpression word() {
+    VerbalExpressions word() {
         this.add( "\\w+" )
         return this
     }
 
-    VerbalExpression anyOf(String value) {
+    VerbalExpressions anyOf(String value) {
         value = sanitize(value)
         this.add( "[" + value + "]" )
         return this
     }
 
-    VerbalExpression any(String value) {
+    VerbalExpressions any(String value) {
         this.anyOf(value)
         return this
     }
 
-    VerbalExpression range(Object[] args) {
+    VerbalExpressions range(Object[] args) {
         String value = "["
         for(int _from = 0; _from < args.length; _from += 2) {
             int _to = _from+1
@@ -117,7 +117,7 @@ class VerbalExpression {
         return this
     }
 
-    VerbalExpression addModifier(String modifier) {
+    VerbalExpressions addModifier(String modifier) {
         switch (modifier) {
             case "d":
                 modifiers |= Pattern.UNIX_LINES
@@ -148,7 +148,7 @@ class VerbalExpression {
         return this
     }
 
-    VerbalExpression removeModifier(String modifier) {
+    VerbalExpressions removeModifier(String modifier) {
         switch (modifier) {
             case "d":
                 modifiers ^= Pattern.UNIX_LINES
@@ -179,21 +179,21 @@ class VerbalExpression {
         return this
     }
 
-    VerbalExpression withAnyCase(boolean enable = true) {
+    VerbalExpressions withAnyCase(boolean enable = true) {
         if (enable) this.addModifier( "i" )
         else this.removeModifier( "i" )
         this.add( "" )
         return this
     }
 
-    VerbalExpression searchOneLine(boolean enable = true) {
+    VerbalExpressions searchOneLine(boolean enable = true) {
         if (enable) this.removeModifier( "m" )
         else this.addModifier( "m" )
         this.add( "" )
         return this
     }
 
-    VerbalExpression multiple(String value) {
+    VerbalExpressions multiple(String value) {
         value = this.sanitize(value)
         switch (value.substring(-1)) {
             case "*":
@@ -206,7 +206,7 @@ class VerbalExpression {
         return this
     }
 
-    VerbalExpression or(String value) {
+    VerbalExpressions or(String value) {
         if (this.prefixes.indexOf("(") == -1) this.prefixes += "("
         if (this.suffixes.indexOf(")") == -1) this.suffixes = ")" + this.suffixes
 
