@@ -24,6 +24,11 @@
 // else
 // 	echo "invalid url";
 
+// if (preg_match($regex, 'http://github.com')) {
+// 	echo 'valid url';
+// } else {
+// 	echo 'invalud url';
+// }
 
 // echo "<pre>". $regex->getRegex() ."</pre>";
 
@@ -280,6 +285,16 @@ class VerEx {
 		return $this;
 
 	}
+
+	/**
+	 * PHP Magic method to return a string representation of the object.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->getRegex();
+	}
+
 	/**
 	 * Creates the final regex.
 	 * @return string The final regex
