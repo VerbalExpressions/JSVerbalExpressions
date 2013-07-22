@@ -92,10 +92,10 @@ window.VerbalExpression = (function(){
             return( this );
         },
         
-        // We try to keep the syntax ass
+        // We try to keep the syntax as
         // user-friendly as possible.
         // So we can use the "normal"
-        // behaviour to split the "scentences"
+        // behaviour to split the "sentences"
         // naturally.
         then : function( value ) {
             value = this.sanitize( value );
@@ -118,7 +118,7 @@ window.VerbalExpression = (function(){
             return( this );
         },
         
-        // Any character any times
+        // Any character any number of times
         anything : function() {
             this.add( "(.*)" );
             return( this );

@@ -1,21 +1,21 @@
 VerbalExpressions v0.1
 =====================
 
-## JavaScript Regular expressions made easy
-VerbalExpressions is a JavaScript librarty that helps to construct hard regular expressions.
+## JavaScript Regular Expressions made easy
+VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
 ## How to get started
 
 Include the library and you're good to go!
 ```HTML
-<script type="text/javascript" src="VerbalExpressions.js"></script>
+<script src="VerbalExpressions.js"></script>
 ```
 
 ## Examples
 
-Here's a couple of simple examples to give an idea of how VerbalExpressions work:
+Here's a couple of simple examples to give an idea of how VerbalExpressions works:
 
-### Testing if we have valid URL
+### Testing if we have a valid URL
 
 ```javascript
 // Create an example of how to test for correctly formed URLs
@@ -31,7 +31,7 @@ var tester = VerEx()
 // Create an example URL
 var testMe = "https://www.google.com";
 
-// Use RegExp object's native test() -function
+// Use RegExp object's native test() function
 if( tester.test( testMe ) ) alert( "We have a correct URL "); // This output will fire
 else alert( "The URL is incorrect" );
 
