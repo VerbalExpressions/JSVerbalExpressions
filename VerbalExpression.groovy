@@ -7,7 +7,7 @@ class VerbalExpression {
 
     String sanitize(String value) {
         if(value) return value
-        return value.replaceAll("/[^\\w]/g", { character -> "\\" + character })
+        return Pattern.quote(value)
     }
 
     VerbalExpression add(String value) {
@@ -182,13 +182,6 @@ class VerbalExpression {
     VerbalExpression withAnyCase(boolean enable = true) {
         if (enable) this.addModifier( "i" )
         else this.removeModifier( "i" )
-        this.add( "" )
-        return this
-    }
-
-    VerbalExpression stopAtFirst(boolean enable = true) {
-        if (enable) this.removeModifier( "g" )
-        else this.addModifier( "g" )
         this.add( "" )
         return this
     }
