@@ -130,7 +130,7 @@ class VerEx {
 	 * Anything non-empty except for these chars
 	 * @param  string $value The unaccepted chars
 	 */
-	function anythingBut( $value ) {
+	function somethingBut( $value ) {
 		$this->add("([^". $this->sanitize($value) ."]+)");
 		return $this;
 	}
