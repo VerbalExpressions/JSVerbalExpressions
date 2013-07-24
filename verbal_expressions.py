@@ -1,5 +1,4 @@
 import re
-import inspect
 
 
 def re_escape(fn):
