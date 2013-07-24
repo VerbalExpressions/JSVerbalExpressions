@@ -39,12 +39,12 @@ class VerEx(object):
     def regex(self):
         ''' get a regular expression object. '''
         return re.compile(self.s, self.modifiers['I'] | self.modifiers['M'])
-        compile = regex
+    compile = regex
 
     def source(self):
         ''' return the raw string'''
         return self.s
-        raw = value = source
+    raw = value = source
 
     # ---------------------------------------------
 
