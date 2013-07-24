@@ -71,6 +71,17 @@ class VerbalExpressions {
         return this;
     }
 
+    public VerbalExpressions something() {
+        this.add( "(.+)" );
+        return this;
+    }
+
+    public VerbalExpressions somethingBut(String value) {
+        value = sanitize(value);
+        this.add( "([^" + value + "]+)" );
+        return this;
+    }
+	
     public VerbalExpressions replace(String source, String value) {
         this.add( "" );
         this.source.replaceAll(pattern,value);
