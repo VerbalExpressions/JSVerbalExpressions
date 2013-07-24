@@ -57,6 +57,17 @@ class VerEx < Regexp
     add("([^#{value}]*)")
   end
 
+  # Any character at least one time
+  def something
+    add("(.+)")
+  end
+
+  # Any character at least one time except for these characters
+  def something_but(value)
+    value = sanitize(value)
+    add("([^#{value}]+)")
+  end
+  
   # Regular expression special chars
   
   
