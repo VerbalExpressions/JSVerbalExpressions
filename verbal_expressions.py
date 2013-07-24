@@ -4,7 +4,7 @@ import inspect
 
 def re_escape(fn):
     def arg_escaped(this, *args):
-        t = [isinstance(a, VerEx) and a.s or re.escape(a) for a in args]
+        t = [isinstance(a, VerEx) and a.s or re.escape(str(a)) for a in args]
         return fn(this, *t)
     return arg_escaped
 
@@ -83,8 +83,8 @@ class VerEx(object):
 
     @re_escape
     def range(self, *args):
-        from_tos = [args[i:i+n] for i in range(0, len(args), n)]
-        return self.add(''.join(['-'.join(i) for i in from_tos]))
+        from_tos = [args[i:i+2] for i in range(0, len(args), 2)]
+        return self.add("([" + ''.join(['-'.join(i) for i in from_tos]) + "])")
 
     def tab(self):
         return self.add('\\t')
