@@ -107,3 +107,6 @@ class VerEx(object):
         ''' return the raw string'''
         return self.s
     raw = value = source
+
+    def replace(self, string, repl):
+        return self.sub(repl, string)
