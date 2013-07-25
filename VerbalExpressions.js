@@ -48,7 +48,6 @@ window.VerbalExpression = (function(){
  
     };
  
- 
     // Define the class methods.
     VerbalExpression.prototype = {
         
@@ -99,7 +98,7 @@ window.VerbalExpression = (function(){
         // naturally.
         then : function( value ) {
             value = this.sanitize( value );
-            this.add( "(" + value + ")" );
+            this.add( "(?:" + value + ")" );
             return( this );
         },
         
@@ -114,20 +113,20 @@ window.VerbalExpression = (function(){
         // Maybe is used to add values with ?
         maybe : function( value ) {
             value = this.sanitize(value);
-            this.add( "(" + value + ")?" );
+            this.add( "(?:" + value + ")?" );
             return( this );
         },
         
         // Any character any number of times
         anything : function() {
-            this.add( "(.*)" );
+            this.add( "(?:.*)" );
             return( this );
         },
         
         // Anything but these characters
         anythingBut : function( value ) {
             value = this.sanitize( value );
-            this.add( "([^" + value + "]*)" );
+            this.add( "(?:[^" + value + "]*)" );
             return( this );
         },
         
@@ -147,7 +146,7 @@ window.VerbalExpression = (function(){
         
         // Line break
         lineBreak : function() {
-            this.add( "(\\n|(\\r\\n))" ); // Unix + windows CLRF
+            this.add( "(?:\\n|(?:\\r\\n))" ); // Unix + windows CLRF
             return( this );
         },
         // And a shorthand for html-minded
@@ -274,11 +273,29 @@ window.VerbalExpression = (function(){
         // Adds alternative expressions
         or : function( value ) {
             
-            if(this._prefixes.indexOf("(") == -1) this._prefixes += "(";
-            if(this._suffixes.indexOf(")") == -1) this._suffixes = ")" + this._suffixes;
+            this._prefixes += "(?:";
+            this._suffixes = ")" + this._suffixes;
             
-            this.add( ")|(" );
+            this.add( ")|(?:" );
             if(value) this.then( value );
+            
+            return( this );
+        },
+
+        //starts a capturing group
+        beginCapture : function() {
+            //add the end of the capture group to the suffixes for now so compilation continues to work
+            this._suffixes += ")";
+            this.add( "(", false );
+
+            return( this );
+        },
+
+        //ends a capturing group
+        endCapture : function() {
+						//remove the last parentheses from the _suffixes and add to the regex itself
+            this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1 );
+            this.add( ")", true );
             
             return( this );
         }
