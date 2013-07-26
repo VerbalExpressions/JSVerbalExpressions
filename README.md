@@ -4,6 +4,14 @@ VerbalExpressions v0.1
 ## JavaScript Regular Expressions made easy
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
+## Other Implementations
+You can see an up to date list of all ports in our [organization](https://github.com/VerbalExpressions).
+- [Ruby](https://github.com/VerbalExpressions/RubyVerbalExpressions)
+- [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
+- [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
+- [Java](https://github.com/VerbalExpressions/JavaVerbalExpressions)
+- [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
+
 ## How to get started
 
 Include the library and you're good to go!
