@@ -130,6 +130,19 @@ window.VerbalExpression = (function(){
             return( this );
         },
         
+        // Any character at least one time
+        something : function() {
+            this.add( "(.+)" );
+            return( this );
+        },
+        
+        // Any character at least one time except for these characters
+        somethingBut : function( value ) {
+            value = this.sanitize( value );
+            this.add( "([^" + value + "]+)" );
+            return( this );
+        },
+		
         // Shorthand function for the
         // String.replace function to
         // give more logical flow if, for
