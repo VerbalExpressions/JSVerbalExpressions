@@ -18,7 +18,6 @@ test( "anything", function() {
 
 test( "anythingBut", function() {
     var testRegex = VerEx().startOfLine().anythingBut( "w" );
-    console.log( testRegex );
     var testString = "what";
     ok( testRegex.test( testString ), "starts with w" );
 } );
@@ -168,7 +167,6 @@ test( "searchOneLine", function() {
     var testString;
 
     testRegex = VerEx().startOfLine().then( "a" ).br().then( "b" ).endOfLine();
-    console.log(testRegex);
     testString = "a\nb";
     ok( testRegex.test( testString ), "b is on the second line" );
 
