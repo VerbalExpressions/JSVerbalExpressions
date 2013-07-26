@@ -1,7 +1,42 @@
+test( "something", function() {
+    var testRegex = VerEx().something();
+    var testString;
+
+    testString = "";
+    ok( ! testRegex.test( testString ), "empty string doesn't have something" );
+
+    testRegex.lastIndex = 0;
+    testString = "a";
+    ok( testRegex.test( testString ), "a is something" );
+} );
+
 test( "anything", function() {
-    var testRegex = VerEx().anything();
+    var testRegex = VerEx().startOfLine().anything();
     var testString = "what";
     ok( testRegex.test( testString ), "Passes!" );
+} );
+
+test( "anythingBut", function() {
+    var testRegex = VerEx().startOfLine().anythingBut( "w" );
+    console.log( testRegex );
+    var testString = "what";
+    ok( testRegex.test( testString ), "starts with w" );
+} );
+
+test( "somethingBut", function() {
+    var testRegex = VerEx().somethingBut("a");
+    var testString;
+
+    testString = "";
+    ok( ! testRegex.test( testString ), "empty string doesn't have something" );
+
+    testRegex.lastIndex = 0;
+    testString = "b";
+    ok( testRegex.test( testString ), "doesn't start with a" );
+
+    testRegex.lastIndex = 0;
+    testString = "a";
+    ok( ! testRegex.test( testString ), "starts with a" );
 } );
 
 test( "startOfLine", function() {
