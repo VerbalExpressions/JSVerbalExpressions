@@ -146,7 +146,7 @@ window.VerbalExpression = (function(){
         
         // Line break
         lineBreak : function() {
-            this.add( "(?:\\n|(?:\\r\\n))" ); // Unix + windows CLRF
+            this.add( "(?:(?:\\n)|(?:\\r\\n))" ); // Unix + windows CLRF
             return( this );
         },
         // And a shorthand for html-minded
@@ -205,7 +205,7 @@ window.VerbalExpression = (function(){
         
         // Modifier abstraction
         addModifier : function( modifier ) {
-            if( this._modifiers.indesxOf( modifier ) == -1 ) {
+            if( this._modifiers.indexOf( modifier ) == -1 ) {
                 this._modifiers += modifier;
             }
             this.add("");

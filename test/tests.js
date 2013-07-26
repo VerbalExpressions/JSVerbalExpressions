@@ -1,12 +1,144 @@
-test( "Sample test 1", function() {
-	var tester = VerEx()
-            .startOfLine()
-            .then( "http" )
-            .maybe( "s" )
-            .then( "://" )
-            .maybe( "www." )
-            .anythingBut( " " )
-            .endOfLine();
-	var testMe = "https://www.google.com";
-  ok( tester.test( testMe ), "Valid URL" );
-});
+test( "anything", function() {
+    var testRegex = VerEx().anything();
+    var testString = "what";
+    ok( testRegex.test( testString ), "Passes!" );
+} );
+
+test( "startOfLine", function() {
+    var testRegex = VerEx().startOfLine().then( "a" );
+    var testString;
+
+    testString = "a";
+    ok( testRegex.test( testString ), "Starts with a" );
+
+    testRegex.lastIndex = 0;
+    testString = "ba";
+    ok( ! testRegex.test( testString ), "Doesn't start with a" );
+} );
+
+test( "endOfLine", function() {
+    var testRegex = VerEx().find( "a" ).endOfLine();
+    var testString;
+
+    testString = "a";
+    ok( testRegex.test( testString ), "Ends with a" );
+
+    testRegex.lastIndex = 0;
+    testString = "ab";
+    ok( ! testRegex.test( testString ), "Doesn't end with a" );
+} );
+
+test( "maybe", function() {
+    var testRegex = VerEx().startOfLine().then( "a" ).maybe( "b" );
+    var testString;
+
+    testString = "acb";
+    ok( testRegex.test( testString ), "Maybe has a b after an a" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc";
+    ok( testRegex.test( testString ), "Maybe has a b after an a" );
+} );
+
+test( "anyOf", function() {
+    var testRegex = VerEx().startOfLine().then( "a" ).anyOf( "xyz" );
+    var testString;
+
+    testString = "ay";
+    ok( testRegex.test( testString ), "Has an x, y, or z after a" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc";
+    ok( ! testRegex.test( testString ), "Doesn't have an x, y, or z after a" );
+} );
+
+test( "or", function() {
+    var testRegex = VerEx().startOfLine().then( "abc" ).or( "def" );
+    var testString;
+
+    testString = "defzzz";
+    ok( testRegex.test( testString ), "Starts with abc or def" );
+
+    testRegex.lastIndex = 0;
+    testString = "xyzabc";
+    ok( ! testRegex.test( testString ), "Doesn't start with abc or def" );
+} );
+
+test( "lineBreak", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "abc" ).lineBreak().then( "def" );
+    testString = "abc\r\ndef";
+    ok( testRegex.test( testString ), "abc then line break then def" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc\ndef";
+    ok( testRegex.test( testString ), "abc then line break then def" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc\r\n def";
+    ok( ! testRegex.test( testString ), "abc then line break then space then def" );
+} );
+
+test( "br", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "abc" ).lineBreak().then( "def" );
+    testString = "abc\r\ndef";
+    ok( testRegex.test( testString ), "abc then line break then def" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc\ndef";
+    ok( testRegex.test( testString ), "abc then line break then def" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc\r\n def";
+    ok( ! testRegex.test( testString ), "abc then line break then space then def" );
+} );
+
+test( "tab", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().tab().then( "abc" );
+    testString = "\tabc";
+    ok( testRegex.test( testString ), "tab then abc" );
+
+    testRegex.lastIndex = 0;
+    testString = "abc";
+    ok( ! testRegex.test( testString ), "no tab then abc" );
+} );
+
+test( "withAnyCase", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "a" );
+    testString = "A";
+    ok( ! testRegex.test( testString ), "not case insensitive" );
+
+    testRegex = VerEx().startOfLine().then( "a" ).withAnyCase();
+    testString = "A";
+    ok( testRegex.test( testString ), "case insensitive" );
+
+    testRegex.lastIndex = 0;
+    testString = "a";
+    ok( testRegex.test( testString ), "case insensitive" );
+} );
+
+test( "searchOneLine", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "a" ).br().then( "b" ).endOfLine();
+    console.log(testRegex);
+    testString = "a\nb";
+    ok( testRegex.test( testString ), "b is on the second line" );
+
+    testRegex = VerEx().startOfLine().then( "a" ).br().then( "b" ).endOfLine().searchOneLine();
+    testString = "a\nb";
+    ok( testRegex.test( testString ), "b is on the second line but we are only searching the first" );
+} );
+
