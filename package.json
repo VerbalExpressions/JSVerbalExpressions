@@ -1,0 +1,11 @@
+{
+	"name": "VerbalExpressions",
+	"version": "0.1.0",
+	"devDependencies": {
+		"grunt-contrib-qunit": "~0.2.2"
+  },
+	"license": "MIT",
+	"engines": {
+    "node": ">=0.10"
+  }
+}
