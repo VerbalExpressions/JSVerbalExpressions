@@ -10,6 +10,7 @@ You can see an up to date list of all ports in our [organization](https://github
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
 - [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
 - [Java](https://github.com/VerbalExpressions/JavaVerbalExpressions)
+- [Groovy](https://github.com/VerbalExpressions/GroovyVerbalExpressions)
 - [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
 
 If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
