@@ -324,7 +324,11 @@
     // support both browser and node.js
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = createVerbalExpression;
-    } else {
+    }
+    else if (typeof define === 'function' && define.amd) {
+        define(VerbalExpression);
+    }
+    else {
         root.VerEx = createVerbalExpression;
     }
  
