@@ -13,10 +13,18 @@ You can see an up to date list of all ports in our [organization](https://github
 - [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
 
 ## How to get started
-
-Include the library and you're good to go!
+### In the browser
 ```HTML
-<script src="VerbalExpressions.js"></script>
+<script type="text/javascript" src="VerbalExpressions.js"></script>
+```
+### On the server (node.js)
+Install:
+```
+npm install verbal-expressions
+```
+Require:
+```javascript
+var VerEx = require("verbal-expressions");
 ```
 
 ## Examples
