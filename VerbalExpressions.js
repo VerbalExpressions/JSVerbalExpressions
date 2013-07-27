@@ -11,7 +11,9 @@
  */
 
 // Define the collection class.
-window.VerbalExpression = (function(){
+(function(){
+
+		var root = this;
 
     // I am the constructor function.
     function VerbalExpression(){
@@ -314,17 +316,16 @@ window.VerbalExpression = (function(){
         }
         
     };
- 
- 
-    // Return the constructor.
-    return( VerbalExpression );
- 
- 
-}).call( {} );
 
-// Create shorthand
-(function(w) { 
-    w.VerEx = function() {
+    function createVerbalExpression() {
         return new VerbalExpression();
-    };
-})(window);
+    }
+
+    // support both browser and node.js
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = createVerbalExpression;
+    } else {
+        root.VerEx = createVerbalExpression;
+    }
+ 
+}).call();
