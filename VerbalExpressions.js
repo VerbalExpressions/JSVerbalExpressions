@@ -132,7 +132,7 @@ window.VerbalExpression = (function(){
 
         // Any character at least one time
         something : function() {
-            this.add( "(:?.+)" );
+            this.add( "(?:.+)" );
             return( this );
         },
 
