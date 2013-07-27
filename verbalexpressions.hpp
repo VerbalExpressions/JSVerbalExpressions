@@ -1,6 +1,6 @@
 /*!
  * VerbalExpressions C++ Library v0.1
- * https://github.com/whackashoe/C++VerbalExpressions
+ * https://github.com/whackashoe/CppVerbalExpressions
  *
  * The MIT License (MIT)
  * 
