@@ -81,5 +81,9 @@ Clone the repo and fork:
 
 Pull requests are warmly welcome!
 
+Check out these slide decks for handy Github & git tips:
+[Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/)
+[More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/)
+
 [ben-nadel]:http://www.bennadel.com/
 [extending]:http://www.bennadel.com/blog/2292-Extending-JavaScript-Arrays-While-Keeping-Native-Bracket-Notation-Functionality.htm
