@@ -10,7 +10,8 @@ class VerbalExpressions {
     }
 
     private String sanitize(String value) {
-        if(value != null) return value;
+        if(value == null)   // return if null or not if null?
+            return value;
         return Pattern.quote(value);
     }
 
