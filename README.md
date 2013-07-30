@@ -6,7 +6,7 @@ VerbalExpressions is a JavaScript library that helps to construct difficult regu
 
 ## Other Implementations
 You can see an up to date list of all ports in our [organization](https://github.com/VerbalExpressions).  
-- [Ruby](https://github.com/VerbalExpressions/RubyVerbalExpressions)
+- [Ruby](https://github.com/ryan-endacott/verbal_expressions)
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
 - [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
 - [Java](https://github.com/VerbalExpressions/JavaVerbalExpressions)
