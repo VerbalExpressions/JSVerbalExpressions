@@ -197,7 +197,6 @@
         range : function() {
             
             var value = "[";
-            console.log(arguments);
             
             for(var _from = 0; _from < arguments.length; _from += 2) {
                 var _to = _from+1;
