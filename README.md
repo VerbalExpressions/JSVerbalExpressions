@@ -14,6 +14,7 @@ You can see an up to date list of all ports in our [organization](https://github
 - [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
 - [Haskell](https://github.com/VerbalExpressions/HaskellVerbalExpressions)
 - [C++](https://github.com/VerbalExpressions/CppVerbalExpressions)
+- [Clojure](https://github.com/pbalduino/ClojureVerbalExpressions)
 
 If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
 
