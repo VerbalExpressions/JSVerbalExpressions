@@ -69,7 +69,7 @@ var replaceMe = "Replace bird with a duck";
 var expression = VerEx().find( "bird" );
 
 // Execute the expression like a normal RegExp object
-var result = replaceMe.replace( expression, "duck" );
+var result = expression.replace( replaceMe, "duck" );
 
 alert( result ); // Outputs "Replace duck with a duck"
 ```
