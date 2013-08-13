@@ -175,3 +175,12 @@ test( "searchOneLine", function() {
     ok( testRegex.test( testString ), "b is on the second line but we are only searching the first" );
 } );
 
+test( "sanitize", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "$a^b\\c|d(e)f[g]h{i}j.k*l+m?" ).endOfLine();
+    testString = "$a^b\\c|d(e)f[g]h{i}j.k*l+m?";
+    ok( testRegex.test( testString ), "special characters sanitization" );
+} );
+
