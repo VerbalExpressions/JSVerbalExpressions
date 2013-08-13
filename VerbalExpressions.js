@@ -65,7 +65,7 @@
         // anything safely to the expression
         sanitize : function( value ) {
             if(value.source) return value.source;
-            return value.replace(/[\\^$|()\[\]{}.*+?]/g, '\\$&');
+            return value.replace( /[\\^$|()\[\]{}.*+?]/g, "\\$&" );
         },
         
         // Function to add stuff to the
