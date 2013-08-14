@@ -115,23 +115,6 @@ test( "lineBreak", function() {
     ok( ! testRegex.test( testString ), "abc then line break then space then def" );
 } );
 
-test( "br", function() {
-    var testRegex;
-    var testString;
-
-    testRegex = VerEx().startOfLine().then( "abc" ).lineBreak().then( "def" );
-    testString = "abc\r\ndef";
-    ok( testRegex.test( testString ), "abc then line break then def" );
-
-    testRegex.lastIndex = 0;
-    testString = "abc\ndef";
-    ok( testRegex.test( testString ), "abc then line break then def" );
-
-    testRegex.lastIndex = 0;
-    testString = "abc\r\n def";
-    ok( ! testRegex.test( testString ), "abc then line break then space then def" );
-} );
-
 test( "tab", function() {
     var testRegex;
     var testString;
