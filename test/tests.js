@@ -175,3 +175,18 @@ test( "searchOneLine", function() {
     ok( testRegex.test( testString ), "b is on the second line but we are only searching the first" );
 } );
 
+test( "multiple", function() {
+    var testRegex, testString;
+
+    testRegex = VerEx().startOfLine().multiple("foo");
+    testString = "foo";
+    ok( testRegex.test( testString ), "contains 'foo' atleast once ");
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2);
+    testString = "foo";
+    ok( ! testRegex.test( testString ), " should contains 'foo' atleast twice" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2);
+    testString = "foofoo";
+    ok( testRegex.test( testString ), " should contains 'foo' atleast twice" );
+} );
