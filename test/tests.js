@@ -189,4 +189,13 @@ test( "multiple", function() {
     testRegex =  VerEx().startOfLine().multiple("foo", 2);
     testString = "foofoo";
     ok( testRegex.test( testString ), " should contains 'foo' atleast twice" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2, 5);
+    testString = "foofoofoofoo";
+    ok( testRegex.test( testString ), " should contains 'foo' repeated two to five times" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2, 5);
+    testString = "foo";
+    ok( ! testRegex.test( testString ), " should contains 'foo' repeated two to five times" );
+
 } );
