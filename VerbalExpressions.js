@@ -65,6 +65,7 @@
         // anything safely to the expression
         sanitize : function( value ) {
             if(value.source) return value.source;
+            if(typeof value === "number") return value;
             return value.replace(/[^\w]/g, function(character) { return "\\" + character; });
         },
         
