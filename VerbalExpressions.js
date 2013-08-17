@@ -272,15 +272,15 @@
         
         multiple : function( value ) {
             // Use expression or string
+
             value = value.source ? value.source : this.sanitize(value);
-            switch(value.substr(-1)) {
-                case "*":
-                case "+":
-                    break;
-                default:
-                    value += "+";
+            if (arguments.length === 1) {
+                this.add("(?:" + value + ")*");
             }
-            this.add( value );
+            if (arguments.length > 1) {
+                this.add("(?:" + value + ")");
+                this.add("{" + arguments[1] + "}");
+            }
             return( this );
         },
         
