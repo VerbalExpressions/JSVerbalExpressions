@@ -265,6 +265,17 @@
             return( this );
             
         },
+
+        // Exact numbers (quantifier)
+        exactNumber: function( value ) {
+
+            if(/\d+/.exec(value) != null) {
+                var value = "{" + value + "}";
+            }
+
+            this.add( value || "" );
+            return ( this );
+        },
         
         
         
