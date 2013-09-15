@@ -266,11 +266,23 @@
             
         },
 
-        // Exact numbers (quantifier)
-        exactNumber: function( value ) {
+        // Repeats the previous item 
+        // exactly n times or
+        // between n and m times.
+        repeatPrevious: function( ) {
+            if(arguments.length <= 1) {
+                if(/\d+/.exec(arguments[0]) != null) {
+                    var value = "{" + arguments[0] + "}";
+                }
+            } else {
+                var values = [];
+                for(var i=0; i< arguments.length; i++) {
+                  if(/\d+/.exec(arguments[i]) != null) {
+                    values.push(arguments[i])
+                  }  
+                }
 
-            if(/\d+/.exec(value) != null) {
-                var value = "{" + value + "}";
+                var value = "{" + values.join(",") + "}";
             }
 
             this.add( value || "" );

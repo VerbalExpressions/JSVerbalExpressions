@@ -18,7 +18,7 @@
             .endOfLine();
     
 
-    var cepr = VerEx().range("0","9").exactNumber("5").maybe("-").range("0","9").exactNumber("3")           
+    var cepr = VerEx().range("0","9").repeatPrevious("1","5").maybe("-").range("0","9").repeatPrevious("3")           
 
     var test3 = "08030-190";
       document.write(cepr);
