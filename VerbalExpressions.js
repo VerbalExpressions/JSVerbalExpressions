@@ -195,14 +195,10 @@
         
         // Usage: .range( from, to [, from, to ... ] )
         range : function() {
-            
             var value = "[";
             
-            for(var _from = 0; _from < arguments.length; _from += 2) {
-                var _to = _from+1;
-                if(arguments.length <= to) break;
-                
-                var from = this.sanitize( arguments[_from] );
+            for(var _to = 1; _to < arguments.length; _to += 2) {
+            	var from = this.sanitize( arguments[_to - 1] );
                 var to = this.sanitize( arguments[_to] );
                 
                 value += from + "-" + to;
