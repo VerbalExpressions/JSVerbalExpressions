@@ -17,10 +17,7 @@
 
     // I am the constructor function.
     function VerbalExpression(){
-        var verbalExpression = Object.create( RegExp.prototype );
-        
-        // Initialize 
-        verbalExpression = (RegExp.apply( verbalExpression, arguments ) || verbalExpression);
+        var verbalExpression = new RegExp();
      
         // Add all the class methods
         VerbalExpression.injectClassMethods( verbalExpression );
