@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VerbalExpressions example</title>
+</head>
+<body>
+    <ul id="results"></ul>
+    <script src="VerbalExpressions.js"></script>
+    <script>
+    var r = document.getElementById('results')
+    var tester = VerEx()
+            .startOfLine()
+            .then( "http" )
+            .maybe( "s" )
+            .then( "://" )
+            .maybe( "www." )
+            .anythingBut( " " )
+            .endOfLine();
+    
+
+    var cepr = VerEx().range("0","9").repeatPrevious("1","5").maybe("-").range("0","9").repeatPrevious("3")           
+
+    var test3 = "08030-190";
+      document.write(cepr);
+      document.write("<br>");
+      document.write((cepr.test(test3)) ? "cep valido" : "cep invalido");
+    </script>
+</body>
+</html>
