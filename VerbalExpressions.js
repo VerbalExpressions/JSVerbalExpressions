@@ -309,6 +309,12 @@
             this.add( ")", true );
             
             return( this );
+        },
+
+        //convert to RegExp object
+        toRegExp : function() {
+            var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
+            return new RegExp(arr[1],arr[2]);
         }
         
     };
