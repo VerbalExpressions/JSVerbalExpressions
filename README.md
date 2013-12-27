@@ -33,6 +33,12 @@ Require:
 var VerEx = require("verbal-expressions");
 ```
 
+## Running tests
+
+    $ grunt 
+    (or)
+    $ grunt test
+
 ## Examples
 
 Here's a couple of simple examples to give an idea of how VerbalExpressions works:
