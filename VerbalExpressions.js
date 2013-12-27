@@ -347,7 +347,7 @@
         module.exports = createVerbalExpression;
     }
     else if (typeof define === 'function' && define.amd) {
-        define(VerbalExpression);
+        define(function(){ return VerbalExpression; });
     }
     else {
         root.VerEx = createVerbalExpression;
