@@ -1,4 +1,4 @@
-VerbalExpressions v0.1
+VerbalExpressions v0.1.1
 =====================
 
 ## JavaScript Regular Expressions made easy
