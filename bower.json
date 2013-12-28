@@ -13,6 +13,7 @@
     "tests",
     "Gruntfile.js",
     "package.json",
-    "bower.json"
+    "bower.json",
+    "teste.html"
   ]
 }
