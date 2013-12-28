@@ -4,5 +4,15 @@
   "description": "JavaScript Regular expressions made easy",
   "keywords": [ "regular expressions", "regex" ],
   "main": "VerbalExpressions.js",
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Gruntfile.js",
+    "package.json",
+    "bower.json"
+  ]
 }
