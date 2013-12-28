@@ -1,17 +1,18 @@
 {
 	"name": "verbal-expressions",
 	"description": "JavaScript Regular expressions made easy",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"keywords": [ "regular expressions", "regex" ],
 	"devDependencies": {
+        "grunt": "~0.4.2",
 		"grunt-contrib-qunit": "~0.2.2"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/jehna/VerbalExpressions.git"
+		"url": "git://github.com/VerbalExpressions/JSVerbalExpressions.git"
 	},
 	"bugs": {
-		"url": "https://github.com/jehna/VerbalExpressions/issues"
+		"url": "https://github.com/VerbalExpressions/JSVerbalExpressions/issues"
 	},
 	"main": "VerbalExpressions.js",
 	"license": "MIT",
