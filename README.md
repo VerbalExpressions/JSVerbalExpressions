@@ -39,6 +39,12 @@ var VerEx = require("verbal-expressions");
     (or)
     $ grunt test
 
+## Creating a minified version
+
+This will generate a minified version of VerbalExpressions.js (aptly named VerbalExpressions.min.js) in a _dist_ folder.
+
+    $ grunt build
+
 ## Examples
 
 Here's a couple of simple examples to give an idea of how VerbalExpressions works:
