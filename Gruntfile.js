@@ -30,5 +30,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.registerTask('test', 'qunit');
     grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', 'uglify');
+    grunt.registerTask('build', ['qunit', 'uglify']);
 };
