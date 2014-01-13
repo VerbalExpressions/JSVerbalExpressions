@@ -4,7 +4,7 @@
  *
  *
  * Released under the MIT license
- * http://jquery.org/license
+ * http://opensource.org/licenses/MIT
  *
  * Date: 2013-07-19
  *

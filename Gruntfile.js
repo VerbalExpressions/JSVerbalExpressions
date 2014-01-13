@@ -13,8 +13,8 @@ module.exports = function(grunt) {
                         '* <%= pkg.homepage %>\n' +
                         '*\n' +
                         '*\n' +
-                        '* Released under the MIT license\n' +
-                        '* http://jquery.org/license\n' +
+                        '* Released under the <%= pkg.license.type %> license\n' +
+                        '* <%= pkg.license.url %>\n' +
                         '*\n' +
                         '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                         '*\n' +
