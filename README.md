@@ -5,7 +5,7 @@ VerbalExpressions v0.1.2
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
 ## Other Implementations
-You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).  
+You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
 - [Ruby](https://github.com/ryan-endacott/verbal_expressions)
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
 - [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
@@ -35,7 +35,7 @@ var VerEx = require("verbal-expressions");
 
 ## Running tests
 
-    $ grunt 
+    $ grunt
     (or)
     $ grunt test
 
@@ -44,6 +44,8 @@ var VerEx = require("verbal-expressions");
 This will generate a minified version of VerbalExpressions.js (aptly named VerbalExpressions.min.js) in a _dist_ folder.
 
     $ grunt build
+
+A source map will also be created in the same folder, so you can use the original unminified source file (copied to _dist_ as well) for debugging purposes.
 
 ## Examples
 
@@ -69,7 +71,7 @@ var testMe = "https://www.google.com";
 if( tester.test( testMe ) ) alert( "We have a correct URL "); // This output will fire
 else alert( "The URL is incorrect" );
 
-console.log( tester ); // Ouputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/ 
+console.log( tester ); // Ouputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
 ```
 
 ### Replacing strings
