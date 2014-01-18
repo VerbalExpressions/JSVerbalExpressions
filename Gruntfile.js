@@ -1,9 +1,16 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        
+
         qunit: {
             files: ['test/index.html']
+        },
+
+        copy: {
+            build: {
+                src: '<%= pkg.name %>.js',
+                dest: 'dist/<%= pkg.name %>.js'
+            }
         },
 
         uglify: {
@@ -18,17 +25,31 @@ module.exports = function(grunt) {
                         '*\n' +
                         '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                         '*\n' +
-                        '*/\n'
+                        '*/\n',
+                sourceMap: true
             },
             dist: {
                 files: {'dist/<%= pkg.name %>.min.js' : ['<%= pkg.name %>.js']}
             }
+        },
+
+        sourcemap_localize: {
+            options: {
+                localize_to : '..'
+            },
+            build: {
+                files: {
+                    src: ['dist/*.min.map']
+                }
+            }
         }
     });
 
-	grunt.loadNpmTasks("grunt-contrib-qunit");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-contrib-qunit");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks('grunt-sourcemap-localize');
     grunt.registerTask('test', 'qunit');
     grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', ['qunit', 'uglify']);
+    grunt.registerTask('build', ['qunit', 'copy', 'uglify', 'sourcemap_localize']);
 };
