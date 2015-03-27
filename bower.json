@@ -1,0 +1,19 @@
+{
+  "name": "verbal-expressions",
+  "version": "0.1.2",
+  "description": "JavaScript Regular expressions made easy",
+  "keywords": [ "regular expressions", "regex" ],
+  "main": "VerbalExpressions.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Gruntfile.js",
+    "package.json",
+    "bower.json",
+    "teste.html"
+  ]
+}

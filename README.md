@@ -1,11 +1,11 @@
-VerbalExpressions v0.1
+VerbalExpressions v0.1.2
 =====================
 
 ## JavaScript Regular Expressions made easy
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
 ## Other Implementations
-You can see an up to date list of all ports in our [organization](https://github.com/VerbalExpressions).  
+You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
 - [Ruby](https://github.com/ryan-endacott/verbal_expressions)
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
 - [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
@@ -14,6 +14,7 @@ You can see an up to date list of all ports in our [organization](https://github
 - [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
 - [Haskell](https://github.com/VerbalExpressions/HaskellVerbalExpressions)
 - [C++](https://github.com/VerbalExpressions/CppVerbalExpressions)
+- [Objective-C](https://github.com/VerbalExpressions/ObjectiveCVerbalExpressions)
 
 If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
 
@@ -31,6 +32,20 @@ Require:
 ```javascript
 var VerEx = require("verbal-expressions");
 ```
+
+## Running tests
+
+    $ grunt
+    (or)
+    $ grunt test
+
+## Creating a minified version
+
+This will generate a minified version of VerbalExpressions.js (aptly named VerbalExpressions.min.js) in a _dist_ folder.
+
+    $ grunt build
+
+A source map will also be created in the same folder, so you can use the original unminified source file (copied to _dist_ as well) for debugging purposes.
 
 ## Examples
 
@@ -56,7 +71,7 @@ var testMe = "https://www.google.com";
 if( tester.test( testMe ) ) alert( "We have a correct URL "); // This output will fire
 else alert( "The URL is incorrect" );
 
-console.log( tester ); // Ouputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/ 
+console.log( tester ); // Ouputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
 ```
 
 ### Replacing strings
@@ -69,7 +84,7 @@ var replaceMe = "Replace bird with a duck";
 var expression = VerEx().find( "bird" );
 
 // Execute the expression like a normal RegExp object
-var result = replaceMe.replace( expression, "duck" );
+var result = expression.replace( replaceMe, "duck" );
 
 alert( result ); // Outputs "Replace duck with a duck"
 ```

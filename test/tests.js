@@ -175,3 +175,36 @@ test( "searchOneLine", function() {
     ok( testRegex.test( testString ), "b is on the second line but we are only searching the first" );
 } );
 
+test( "sanitize", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then( "$a^b\\c|d(e)f[g]h{i}j.k*l+m?" ).endOfLine();
+    testString = "$a^b\\c|d(e)f[g]h{i}j.k*l+m?";
+    ok( testRegex.test( testString ), "special characters sanitization" );
+} );
+
+test( "multiple", function() {
+    var testRegex, testString;
+
+    testRegex = VerEx().startOfLine().multiple("foo");
+    testString = "foo";
+    ok( testRegex.test( testString ), "contains 'foo' atleast once ");
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2);
+    testString = "foo";
+    ok( ! testRegex.test( testString ), " should contains 'foo' atleast twice" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2);
+    testString = "foofoo";
+    ok( testRegex.test( testString ), " should contains 'foo' atleast twice" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2, 5);
+    testString = "foofoofoofoo";
+    ok( testRegex.test( testString ), " should contains 'foo' repeated two to five times" );
+
+    testRegex =  VerEx().startOfLine().multiple("foo", 2, 5);
+    testString = "foo";
+    ok( ! testRegex.test( testString ), " should contains 'foo' repeated two to five times" );
+
+} );
