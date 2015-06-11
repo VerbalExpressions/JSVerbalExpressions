@@ -1,6 +1,5 @@
 {
   "name": "verbal-expressions",
-  "version": "0.1.2",
   "description": "JavaScript Regular expressions made easy",
   "keywords": [ "regular expressions", "regex" ],
   "main": "VerbalExpressions.js",
