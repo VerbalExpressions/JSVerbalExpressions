@@ -162,6 +162,19 @@ test( "withAnyCase", function() {
     ok( testRegex.test( testString ), "case insensitive" );
 } );
 
+test( "whitespace", function() {
+    var testRegex;
+    var testString;
+
+    testRegex = VerEx().startOfLine().then("a").whitespace().then( "z" );
+    testString = "a z";
+    ok( testRegex.test( testString ), "a then space the z" );
+
+    testRegex.lastIndex = 0;
+    testString = "a_z";
+    ok( ! testRegex.test( testString ), "a then no whitespace then z" );
+} );
+
 test( "searchOneLine", function() {
     var testRegex;
     var testString;
@@ -182,6 +195,22 @@ test( "sanitize", function() {
     testRegex = VerEx().startOfLine().then( "$a^b\\c|d(e)f[g]h{i}j.k*l+m?" ).endOfLine();
     testString = "$a^b\\c|d(e)f[g]h{i}j.k*l+m?";
     ok( testRegex.test( testString ), "special characters sanitization" );
+} );
+
+test( "oneOrMore", function() {
+    var testRegex, testString;
+
+    testRegex = VerEx().startOfLine().then("foo").oneOrMore();
+    testString = "foo";
+    ok( testRegex.test( testString ), "contains 'foo' atleast once ");
+
+    testRegex.lastIndex = 0;
+    testString = "foofoo";
+    ok( testRegex.test( testString ), "contains 'foo' atleast once in 'foofoo'");
+
+    testRegex.lastIndex = 0;
+    testString = "bar";
+    ok(! testRegex.test( testString ), "contains 'foo' atleast once");
 } );
 
 test( "multiple", function() {
