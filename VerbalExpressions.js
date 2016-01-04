@@ -170,7 +170,7 @@
 
         // Line break
         lineBreak: function () {
-            this.add('(?:\\r\\n|\\r|\\n)'); // Unix + windows CLRF
+            this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
             return this;
         },
 
