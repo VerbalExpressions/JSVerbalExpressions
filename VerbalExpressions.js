@@ -26,7 +26,7 @@
     }
 
     // Define the static methods.
-    VerbalExpression.injectClassMethods = function (verbalExpression) {
+    VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
 
         // Loop over all the prototype methods
         for (var method in VerbalExpression.prototype) {
@@ -57,7 +57,7 @@
 
         // Sanitation function for adding
         // anything safely to the expression
-        sanitize: function (value) {
+        sanitize: function sanitize(value) {
             if (value.source) {
                 return value.source;
             }
@@ -66,7 +66,7 @@
                 return value;
             }
 
-            return value.replace(/[^\w]/g, function (character) {
+            return value.replace(/[^\w]/g, function charReplace(character) {
                 return '\\' + character;
             });
         },
@@ -75,7 +75,7 @@
         // expression. Also compiles the
         // new expression so it's ready to
         // be used.
-        add: function (value) {
+        add: function add(value) {
             this._source += value || '';
             this.compile(this._prefixes + this._source + this._suffixes, this._modifiers);
 
@@ -83,7 +83,7 @@
         },
 
         // Start and end of line functions
-        startOfLine: function (enable) {
+        startOfLine: function startOfLine(enable) {
             enable = (enable !== false);
             this._prefixes = enable ? '^' : '';
             this.add('');
@@ -91,7 +91,7 @@
             return this;
         },
 
-        endOfLine: function (enable) {
+        endOfLine: function endOfLine(enable) {
             enable = (enable !== false);
             this._suffixes = enable ? '$' : '';
             this.add('');
@@ -104,7 +104,7 @@
         // So we can use the "normal"
         // behaviour to split the "sentences"
         // naturally.
-        then: function (value) {
+        then: function then(value) {
             value = this.sanitize(value);
             this.add('(?:' + value + ')');
 
@@ -115,12 +115,12 @@
         // "then" function, we create an alias
         // to be used as the first function
         // of the chain.
-        find: function (value) {
+        find: function find(value) {
             return this.then(value);
         },
 
         // Maybe is used to add values with ?
-        maybe: function (value) {
+        maybe: function maybe(value) {
             value = this.sanitize(value);
             this.add('(?:' + value + ')?');
 
@@ -128,13 +128,13 @@
         },
 
         // Any character any number of times
-        anything: function () {
+        anything: function anything() {
             this.add('(?:.*)');
             return this;
         },
 
         // Anything but these characters
-        anythingBut: function (value) {
+        anythingBut: function anythingBut(value) {
             value = this.sanitize(value);
             this.add('(?:[^' + value + ']*)');
 
@@ -142,13 +142,13 @@
         },
 
         // Any character at least one time
-        something: function () {
+        something: function something() {
             this.add('(?:.+)');
             return this;
         },
 
         // Any character at least one time except for these characters
-        somethingBut: function (value) {
+        somethingBut: function somethingBut(value) {
             value = this.sanitize(value);
             this.add('(?:[^' + value + ']+)');
 
@@ -160,7 +160,7 @@
         // give more logical flow if, for
         // example, we're doing multiple
         // replacements on one regexp.
-        replace: function (source, value) {
+        replace: function replace(source, value) {
             source = source.toString();
             return source.replace(this, value);
         },
@@ -169,42 +169,42 @@
         /// characters                     ///
 
         // Line break
-        lineBreak: function () {
+        lineBreak: function lineBreak() {
             this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
             return this;
         },
 
         // And a shorthand for html-minded
-        br: function () {
+        br: function br() {
             return this.lineBreak();
         },
 
         // Tab (duh?)
-        tab: function () {
+        tab: function tab() {
             this.add('\\t');
             return this;
         },
 
         // Any alphanumeric
-        word: function () {
+        word: function word() {
             this.add('\\w+');
             return this;
         },
 
         // Any given character
-        anyOf: function (value) {
+        anyOf: function anyOf(value) {
             value = this.sanitize(value);
             this.add('[' + value + ']');
             return this;
         },
 
         // Shorthand
-        any: function (value) {
+        any: function any(value) {
             return this.anyOf(value);
         },
 
         // Usage: .range( from, to [, from, to ... ] )
-        range: function () {
+        range: function range() {
             var value = '[';
 
             for (var _to = 1; _to < arguments.length; _to += 2) {
@@ -224,7 +224,7 @@
         /// Modifiers      ///
 
         // Modifier abstraction
-        addModifier: function (modifier) {
+        addModifier: function addModifier(modifier) {
             if (this._modifiers.indexOf(modifier) === -1) {
                 this._modifiers += modifier;
             }
@@ -234,7 +234,7 @@
             return this;
         },
 
-        removeModifier: function (modifier) {
+        removeModifier: function removeModifier(modifier) {
             this._modifiers = this._modifiers.replace(modifier, '');
             this.add('');
 
@@ -242,7 +242,7 @@
         },
 
         // Case-insensitivity modifier
-        withAnyCase: function (enable) {
+        withAnyCase: function withAnyCase(enable) {
             if (enable !== false) {
                 this.addModifier('i');
             } else {
@@ -258,7 +258,7 @@
         // Default behaviour is with "g" modifier,
         // so we can turn this another way around
         // than other modifiers
-        stopAtFirst: function (enable) {
+        stopAtFirst: function stopAtFirst(enable) {
             if (enable !== false) {
                 this.removeModifier('g');
             } else {
@@ -272,7 +272,7 @@
         },
 
         // Multiline, also reversed
-        searchOneLine: function (enable) {
+        searchOneLine: function searchOneLine(enable) {
             if (enable !== false) {
                 this.removeModifier('m');
             } else {
@@ -288,7 +288,7 @@
         // Repeats the previous item
         // exactly n times or
         // between n and m times.
-        repeatPrevious: function () {
+        repeatPrevious: function repeatPrevious() {
             var value;
             if (arguments.length <= 1) {
                 if (/\d+/.exec(arguments[0]) !== null) {
@@ -312,7 +312,7 @@
 
         /// Loops  ///
 
-        multiple: function (value) {
+        multiple: function multiple(value) {
             // Use expression or string
 
             value = value.source ? value.source : this.sanitize(value);
@@ -329,7 +329,7 @@
         },
 
         // Adds alternative expressions
-        or: function (value) {
+        or: function or(value) {
             this._prefixes += '(?:';
             this._suffixes = ')' + this._suffixes;
 
@@ -342,7 +342,7 @@
         },
 
         // Starts a capturing group
-        beginCapture: function () {
+        beginCapture: function beginCapture() {
             // Add the end of the capture group to the suffixes for now so compilation continues to work
             this._suffixes += ')';
             this.add('(', false);
@@ -351,7 +351,7 @@
         },
 
         // Ends a capturing group
-        endCapture: function () {
+        endCapture: function endCapture() {
             // Remove the last parentheses from the _suffixes and add to the regex itself
             this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1);
             this.add(')', true);
@@ -360,11 +360,10 @@
         },
 
         // Convert to RegExp object
-        toRegExp: function () {
+        toRegExp: function toRegExp() {
             var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
             return new RegExp(arr[1], arr[2]);
         }
-
     };
 
     function createVerbalExpression() {
@@ -375,7 +374,7 @@
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = createVerbalExpression;
     } else if (typeof define === 'function' && define.amd) {
-        define(function () {
+        define(function define() {
             return VerbalExpression;
         });
     } else {
