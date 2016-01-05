@@ -4,7 +4,7 @@ module.exports = function gruntConfig(grunt) {
 
         eslint: {
             options: {
-                configFile: '.eslintrc.json',
+                configFile: '.eslintrc',
             },
             src: ['VerbalExpressions.js'],
         },
