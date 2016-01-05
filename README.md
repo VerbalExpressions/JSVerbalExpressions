@@ -100,7 +100,7 @@ alert( result ); // Outputs "We have a blue house"
 
 ## API documentation
 
-You can find the API documentation at the [wiki pages](https://github.com/jehna/VerbalExpressions/wiki).
+You can find the API documentation at the [wiki pages](https://github.com/VerbalExpressions/JSVerbalExpressions/wiki).
 
 ## A little word for a big help
 I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great article about extending native JS objects][extending]
@@ -116,4 +116,4 @@ Check out these slide decks for handy Github & git tips:
 - [More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/)
 
 [ben-nadel]:http://www.bennadel.com/
-[extending]:http://www.bennadel.com/blog/2292-Extending-JavaScript-Arrays-While-Keeping-Native-Bracket-Notation-Functionality.htm
+[extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
