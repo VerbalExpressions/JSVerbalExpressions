@@ -9,10 +9,11 @@
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
     "grunt": "~0.4.2",
+    "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-qunit": "~0.2.2",
     "grunt-contrib-uglify": "~0.3.0",
-    "grunt-sourcemap-localize": "~0.1.0",
-    "grunt-contrib-copy": "~0.5.0"
+    "grunt-eslint": "^17.3.1",
+    "grunt-sourcemap-localize": "~0.1.0"
   },
   "repository": {
     "type": "git",

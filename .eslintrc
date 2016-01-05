@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    // Override Airbnb style guide defaults
+    "comma-dangle": 0,
+    "indent": [2, 4],
+    "max-len": [2, 255, 4],
+    "no-param-reassign": 0,
+    "no-var": 0,
+    "padded-blocks": 0,
+    "spaced-comment": 0,
+    "vars-on-top": 0
+  },
+  "env": {
+    "amd": true
+  }
+}
