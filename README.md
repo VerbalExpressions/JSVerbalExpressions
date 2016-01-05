@@ -107,7 +107,7 @@ I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great
 
 ## Contributions
 Clone the repo and fork:
-`git clone https://github.com/jehna/VerbalExpressions.git`.
+`git clone https://github.com/VerbalExpressions/JSVerbalExpressions.git`.
 
 Pull requests are warmly welcome!
 
