@@ -1,6 +1,8 @@
 VerbalExpressions v0.1.2
 =====================
 
+[![Build Status](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg)](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions)
+
 ## JavaScript Regular Expressions made easy
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
