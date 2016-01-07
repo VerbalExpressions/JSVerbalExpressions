@@ -11,7 +11,7 @@
  */
 
 // Define the collection class.
-(function () {
+(function verbalExpressionIIFE() {
     var root = this;
 
     // I am the constructor function.
@@ -27,22 +27,16 @@
 
     // Define the static methods.
     VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
-
         // Loop over all the prototype methods
         for (var method in VerbalExpression.prototype) {
-
             // Make sure this is a local method.
             if (VerbalExpression.prototype.hasOwnProperty(method)) {
-
                 // Add the method
                 verbalExpression[method] = VerbalExpression.prototype[method];
-
             }
-
         }
 
         return verbalExpression;
-
     };
 
     // Define the class methods.
@@ -190,10 +184,10 @@
             this.add('\\w+');
             return this;
         },
-        
+
         // Any whitespace
-        whitespace : function() {
-            this.add( "\\s" );
+        whitespace: function whitespace() {
+            this.add('\\s');
             return this;
         },
 
@@ -258,7 +252,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Default behaviour is with "g" modifier,
@@ -274,7 +267,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Multiline, also reversed
@@ -288,7 +280,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Repeats the previous item
@@ -317,11 +308,10 @@
         },
 
         // Repeats the previous at least ones
-        oneOrMore: function( ) {
-            this.add( "+" );
-            return ( this );
+        oneOrMore: function oneOrMore() {
+            this.add('+');
+            return (this);
         },
-
 
         /// Loops  ///
 
@@ -376,7 +366,7 @@
         toRegExp: function toRegExp() {
             var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
             return new RegExp(arr[1], arr[2]);
-        }
+        },
     };
 
     function createVerbalExpression() {

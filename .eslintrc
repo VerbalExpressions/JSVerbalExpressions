@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb/legacy",
+  "rules": {
+    // Override Airbnb's style guide defaults for ES5
+    "indent": [2, 4],
+    "max-len": [2, 255, 4],
+    "no-param-reassign": 0,
+    "spaced-comment": 0,
+    "vars-on-top": 0
+  },
+  "env": {
+    "amd": true
+  }
+}
