@@ -190,6 +190,12 @@
             this.add('\\w+');
             return this;
         },
+        
+        // Any whitespace
+        whitespace : function() {
+            this.add( "\\s" );
+            return this;
+        },
 
         // Any given character
         anyOf: function anyOf(value) {
@@ -309,6 +315,13 @@
 
             return (this);
         },
+
+        // Repeats the previous at least ones
+        oneOrMore: function( ) {
+            this.add( "+" );
+            return ( this );
+        },
+
 
         /// Loops  ///
 
