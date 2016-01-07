@@ -11,7 +11,7 @@
  */
 
 // Define the collection class.
-(function () {
+(function verbalExpressionIIFE() {
     var root = this;
 
     // I am the constructor function.
@@ -190,10 +190,10 @@
             this.add('\\w+');
             return this;
         },
-        
+
         // Any whitespace
-        whitespace : function() {
-            this.add( "\\s" );
+        whitespace: function whitespace() {
+            this.add('\\s');
             return this;
         },
 
@@ -317,11 +317,10 @@
         },
 
         // Repeats the previous at least ones
-        oneOrMore: function( ) {
-            this.add( "+" );
-            return ( this );
+        oneOrMore: function oneOrMore() {
+            this.add('+');
+            return (this);
         },
-
 
         /// Loops  ///
 
@@ -376,7 +375,7 @@
         toRegExp: function toRegExp() {
             var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
             return new RegExp(arr[1], arr[2]);
-        }
+        },
     };
 
     function createVerbalExpression() {
