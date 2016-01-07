@@ -15,6 +15,7 @@ You can see an up to date list of all ports on [VerbalExpressions.github.io](htt
 - [Groovy](https://github.com/VerbalExpressions/GroovyVerbalExpressions)
 - [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
 - [Haskell](https://github.com/VerbalExpressions/HaskellVerbalExpressions)
+- [Haxe](https://github.com/VerbalExpressions/HaxeVerbalExpressions)
 - [C++](https://github.com/VerbalExpressions/CppVerbalExpressions)
 - [Objective-C](https://github.com/VerbalExpressions/ObjectiveCVerbalExpressions)
 - [Perl](https://github.com/VerbalExpressions/PerlVerbalExpressions)
