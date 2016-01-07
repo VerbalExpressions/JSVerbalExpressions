@@ -27,22 +27,16 @@
 
     // Define the static methods.
     VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
-
         // Loop over all the prototype methods
         for (var method in VerbalExpression.prototype) {
-
             // Make sure this is a local method.
             if (VerbalExpression.prototype.hasOwnProperty(method)) {
-
                 // Add the method
                 verbalExpression[method] = VerbalExpression.prototype[method];
-
             }
-
         }
 
         return verbalExpression;
-
     };
 
     // Define the class methods.
@@ -190,7 +184,7 @@
             this.add('\\w+');
             return this;
         },
-        
+
         // Any whitespace
         whitespace : function() {
             this.add( "\\s" );
@@ -258,7 +252,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Default behaviour is with "g" modifier,
@@ -274,7 +267,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Multiline, also reversed
@@ -288,7 +280,6 @@
             this.add('');
 
             return this;
-
         },
 
         // Repeats the previous item
@@ -321,7 +312,6 @@
             this.add( "+" );
             return ( this );
         },
-
 
         /// Loops  ///
 
