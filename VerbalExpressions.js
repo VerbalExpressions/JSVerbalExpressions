@@ -80,7 +80,7 @@
         startOfLine: function startOfLine(enable) {
             enable = (enable !== false);
             this._prefixes = enable ? '^' : '';
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -88,7 +88,7 @@
         endOfLine: function endOfLine(enable) {
             enable = (enable !== false);
             this._suffixes = enable ? '$' : '';
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -229,14 +229,14 @@
                 this._modifiers += modifier;
             }
 
-            this.add('');
+            this.add();
 
             return this;
         },
 
         removeModifier: function removeModifier(modifier) {
             this._modifiers = this._modifiers.replace(modifier, '');
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -249,7 +249,7 @@
                 this.removeModifier('i');
             }
 
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -264,7 +264,7 @@
                 this.addModifier('g');
             }
 
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -277,7 +277,7 @@
                 this.addModifier('m');
             }
 
-            this.add('');
+            this.add();
 
             return this;
         },
@@ -302,7 +302,7 @@
                 value = '{' + values.join(',') + '}';
             }
 
-            this.add(value || '');
+            this.add(value);
 
             return (this);
         },
