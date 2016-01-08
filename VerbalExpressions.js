@@ -351,7 +351,7 @@
         beginCapture: function beginCapture() {
             // Add the end of the capture group to the suffixes for now so compilation continues to work
             this._suffixes += ')';
-            this.add('(', false);
+            this.add('(');
 
             return this;
         },
@@ -360,7 +360,7 @@
         endCapture: function endCapture() {
             // Remove the last parentheses from the _suffixes and add to the regex itself
             this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1);
-            this.add(')', true);
+            this.add(')');
 
             return this;
         },
