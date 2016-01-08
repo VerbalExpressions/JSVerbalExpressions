@@ -120,7 +120,7 @@ Clone the repo and fork:
 
 ### Style guide
 
-The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used used as a basis for creating clean and readable JavaScript code.
+The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used as a basis for creating clean and readable JavaScript code.
 
 Pull requests are warmly welcome!
 
