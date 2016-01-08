@@ -60,9 +60,12 @@
                 return value;
             }
 
-            return value.replace(/[^\w]/g, function charReplace(character) {
-                return '\\' + character;
-            });
+            // Regular expression meta characters, URL: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
+            var reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
+
+            // Escape RegExp special characters only
+            // $& => Last match, URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
+            return value.replace(reRegExpEscape, '\\$&');
         },
 
         // Function to add stuff to the
