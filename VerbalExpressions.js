@@ -367,8 +367,8 @@
 
         // Convert to RegExp object
         toRegExp: function toRegExp() {
-            var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
-            return new RegExp(arr[1], arr[2]);
+            var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
+            return new RegExp(array[1], array[2]);
         },
     };
 
