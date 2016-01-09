@@ -208,18 +208,24 @@
 
         // Usage: .range( from, to [, from, to ... ] )
         range: function range() {
-            var value = '[';
+            var length = arguments.length;
 
-            for (var _to = 1; _to < arguments.length; _to += 2) {
-                var from = this.sanitize(arguments[_to - 1]);
-                var to = this.sanitize(arguments[_to]);
+            // Create a string buffer instead of concatenating on iteration
+            var buffer = new Array(length / 2);
+            var index = 0;
 
-                value += from + '-' + to;
+            buffer[index++] = '[';
+
+            var i = 0;
+            while (i < length) {
+                var from = this.sanitize(arguments[i++]);
+                var to = this.sanitize(arguments[i++]);
+                buffer[index++] = from + '-' + to;
             }
 
-            value += ']';
+            buffer[index++] = ']';
 
-            this.add(value);
+            this.add(buffer.join(''));
 
             return this;
         },
