@@ -316,7 +316,7 @@
             return (this);
         },
 
-        // Repeats the previous at least ones
+        // Repeats the previous at least once
         oneOrMore: function oneOrMore() {
             this.add('+');
             return (this);
