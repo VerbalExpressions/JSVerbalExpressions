@@ -9,6 +9,10 @@
     "vars-on-top": 0
   },
   "env": {
-    "amd": true
+    "amd": true,
+    "qunit": true
+  },
+  "globals": {
+    "VerEx": true
   }
 }

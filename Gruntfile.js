@@ -6,7 +6,7 @@ module.exports = function gruntConfig(grunt) {
             options: {
                 configFile: '.eslintrc',
             },
-            target: ['VerbalExpressions.js'],
+            target: ['VerbalExpressions.js', 'test/tests.js'],
         },
 
         qunit: {
