@@ -27,8 +27,9 @@
 
     // Define the static methods.
     VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
+        var method;
         // Loop over all the prototype methods
-        for (var method in VerbalExpression.prototype) {
+        for (method in VerbalExpression.prototype) {
             // Make sure this is a local method.
             if (VerbalExpression.prototype.hasOwnProperty(method)) {
                 // Add the method
@@ -52,6 +53,7 @@
         // Sanitation function for adding
         // anything safely to the expression
         sanitize: function sanitize(value) {
+            var reRegExpEscape;
             if (value.source) {
                 return value.source;
             }
@@ -61,7 +63,7 @@
             }
 
             // Regular expression meta characters, URL: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
-            var reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
+            reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
 
             // Escape RegExp special characters only
             // $& => Last match, URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
@@ -213,13 +215,15 @@
             // Create a string buffer instead of concatenating on iteration
             var buffer = new Array(length / 2);
             var index = 0;
+            var i = 0;
+            var from;
+            var to;
 
             buffer[index++] = '[';
 
-            var i = 0;
             while (i < length) {
-                var from = this.sanitize(arguments[i++]);
-                var to = this.sanitize(arguments[i++]);
+                from = this.sanitize(arguments[i++]);
+                to = this.sanitize(arguments[i++]);
                 buffer[index++] = from + '-' + to;
             }
 
@@ -296,13 +300,15 @@
         // between n and m times.
         repeatPrevious: function repeatPrevious() {
             var value;
+            var values;
+            var i;
             if (arguments.length <= 1) {
                 if (/\d+/.exec(arguments[0]) !== null) {
                     value = '{' + arguments[0] + '}';
                 }
             } else {
-                var values = [];
-                for (var i = 0; i < arguments.length; i++) {
+                values = [];
+                for (i = 0; i < arguments.length; i++) {
                     if (/\d+/.exec(arguments[i]) !== null) {
                         values.push(arguments[i]);
                     }
