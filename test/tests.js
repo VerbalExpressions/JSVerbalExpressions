@@ -1,4 +1,4 @@
-/*eslint-disable new-cap*/
+/* eslint-disable new-cap */
 
 test('something', function somethingTest() {
     var testRegex = VerEx().something();
