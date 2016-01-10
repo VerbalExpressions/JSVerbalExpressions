@@ -55,9 +55,9 @@ module.exports = function gruntConfig(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
 
     grunt.registerTask('test', ['eslint', 'qunit']);
