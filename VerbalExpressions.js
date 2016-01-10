@@ -332,8 +332,7 @@
 
         multiple: function multiple(value) {
             // Use expression or string
-
-            value = value.source ? value.source : this.sanitize(value);
+            value = value.source || this.sanitize(value);
             if (arguments.length === 1) {
                 this.add('(?:' + value + ')*');
             }
