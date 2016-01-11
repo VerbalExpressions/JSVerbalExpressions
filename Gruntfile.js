@@ -16,7 +16,7 @@ module.exports = function gruntConfig(grunt) {
         copy: {
             build: {
                 src: '<%= pkg.name %>.js',
-                dest: 'dist/<%= pkg.name %>.js',
+                dest: 'dist/verbalexpressions.js',
             },
         },
 
@@ -37,7 +37,7 @@ module.exports = function gruntConfig(grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= pkg.name %>.js'],
+                    'dist/verbalexpressions.min.js': ['<%= pkg.name %>.js'],
                 },
             },
         },
@@ -48,7 +48,7 @@ module.exports = function gruntConfig(grunt) {
             },
             build: {
                 files: {
-                    src: ['dist/*.min.map'],
+                    src: ['dist/*.min.js.map'],
                 },
             },
         },
