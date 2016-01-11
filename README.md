@@ -1,4 +1,4 @@
-VerbalExpressions v0.1.2
+VerbalExpressions v0.2.0
 =====================
 
 [![Build Status](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg)](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions)
