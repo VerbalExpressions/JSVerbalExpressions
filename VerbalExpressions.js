@@ -27,8 +27,9 @@
 
     // Define the static methods.
     VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
+        var method;
         // Loop over all the prototype methods
-        for (var method in VerbalExpression.prototype) {
+        for (method in VerbalExpression.prototype) {
             // Make sure this is a local method.
             if (VerbalExpression.prototype.hasOwnProperty(method)) {
                 // Add the method
@@ -52,6 +53,7 @@
         // Sanitation function for adding
         // anything safely to the expression
         sanitize: function sanitize(value) {
+            var reRegExpEscape;
             if (value.source) {
                 return value.source;
             }
@@ -61,7 +63,7 @@
             }
 
             // Regular expression meta characters, URL: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
-            var reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
+            reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
 
             // Escape RegExp special characters only
             // $& => Last match, URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
@@ -208,18 +210,26 @@
 
         // Usage: .range( from, to [, from, to ... ] )
         range: function range() {
-            var value = '[';
+            var length = arguments.length;
 
-            for (var _to = 1; _to < arguments.length; _to += 2) {
-                var from = this.sanitize(arguments[_to - 1]);
-                var to = this.sanitize(arguments[_to]);
+            // Create a string buffer instead of concatenating on iteration
+            var buffer = new Array(length / 2);
+            var index = 0;
+            var i = 0;
+            var from;
+            var to;
 
-                value += from + '-' + to;
+            buffer[index++] = '[';
+
+            while (i < length) {
+                from = this.sanitize(arguments[i++]);
+                to = this.sanitize(arguments[i++]);
+                buffer[index++] = from + '-' + to;
             }
 
-            value += ']';
+            buffer[index++] = ']';
 
-            this.add(value);
+            this.add(buffer.join(''));
 
             return this;
         },
@@ -312,7 +322,7 @@
             return (this);
         },
 
-        // Repeats the previous at least ones
+        // Repeats the previous at least once
         oneOrMore: function oneOrMore() {
             this.add('+');
             return (this);
@@ -322,8 +332,7 @@
 
         multiple: function multiple(value) {
             // Use expression or string
-
-            value = value.source ? value.source : this.sanitize(value);
+            value = value.source || this.sanitize(value);
             if (arguments.length === 1) {
                 this.add('(?:' + value + ')*');
             }
@@ -369,8 +378,8 @@
 
         // Convert to RegExp object
         toRegExp: function toRegExp() {
-            var arr = this.toString().match(/\/(.*)\/([a-z]+)?/);
-            return new RegExp(arr[1], arr[2]);
+            var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
+            return new RegExp(array[1], array[2]);
         },
     };
 
