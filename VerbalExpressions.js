@@ -12,6 +12,9 @@
 
 // Define the collection class.
 (function verbalExpressionIIFE(root) {
+    // Constants
+    var MODULE_NAME = 'VerEx';
+
     // I am the constructor function.
     function VerbalExpression() {
         var verbalExpression = new RegExp();
@@ -385,10 +388,6 @@
     function createVerbalExpression() {
         return new VerbalExpression();
     }
-
-    // Constants
-
-    var MODULE_NAME = 'VerEx';
 
     // UMD (Universal Module Definition), URL: https://github.com/umdjs/umd
     // Supports AMD, CommonJS and the browser
