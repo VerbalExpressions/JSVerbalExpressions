@@ -1,5 +1,48 @@
 /* eslint-disable new-cap */
 
+function validUrls() {
+    return [
+        'http://github.com',
+        'http://www.github.com',
+        'https://github.com',
+        'https://www.github.com',
+        'https://github.com/blog',
+        'https://foobar.github.com',
+    ];
+}
+
+function invalidUrls() {
+    return [
+          [' http://github.com'],
+          ['foo'],
+          ['htps://github.com'],
+          ['http:/github.com'],
+          ['https://github.com /blog'],
+    ];
+}
+
+function buildUrlPattern() {
+    return VerEx().startOfLine().then('http').maybe('s').then(':\/\/').maybe('www.').anythingBut(' ').endOfLine();
+}
+
+test('shouldPassWhenValidUrlGiven', function shouldPassWhenValidUrlGivenTest() {
+    validUrls().forEach(function loop(validUrl) {
+        var
+            testRegex = buildUrlPattern()
+        ;
+        ok(testRegex.test(validUrl), validUrl + ' is a valid URL');
+    });
+});
+
+test('shouldFailWithInvalidUrls', function shouldFailWithInvalidUrlsTest() {
+    invalidUrls().forEach(function loop(invalidUrl) {
+        var
+            testRegex = buildUrlPattern()
+        ;
+        ok(!testRegex.test(invalidUrl), invalidUrl + ' is an invalid URL');
+    });
+});
+
 test('something', function somethingTest() {
     var testRegex = VerEx().something();
     var testString = '';
