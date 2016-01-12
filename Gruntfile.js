@@ -52,6 +52,18 @@ module.exports = function gruntConfig(grunt) {
                 },
             },
         },
+
+        watch: {
+            testSource: {
+                files: [
+                    'VerbalExpressions.js',
+                    'test/tests.js',
+                ],
+                tasks: [
+                    'test',
+                ],
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -59,6 +71,7 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('test', ['eslint', 'qunit']);
     grunt.registerTask('default', ['qunit']);

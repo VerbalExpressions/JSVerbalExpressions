@@ -14,6 +14,7 @@
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-qunit": "^0.7.0",
     "grunt-contrib-uglify": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-eslint": "^17.3.1",
     "grunt-sourcemap-localize": "^0.1.0"
   },
