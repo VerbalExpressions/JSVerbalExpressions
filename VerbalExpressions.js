@@ -42,7 +42,6 @@
 
     // Define the class methods.
     VerbalExpression.prototype = {
-
         // Variables to hold the whole
         // expression construction in order
         _prefixes: '',
@@ -54,6 +53,7 @@
         // anything safely to the expression
         sanitize: function sanitize(value) {
             var reRegExpEscape;
+
             if (value.source) {
                 return value.source;
             }
@@ -200,6 +200,7 @@
         anyOf: function anyOf(value) {
             value = this.sanitize(value);
             this.add('[' + value + ']');
+
             return this;
         },
 
