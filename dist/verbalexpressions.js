@@ -43,7 +43,6 @@
 
     // Define the class methods.
     VerbalExpression.prototype = {
-
         // Variables to hold the whole
         // expression construction in order
         _prefixes: '',
@@ -55,6 +54,7 @@
         // anything safely to the expression
         sanitize: function sanitize(value) {
             var reRegExpEscape;
+
             if (value.source) {
                 return value.source;
             }
@@ -201,6 +201,7 @@
         anyOf: function anyOf(value) {
             value = this.sanitize(value);
             this.add('[' + value + ']');
+
             return this;
         },
 
@@ -301,20 +302,20 @@
         // between n and m times.
         repeatPrevious: function repeatPrevious() {
             var value;
-            var values;
-            var i;
-            if (arguments.length <= 1) {
-                if (/\d+/.exec(arguments[0]) !== null) {
-                    value = '{' + arguments[0] + '}';
+            var reIsInteger = /\d+/;
+            var length = arguments.length;
+            var values = new Array(length);
+            var i = 0;
+            var j = 0;
+            for (i = 0; i < length; i++) {
+                if (reIsInteger.test(arguments[i])) {
+                    values[j++] = arguments[i];
                 }
-            } else {
-                values = [];
-                for (i = 0; i < arguments.length; i++) {
-                    if (/\d+/.exec(arguments[i]) !== null) {
-                        values.push(arguments[i]);
-                    }
-                }
+            }
 
+            if (j > 0) {
+                // Set the new length of the array, thus reducing to the elements that have content
+                values.length = j;
                 value = '{' + values.join(',') + '}';
             }
 
