@@ -260,3 +260,12 @@ test('multiple', function multipleTest() {
     testString = 'foo';
     ok(!testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
 });
+
+test('getRegex', function getRegexTest() {
+    var regex = (
+        VerEx().startOfLine().range(0, 9, 'a', 'z', 'A', 'Z').multiple('')
+    );
+
+    ok((regex.toRegExp() + '') === '/^[0-9a-zA-Z](?:)*/gm');
+    ok((regex + '') === '/^[0-9a-zA-Z](?:)*/gm');
+});
