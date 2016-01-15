@@ -26,8 +26,9 @@ If you would like to contribute another port (which would be awesome!), please o
 ## How to get started
 ### In the browser
 ```HTML
-<script type="text/javascript" src="VerbalExpressions.js"></script>
+<script src="VerbalExpressions.js"></script>
 ```
+Or use the [jsDelivr CDN](http://www.jsdelivr.com/projects/jsverbalexpressions).
 ### On the server (node.js)
 Install:
 ```
