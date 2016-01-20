@@ -1,5 +1,5 @@
 {
-  "name": "VerbalExpressions",
+  "name": "verbal-expressions",
   "description": "JavaScript Regular expressions made easy",
   "version": "0.2.0",
   "keywords": [
@@ -11,6 +11,7 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
     "grunt": "^0.4.2",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-uglify": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
@@ -30,6 +31,12 @@
   "license": {
     "type": "MIT",
     "url": "http://opensource.org/licenses/MIT"
+  },
+  "scripts": {
+    "grunt": "grunt",
+    "test": "grunt test",
+    "test:verbose": "grunt test --verbose",
+    "build": "grunt build"
   },
   "engines": {
     "node": ">= 0.8.0"

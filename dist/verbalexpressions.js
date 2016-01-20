@@ -11,8 +11,9 @@
  */
 
 // Define the collection class.
-(function verbalExpressionIIFE() {
-    var root = this;
+(function verbalExpressionIIFE(root) {
+    // Constants
+    var MODULE_NAME = 'VerEx';
 
     // I am the constructor function.
     function VerbalExpression() {
@@ -42,7 +43,6 @@
 
     // Define the class methods.
     VerbalExpression.prototype = {
-
         // Variables to hold the whole
         // expression construction in order
         _prefixes: '',
@@ -54,6 +54,7 @@
         // anything safely to the expression
         sanitize: function sanitize(value) {
             var reRegExpEscape;
+
             if (value.source) {
                 return value.source;
             }
@@ -200,6 +201,7 @@
         anyOf: function anyOf(value) {
             value = this.sanitize(value);
             this.add('[' + value + ']');
+
             return this;
         },
 
@@ -300,22 +302,23 @@
         // between n and m times.
         repeatPrevious: function repeatPrevious() {
             var value;
-            var values;
-            var i;
-            if (arguments.length <= 1) {
-                if (/\d+/.exec(arguments[0]) !== null) {
-                    value = '{' + arguments[0] + '}';
+            var reIsInteger = /\d+/;
+            var length = arguments.length;
+            var values = new Array(length);
+            var i = 0;
+            var j = 0;
+            for (i = 0; i < length; i++) {
+                if (reIsInteger.test(arguments[i])) {
+                    values[j++] = arguments[i];
                 }
-            } else {
-                values = [];
-                for (i = 0; i < arguments.length; i++) {
-                    if (/\d+/.exec(arguments[i]) !== null) {
-                        values.push(arguments[i]);
-                    }
-                }
+            }
 
+            if (j > 0) {
+                // Set the new length of the array, thus reducing to the elements that have content
+                values.length = j;
                 value = '{' + values.join(',') + '}';
             }
+
 
             this.add(value);
 
@@ -387,14 +390,18 @@
         return new VerbalExpression();
     }
 
-    // Support both browser and node.js
-    if (typeof module !== 'undefined' && module.exports) {
+    // UMD (Universal Module Definition), URL: https://github.com/umdjs/umd
+    // Supports AMD, CommonJS and the browser
+    if (typeof root.module !== 'undefined' && root.module.exports) {
+        // Node.js Module
         module.exports = createVerbalExpression;
-    } else if (typeof define === 'function' && define.amd) {
-        define(function define() {
+    } else if (typeof root.define === 'function' && root.define.amd) {
+        // AMD Module
+        root.define(MODULE_NAME, [], function define() {
             return VerbalExpression;
         });
     } else {
-        root.VerEx = createVerbalExpression;
+        // Browser
+        root[MODULE_NAME] = createVerbalExpression;
     }
-})();
+})(this);
