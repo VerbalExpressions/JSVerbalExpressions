@@ -73,13 +73,19 @@ module.exports = function gruntConfig(grunt) {
                     'test/tests.js',
                 ],
                 tasks: [
-                    'test',
+                    'build',
                 ],
             },
         },
     });
 
     grunt.registerTask('test', ['default']);
-    grunt.registerTask('default', ['eslint', 'qunit']);
-    grunt.registerTask('build', ['qunit', 'copy', 'uglify', 'sourcemap_localize']);
+    grunt.registerTask('default', ['eslint:Gruntfile', 'build']);
+    grunt.registerTask('build', [
+        'eslint:target',
+        'qunit:files',
+        'copy:build',
+        'uglify:dist',
+        'sourcemap_localize:build',
+    ]);
 };
