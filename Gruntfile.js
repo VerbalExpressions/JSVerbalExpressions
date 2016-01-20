@@ -8,17 +8,20 @@ module.exports = function gruntConfig(grunt) {
                 configFile: '.eslintrc',
             },
             target: ['VerbalExpressions.js', 'test/tests.js'],
+            Gruntfile: [
+                'Gruntfile.js',
+            ],
         },
 
         qunit: {
             options: {
-              coverage: {
-                src: [
-                  'VerbalExpressions.js',
-                ],
-                instrumentedFiles: 'tmp',
-                htmlReport: 'coverage',
-              }
+                coverage: {
+                    src: [
+                        'VerbalExpressions.js',
+                    ],
+                    instrumentedFiles: 'tmp',
+                    htmlReport: 'coverage',
+                },
             },
             files: ['test/index.html'],
         },
