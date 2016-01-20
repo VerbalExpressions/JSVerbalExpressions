@@ -73,14 +73,18 @@ module.exports = function gruntConfig(grunt) {
                     'test/tests.js',
                 ],
                 tasks: [
-                    'build',
+                    'test',
                 ],
             },
         },
     });
 
-    grunt.registerTask('test', ['moduleTest', 'default']);
-    grunt.registerTask('default', ['eslint:Gruntfile', 'build']);
+    grunt.registerTask('test', [
+        'moduleTest',
+        'eslint:target',
+        'qunit:files',
+    ]);
+    grunt.registerTask('default', ['eslint:Gruntfile', 'test']);
     grunt.registerTask('moduleTest', function moduleTest() {
         var VE = module.require('./VerbalExpressions.js')();
         VE = VE.whitespace().multiple('').find('not').whitespace().multiple('');
