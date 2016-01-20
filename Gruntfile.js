@@ -28,7 +28,7 @@ module.exports = function gruntConfig(grunt) {
 
         copy: {
             build: {
-                src: '<%= pkg.name %>.js',
+                src: 'VerbalExpressions.js',
                 dest: 'dist/verbalexpressions.js',
             },
         },
@@ -50,7 +50,7 @@ module.exports = function gruntConfig(grunt) {
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['<%= pkg.name %>.js'],
+                    'dist/verbalexpressions.min.js': ['VerbalExpressions.js'],
                 },
             },
         },
