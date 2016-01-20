@@ -86,7 +86,7 @@ module.exports = function gruntConfig(grunt) {
     ]);
     grunt.registerTask('default', ['eslint:Gruntfile', 'test']);
     grunt.registerTask('moduleTest', function moduleTest() {
-        var VE = module.require('./VerbalExpressions.js')();
+        var VE = new (module.require('./VerbalExpressions.js')).VerEx;
         VE = VE.whitespace().multiple('').find('not').whitespace().multiple('');
         grunt.log.write(VE.replace('VerbalExpressions as module does not work!', ' '));
     });
