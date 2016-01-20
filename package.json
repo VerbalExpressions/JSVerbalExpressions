@@ -33,6 +33,7 @@
   "scripts": {
     "grunt": "grunt",
     "test": "grunt test",
+    "test:verbose": "grunt test --verbose",
     "build": "grunt build"
   },
   "engines": {
