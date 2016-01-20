@@ -1,4 +1,5 @@
 module.exports = function gruntConfig(grunt) {
+    module.require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -10,6 +11,15 @@ module.exports = function gruntConfig(grunt) {
         },
 
         qunit: {
+            options: {
+              coverage: {
+                src: [
+                  'VerbalExpressions.js',
+                ],
+                instrumentedFiles: 'tmp',
+                htmlReport: 'coverage',
+              }
+            },
             files: ['test/index.html'],
         },
 
@@ -66,14 +76,7 @@ module.exports = function gruntConfig(grunt) {
         },
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-sourcemap-localize');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-
-    grunt.registerTask('test', ['eslint', 'qunit']);
-    grunt.registerTask('default', ['qunit']);
+    grunt.registerTask('test', ['default']);
+    grunt.registerTask('default', ['eslint', 'qunit']);
     grunt.registerTask('build', ['qunit', 'copy', 'uglify', 'sourcemap_localize']);
 };
