@@ -1,7 +1,7 @@
 {
   "name": "verbal-expressions",
   "description": "JavaScript Regular expressions made easy",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "keywords": [
     "regular expressions",
     "regex"
