@@ -392,12 +392,12 @@
 
     // UMD (Universal Module Definition), URL: https://github.com/umdjs/umd
     // Supports AMD, CommonJS and the browser
-    if (typeof root.module !== 'undefined' && root.module.exports) {
+    if (typeof module !== 'undefined' && module.exports) {
         // Node.js Module
         module.exports = createVerbalExpression;
-    } else if (typeof root.define === 'function' && root.define.amd) {
+    } else if (typeof define === 'function' && define.amd) {
         // AMD Module
-        root.define(MODULE_NAME, [], function define() {
+        define(MODULE_NAME, [], function define() {
             return VerbalExpression;
         });
     } else {
