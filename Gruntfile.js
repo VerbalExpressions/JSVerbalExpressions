@@ -66,8 +66,6 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
-        /*
-        Grunt task currently provides no useful output, is provided for reference only.
         jsdoc: {
             options: {
                 pedantic: true,
@@ -88,7 +86,6 @@ module.exports = function gruntConfig(grunt) {
                 src: ['dist/verbalexpressions.js'],
             },
         },
-        */
 
         watch: {
             testSource: {
