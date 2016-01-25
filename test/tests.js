@@ -1,5 +1,8 @@
 /* eslint-disable new-cap */
 
+/**
+* @return {Array} an array of valid URLs
+*/
 function validUrls() {
     return [
         'http://github.com',
@@ -11,6 +14,9 @@ function validUrls() {
     ];
 }
 
+/**
+* @return {Array} an array of invalid URLs
+*/
 function invalidUrls() {
     return [
           [' http://github.com'],
@@ -21,6 +27,9 @@ function invalidUrls() {
     ];
 }
 
+/**
+* @return {VerbalExpressions} Get a pre-built pattern for matching valid URLs
+*/
 function buildUrlPattern() {
     return VerEx().startOfLine().then('http').maybe('s').then(':\/\/').maybe('www.').anythingBut(' ').endOfLine();
 }

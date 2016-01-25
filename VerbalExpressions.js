@@ -11,11 +11,18 @@
  */
 
 // Define the collection class.
+/**
+* @module VerbalExpressions
+*/
 (function verbalExpressionIIFE(root) {
     // Constants
     var MODULE_NAME = 'VerEx';
 
-    // I am the constructor function.
+    /**
+    * I am the constructor function.
+    * @constructor
+    * @return {RegExp} a new RegExp instance modified with injected methods
+    */
     function VerbalExpression() {
         var verbalExpression = new RegExp();
 
@@ -386,6 +393,9 @@
         },
     };
 
+    /**
+    * @return {VerbalExpressions} a new VerbalExpressions instance
+    */
     function createVerbalExpression() {
         return new VerbalExpression();
     }

@@ -66,6 +66,30 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
+        /*
+        Grunt task currently provides no useful output, is provided for reference only.
+        jsdoc: {
+            options: {
+                pedantic: true,
+                verbose: true,
+                readme: 'README.md',
+                package: 'package.json',
+            },
+            src: {
+                options: {
+                    destination: 'docs',
+                },
+                src: ['VerbalExpressions.js'],
+            },
+            dist: {
+                options: {
+                    destination: 'dist/docs',
+                },
+                src: ['dist/verbalexpressions.js'],
+            },
+        },
+        */
+
         watch: {
             testSource: {
                 files: [
