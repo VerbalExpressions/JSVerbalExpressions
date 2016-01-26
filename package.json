@@ -16,6 +16,7 @@
     "grunt-contrib-qunit": "^0.7.0",
     "grunt-contrib-uglify": "^0.11.0",
     "grunt-eslint": "^17.3.1",
+    "grunt-jsdoc": "^1.1.0",
     "grunt-sourcemap-localize": "^0.1.0"
   },
   "repository": {
@@ -31,7 +32,8 @@
     "grunt": "grunt",
     "test": "grunt test",
     "test:verbose": "grunt test --verbose",
-    "build": "grunt build"
+    "build": "grunt build",
+    "docs": "grunt docs"
   },
   "engines": {
     "node": ">= 0.8.0"
