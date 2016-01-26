@@ -26,10 +26,7 @@
     "url": "https://github.com/VerbalExpressions/JSVerbalExpressions/issues"
   },
   "main": "VerbalExpressions.js",
-  "license": {
-    "type": "MIT",
-    "url": "http://opensource.org/licenses/MIT"
-  },
+  "license": "MIT",
   "scripts": {
     "grunt": "grunt",
     "test": "grunt test",

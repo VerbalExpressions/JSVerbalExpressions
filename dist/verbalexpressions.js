@@ -15,7 +15,11 @@
     // Constants
     var MODULE_NAME = 'VerEx';
 
-    // I am the constructor function.
+    /**
+    * I am the constructor function.
+    * @constructor
+    * @return {RegExp} A new instance of RegExp with injected methods
+    */
     function VerbalExpression() {
         var verbalExpression = new RegExp();
 
@@ -386,6 +390,9 @@
         },
     };
 
+    /**
+    * @return {VerbalExpression} Returns a new instance of VerbalExpressions
+    */
     function createVerbalExpression() {
         return new VerbalExpression();
     }
