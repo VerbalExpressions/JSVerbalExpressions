@@ -12,7 +12,7 @@
 
 /**
 * Define the VerbalExpression class.
-* @module VerbalExpressions
+* @class
 */
 (function verbalExpressionIIFE(root) {
     // Constants
@@ -21,7 +21,7 @@
     /**
     * I am the constructor function.
     * @constructor
-    * @memberof VerbalExpressions
+    * @alias VerEx
     * @return {RegExp} A new instance of RegExp with injected methods
     */
     function VerbalExpression() {
@@ -65,7 +65,6 @@
 
         /**
         * Sanitation function for adding anything safely to the expression
-        * @memberof VerbalExpression
         * @param {String} value string to sanitize
         * @return {String} sanitized value
         */
