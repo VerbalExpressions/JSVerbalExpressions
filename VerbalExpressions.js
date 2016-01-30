@@ -5,9 +5,6 @@
  *
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
- *
- * Date: 2013-07-19
- *
  */
 
 // Define the collection class.
@@ -404,4 +401,4 @@
         // Browser
         root[MODULE_NAME] = createVerbalExpression;
     }
-})(this);
+}(this));
