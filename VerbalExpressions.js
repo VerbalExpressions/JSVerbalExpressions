@@ -5,9 +5,6 @@
  *
  * Released under the MIT license
  * http://opensource.org/licenses/MIT
- *
- * Date: 2015-01-30
- *
  */
 
 // Define the collection class.
