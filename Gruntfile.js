@@ -27,8 +27,7 @@ module.exports = function gruntConfig(grunt) {
                     '* <%= pkg.homepage %>\n' +
                     '*\n' +
                     '*\n' +
-                    '* Released under the <%= pkg.license.type %> license\n' +
-                    '* <%= pkg.license.url %>\n' +
+                    '* Released under the <%= pkg.license %> license\n' +
                     '*\n' +
                     '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                     '*\n' +
@@ -52,15 +51,38 @@ module.exports = function gruntConfig(grunt) {
                 },
             },
         },
+
+        jsdoc: {
+            options: {
+                pedantic: true,
+                verbose: true,
+                readme: 'README.md',
+                package: 'package.json',
+            },
+            src: {
+                options: {
+                    destination: 'docs',
+                },
+                src: ['VerbalExpressions.js'],
+            },
+            dist: {
+                options: {
+                    destination: 'dist/docs',
+                },
+                src: ['dist/verbalexpressions.js'],
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-eslint');
+    grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
 
     grunt.registerTask('test', ['eslint', 'qunit']);
     grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', ['qunit', 'copy', 'uglify', 'sourcemap_localize']);
+    grunt.registerTask('build', ['test', 'copy', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
+    grunt.registerTask('docs', ['test', 'jsdoc:src']);
 };
