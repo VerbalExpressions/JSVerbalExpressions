@@ -3,4 +3,5 @@ node_modules
 /coverage/
 /tmp/
 /docs/
-/dist/docs/
+/dist/docs/verbal-expressions/*
+!/dist/docs/verbal-expressions/0.2.1/

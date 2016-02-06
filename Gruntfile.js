@@ -40,8 +40,7 @@ module.exports = function gruntConfig(grunt) {
                     '* <%= pkg.homepage %>\n' +
                     '*\n' +
                     '*\n' +
-                    '* Released under the <%= pkg.license.type %> license\n' +
-                    '* <%= pkg.license.url %>\n' +
+                    '* Released under the <%= pkg.license %> license\n' +
                     '*\n' +
                     '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                     '*\n' +
@@ -117,5 +116,6 @@ module.exports = function gruntConfig(grunt) {
         'copy:build',
         'uglify:dist',
         'sourcemap_localize:build',
+        'jsdoc:dist',
     ]);
 };
