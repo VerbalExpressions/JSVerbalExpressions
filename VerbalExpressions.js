@@ -19,35 +19,19 @@
     * I am the constructor function.
     * @constructor
     * @alias VerEx
-    * @return {RegExp} A new instance of RegExp with injected methods
+    * @return {VerbalExpression} A new instance of VerbalExpression
     */
-    function VerbalExpression() {
-        var verbalExpression = new RegExp();
-
-        // Add all the class methods
-        VerbalExpression.injectClassMethods(verbalExpression);
-
-        // Return the new object.
-        return verbalExpression;
-    }
+    function VerbalExpression() {}
 
     /**
-    * @param {RegExp} verbalExpression An instance of RegExp on which to add VerbalExpressions methods
-    * @return {RegExp} A new instance of RegExp with injected methods
+    * Track changes requiring recompile
     */
-    VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
-        var method;
-        // Loop over all the prototype methods
-        for (method in VerbalExpression.prototype) {
-            // Make sure this is a local method.
-            if (VerbalExpression.prototype.hasOwnProperty(method)) {
-                // Add the method
-                verbalExpression[method] = VerbalExpression.prototype[method];
-            }
-        }
+    VerbalExpression.prototype._dirty = true;
 
-        return verbalExpression;
-    };
+    /**
+    * Cache of compiled regex
+    */
+    VerbalExpression.prototype._regexp = undefined;
 
     /**
     * Regex prefixes
@@ -100,7 +84,6 @@
     */
     VerbalExpression.prototype.add = function add(value) {
         this._source += value || '';
-        this.compile(this._prefixes + this._source + this._suffixes, this._modifiers);
 
         return this;
     };
@@ -214,8 +197,11 @@
     * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
     */
     VerbalExpression.prototype.replace = function replace(source, value) {
+        if (this._dirty) {
+            this.toRegExp();
+        }
         source = source.toString();
-        return source.replace(this, value);
+        return source.replace(this._regexp, value);
     };
 
     /// Add regular expression special ///
@@ -501,8 +487,34 @@
     * @return {RegExp} Converted RegExp instance
     */
     VerbalExpression.prototype.toRegExp = function toRegExp() {
-        var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
-        return new RegExp(array[1], array[2]);
+        if (this._dirty) {
+            this._regexp = new RegExp(this._prefixes + this._source + this._suffixes, this._modifiers);
+        }
+
+        return new RegExp(this._regexp.source, this._modifiers);
+    };
+
+    /**
+    * Convert regex to string
+    * @return {String} string representation of verbal expression
+    */
+    VerbalExpression.prototype.toString = function toString() {
+        if (this._dirty) {
+            return (this.toRegExp() + '');
+        }
+        return (this._regex + '');
+    };
+
+    /**
+    * Test string against regex
+    * @param {String} str string to test
+    * @return {Boolean} true if string passes test, false otherwise
+    */
+    VerbalExpression.prototype.test = function test(str) {
+        if (this._dirty) {
+            this.toRegExp();
+        }
+        return this._regexp.test(str);
     };
 
     /**
