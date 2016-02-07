@@ -75,434 +75,434 @@
         * @return {String} sanitized value
         */
     VerbalExpression.prototype.sanitize = function sanitize(value) {
-            var reRegExpEscape;
+        var reRegExpEscape;
 
-            if (value.source) {
-                return value.source;
-            }
+        if (value.source) {
+            return value.source;
+        }
 
-            if (typeof value === 'number') {
-                return value;
-            }
+        if (typeof value === 'number') {
+            return value;
+        }
 
-            // Regular expression meta characters, URL: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
-            reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
+        // Regular expression meta characters, URL: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
+        reRegExpEscape = /([\].|*?+(){}^$\\:=[])/g;
 
-            // Escape RegExp special characters only
-            // $& => Last match, URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
-            return value.replace(reRegExpEscape, '\\$&');
+        // Escape RegExp special characters only
+        // $& => Last match, URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
+        return value.replace(reRegExpEscape, '\\$&');
     };
 
-        /**
-        * Function to add stuff to the expression. Also compiles the new expression so it's ready to be used.
-        * @param {string} value literal expression, not sanitized
-        * @return {VerbalExpression} Freshly recompiled instance of VerbalExpression
-        */
+    /**
+    * Function to add stuff to the expression. Also compiles the new expression so it's ready to be used.
+    * @param {string} value literal expression, not sanitized
+    * @return {VerbalExpression} Freshly recompiled instance of VerbalExpression
+    */
     VerbalExpression.prototype.add = function add(value) {
-            this._source += value || '';
-            this.compile(this._prefixes + this._source + this._suffixes, this._modifiers);
+        this._source += value || '';
+        this.compile(this._prefixes + this._source + this._suffixes, this._modifiers);
 
-            return this;
+        return this;
     };
 
-        /**
-        * Control start-of-line matching
-        * @param {Boolean} enable Control start-of-line matching
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Control start-of-line matching
+    * @param {Boolean} enable Control start-of-line matching
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.startOfLine = function startOfLine(enable) {
-            enable = (enable !== false);
-            this._prefixes = enable ? '^' : '';
-            this.add();
+        enable = (enable !== false);
+        this._prefixes = enable ? '^' : '';
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Control end-of-line matching
-        * @param {Boolean} enable Control end-of-line matching
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Control end-of-line matching
+    * @param {Boolean} enable Control end-of-line matching
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.endOfLine = function endOfLine(enable) {
-            enable = (enable !== false);
-            this._suffixes = enable ? '$' : '';
-            this.add();
+        enable = (enable !== false);
+        this._suffixes = enable ? '$' : '';
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * We try to keep the syntax as user-friendly as possible. So we can use the "normal" behaviour to split the "sentences" naturally.
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * We try to keep the syntax as user-friendly as possible. So we can use the "normal" behaviour to split the "sentences" naturally.
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.then = function then(value) {
-            value = this.sanitize(value);
-            this.add('(?:' + value + ')');
+        value = this.sanitize(value);
+        this.add('(?:' + value + ')');
 
-            return this;
+        return this;
     };
 
-        /**
-        * And because we can't start with "then" function, we create an alias to be used as the first function of the chain.
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * And because we can't start with "then" function, we create an alias to be used as the first function of the chain.
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.find = function find(value) {
-            return this.then(value);
+        return this.then(value);
     };
 
-        /*
-        * Maybe is used to add values with ?
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /*
+    * Maybe is used to add values with ?
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.maybe = function maybe(value) {
-            value = this.sanitize(value);
-            this.add('(?:' + value + ')?');
+        value = this.sanitize(value);
+        this.add('(?:' + value + ')?');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Any character any number of times
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any character any number of times
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.anything = function anything() {
-            this.add('(?:.*)');
-            return this;
+        this.add('(?:.*)');
+        return this;
     };
 
-        /**
-        * Anything but these characters
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Anything but these characters
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.anythingBut = function anythingBut(value) {
-            value = this.sanitize(value);
-            this.add('(?:[^' + value + ']*)');
+        value = this.sanitize(value);
+        this.add('(?:[^' + value + ']*)');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Any character at least one time
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any character at least one time
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.something = function something() {
-            this.add('(?:.+)');
-            return this;
+        this.add('(?:.+)');
+        return this;
     };
 
-        /**
-        * Any character at least one time except for these characters
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any character at least one time except for these characters
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.somethingBut = function somethingBut(value) {
-            value = this.sanitize(value);
-            this.add('(?:[^' + value + ']+)');
+        value = this.sanitize(value);
+        this.add('(?:[^' + value + ']+)');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Shorthand function for the String.replace function to give more logical flow if, for example, we're doing multiple replacements on one regexp.
-        * @param {String} source string to search for
-        * @param {String} value value to replace with
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Shorthand function for the String.replace function to give more logical flow if, for example, we're doing multiple replacements on one regexp.
+    * @param {String} source string to search for
+    * @param {String} value value to replace with
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.replace = function replace(source, value) {
-            source = source.toString();
-            return source.replace(this, value);
+        source = source.toString();
+        return source.replace(this, value);
     };
 
-        /// Add regular expression special ///
-        /// characters                     ///
+    /// Add regular expression special ///
+    /// characters                     ///
 
-        /**
-        * Line break
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Line break
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.lineBreak = function lineBreak() {
-            this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
-            return this;
+        this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
+        return this;
     };
 
-        /**
-        * And a shorthand for html-minded
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * And a shorthand for html-minded
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.br = function br() {
-            return this.lineBreak();
+        return this.lineBreak();
     };
 
-        /**
-        * Tab (duh?)
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Tab (duh?)
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.tab = function tab() {
-            this.add('\\t');
-            return this;
+        this.add('\\t');
+        return this;
     };
 
-        /**
-        * Any alphanumeric
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any alphanumeric
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.word = function word() {
-            this.add('\\w+');
-            return this;
+        this.add('\\w+');
+        return this;
     };
 
-        /**
-        * Any whitespace
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any whitespace
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.whitespace = function whitespace() {
-            this.add('\\s');
-            return this;
+        this.add('\\s');
+        return this;
     };
 
-        /**
-        * Any given character
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Any given character
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.anyOf = function anyOf(value) {
-            value = this.sanitize(value);
-            this.add('[' + value + ']');
+        value = this.sanitize(value);
+        this.add('[' + value + ']');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Shorthand
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Shorthand
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.any = function any(value) {
-            return this.anyOf(value);
+        return this.anyOf(value);
     };
 
-        /**
-        * Usage: .range( from, to [, from, to ... ] )
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Usage: .range( from, to [, from, to ... ] )
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.range = function range() {
-            var length = arguments.length;
+        var length = arguments.length;
 
-            // Create a string buffer instead of concatenating on iteration
-            var buffer = new Array(length / 2);
-            var index = 0;
-            var i = 0;
-            var from;
-            var to;
+        // Create a string buffer instead of concatenating on iteration
+        var buffer = new Array(length / 2);
+        var index = 0;
+        var i = 0;
+        var from;
+        var to;
 
-            buffer[index++] = '[';
+        buffer[index++] = '[';
 
-            while (i < length) {
-                from = this.sanitize(arguments[i++]);
-                to = this.sanitize(arguments[i++]);
-                buffer[index++] = from + '-' + to;
-            }
+        while (i < length) {
+            from = this.sanitize(arguments[i++]);
+            to = this.sanitize(arguments[i++]);
+            buffer[index++] = from + '-' + to;
+        }
 
-            buffer[index++] = ']';
+        buffer[index++] = ']';
 
-            this.add(buffer.join(''));
+        this.add(buffer.join(''));
 
-            return this;
+        return this;
     };
 
-        /// Modifiers      ///
+    /// Modifiers      ///
 
-        /**
-        * Modifier abstraction
-        * @param {String} modifier modifier to add
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Modifier abstraction
+    * @param {String} modifier modifier to add
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.addModifier = function addModifier(modifier) {
-            if (this._modifiers.indexOf(modifier) === -1) {
-                this._modifiers += modifier;
-            }
+        if (this._modifiers.indexOf(modifier) === -1) {
+            this._modifiers += modifier;
+        }
 
-            this.add();
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Remove modifier
-        * @param {String} modifier modifier to remove
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Remove modifier
+    * @param {String} modifier modifier to remove
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.removeModifier = function removeModifier(modifier) {
-            this._modifiers = this._modifiers.replace(modifier, '');
-            this.add();
+        this._modifiers = this._modifiers.replace(modifier, '');
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Case-insensitivity modifier
-        * @param {Boolean} enable Control case-insensitive matching
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Case-insensitivity modifier
+    * @param {Boolean} enable Control case-insensitive matching
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.withAnyCase = function withAnyCase(enable) {
-            if (enable !== false) {
-                this.addModifier('i');
-            } else {
-                this.removeModifier('i');
-            }
+        if (enable !== false) {
+            this.addModifier('i');
+        } else {
+            this.removeModifier('i');
+        }
 
-            this.add();
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Default behaviour is with "g" modifier, so we can turn this another way around than other modifiers
-        * @param {Boolean} enable Control global matching
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Default behaviour is with "g" modifier, so we can turn this another way around than other modifiers
+    * @param {Boolean} enable Control global matching
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.stopAtFirst = function stopAtFirst(enable) {
-            if (enable !== false) {
-                this.removeModifier('g');
-            } else {
-                this.addModifier('g');
-            }
+        if (enable !== false) {
+            this.removeModifier('g');
+        } else {
+            this.addModifier('g');
+        }
 
-            this.add();
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Multiline, also reversed
-        * @param {Boolean} enable Control multi-line matching
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Multiline, also reversed
+    * @param {Boolean} enable Control multi-line matching
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.searchOneLine = function searchOneLine(enable) {
-            if (enable !== false) {
-                this.removeModifier('m');
-            } else {
-                this.addModifier('m');
-            }
+        if (enable !== false) {
+            this.removeModifier('m');
+        } else {
+            this.addModifier('m');
+        }
 
-            this.add();
+        this.add();
 
-            return this;
+        return this;
     };
 
-        /**
-        * Repeats the previous item exactly n times or between n and m times.
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Repeats the previous item exactly n times or between n and m times.
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.repeatPrevious = function repeatPrevious() {
-            var value;
-            var reIsInteger = /\d+/;
-            var length = arguments.length;
-            var values = new Array(length);
-            var i = 0;
-            var j = 0;
-            for (i = 0; i < length; i++) {
-                if (reIsInteger.test(arguments[i])) {
-                    values[j++] = arguments[i];
-                }
+        var value;
+        var reIsInteger = /\d+/;
+        var length = arguments.length;
+        var values = new Array(length);
+        var i = 0;
+        var j = 0;
+        for (i = 0; i < length; i++) {
+            if (reIsInteger.test(arguments[i])) {
+                values[j++] = arguments[i];
             }
+        }
 
-            if (j > 0) {
-                // Set the new length of the array, thus reducing to the elements that have content
-                values.length = j;
-                value = '{' + values.join(',') + '}';
-            }
+        if (j > 0) {
+            // Set the new length of the array, thus reducing to the elements that have content
+            values.length = j;
+            value = '{' + values.join(',') + '}';
+        }
 
 
-            this.add(value);
+        this.add(value);
 
-            return (this);
+        return (this);
     };
 
-        /**
-        * Repeats the previous at least once
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Repeats the previous at least once
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.oneOrMore = function oneOrMore() {
-            this.add('+');
-            return (this);
+        this.add('+');
+        return (this);
     };
 
-        /// Loops  ///
+    /// Loops  ///
 
-        /**
-        * Matches the value zero or more times
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Matches the value zero or more times
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.multiple = function multiple(value) {
-            // Use expression or string
-            value = value.source || this.sanitize(value);
-            if (arguments.length === 1) {
-                this.add('(?:' + value + ')*');
-            }
+        // Use expression or string
+        value = value.source || this.sanitize(value);
+        if (arguments.length === 1) {
+            this.add('(?:' + value + ')*');
+        }
 
-            if (arguments.length > 1) {
-                this.add('(?:' + value + ')');
-                this.add('{' + arguments[1] + '}');
-            }
+        if (arguments.length > 1) {
+            this.add('(?:' + value + ')');
+            this.add('{' + arguments[1] + '}');
+        }
 
-            return this;
+        return this;
     };
 
-        /**
-        * Adds alternative expressions
-        * @param {String} value value to find
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Adds alternative expressions
+    * @param {String} value value to find
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.or = function or(value) {
-            this._prefixes += '(?:';
-            this._suffixes = ')' + this._suffixes;
+        this._prefixes += '(?:';
+        this._suffixes = ')' + this._suffixes;
 
-            this.add(')|(?:');
-            if (value) {
-                this.then(value);
-            }
+        this.add(')|(?:');
+        if (value) {
+            this.then(value);
+        }
 
-            return this;
+        return this;
     };
 
-        /**
-        * Starts a capturing group
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Starts a capturing group
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.beginCapture = function beginCapture() {
-            // Add the end of the capture group to the suffixes for now so compilation continues to work
-            this._suffixes += ')';
-            this.add('(');
+        // Add the end of the capture group to the suffixes for now so compilation continues to work
+        this._suffixes += ')';
+        this.add('(');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Ends a capturing group
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
-        */
+    /**
+    * Ends a capturing group
+    * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+    */
     VerbalExpression.prototype.endCapture = function endCapture() {
-            // Remove the last parentheses from the _suffixes and add to the regex itself
-            this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1);
-            this.add(')');
+        // Remove the last parentheses from the _suffixes and add to the regex itself
+        this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1);
+        this.add(')');
 
-            return this;
+        return this;
     };
 
-        /**
-        * Convert to RegExp object
-        * @return {RegExp} Converted RegExp instance
-        */
+    /**
+    * Convert to RegExp object
+    * @return {RegExp} Converted RegExp instance
+    */
     VerbalExpression.prototype.toRegExp = function toRegExp() {
-            var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
-            return new RegExp(array[1], array[2]);
+        var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
+        return new RegExp(array[1], array[2]);
     };
 
     /**
