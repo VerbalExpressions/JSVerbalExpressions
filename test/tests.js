@@ -58,7 +58,6 @@ test('something', function somethingTest() {
 
     ok(!testRegex.test(testString), 'Empty string doesn\'t have something');
 
-    testRegex.lastIndex = 0;
     testString = 'a';
     ok(testRegex.test(testString), 'a is something');
 });
@@ -83,11 +82,9 @@ test('somethingBut', function somethingButTest() {
 
     ok(!testRegex.test(testString), 'Empty string doesn\'t have something');
 
-    testRegex.lastIndex = 0;
     testString = 'b';
     ok(testRegex.test(testString), 'Doesn\'t start with an a');
 
-    testRegex.lastIndex = 0;
     testString = 'a';
     ok(!testRegex.test(testString), 'Starts with an a');
 });
@@ -100,7 +97,6 @@ test('startOfLine', function startOfLineTest(assert) {
 
     ok(testRegex.test(testString), 'Starts with an a');
 
-    testRegex.lastIndex = 0;
     testString = 'ba';
     ok(!testRegex.test(testString), 'Doesn\'t start with an a');
 
@@ -117,7 +113,6 @@ test('endOfLine', function endOfLineTest(assert) {
 
     ok(testRegex.test(testString), 'Ends with an a');
 
-    testRegex.lastIndex = 0;
     testString = 'ab';
     ok(!testRegex.test(testString), 'Doesn\'t end with an a');
 
@@ -132,8 +127,8 @@ test('maybe', function maybeTest() {
 
     ok(testRegex.test(testString), 'Maybe has a b after an a');
 
-    testRegex.lastIndex = 0;
     testString = 'abc';
+
     ok(testRegex.test(testString), 'Maybe has a b after an a');
 });
 
@@ -143,7 +138,6 @@ test('anyOf', function anyOfTest() {
 
     ok(testRegex.test(testString), 'Has an x, y, or z after an a');
 
-    testRegex.lastIndex = 0;
     testString = 'abc';
     ok(!testRegex.test(testString), 'Doesn\'t have an x, y, or z after an a');
 });
@@ -156,32 +150,23 @@ test('or', function orTest(assert) {
     var abcdefghi_ = '/^(?:(?:(?:(?:abc))|(?:(?:def))|(?:(?:ghi))|(?:)))/gm';
 
     ok(testRegex.test(testString), 'Starts with an abc or a def');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('abc'), 'abc should match');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('def'), 'def should match');
-    testRegex.lastIndex = 0;
     assert.notOk(testRegex.test('ghi'), 'ghi should not match match');
     assert.equal((testRegex.toRegExp() + ''), abcdef, 'Checking regex');
 
-    testRegex.lastIndex = 0;
     testString = 'xyzabc';
     ok(!testRegex.test(testString), 'Doesn\'t start with an abc or a def');
 
     testRegex.or('ghi');
     assert.equal((testRegex.toRegExp() + ''), abcdefghi, 'Checking regex');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('abc'), 'abc should match');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('def'), 'def should match');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('ghi'), 'ghi should match');
-    testRegex.lastIndex = 0;
     assert.notOk(testRegex.test('jkl'), 'jkl should not match');
 
     testRegex.or();
     assert.equal((testRegex.toRegExp() + ''), abcdefghi_, 'Checking regex');
-    testRegex.lastIndex = 0;
     assert.ok(testRegex.test('ghi'), 'ghi should match');
 });
 
@@ -191,11 +176,9 @@ test('lineBreak', function lineBreakTest() {
 
     ok(testRegex.test(testString), 'abc,then a line break and then def');
 
-    testRegex.lastIndex = 0;
     testString = 'abc\ndef';
     ok(testRegex.test(testString), 'abc, then a line break and then def');
 
-    testRegex.lastIndex = 0;
     testString = 'abc\r\n def';
     ok(!testRegex.test(testString), 'abc, then a line break, then a space and then def');
 });
@@ -206,11 +189,9 @@ test('br', function brTest() {
 
     ok(testRegex.test(testString), 'abc, then a line break and then def');
 
-    testRegex.lastIndex = 0;
     testString = 'abc\ndef';
     ok(testRegex.test(testString), 'abc, then a line break and then def');
 
-    testRegex.lastIndex = 0;
     testString = 'abc\r\n def';
     ok(!testRegex.test(testString), 'abc, then a line break, then a space and then def');
 });
@@ -221,7 +202,6 @@ test('tab', function tabTest() {
 
     ok(testRegex.test(testString), 'tab then abc');
 
-    testRegex.lastIndex = 0;
     testString = 'abc';
     ok(!testRegex.test(testString), 'No tab then abc');
 });
@@ -239,7 +219,6 @@ test('withAnyCase', function withAnyCaseTest(assert) {
     assert.notOk(testRegex.test(testString), 'Not case-insensitive');
 
     testRegex.withAnyCase();
-    testRegex.lastIndex = 0;
     testString = 'a';
     assert.ok(testRegex.test(testString), 'Not case-insensitive');
 });
@@ -250,7 +229,6 @@ test('whitespace', function whitespaceTest() {
 
     ok(testRegex.test(testString), 'a, then a space and then z');
 
-    testRegex.lastIndex = 0;
     testString = 'a_z';
     ok(!testRegex.test(testString), 'a, then no whitespace and then z');
 });
@@ -286,11 +264,9 @@ test('oneOrMore', function oneOrMoreTest() {
 
     ok(testRegex.test(testString), 'Contains \'foo\' at least once ');
 
-    testRegex.lastIndex = 0;
     testString = 'foofoo';
     ok(testRegex.test(testString), 'Contains \'foo\' at least once in \'foofoo\'');
 
-    testRegex.lastIndex = 0;
     testString = 'bar';
     ok(!testRegex.test(testString), 'Contains \'foo\' at least once');
 });

@@ -84,6 +84,7 @@
     */
     VerbalExpression.prototype.add = function add(value) {
         this._source += value || '';
+        this._dirty = true;
 
         return this;
     };
@@ -96,7 +97,7 @@
     VerbalExpression.prototype.startOfLine = function startOfLine(enable) {
         enable = (enable !== false);
         this._prefixes = enable ? '^' : '';
-        this.add();
+        this._dirty = true;
 
         return this;
     };
@@ -109,7 +110,7 @@
     VerbalExpression.prototype.endOfLine = function endOfLine(enable) {
         enable = (enable !== false);
         this._suffixes = enable ? '$' : '';
-        this.add();
+        this._dirty = true;
 
         return this;
     };
@@ -311,9 +312,8 @@
     VerbalExpression.prototype.addModifier = function addModifier(modifier) {
         if (this._modifiers.indexOf(modifier) === -1) {
             this._modifiers += modifier;
+            this._dirty = true;
         }
-
-        this.add();
 
         return this;
     };
@@ -325,7 +325,7 @@
     */
     VerbalExpression.prototype.removeModifier = function removeModifier(modifier) {
         this._modifiers = this._modifiers.replace(modifier, '');
-        this.add();
+        this._dirty = true;
 
         return this;
     };
@@ -342,8 +342,6 @@
             this.removeModifier('i');
         }
 
-        this.add();
-
         return this;
     };
 
@@ -359,8 +357,6 @@
             this.addModifier('g');
         }
 
-        this.add();
-
         return this;
     };
 
@@ -375,8 +371,6 @@
         } else {
             this.addModifier('m');
         }
-
-        this.add();
 
         return this;
     };
@@ -489,6 +483,7 @@
     VerbalExpression.prototype.toRegExp = function toRegExp() {
         if (this._dirty) {
             this._regexp = new RegExp(this._prefixes + this._source + this._suffixes, this._modifiers);
+            this._dirty = false;
         }
 
         return new RegExp(this._regexp.source, this._modifiers);
@@ -499,10 +494,7 @@
     * @return {String} string representation of verbal expression
     */
     VerbalExpression.prototype.toString = function toString() {
-        if (this._dirty) {
-            return (this.toRegExp() + '');
-        }
-        return (this._regex + '');
+        return (this.toRegExp() + '');
     };
 
     /**
@@ -511,10 +503,7 @@
     * @return {Boolean} true if string passes test, false otherwise
     */
     VerbalExpression.prototype.test = function test(str) {
-        if (this._dirty) {
-            this.toRegExp();
-        }
-        return this._regexp.test(str);
+        return this.toRegExp().test(str);
     };
 
     /**
