@@ -49,11 +49,21 @@
         return verbalExpression;
     };
 
-        // Variables to hold the whole
-        // expression construction in order
+    /**
+    * Regex prefixes
+    */
     VerbalExpression.prototype._prefixes = '';
+
+    /**
+    * Regex middle
+    */
     VerbalExpression.prototype._source = '';
+
+    /**
+    * Regex suffixes
+    */
     VerbalExpression.prototype._suffixes = '';
+
     /**
     * default to global multiline matching
     */
