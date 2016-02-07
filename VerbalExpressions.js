@@ -11,9 +11,6 @@
 * Define the VerbalExpression class.
 * @class
 */
-/**
-* @module VerbalExpressions
-*/
 (function verbalExpressionIIFE(root) {
     // Constants
     var MODULE_NAME = 'VerEx';
