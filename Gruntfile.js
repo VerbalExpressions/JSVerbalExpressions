@@ -1,4 +1,5 @@
 module.exports = function gruntConfig(grunt) {
+    module.require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -7,15 +8,27 @@ module.exports = function gruntConfig(grunt) {
                 configFile: '.eslintrc',
             },
             target: ['VerbalExpressions.js', 'test/tests.js'],
+            Gruntfile: [
+                'Gruntfile.js',
+            ],
         },
 
         qunit: {
+            options: {
+                coverage: {
+                    src: [
+                        'VerbalExpressions.js',
+                    ],
+                    instrumentedFiles: 'tmp',
+                    htmlReport: 'coverage',
+                },
+            },
             files: ['test/index.html'],
         },
 
         copy: {
             build: {
-                src: '<%= pkg.main %>',
+                src: 'VerbalExpressions.js',
                 dest: 'dist/verbalexpressions.js',
             },
         },
@@ -36,7 +49,7 @@ module.exports = function gruntConfig(grunt) {
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['<%= pkg.main %>'],
+                    'dist/verbalexpressions.min.js': ['VerbalExpressions.js'],
                 },
             },
         },
@@ -72,17 +85,37 @@ module.exports = function gruntConfig(grunt) {
                 src: ['dist/verbalexpressions.js'],
             },
         },
+
+        watch: {
+            testSource: {
+                files: [
+                    'VerbalExpressions.js',
+                    'test/tests.js',
+                ],
+                tasks: [
+                    'test',
+                ],
+            },
+        },
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-sourcemap-localize');
-
-    grunt.registerTask('test', ['eslint', 'qunit']);
-    grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', ['test', 'copy', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
-    grunt.registerTask('docs', ['test', 'jsdoc:src']);
+    grunt.registerTask('test', [
+        'moduleTest',
+        'eslint:target',
+        'qunit:files',
+    ]);
+    grunt.registerTask('default', ['eslint:Gruntfile', 'test']);
+    grunt.registerTask('moduleTest', function moduleTest() {
+        var VE = new (module.require('./VerbalExpressions.js'));
+        VE = VE.whitespace().multiple('').find('not').whitespace().multiple('');
+        grunt.log.write(VE.replace('VerbalExpressions as module does not work!', ' '));
+    });
+    grunt.registerTask('build', [
+        'eslint:target',
+        'qunit:files',
+        'copy:build',
+        'uglify:dist',
+        'sourcemap_localize:build',
+        'jsdoc:dist',
+    ]);
 };

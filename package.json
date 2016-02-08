@@ -13,11 +13,13 @@
     "grunt": "^0.4.2",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-qunit": "^0.7.0",
     "grunt-contrib-uglify": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-eslint": "^17.3.1",
     "grunt-jsdoc": "^1.1.0",
-    "grunt-sourcemap-localize": "^0.1.0"
+    "grunt-qunit-istanbul": "^0.6.0",
+    "grunt-sourcemap-localize": "^0.1.0",
+    "load-grunt-tasks": "^3.4.0"
   },
   "repository": {
     "type": "git",

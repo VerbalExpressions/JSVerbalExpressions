@@ -40,7 +40,7 @@
 
     
 
-    <h4 class="name" id="VerEx"><span class="type-signature"></span>new VerEx<span class="signature">()</span><span class="type-signature"> &rarr; {RegExp}</span></h4>
+    <h4 class="name" id="VerEx"><span class="type-signature"></span>new VerEx<span class="signature">()</span><span class="type-signature"> &rarr; {VerbalExpression}</span></h4>
 
     
 
@@ -118,7 +118,7 @@
 
         
 <div class="param-desc">
-    A new instance of RegExp with injected methods
+    A new instance of VerbalExpression
 </div>
 
 
@@ -129,7 +129,7 @@
     </dt>
     <dd>
         
-<span class="param-type">RegExp</span>
+<span class="param-type">VerbalExpression</span>
 
 
     </dd>
@@ -157,13 +157,13 @@
 
         
             
-<h4 class="name" id=".prototype"><span class="type-signature">(static) </span>prototype<span class="type-signature"></span></h4>
+<h4 class="name" id="_dirty"><span class="type-signature"></span>_dirty<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Define the class methods.
+    Track changes requiring recompile
 </div>
 
 
@@ -201,7 +201,317 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line55">line 55</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="_modifiers"><span class="type-signature"></span>_modifiers<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    default to global multiline matching
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="_prefixes"><span class="type-signature"></span>_prefixes<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Regex prefixes
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="_regexp"><span class="type-signature"></span>_regexp<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Cache of compiled regex
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="_source"><span class="type-signature"></span>_source<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Regex middle
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line44">line 44</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="_suffixes"><span class="type-signature"></span>_suffixes<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Regex suffixes
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line49">line 49</a>
     </li></ul></dd>
     
 
@@ -222,155 +532,6 @@
 
     
         <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".injectClassMethods"><span class="type-signature">(static) </span>injectClassMethods<span class="signature">(verbalExpression)</span><span class="type-signature"> &rarr; {RegExp}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>verbalExpression</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">RegExp</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">An instance of RegExp on which to add VerbalExpressions methods</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    A new instance of RegExp with injected methods
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">RegExp</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
 
         
             
@@ -477,7 +638,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line92">line 92</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line85">line 85</a>
     </li></ul></dd>
     
 
@@ -630,7 +791,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line316">line 316</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line312">line 312</a>
     </li></ul></dd>
     
 
@@ -783,7 +944,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line276">line 276</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line272">line 272</a>
     </li></ul></dd>
     
 
@@ -936,7 +1097,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line264">line 264</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line260">line 260</a>
     </li></ul></dd>
     
 
@@ -1089,7 +1250,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line163">line 163</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -1242,7 +1403,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line173">line 173</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -1346,7 +1507,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line470">line 470</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line459">line 459</a>
     </li></ul></dd>
     
 
@@ -1450,7 +1611,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line228">line 228</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1554,7 +1715,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line482">line 482</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line471">line 471</a>
     </li></ul></dd>
     
 
@@ -1707,7 +1868,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line117">line 117</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line110">line 110</a>
     </li></ul></dd>
     
 
@@ -1860,7 +2021,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line142">line 142</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -1964,7 +2125,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line219">line 219</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line215">line 215</a>
     </li></ul></dd>
     
 
@@ -2117,7 +2278,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line434">line 434</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line423">line 423</a>
     </li></ul></dd>
     
 
@@ -2221,7 +2382,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line422">line 422</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line411">line 411</a>
     </li></ul></dd>
     
 
@@ -2374,7 +2535,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line454">line 454</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line443">line 443</a>
     </li></ul></dd>
     
 
@@ -2478,7 +2639,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line284">line 284</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line280">line 280</a>
     </li></ul></dd>
     
 
@@ -2631,7 +2792,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line331">line 331</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line326">line 326</a>
     </li></ul></dd>
     
 
@@ -2735,7 +2896,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line393">line 393</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line382">line 382</a>
     </li></ul></dd>
     
 
@@ -2911,7 +3072,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line207">line 207</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line200">line 200</a>
     </li></ul></dd>
     
 
@@ -3064,7 +3225,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line68">line 68</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -3217,7 +3378,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line377">line 377</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line368">line 368</a>
     </li></ul></dd>
     
 
@@ -3321,7 +3482,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line184">line 184</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -3474,7 +3635,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line194">line 194</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line187">line 187</a>
     </li></ul></dd>
     
 
@@ -3627,7 +3788,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line104">line 104</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line97">line 97</a>
     </li></ul></dd>
     
 
@@ -3780,7 +3941,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line360">line 360</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line353">line 353</a>
     </li></ul></dd>
     
 
@@ -3884,7 +4045,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line236">line 236</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line232">line 232</a>
     </li></ul></dd>
     
 
@@ -3923,6 +4084,159 @@
     <dd>
         
 <span class="param-type">VerbalExpression</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="test"><span class="type-signature"></span>test<span class="signature">(str)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Test string against regex
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">string to test</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line505">line 505</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if string passes test, false otherwise
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
 
 
     </dd>
@@ -4037,7 +4351,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line130">line 130</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line123">line 123</a>
     </li></ul></dd>
     
 
@@ -4141,7 +4455,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line494">line 494</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line483">line 483</a>
     </li></ul></dd>
     
 
@@ -4180,6 +4494,110 @@
     <dd>
         
 <span class="param-type">RegExp</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Convert regex to string
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line496">line 496</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    string representation of verbal expression
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
 
 
     </dd>
@@ -4245,7 +4663,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line254">line 254</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line250">line 250</a>
     </li></ul></dd>
     
 
@@ -4398,7 +4816,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line343">line 343</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line338">line 338</a>
     </li></ul></dd>
     
 
@@ -4502,7 +4920,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line245">line 245</a>
+        <a href="verbalexpressions.js.html">verbalexpressions.js</a>, <a href="verbalexpressions.js.html#line241">line 241</a>
     </li></ul></dd>
     
 
@@ -4572,7 +4990,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 31 2016 21:20:32 GMT+0000 (GMT Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Feb 07 2016 10:35:31 GMT+0000 (GMT Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
