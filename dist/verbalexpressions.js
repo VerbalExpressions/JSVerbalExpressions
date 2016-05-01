@@ -494,7 +494,7 @@
         toRegExp: function toRegExp() {
             var array = this.toString().match(/\/(.*)\/([gimuy]+)?/);
             return new RegExp(array[1], array[2]);
-        },
+        }
     };
 
     /**
