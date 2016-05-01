@@ -5,32 +5,32 @@ module.exports = function gruntConfig(grunt) {
 
         eslint: {
             options: {
-                configFile: '.eslintrc',
+                configFile: '.eslintrc'
             },
             target: ['VerbalExpressions.js', 'test/tests.js'],
             Gruntfile: [
-                'Gruntfile.js',
-            ],
+                'Gruntfile.js'
+            ]
         },
 
         qunit: {
             options: {
                 coverage: {
                     src: [
-                        'VerbalExpressions.js',
+                        'VerbalExpressions.js'
                     ],
                     instrumentedFiles: 'tmp',
-                    htmlReport: 'coverage',
-                },
+                    htmlReport: 'coverage'
+                }
             },
-            files: ['test/index.html'],
+            files: ['test/index.html']
         },
 
         copy: {
             build: {
                 src: 'VerbalExpressions.js',
-                dest: 'dist/verbalexpressions.js',
-            },
+                dest: 'dist/verbalexpressions.js'
+            }
         },
 
         uglify: {
@@ -45,24 +45,24 @@ module.exports = function gruntConfig(grunt) {
                     '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                     '*\n' +
                     '*/\n',
-                sourceMap: true,
+                sourceMap: true
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['VerbalExpressions.js'],
-                },
-            },
+                    'dist/verbalexpressions.min.js': ['VerbalExpressions.js']
+                }
+            }
         },
 
         sourcemap_localize: {
             options: {
-                localize_to: '..',
+                localize_to: '..'
             },
             build: {
                 files: {
-                    src: ['dist/*.min.js.map'],
-                },
-            },
+                    src: ['dist/*.min.js.map']
+                }
+            }
         },
 
         jsdoc: {
@@ -70,39 +70,39 @@ module.exports = function gruntConfig(grunt) {
                 pedantic: true,
                 verbose: true,
                 readme: 'README.md',
-                package: 'package.json',
+                package: 'package.json'
             },
             src: {
                 options: {
-                    destination: 'docs',
+                    destination: 'docs'
                 },
-                src: ['VerbalExpressions.js'],
+                src: ['VerbalExpressions.js']
             },
             dist: {
                 options: {
-                    destination: 'dist/docs',
+                    destination: 'dist/docs'
                 },
-                src: ['dist/verbalexpressions.js'],
-            },
+                src: ['dist/verbalexpressions.js']
+            }
         },
 
         watch: {
             testSource: {
                 files: [
                     'VerbalExpressions.js',
-                    'test/tests.js',
+                    'test/tests.js'
                 ],
                 tasks: [
-                    'test',
-                ],
-            },
-        },
+                    'test'
+                ]
+            }
+        }
     });
 
     grunt.registerTask('test', [
         'moduleTest',
         'eslint:target',
-        'qunit:files',
+        'qunit:files'
     ]);
     grunt.registerTask('default', ['eslint:Gruntfile', 'test']);
     grunt.registerTask('moduleTest', function moduleTest() {
@@ -116,6 +116,6 @@ module.exports = function gruntConfig(grunt) {
         'copy:build',
         'uglify:dist',
         'sourcemap_localize:build',
-        'jsdoc:dist',
+        'jsdoc:dist'
     ]);
 };

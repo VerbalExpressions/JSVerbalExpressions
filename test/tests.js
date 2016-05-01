@@ -10,7 +10,7 @@ function validUrls() {
         'https://github.com',
         'https://www.github.com',
         'https://github.com/blog',
-        'https://foobar.github.com',
+        'https://foobar.github.com'
     ];
 }
 
@@ -23,7 +23,7 @@ function invalidUrls() {
           ['foo'],
           ['htps://github.com'],
           ['http:/github.com'],
-          ['https://github.com /blog'],
+          ['https://github.com /blog']
     ];
 }
 
