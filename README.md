@@ -6,23 +6,6 @@ VerbalExpressions v0.2.1
 ## JavaScript Regular Expressions made easy
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
-## Other Implementations
-You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
-- [Ruby](https://github.com/ryan-endacott/verbal_expressions)
-- [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
-- [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
-- [Java](https://github.com/VerbalExpressions/JavaVerbalExpressions)
-- [Groovy](https://github.com/VerbalExpressions/GroovyVerbalExpressions)
-- [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
-- [Haskell](https://github.com/VerbalExpressions/HaskellVerbalExpressions)
-- [Haxe](https://github.com/VerbalExpressions/HaxeVerbalExpressions)
-- [C++](https://github.com/VerbalExpressions/CppVerbalExpressions)
-- [Objective-C](https://github.com/VerbalExpressions/ObjectiveCVerbalExpressions)
-- [Perl](https://github.com/VerbalExpressions/PerlVerbalExpressions)
-- [Swift](https://github.com/VerbalExpressions/SwiftVerbalExpressions)
-
-If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
-
 ## How to get started
 ### In the browser
 ```HTML
@@ -131,3 +114,20 @@ Check out these slide decks for handy Github & git tips:
 
 [ben-nadel]:http://www.bennadel.com/
 [extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
+
+## Other Implementations
+You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
+- [Ruby](https://github.com/ryan-endacott/verbal_expressions)
+- [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
+- [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
+- [Java](https://github.com/VerbalExpressions/JavaVerbalExpressions)
+- [Groovy](https://github.com/VerbalExpressions/GroovyVerbalExpressions)
+- [PHP](https://github.com/VerbalExpressions/PHPVerbalExpressions)
+- [Haskell](https://github.com/VerbalExpressions/HaskellVerbalExpressions)
+- [Haxe](https://github.com/VerbalExpressions/HaxeVerbalExpressions)
+- [C++](https://github.com/VerbalExpressions/CppVerbalExpressions)
+- [Objective-C](https://github.com/VerbalExpressions/ObjectiveCVerbalExpressions)
+- [Perl](https://github.com/VerbalExpressions/PerlVerbalExpressions)
+- [Swift](https://github.com/VerbalExpressions/SwiftVerbalExpressions)
+
+If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
