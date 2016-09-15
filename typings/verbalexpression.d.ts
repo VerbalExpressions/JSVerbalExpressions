@@ -1,3 +1,8 @@
+// Type definitions for JSVerbalExpressions
+// Project: https://github.com/VerbalExpressions/JSVerbalExpressions
+// Definitions by: Mihai Ionut Vilcu <https://github.com/ionutvmi>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+
 type RegExpFlags = "g" | "i" | "m" | "u" | "y";
 
 interface VerbalExpression extends RegExp {
