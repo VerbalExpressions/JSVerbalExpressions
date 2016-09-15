@@ -50,7 +50,7 @@ interface VerbalExpression extends RegExp {
     oneOrMore(): VerbalExpression;
     multiple(value: string): VerbalExpression;
     /** Add a alternative expression to be matched. */
-    or(value: boolean): VerbalExpression;
+    or(value: string): VerbalExpression;
     /** Starts a capturing group */
     beginCapture(): VerbalExpression;
     /** Emds a capturing group */
