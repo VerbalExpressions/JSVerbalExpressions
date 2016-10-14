@@ -35,6 +35,7 @@
     "build": "grunt build",
     "docs": "grunt docs"
   },
+  "types": "./typings/verbalexpression.d.ts",
   "engines": {
     "node": ">= 0.8.0"
   }
