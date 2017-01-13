@@ -217,3 +217,32 @@ test('multiple', function multipleTest() {
     testString = 'foo';
     ok(!testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
 });
+
+
+test('word', function multipleTest() {
+    var testRegex = VerEx().word();
+    var testString = 'azertyuiopqsdfghjklmwxcvbn0123456789_';
+    var i;
+    var len;
+
+    ok(testRegex.test(testString), 'Should match word');
+
+    testString = '. @[]|,&~-';
+    for (i = 0, len = testString.length; i < len; i++) {
+        ok(!testRegex.test(testString[i]), 'Should not match word (' + testString[i] + ')');
+    }
+});
+
+test('digit', function multipleTest() {
+    var testRegex = VerEx().digit();
+    var testString = '0123456789';
+    var i;
+    var len;
+
+    ok(testRegex.test(testString), 'Should match digit');
+
+    testString = '-.azertyuiopqsdfghjklmwxcvbn @[]|,_&~';
+    for (i = 0, len = testString.length; i < len; i++) {
+        ok(!testRegex.test(testString[i]), 'Should not match digit (' + testString[i] + ')');
+    }
+});
