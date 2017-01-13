@@ -36,15 +36,11 @@
     * @return {RegExp} A new instance of RegExp with injected methods
     */
     VerbalExpression.injectClassMethods = function injectClassMethods(verbalExpression) {
-        var method;
         // Loop over all the prototype methods
-        for (method in VerbalExpression.prototype) {
-            // Make sure this is a local method.
-            if (VerbalExpression.prototype.hasOwnProperty(method)) {
-                // Add the method
-                verbalExpression[method] = VerbalExpression.prototype[method];
-            }
-        }
+        Object.keys(VerbalExpression.prototype).forEach(function forEach(method) {
+            // Add the method
+            verbalExpression[method] = VerbalExpression.prototype[method];
+        });
 
         return verbalExpression;
     };
