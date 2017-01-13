@@ -104,9 +104,7 @@
         startOfLine: function startOfLine(enable) {
             enable = (enable !== false);
             this._prefixes = enable ? '^' : '';
-            this.add();
-
-            return this;
+            return this.add();
         },
 
         /**
@@ -117,9 +115,7 @@
         endOfLine: function endOfLine(enable) {
             enable = (enable !== false);
             this._suffixes = enable ? '$' : '';
-            this.add();
-
-            return this;
+            return this.add();
         },
 
         /**
@@ -129,9 +125,7 @@
         */
         then: function then(value) {
             value = this.sanitize(value);
-            this.add('(?:' + value + ')');
-
-            return this;
+            return this.add('(?:' + value + ')');
         },
 
         /**
@@ -150,9 +144,7 @@
         */
         maybe: function maybe(value) {
             value = this.sanitize(value);
-            this.add('(?:' + value + ')?');
-
-            return this;
+            return this.add('(?:' + value + ')?');
         },
 
         /**
@@ -161,8 +153,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         anything: function anything() {
-            this.add('(?:.*)');
-            return this;
+            return this.add('(?:.*)');
         },
 
         /**
@@ -172,9 +163,7 @@
         */
         anythingBut: function anythingBut(value) {
             value = this.sanitize(value);
-            this.add('(?:[^' + value + ']*)');
-
-            return this;
+            return this.add('(?:[^' + value + ']*)');
         },
 
         /**
@@ -182,8 +171,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         something: function something() {
-            this.add('(?:.+)');
-            return this;
+            return this.add('(?:.+)');
         },
 
         /**
@@ -193,9 +181,7 @@
         */
         somethingBut: function somethingBut(value) {
             value = this.sanitize(value);
-            this.add('(?:[^' + value + ']+)');
-
-            return this;
+            return this.add('(?:[^' + value + ']+)');
         },
 
         /**
@@ -217,8 +203,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         lineBreak: function lineBreak() {
-            this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
-            return this;
+            return this.add('(?:\\r\\n|\\r|\\n)'); // Unix + Windows CRLF
         },
 
         /**
@@ -234,8 +219,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         tab: function tab() {
-            this.add('\\t');
-            return this;
+            return this.add('\\t');
         },
 
         /**
@@ -243,8 +227,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         word: function word() {
-            this.add('\\w+');
-            return this;
+            return this.add('\\w+');
         },
 
         /**
@@ -252,8 +235,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         whitespace: function whitespace() {
-            this.add('\\s');
-            return this;
+            return this.add('\\s');
         },
 
         /**
@@ -263,9 +245,7 @@
         */
         anyOf: function anyOf(value) {
             value = this.sanitize(value);
-            this.add('[' + value + ']');
-
-            return this;
+            return this.add('[' + value + ']');
         },
 
         /**
@@ -301,9 +281,7 @@
 
             buffer[index++] = ']';
 
-            this.add(buffer.join(''));
-
-            return this;
+            return this.add(buffer.join(''));
         },
 
         /// Modifiers      ///
@@ -318,9 +296,7 @@
                 this._modifiers += modifier;
             }
 
-            this.add();
-
-            return this;
+            return this.add();
         },
 
         /**
@@ -330,9 +306,7 @@
         */
         removeModifier: function removeModifier(modifier) {
             this._modifiers = this._modifiers.replace(modifier, '');
-            this.add();
-
-            return this;
+            return this.add();
         },
 
         /**
@@ -341,15 +315,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         withAnyCase: function withAnyCase(enable) {
-            if (enable !== false) {
-                this.addModifier('i');
-            } else {
-                this.removeModifier('i');
-            }
-
-            this.add();
-
-            return this;
+            return enable !== false ? this.addModifier('i') : this.removeModifier('i');
         },
 
         /**
@@ -358,15 +324,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         stopAtFirst: function stopAtFirst(enable) {
-            if (enable !== false) {
-                this.removeModifier('g');
-            } else {
-                this.addModifier('g');
-            }
-
-            this.add();
-
-            return this;
+            return enable !== false ? this.removeModifier('g') : this.addModifier('g');
         },
 
         /**
@@ -375,15 +333,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         searchOneLine: function searchOneLine(enable) {
-            if (enable !== false) {
-                this.removeModifier('m');
-            } else {
-                this.addModifier('m');
-            }
-
-            this.add();
-
-            return this;
+            return enable !== false ? this.removeModifier('m') : this.addModifier('m');
         },
 
         /**
@@ -410,9 +360,7 @@
             }
 
 
-            this.add(value);
-
-            return (this);
+            return this.add(value);
         },
 
         /**
@@ -420,8 +368,7 @@
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
         oneOrMore: function oneOrMore() {
-            this.add('+');
-            return (this);
+            return this.add('+');
         },
 
         /// Loops  ///
@@ -470,9 +417,7 @@
         beginCapture: function beginCapture() {
             // Add the end of the capture group to the suffixes for now so compilation continues to work
             this._suffixes += ')';
-            this.add('(');
-
-            return this;
+            return this.add('(');
         },
 
         /**
@@ -482,9 +427,7 @@
         endCapture: function endCapture() {
             // Remove the last parentheses from the _suffixes and add to the regex itself
             this._suffixes = this._suffixes.substring(0, this._suffixes.length - 1);
-            this.add(')');
-
-            return this;
+            return this.add(')');
         },
 
         /**
