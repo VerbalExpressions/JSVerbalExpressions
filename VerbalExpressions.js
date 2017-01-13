@@ -231,6 +231,15 @@
         },
 
         /**
+        * Any digit
+        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+        */
+        digit: function digit() {
+            this.add('\\d');
+            return this;
+        },
+
+        /**
         * Any whitespace
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */

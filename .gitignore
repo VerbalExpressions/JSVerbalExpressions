@@ -3,3 +3,4 @@ node_modules
 /docs/
 /dist/docs/verbal-expressions/*
 !/dist/docs/verbal-expressions/0.2.1/
+.idea/
