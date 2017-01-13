@@ -15,9 +15,12 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-qunit": "^1.0.1",
     "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-eslint": "^18.0.0",
     "grunt-jsdoc": "^1.1.0",
-    "grunt-sourcemap-localize": "^0.1.0"
+    "grunt-qunit-istanbul": "^0.6.0",
+    "grunt-sourcemap-localize": "^0.1.0",
+    "load-grunt-tasks": "^3.4.0"
   },
   "repository": {
     "type": "git",
