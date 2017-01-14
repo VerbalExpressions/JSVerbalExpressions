@@ -33,7 +33,9 @@ interface VerbalExpression extends RegExp {
     tab(): VerbalExpression;
     /** Add expression to match a word */
     word(): VerbalExpression;
-    /** Add expression to match a tab character */
+    /** Add expression to match a digit */
+    digit(): VerbalExpression;
+    /** Add expression to match a whitespace character */
     whitespace(): VerbalExpression;
     /** Match any of the provided values */
     anyOf(value: string): VerbalExpression;
