@@ -121,49 +121,53 @@
         /**
         * We try to keep the syntax as user-friendly as possible. So we can use the "normal" behaviour to split the "sentences" naturally.
         * @param {String} value value to find
+        * @param {Boolean} captured must be captured (not captured by default)
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
-        then: function then(value) {
+        then: function then(value, captured) {
             value = this.sanitize(value);
-            return this.add('(?:' + value + ')');
+            return captured ? this.add('(' + value + ')') : this.add('(?:' + value + ')');
         },
 
         /**
         * And because we can't start with "then" function, we create an alias to be used as the first function of the chain.
         * @param {String} value value to find
+        * @param {Boolean} captured must be captured (not captured by default)
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
-        find: function find(value) {
-            return this.then(value);
+        find: function find(value, captured) {
+            return this.then(value, captured);
         },
 
-        /*
-        * Maybe is used to add values with ?
+        /**
+        * Maybe is used to add values with ?e value to find
         * @param {String} value value to find
+        * @param {Boolean} captured must be captured (not captured by default)
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
-        maybe: function maybe(value) {
+        maybe: function maybe(value, captured) {
             value = this.sanitize(value);
-            return this.add('(?:' + value + ')?');
+            return captured ? this.add('(' + value + ')?') : this.add('(?:' + value + ')?');
         },
 
         /**
         * Any character any number of times
-        * @param {String} value value to find
+        * @param {Boolean} captured must be captured (not captured by default)
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
-        anything: function anything() {
-            return this.add('(?:.*)');
+        anything: function anything(captured) {
+            return captured ? this.add('(.*)') : this.add('(?:.*)');
         },
 
         /**
         * Anything but these characters
         * @param {String} value value to find
+        * @param {Boolean} captured must be captured (not captured by default)
         * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
         */
-        anythingBut: function anythingBut(value) {
+        anythingBut: function anythingBut(value, captured) {
             value = this.sanitize(value);
-            return this.add('(?:[^' + value + ']*)');
+            return captured ?  this.add('([^' + value + ']*)') : this.add('(?:[^' + value + ']*)');
         },
 
         /**
