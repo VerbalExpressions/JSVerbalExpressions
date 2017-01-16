@@ -167,7 +167,7 @@
         */
         anythingBut: function anythingBut(value, captured) {
             value = this.sanitize(value);
-            return captured ?  this.add('([^' + value + ']*)') : this.add('(?:[^' + value + ']*)');
+            return captured ? this.add('([^' + value + ']*)') : this.add('(?:[^' + value + ']*)');
         },
 
         /**
@@ -371,7 +371,6 @@
                 values.length = j;
                 value = '{' + values.join(',') + '}';
             }
-
 
             return this.add(value);
         },
