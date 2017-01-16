@@ -192,7 +192,7 @@
         * Shorthand function for the String.replace function to give more logical flow if, for example, we're doing multiple replacements on one regexp.
         * @param {String} source string to search for
         * @param {String} value value to replace with
-        * @return {VerbalExpression} Same instance of VerbalExpression to allow method chaining
+        * @return {string} string replaced
         */
         replace: function replace(source, value) {
             source = source.toString();
