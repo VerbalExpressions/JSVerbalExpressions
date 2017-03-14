@@ -58,7 +58,7 @@ var testMe = 'https://www.google.com';
 
 // Use RegExp object's native test() function
 if (tester.test(testMe)) {
-    alert('We have a correct URL '); // This output will fire}
+    alert('We have a correct URL'); // This output will fire
 } else {
     alert('The URL is incorrect');
 }
