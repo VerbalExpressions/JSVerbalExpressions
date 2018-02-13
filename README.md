@@ -91,6 +91,10 @@ var result = VerEx().find('red').replace('We have a red house', 'blue');
 alert(result);
 ```
 
+### Online example:
+
+ * http://jsfiddle.net/nmz8o8b6/ Open browser console
+
 ## API documentation
 
 You can find the API documentation at the [wiki pages](https://github.com/VerbalExpressions/JSVerbalExpressions/wiki).
