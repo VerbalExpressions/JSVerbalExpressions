@@ -344,17 +344,16 @@ class VerbalExpression extends RegExp {
      * @param {Integer?} count number of times the value should be repeated
      * @return {VerbalExpression} same instace of VerbalExpression
      */
-    multiple(value) {
+    multiple(value, count) {
         // Use expression or string
         value = value.source || this.sanitize(value);
 
-        if (arguments.length === 1) {
-            this.add(`(?:${value})*`);
-        }
+        this.add(`(?:${value})`);
 
-        if (arguments.length > 1) {
-            this.add(`(?:${value})`);
-            this.add(`{${arguments[1]}}`);
+        if (count === undefined) {
+            this.add('*'); // Any number of times
+        } else {
+            this.add(`{${count}}`);
         }
 
         return this;

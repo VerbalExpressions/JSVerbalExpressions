@@ -55,12 +55,12 @@ interface VerbalExpression extends RegExp {
     searchOneLine(enable?: boolean): VerbalExpression;
     repeatPrevious(): VerbalExpression;
     oneOrMore(): VerbalExpression;
-    multiple(value: string): VerbalExpression;
+    multiple(value: string, count?: number): VerbalExpression;
     /** Add a alternative expression to be matched. */
     or(value: string): VerbalExpression;
     /** Starts a capturing group */
     beginCapture(): VerbalExpression;
-    /** Emds a capturing group */
+    /** Ends a capturing group */
     endCapture(): VerbalExpression;
     /** Converts the verbal expression to a RegExp object */
     toRegExp(): RegExp;
