@@ -9,8 +9,11 @@ module.exports = function gruntConfig(grunt) {
             target: ['VerbalExpressions.js', 'test/tests.js'],
         },
 
-        qunit: {
-            files: ['test/index.html'],
+        ava: {
+            test: ['test/tests.js'],
+            options: {
+                verbose: true,
+            },
         },
 
         copy: {
@@ -26,17 +29,13 @@ module.exports = function gruntConfig(grunt) {
                     '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n' +
                     '* <%= pkg.homepage %>\n' +
                     '*\n' +
-                    '*\n' +
                     '* Released under the <%= pkg.license %> license\n' +
-                    '*\n' +
-                    '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-                    '*\n' +
                     '*/\n',
                 sourceMap: true,
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['<%= pkg.main %>'],
+                    'dist/verbalexpressions.min.js': ['dist/verbalexpressions.js'],
                 },
             },
         },
@@ -72,17 +71,35 @@ module.exports = function gruntConfig(grunt) {
                 src: ['dist/verbalexpressions.js'],
             },
         },
+
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ["env"],
+                plugins: [
+                    ["transform-builtin-extend", {"globals": ["RegExp"]}],
+                ],
+            },
+            dist: {
+                files: {
+                    'dist/verbalexpressions.js': 'VerbalExpressions.js',
+                },
+            },
+        },
+
     });
 
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
 
-    grunt.registerTask('test', ['eslint', 'qunit']);
-    grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', ['test', 'copy', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
+    grunt.registerTask('default', ['ava']);
+    grunt.registerTask('test', ['ava']);
+    grunt.registerTask('compile', ['babel']);
+    grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);
 };

@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb/legacy",
+  "extends": "airbnb",
   "rules": {
     // Override Airbnb style guide defaults for ES5
     "indent": [2, 4],

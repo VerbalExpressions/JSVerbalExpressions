@@ -8,15 +8,19 @@
   ],
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
-    "eslint": "^2.5.1",
-    "eslint-config-airbnb": "^6.2.0",
-    "grunt": "^0.4.2",
+    "ava": "^0.25.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-react": "^7.10.0",
+    "grunt": "^1.0.3",
+    "grunt-ava": "^0.19.0",
+    "grunt-babel": "^7.0.0",
     "grunt-cli": "^1.2.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-qunit": "^1.0.1",
-    "grunt-contrib-uglify": "^1.0.1",
-    "grunt-eslint": "^18.0.0",
-    "grunt-jsdoc": "^1.1.0",
+    "grunt-eslint": "^21.0.0",
+    "grunt-jsdoc": "^2.2.1",
     "grunt-sourcemap-localize": "^0.1.0"
   },
   "repository": {
@@ -30,13 +34,17 @@
   "license": "MIT",
   "scripts": {
     "grunt": "grunt",
+    "compile": "grunt compile",
     "test": "grunt test",
-    "test:verbose": "grunt test --verbose",
     "build": "grunt build",
     "docs": "grunt docs"
   },
   "types": "./typings/verbalexpression.d.ts",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": "^9.2.0"
+  },
+  "dependencies": {
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify-es": "^3.3.0"
   }
 }

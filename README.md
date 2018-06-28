@@ -1,31 +1,41 @@
-VerbalExpressions v0.3.0
-=====================
+VerbalExpressions
+=================
 
 [![Build Status](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg)](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions)
 
 ## JavaScript Regular Expressions made easy
+
 VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
 
 ## How to get started
+
 ### In the browser
+
 ```HTML
 <script src="VerbalExpressions.js"></script>
 ```
+
 Or use the [jsDelivr CDN](http://www.jsdelivr.com/projects/jsverbalexpressions).
+
 ### On the server (node.js)
+
 Install:
 ```
 npm install verbal-expressions
 ```
+
 Require:
+
 ```javascript
-var VerEx = require('verbal-expressions');
+let VerEx = require('verbal-expressions');
 ```
 
 ## Running tests
 
     $ npm run grunt
-    (or)
+
+(or)
+
     $ npm test
 
 ## Creating a minified version
@@ -36,6 +46,10 @@ This will generate a minified version of VerbalExpressions.js (aptly named Verba
 
 A source map will also be created in the same folder, so you can use the original unminified source file (copied to _dist_ as well) for debugging purposes.
 
+## API documentation
+
+You can find the API documentation at the [wiki pages](https://github.com/VerbalExpressions/JSVerbalExpressions/wiki).
+
 ## Examples
 
 Here's a couple of simple examples to give an idea of how VerbalExpressions works:
@@ -44,7 +58,7 @@ Here's a couple of simple examples to give an idea of how VerbalExpressions work
 
 ```javascript
 // Create an example of how to test for correctly formed URLs
-var tester = VerEx()
+const tester = VerEx()
     .startOfLine()
     .then('http')
     .maybe('s')
@@ -54,7 +68,7 @@ var tester = VerEx()
     .endOfLine();
 
 // Create an example URL
-var testMe = 'https://www.google.com';
+const testMe = 'https://www.google.com';
 
 // Use RegExp object's native test() function
 if (tester.test(testMe)) {
@@ -70,13 +84,13 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
 
 ```javascript
 // Create a test string
-var replaceMe = 'Replace bird with a duck';
+const replaceMe = 'Replace bird with a duck';
 
 // Create an expression that seeks for word "bird"
-var expression = VerEx().find('bird');
+const expression = VerEx().find('bird');
 
 // Execute the expression like a normal RegExp object
-var result = expression.replace(replaceMe, 'duck');
+const result = expression.replace(replaceMe, 'duck');
 
 // Outputs "Replace duck with a duck"
 alert(result);
@@ -85,20 +99,18 @@ alert(result);
 ### Shorthand for string replace:
 
 ```javascript
-var result = VerEx().find('red').replace('We have a red house', 'blue');
+const result = VerEx().find('red').replace('We have a red house', 'blue');
 
 // Outputs "We have a blue house"
 alert(result);
 ```
 
-## API documentation
-
-You can find the API documentation at the [wiki pages](https://github.com/VerbalExpressions/JSVerbalExpressions/wiki).
-
 ## A little word for a big help
+
 I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great article about extending native JS objects][extending]
 
 ## Contributions
+
 Clone the repo and fork:
 `git clone https://github.com/jehna/VerbalExpressions.git`.
 
