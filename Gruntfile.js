@@ -11,8 +11,11 @@ module.exports = function gruntConfig(grunt) {
 
         ava: {
             test: ['test/tests.js'],
-            options: {
-                verbose: true,
+            verbose: {
+                test: ['test/tests.js'],
+                options: {
+                    verbose: true,
+                },
             },
         },
 
@@ -97,8 +100,9 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
 
-    grunt.registerTask('default', ['ava']);
-    grunt.registerTask('test', ['ava']);
+    grunt.registerTask('default', ['ava:test']);
+    grunt.registerTask('test', ['ava:test']);
+    grunt.registerTask('test:verbose', ['ava:verbose']);
     grunt.registerTask('compile', ['babel']);
     grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);

@@ -36,6 +36,7 @@
     "grunt": "grunt",
     "compile": "grunt compile",
     "test": "grunt test",
+    "test:verbose": "grunt test:verbose",
     "build": "grunt build",
     "docs": "grunt docs"
   },
