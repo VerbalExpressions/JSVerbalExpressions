@@ -71,7 +71,7 @@ module.exports = function gruntConfig(grunt) {
                 options: {
                     destination: 'dist/docs',
                 },
-                src: ['dist/verbalexpressions.js'],
+                src: ['VerbalExpressions.js'],
             },
         },
 
