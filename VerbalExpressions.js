@@ -198,27 +198,17 @@ class VerbalExpression extends RegExp {
      * Usage: .range( from, to [, from, to ... ] )
      * @return {VerbalExpression} same instace of VerbalExpression
      */
-    range() {
-        const length = arguments.length;
+    range(...ranges) {
+        let value;
 
-        // Create a string buffer instead of concatenating on iteration
-        let buffer = new Array(length / 2);
-        let index = 0;
-        let i = 0;
-        let from;
-        let to;
+        for (let _to = 0; _to < ranges.length; _to += 2) {
+            const from = this.sanitize(ranges[_to - 1]);
+            const to = this.sanitize(ranges[_to]);
 
-        buffer[index++] = '[';
-
-        while (i < length) {
-            from = this.sanitize(arguments[i++]);
-            to = this.sanitize(arguments[i++]);
-            buffer[index++] = from + '-' + to;
+            value += `${from}-${to}`;
         }
 
-        buffer[index++] = ']';
-
-        return this.add(buffer.join(''));
+        return this.add(`[${value}]`);
     }
 
     // Special characters //
@@ -327,26 +317,15 @@ class VerbalExpression extends RegExp {
      * Repeat the previous item exactly n times or between n and m times.
      * @return {VerbalExpression} same instace of VerbalExpression
      */
-    repeatPrevious() {
-        let value;
-        const reIsInteger = /\d+/;
-        const length = arguments.length;
-        let values = new Array(length);
-        let i = 0;
-        let j = 0;
-        for (i = 0; i < length; i++) {
-            if (reIsInteger.test(arguments[i])) {
-                values[j++] = arguments[i];
-            }
+    repeatPrevious(...quantity) {
+        const isInteger = /\d+/;
+        const values = quantity.filter(argument => isInteger.test(argument));
+
+        if (values.length > 0) {
+            this.add(`{${values.join()}}`);
         }
 
-        if (j > 0) {
-            // Set the new length of the array, thus reducing to the elements that have content
-            values.length = j;
-            value = `{${values.join(',')}}`;
-        }
-
-        return this.add(value);
+        return this;
     }
 
     // Loops //
