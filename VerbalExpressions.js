@@ -35,7 +35,7 @@ class VerbalExpression extends RegExp {
      * @param {String} value string to sanitize
      * @return {String} sanitized value
      */
-    sanitize(value) {
+    static sanitize(value) {
         if (value.source) {
             return value.source;
         }
@@ -97,7 +97,7 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instace of VerbalExpression
      */
     then(value) {
-        value = this.sanitize(value);
+        value = VerbalExpression.sanitize(value);
         return this.add(`(?:${value})`);
     }
 
@@ -116,7 +116,7 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instace of VerbalExpression
      */
     maybe(value) {
-        value = this.sanitize(value);
+        value = VerbalExpression.sanitize(value);
         return this.add(`(?:${value})?`);
     }
 
@@ -153,7 +153,7 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instace of VerbalExpression
      */
     anythingBut(value) {
-        value = this.sanitize(value);
+        value = VerbalExpression.sanitize(value);
         return this.add(`(?:[^${value}]*)`);
     }
 
@@ -171,7 +171,7 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instace of VerbalExpression
      */
     somethingBut(value) {
-        value = this.sanitize(value);
+        value = VerbalExpression.sanitize(value);
         return this.add(`(?:[^${value}]+)`);
     }
 
@@ -181,7 +181,7 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instace of VerbalExpression
      */
     anyOf(value) {
-        value = this.sanitize(value);
+        value = VerbalExpression.sanitize(value);
         return this.add(`[${value}]`);
     }
 
@@ -201,9 +201,9 @@ class VerbalExpression extends RegExp {
     range(...ranges) {
         let value;
 
-        for (let _to = 0; _to < ranges.length; _to += 2) {
-            const from = this.sanitize(ranges[_to - 1]);
-            const to = this.sanitize(ranges[_to]);
+        for (let i = 0; i < ranges.length; i += 2) {
+            const from = VerbalExpression.sanitize(ranges[i - 1]);
+            const to = VerbalExpression.sanitize(ranges[i]);
 
             value += `${from}-${to}`;
         }
@@ -346,7 +346,7 @@ class VerbalExpression extends RegExp {
      */
     multiple(value, count) {
         // Use expression or string
-        value = value.source || this.sanitize(value);
+        value = value.source || VerbalExpression.sanitize(value);
 
         this.add(`(?:${value})`);
 
@@ -409,15 +409,15 @@ class VerbalExpression extends RegExp {
 
 // UMD (Universal Module Definition)
 // https://github.com/umdjs/umd
-if (typeof module !== 'undefined' && module.exports) {
-    // Node.js Module
-    module.exports = () => new VerbalExpression();
-} else if (typeof define === 'function' && define.amd) {
-    // AMD Module
-    define('VerEx', [], function define() {
-        return VerbalExpression;
-    });
-} else {
-    // Browser
-    window.VerEx = () => new VerbalExpression();
-}
+((root, factory) => {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.VerEx = factory();
+    }
+})(this, () => () => new VerbalExpression());

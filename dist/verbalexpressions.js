@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79,35 +81,14 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
 
     _createClass(VerbalExpression, [{
-        key: 'sanitize',
-        value: function sanitize(value) {
-            if (value.source) {
-                return value.source;
-            }
+        key: 'add',
 
-            if (typeof value === 'number') {
-                return value;
-            }
-
-            // Regular expression to match meta characters
-            // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
-            var toEscape = /([\].|*?+(){}^$\\:=[])/g;
-
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
-            var lastMatch = '$&';
-
-            // Escape meta characters
-            return value.replace(toEscape, '\\' + lastMatch);
-        }
 
         /**
          * Add stuff to the expression and compile the new expression so it's ready to be used.
          * @param {string} value literal expression, not sanitized
          * @return {VerbalExpression} Freshly recompiled instance of VerbalExpression
          */
-
-    }, {
-        key: 'add',
         value: function add() {
             var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
@@ -160,7 +141,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'then',
         value: function then(value) {
-            value = this.sanitize(value);
+            value = VerbalExpression.sanitize(value);
             return this.add('(?:' + value + ')');
         }
 
@@ -185,7 +166,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'maybe',
         value: function maybe(value) {
-            value = this.sanitize(value);
+            value = VerbalExpression.sanitize(value);
             return this.add('(?:' + value + ')?');
         }
 
@@ -231,7 +212,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'anythingBut',
         value: function anythingBut(value) {
-            value = this.sanitize(value);
+            value = VerbalExpression.sanitize(value);
             return this.add('(?:[^' + value + ']*)');
         }
 
@@ -255,7 +236,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'somethingBut',
         value: function somethingBut(value) {
-            value = this.sanitize(value);
+            value = VerbalExpression.sanitize(value);
             return this.add('(?:[^' + value + ']+)');
         }
 
@@ -268,7 +249,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'anyOf',
         value: function anyOf(value) {
-            value = this.sanitize(value);
+            value = VerbalExpression.sanitize(value);
             return this.add('[' + value + ']');
         }
 
@@ -294,9 +275,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
         value: function range() {
             var value = void 0;
 
-            for (var _to = 0; _to < arguments.length; _to += 2) {
-                var from = this.sanitize(arguments.length <= _to - 1 ? undefined : arguments[_to - 1]);
-                var to = this.sanitize(arguments.length <= _to ? undefined : arguments[_to]);
+            for (var i = 0; i < arguments.length; i += 2) {
+                var from = VerbalExpression.sanitize(arguments.length <= i - 1 ? undefined : arguments[i - 1]);
+                var to = VerbalExpression.sanitize(arguments.length <= i ? undefined : arguments[i]);
 
                 value += from + '-' + to;
             }
@@ -494,7 +475,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         key: 'multiple',
         value: function multiple(value, count) {
             // Use expression or string
-            value = value.source || this.sanitize(value);
+            value = value.source || VerbalExpression.sanitize(value);
 
             this.add('(?:' + value + ')');
 
@@ -565,6 +546,27 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
             return new RegExp(pattern, flags);
         }
+    }], [{
+        key: 'sanitize',
+        value: function sanitize(value) {
+            if (value.source) {
+                return value.source;
+            }
+
+            if (typeof value === 'number') {
+                return value;
+            }
+
+            // Regular expression to match meta characters
+            // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
+            var toEscape = /([\].|*?+(){}^$\\:=[])/g;
+
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
+            var lastMatch = '$&';
+
+            // Escape meta characters
+            return value.replace(toEscape, '\\' + lastMatch);
+        }
     }]);
 
     return VerbalExpression;
@@ -574,20 +576,20 @@ var VerbalExpression = function (_extendableBuiltin2) {
 // https://github.com/umdjs/umd
 
 
-if (typeof module !== 'undefined' && module.exports) {
-    // Node.js Module
-    module.exports = function () {
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.VerEx = factory();
+    }
+})(undefined, function () {
+    return function () {
         return new VerbalExpression();
     };
-} else if (typeof define === 'function' && define.amd) {
-    // AMD Module
-    define('VerEx', [], function define() {
-        return VerbalExpression;
-    });
-} else {
-    // Browser
-    window.VerEx = function () {
-        return new VerbalExpression();
-    };
-}
+});
 //# sourceMappingURL=verbalexpressions.js.map
