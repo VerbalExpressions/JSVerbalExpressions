@@ -486,7 +486,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Match the value zero or more times
          * @param {String} value value to find
-         * @param {Integer=} count number of times the value should be repeated
+         * @param {Integer?} count number of times the value should be repeated
          * @return {VerbalExpression} same instace of VerbalExpression
          */
 
