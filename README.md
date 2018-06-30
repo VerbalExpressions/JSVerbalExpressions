@@ -11,7 +11,7 @@ VerbalExpressions is a JavaScript library that helps to construct difficult regu
 
 ### In the browser
 
-```HTML
+```html
 <script src="VerbalExpressions.js"></script>
 ```
 
@@ -20,31 +20,44 @@ Or use the [jsDelivr CDN](http://www.jsdelivr.com/projects/jsverbalexpressions).
 ### On the server (node.js)
 
 Install:
-```
-npm install verbal-expressions
+
+```sh
+$ npm install verbal-expressions
 ```
 
 Require:
 
 ```javascript
-let VerEx = require('verbal-expressions');
+const VerEx = require('verbal-expressions');
+```
+
+Or use ES6's `import`:
+
+```javascript
+import VerEx from 'verbal-expressions';
 ```
 
 ## Running tests
 
-    $ npm run grunt
+```sh
+$ npm test
+```
 
 (or)
 
-    $ npm test
+```sh
+$ npm run test:verbose
+```
 
 ## Creating a minified version
 
-This will generate a minified version of VerbalExpressions.js (aptly named VerbalExpressions.min.js) in a _dist_ folder.
+```sh
+$ npm run build
+```
 
-    $ npm run build
+This will run [Babel](https://babeljs.io) on `VerbalExpressions.js` and output the result to `dist/verbalexpressions.js`. A minified version of the same will also be written to `dist/verbalexpressions.min.js`.
 
-A source map will also be created in the same folder, so you can use the original unminified source file (copied to _dist_ as well) for debugging purposes.
+A source map will also be created in `dist`, so you can use the original "un-babelified", unminified source file for debugging purposes.
 
 ## API documentation
 
@@ -52,7 +65,7 @@ You can find the API documentation at the [wiki pages](https://github.com/Verbal
 
 ## Examples
 
-Here's a couple of simple examples to give an idea of how VerbalExpressions works:
+Here are some simple examples to give an idea of how VerbalExpressions works:
 
 ### Testing if we have a valid URL
 
@@ -111,14 +124,17 @@ I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great
 
 ## Contributions
 
+Pull requests are warmly welcome!
+
 Clone the repo and fork:
-`git clone https://github.com/jehna/VerbalExpressions.git`.
+
+```sh
+git clone https://github.com/jehna/VerbalExpressions.git
+```
 
 ### Style guide
 
-The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used as a basis for creating clean and readable JavaScript code.
-
-Pull requests are warmly welcome!
+The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used as a basis for creating clean and readable JavaScript code. Check [`.eslintrc`](.eslintrc).
 
 Check out these slide decks for handy Github & git tips:
 - [Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/)
@@ -129,6 +145,7 @@ Check out these slide decks for handy Github & git tips:
 
 ## Other Implementations
 You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
+
 - [Ruby](https://github.com/ryan-endacott/verbal_expressions)
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
 - [Python](https://github.com/VerbalExpressions/PythonVerbalExpressions)
@@ -142,4 +159,4 @@ You can see an up to date list of all ports on [VerbalExpressions.github.io](htt
 - [Perl](https://github.com/VerbalExpressions/PerlVerbalExpressions)
 - [Swift](https://github.com/VerbalExpressions/SwiftVerbalExpressions)
 
-If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the [VerbalExpressions organization](https://github.com/VerbalExpressions) will be created for it.  Please don't open PRs for other languages against this repo.
+If you would like to contribute another port (which would be awesome!), please [open an issue](https://github.com/VerbalExpressions/implementation/issues/new) specifying the language in the [VerbalExpressions/implementation repo](https://github.com/VerbalExpressions/implementation/issues). Please don't open PRs for other languages against this repo.
