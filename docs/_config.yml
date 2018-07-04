@@ -1,0 +1,11 @@
+title: JSVerbalExpressions Documentation
+description: API Documentation for JSVerbalExpressions.
+
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-feed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
