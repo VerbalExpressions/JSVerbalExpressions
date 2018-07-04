@@ -54,27 +54,6 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
-        jsdoc: {
-            options: {
-                pedantic: true,
-                verbose: true,
-                readme: 'README.md',
-                package: 'package.json',
-            },
-            src: {
-                options: {
-                    destination: 'docs',
-                },
-                src: ['VerbalExpressions.js'],
-            },
-            dist: {
-                options: {
-                    destination: 'dist/docs',
-                },
-                src: ['VerbalExpressions.js'],
-            },
-        },
-
         babel: {
             options: {
                 sourceMap: true,
@@ -96,7 +75,6 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
 
@@ -104,6 +82,5 @@ module.exports = function gruntConfig(grunt) {
     grunt.registerTask('test', ['eslint', 'ava:test']);
     grunt.registerTask('test:verbose', ['eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
-    grunt.registerTask('docs', ['test', 'jsdoc:src']);
+    grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize']);
 };
