@@ -322,7 +322,7 @@ class VerbalExpression extends RegExp {
         const values = quantity.filter(argument => isInteger.test(argument));
 
         if (values.length > 0) {
-            this.add(`{${values.join()}}`);
+            this.add(`{${values.join(',')}}`);
         }
 
         return this;
@@ -341,19 +341,22 @@ class VerbalExpression extends RegExp {
     /**
      * Match the value zero or more times
      * @param {String} value value to find
-     * @param {Integer?} count number of times the value should be repeated
+     * @param {Integer?} lower minimum number of times the value should be repeated
+     * @param {Integer?} upper maximum number of times the value should be repeated
      * @return {VerbalExpression} same instace of VerbalExpression
      */
-    multiple(value, count) {
+    multiple(value, lower, upper) {
         // Use expression or string
         value = value.source || VerbalExpression.sanitize(value);
 
         this.add(`(?:${value})`);
 
-        if (count === undefined) {
+        if (lower === undefined && upper === undefined) {
             this.add('*'); // Any number of times
-        } else {
-            this.add(`{${count}}`);
+        } else if (lower !== undefined && upper === undefined) {
+            this.add(`{${lower}}`);
+        } else if (lower !== undefined && upper !== undefined) {
+            this.add(`{${lower},${upper}}`);
         }
 
         return this;
