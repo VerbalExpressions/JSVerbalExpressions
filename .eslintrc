@@ -13,13 +13,6 @@
       "prefer": {
         "return": "return"
       }
-    }],
-    "require-jsdoc": [2, {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": true
-      }
     }]
   },
   "env": {
