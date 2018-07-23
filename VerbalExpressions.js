@@ -414,6 +414,6 @@ class VerbalExpression extends RegExp {
  * Return a new instance of `VerbalExpression`
  * @return {VerbalExpression} new instance
  */
-function instantiate() {
+function VerEx() {
     return new VerbalExpression();
 }

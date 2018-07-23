@@ -40,7 +40,7 @@ module.exports = function gruntConfig(grunt) {
             all: {
                 options: {
                     src: 'dist/verbalexpressions.js',
-                    objectToExport: 'instantiate',
+                    objectToExport: 'VerEx',
                     amdModuleId: 'VerEx',
                     globalAlias: 'VerEx',
                 },

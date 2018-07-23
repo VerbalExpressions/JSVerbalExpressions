@@ -594,11 +594,11 @@ var VerbalExpression = function (_extendableBuiltin2) {
  */
 
 
-function instantiate() {
+function VerEx() {
     return new VerbalExpression();
 }
 //# sourceMappingURL=verbalexpressions.js.map
 
-return instantiate;
+return VerEx;
 
 }));
