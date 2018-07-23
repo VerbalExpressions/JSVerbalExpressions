@@ -29,7 +29,9 @@ module.exports = function gruntConfig(grunt) {
         babel: {
             options: {
                 sourceMap: true,
-                presets: ['env'],
+                presets: [
+                    ['env', { modules: false }],
+                ],
                 plugins: [
                     ['transform-builtin-extend', { globals: ['RegExp'] }],
                 ],
