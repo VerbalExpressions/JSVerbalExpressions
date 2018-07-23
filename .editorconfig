@@ -8,5 +8,5 @@ root = true
     indent_size = 4
     charset = utf8
 
-[package.json, package-lock.json]
+[{package.json, package-lock.json}]
     indent_size = 2
