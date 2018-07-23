@@ -6,7 +6,7 @@ module.exports = function gruntConfig(grunt) {
             options: {
                 configFile: '.eslintrc',
             },
-            target: ['VerbalExpressions.js', 'test/tests.js'],
+            target: ['VerbalExpressions.js', 'test/tests.js', 'Gruntfile.js'],
         },
 
         ava: {
@@ -28,12 +28,12 @@ module.exports = function gruntConfig(grunt) {
 
         uglify: {
             options: {
-                banner: '/*!\n' +
-                    '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n' +
-                    '* <%= pkg.homepage %>\n' +
-                    '*\n' +
-                    '* Released under the <%= pkg.license %> license\n' +
-                    '*/\n',
+                banner: '/*!\n'
+                    + '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n'
+                    + '* <%= pkg.homepage %>\n'
+                    + '*\n'
+                    + '* Released under the <%= pkg.license %> license\n'
+                    + '*/\n',
                 sourceMap: true,
             },
             dist: {
@@ -78,9 +78,9 @@ module.exports = function gruntConfig(grunt) {
         babel: {
             options: {
                 sourceMap: true,
-                presets: ["env"],
+                presets: ['env'],
                 plugins: [
-                    ["transform-builtin-extend", {"globals": ["RegExp"]}],
+                    ['transform-builtin-extend', { globals: ['RegExp'] }],
                 ],
             },
             dist: {
@@ -90,6 +90,13 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
+        iife: {
+            build: {
+                files: {
+                    'dist/verbalexpressions.js': 'dist/verbalexpressions.js',
+                },
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-babel');
@@ -99,11 +106,12 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-iife');
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('test', ['eslint', 'ava:test']);
     grunt.registerTask('test:verbose', ['eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
+    grunt.registerTask('build', ['test', 'copy', 'compile', 'iife', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);
 };
