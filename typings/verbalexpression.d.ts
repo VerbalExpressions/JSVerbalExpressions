@@ -55,7 +55,7 @@ interface VerbalExpression extends RegExp {
     searchOneLine(enable?: boolean): VerbalExpression;
     repeatPrevious(): VerbalExpression;
     oneOrMore(): VerbalExpression;
-    multiple(value: string, count?: number): VerbalExpression;
+    multiple(value: string, lower?: number, upper?: number): VerbalExpression;
     /** Add a alternative expression to be matched. */
     or(value: string): VerbalExpression;
     /** Starts a capturing group */
