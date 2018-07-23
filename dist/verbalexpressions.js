@@ -118,7 +118,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Control start-of-line matching
          * @param {Boolean} enable Control start-of-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -133,7 +133,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Control end-of-line matching
          * @param {Boolean} enable Control end-of-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -148,7 +148,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Look for the value passed
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -161,7 +161,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Alias for then() to allow for readable syntax when then() is the first method in the chain.
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -173,7 +173,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Add optional values
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -186,7 +186,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Add alternative expressions
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -207,7 +207,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Any character any number of times
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -219,7 +219,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Anything but these characters
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -231,7 +231,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Any character at least one time
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -243,7 +243,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Any character at least one time except for these characters
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -254,9 +254,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
         }
 
         /**
-         * Match any given character
+         * Match any of the given characters
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -269,7 +269,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Shorthand for anyOf(value)
          * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -280,7 +280,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Usage: .range( from, to [, from, to ... ] )
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -302,7 +302,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a Line break
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -313,7 +313,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * A shorthand for lineBreak() for html-minded users
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -324,7 +324,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a tab character
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -335,7 +335,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match any alphanumeric
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -346,7 +346,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a single digit digit
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -357,7 +357,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a single whitespace
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -371,7 +371,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Add modifier
          * @param {String} modifier modifier to add
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -387,7 +387,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Remove modifier
          * @param {String} modifier modifier to remove
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -400,7 +400,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Case-insensitivity modifier
          * @param {Boolean} enable Control case-insensitive matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -414,7 +414,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Default behaviour is with "g" modifier, so we can turn this another way around than other modifiers
          * @param {Boolean} enable Control global matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -428,7 +428,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         /**
          * Control the multiline modifier
          * @param {Boolean} enable Control multi-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -441,7 +441,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Repeat the previous item exactly n times or between n and m times.
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -468,7 +468,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Repeat the previous at least once
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -482,7 +482,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
          * @param {String} value value to find
          * @param {Integer?} lower minimum number of times the value should be repeated
          * @param {Integer?} upper maximum number of times the value should be repeated
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -508,7 +508,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Starts a capturing group
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -521,7 +521,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Ends a capturing group
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
@@ -535,10 +535,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
         // Miscellaneous //
 
         /**
-         * Shorthand function for the String.replace function to allow for a more logical flow.
+         * Shorthand function for the String.replace function to allow for a more logical flow
          * @param {String} source string to search for
          * @param {String} value value to replace with
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @return {VerbalExpression} same instance of VerbalExpression
          */
 
     }, {
