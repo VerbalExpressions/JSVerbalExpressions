@@ -26,6 +26,29 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['env'],
+                plugins: [
+                    ['transform-builtin-extend', { globals: ['RegExp'] }],
+                ],
+            },
+            dist: {
+                files: {
+                    'dist/verbalexpressions.js': 'VerbalExpressions.js',
+                },
+            },
+        },
+
+        iife: {
+            build: {
+                files: {
+                    'dist/verbalexpressions.js': 'dist/verbalexpressions.js',
+                },
+            },
+        },
+
         uglify: {
             options: {
                 banner: '/*!\n'
@@ -72,29 +95,6 @@ module.exports = function gruntConfig(grunt) {
                     destination: 'dist/docs',
                 },
                 src: ['VerbalExpressions.js'],
-            },
-        },
-
-        babel: {
-            options: {
-                sourceMap: true,
-                presets: ['env'],
-                plugins: [
-                    ['transform-builtin-extend', { globals: ['RegExp'] }],
-                ],
-            },
-            dist: {
-                files: {
-                    'dist/verbalexpressions.js': 'VerbalExpressions.js',
-                },
-            },
-        },
-
-        iife: {
-            build: {
-                files: {
-                    'dist/verbalexpressions.js': 'dist/verbalexpressions.js',
-                },
             },
         },
     });
