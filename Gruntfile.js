@@ -19,13 +19,6 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
-        copy: {
-            build: {
-                src: '<%= pkg.main %>',
-                dest: 'dist/verbalexpressions.js',
-            },
-        },
-
         babel: {
             options: {
                 sourceMap: true,
@@ -43,10 +36,13 @@ module.exports = function gruntConfig(grunt) {
             },
         },
 
-        iife: {
-            build: {
-                files: {
-                    'dist/verbalexpressions.js': 'dist/verbalexpressions.js',
+        umd: {
+            all: {
+                options: {
+                    src: 'dist/verbalexpressions.js',
+                    objectToExport: 'instantiate',
+                    amdModuleId: 'VerEx',
+                    globalAlias: 'VerEx',
                 },
             },
         },
@@ -102,18 +98,17 @@ module.exports = function gruntConfig(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
-    grunt.loadNpmTasks('grunt-iife');
+    grunt.loadNpmTasks('grunt-umd');
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['eslint', 'ava:test']);
+    grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
     grunt.registerTask('test:verbose', ['eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('build', ['test', 'copy', 'compile', 'iife', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
+    grunt.registerTask('build', ['compile', 'umd:all', 'uglify', 'sourcemap_localize', 'test', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);
 };

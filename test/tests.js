@@ -1,5 +1,5 @@
 import test from 'ava';
-import VerEx from '../VerbalExpressions';
+import VerEx from '../dist/verbalexpressions';
 
 test('something', (t) => {
     const testRegex = VerEx().something();

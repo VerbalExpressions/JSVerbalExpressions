@@ -410,17 +410,10 @@ class VerbalExpression extends RegExp {
     }
 }
 
-// UMD (Universal Module Definition)
-// https://github.com/umdjs/umd
-((root, factory) => {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define([], factory);
-    } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.VerEx = factory();
-    }
-})(this, () => () => new VerbalExpression());
+/**
+ * Return a new instance of `VerbalExpression`
+ * @return {VerbalExpression} new instance
+ */
+function instantiate() {
+    return new VerbalExpression();
+}

@@ -20,7 +20,8 @@
         "MethodDefinition": true,
         "ClassDeclaration": true
       }
-    }]
+    }],
+    "no-unused-vars": 0
   },
   "env": {
     "amd": true,
