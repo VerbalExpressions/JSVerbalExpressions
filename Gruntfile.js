@@ -97,13 +97,13 @@ module.exports = function gruntConfig(grunt) {
         },
     });
 
-    grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-ava');
-    grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-umd');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
+    grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
