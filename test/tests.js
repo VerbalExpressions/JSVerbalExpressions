@@ -1,7 +1,12 @@
 import test from 'ava';
 import VerEx from '../dist/verbalexpressions';
 
-test.todo('constructor');
+test('constructor', (t) => {
+    const testRegex = VerEx();
+
+    t.true(testRegex instanceof RegExp, 'Extends RegExp');
+    t.is(testRegex.toString(), '/(?:)/gm', 'Is empty regex with global, multiline matching');
+});
 
 // Utility //
 
@@ -38,9 +43,51 @@ test('endOfLine', (t) => {
     t.false(testRegex.test(testString), 'Doesn\'t end with an a');
 });
 
-test.todo('then');
+test('then', (t) => {
+    let testRegex = VerEx().then('a');
+    let testString = 'a';
 
-test.todo('find');
+    t.true(testRegex.test(testString), 'Is "a"');
+
+    testRegex.lastIndex = 0;
+    testString = 'b';
+    t.false(testRegex.test(testString), 'Is not "a"');
+
+    testRegex.lastIndex = 0;
+    testString = '';
+    t.false(testRegex.test(testString), 'Does not have "a"');
+
+    testRegex = VerEx().then('a').then('b');
+    testString = 'ab';
+    t.true(testRegex.test(testString), 'Is "ab"');
+
+    testRegex.lastIndex = 0;
+    testString = 'ac';
+    t.false(testRegex.test(testString), 'Is not "ab"');
+});
+
+test('find', (t) => {
+    let testRegex = VerEx().find('a');
+    let testString = 'a';
+
+    t.true(testRegex.test(testString), 'Is "a"');
+
+    testRegex.lastIndex = 0;
+    testString = 'b';
+    t.false(testRegex.test(testString), 'Is not "a"');
+
+    testRegex.lastIndex = 0;
+    testString = '';
+    t.false(testRegex.test(testString), 'Does not have "a"');
+
+    testRegex = VerEx().find('a').find('b');
+    testString = 'ab';
+    t.true(testRegex.test(testString), 'Is "ab"');
+
+    testRegex.lastIndex = 0;
+    testString = 'ac';
+    t.false(testRegex.test(testString), 'Is not "ab"');
+});
 
 test('maybe', (t) => {
     const testRegex = VerEx().startOfLine().then('a').maybe('b');
@@ -199,9 +246,15 @@ test('whitespace', (t) => {
 
 // Modifiers //
 
-test.todo('addModifier');
+test('addModifier', (t) => {
+    const testRegex = VerEx().addModifier('y');
+    t.true(testRegex.flags.includes('y'));
+});
 
-test.todo('removeModifier');
+test('removeModifier', (t) => {
+    const testRegex = VerEx().removeModifier('g');
+    t.false(testRegex.flags.includes('g'));
+});
 
 test('withAnyCase', (t) => {
     let testRegex = VerEx().startOfLine().then('a');
@@ -275,12 +328,33 @@ test('multiple', (t) => {
 
 // Capture groups //
 
-test.todo('beginCapture');
+test('capture groups', (t) => {
+    let testRegex = VerEx().find('foo').beginCapture().then('bar');
+    let testString = 'foobar';
 
-test.todo('endCapture');
+    t.true(testRegex.test(testString), 'Expressions with incomplete capture groups work');
+
+    testRegex = testRegex.endCapture().then('baz');
+    testString = 'foobarbaz';
+    t.true(testRegex.test(testString), 'Has "foobarbaz"');
+
+    testRegex.lastIndex = 0;
+    const matches = testRegex.exec(testString);
+    t.is(matches[1], 'bar', 'Captured string is "bar"');
+});
 
 // Miscellaneous //
 
-test.todo('replace');
+test('replace', (t) => {
+    const testRegex = VerEx().find(' ');
+    const testString = 'foo bar baz';
 
-test.todo('toRegExp');
+    t.is(testRegex.replace(testString, '_'), 'foo_bar_baz', 'Spaces are replaced with underscores');
+});
+
+test('toRegExp', (t) => {
+    const testRegex = VerEx().anything();
+    const converted = testRegex.toRegExp();
+
+    t.is(converted.toString(), testRegex.toString());
+});
