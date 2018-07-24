@@ -22,7 +22,7 @@ test.todo('add');
 // Rules //
 
 test('startOfLine', (t) => {
-    const testRegex = VerEx().startOfLine().then('a');
+    let testRegex = VerEx().startOfLine().then('a');
     let testString = 'a';
 
     t.true(testRegex.test(testString), 'Starts with an a');
@@ -30,10 +30,14 @@ test('startOfLine', (t) => {
     testRegex.lastIndex = 0;
     testString = 'ba';
     t.false(testRegex.test(testString), 'Doesn\'t start with an a');
+
+    testRegex = testRegex.startOfLine(false); // start of line is no longer necessary
+    testString = 'ba';
+    t.true(testRegex.test(testString), 'Has an a');
 });
 
 test('endOfLine', (t) => {
-    const testRegex = VerEx().find('a').endOfLine();
+    let testRegex = VerEx().find('a').endOfLine();
     let testString = 'a';
 
     t.true(testRegex.test(testString), 'Ends with an a');
@@ -41,6 +45,10 @@ test('endOfLine', (t) => {
     testRegex.lastIndex = 0;
     testString = 'ab';
     t.false(testRegex.test(testString), 'Doesn\'t end with an a');
+
+    testRegex = testRegex.endOfLine(false); // end of line is no longer necessary
+    testString = 'ab';
+    t.true(testRegex.test(testString), 'Has an a');
 });
 
 test('then', (t) => {
