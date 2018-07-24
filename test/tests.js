@@ -1,6 +1,8 @@
 import test from 'ava';
 import VerEx from '../dist/verbalexpressions';
 
+test.todo('constructor');
+
 // Utility //
 
 test('sanitize', (t) => {
@@ -9,6 +11,8 @@ test('sanitize', (t) => {
 
     t.true(testRegex.test(testString), 'Special character sanitization');
 });
+
+test.todo('add');
 
 // Rules //
 
@@ -33,6 +37,10 @@ test('endOfLine', (t) => {
     testString = 'ab';
     t.false(testRegex.test(testString), 'Doesn\'t end with an a');
 });
+
+test.todo('then');
+
+test.todo('find');
 
 test('maybe', (t) => {
     const testRegex = VerEx().startOfLine().then('a').maybe('b');
@@ -61,7 +69,7 @@ test('anything', (t) => {
     const testString = 'what';
 
     t.true(testRegex.test(testString), 'Contains anything');
-})
+});
 
 test('anythingBut', (t) => {
     const testRegex = VerEx().startOfLine().anythingBut('w');
@@ -106,6 +114,10 @@ test('anyOf', (t) => {
     testString = 'abc';
     t.false(testRegex.test(testString), 'Doesn\'t have an x, y, or z after an a');
 });
+
+test.todo('any');
+
+test.todo('range');
 
 // Special characters //
 
@@ -187,6 +199,10 @@ test('whitespace', (t) => {
 
 // Modifiers //
 
+test.todo('addModifier');
+
+test.todo('removeModifier');
+
 test('withAnyCase', (t) => {
     let testRegex = VerEx().startOfLine().then('a');
     let testString = 'A';
@@ -202,6 +218,8 @@ test('withAnyCase', (t) => {
     t.true(testRegex.test(testString), 'Case-insensitive');
 });
 
+test.todo('stopAtFirst');
+
 test('searchOneLine', (t) => {
     let testRegex = VerEx().startOfLine().then('a').br().then('b').endOfLine();
     let testString = 'a\nb';
@@ -214,6 +232,8 @@ test('searchOneLine', (t) => {
 });
 
 // Loops //
+
+test.todo('repeatPrevious');
 
 test('oneOrMore', (t) => {
     const testRegex = VerEx().startOfLine().then('foo').oneOrMore().endOfLine();
@@ -252,3 +272,15 @@ test('multiple', (t) => {
     testString = 'foo';
     t.false(testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
 });
+
+// Capture groups //
+
+test.todo('beginCapture');
+
+test.todo('endCapture');
+
+// Miscellaneous //
+
+test.todo('replace');
+
+test.todo('toRegExp');

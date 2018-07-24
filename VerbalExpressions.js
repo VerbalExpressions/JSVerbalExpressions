@@ -313,6 +313,8 @@ class VerbalExpression extends RegExp {
         return enable ? this.removeModifier('m') : this.addModifier('m');
     }
 
+    // Loops //
+
     /**
      * Repeat the previous item exactly n times or between n and m times.
      * @return {VerbalExpression} same instance of VerbalExpression
@@ -327,8 +329,6 @@ class VerbalExpression extends RegExp {
 
         return this;
     }
-
-    // Loops //
 
     /**
      * Repeat the previous at least once
