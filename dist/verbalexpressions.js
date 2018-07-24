@@ -73,7 +73,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
         _classCallCheck(this, VerbalExpression);
 
         // Variables to hold the expression construction in order
-        var _this = _possibleConstructorReturn(this, (VerbalExpression.__proto__ || Object.getPrototypeOf(VerbalExpression)).call(this, '//gm'));
+        var _this = _possibleConstructorReturn(this, (VerbalExpression.__proto__ || Object.getPrototypeOf(VerbalExpression)).call(this, '', 'gm'));
         // Call the `RegExp` constructor so that `this` can be used
 
 

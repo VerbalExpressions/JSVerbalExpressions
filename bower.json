@@ -2,7 +2,7 @@
   "name": "verbal-expressions",
   "description": "JavaScript Regular expressions made easy",
   "keywords": [ "regular expressions", "regex" ],
-  "main": "VerbalExpressions.js",
+  "main": "dist/verbalexpressions.js",
   "license": "MIT",
   "ignore": [
     "**/.*",

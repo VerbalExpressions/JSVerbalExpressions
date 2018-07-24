@@ -19,7 +19,7 @@ class VerbalExpression extends RegExp {
      */
     constructor() {
         // Call the `RegExp` constructor so that `this` can be used
-        super('//gm');
+        super('', 'gm');
 
         // Variables to hold the expression construction in order
         this._prefixes = '';
