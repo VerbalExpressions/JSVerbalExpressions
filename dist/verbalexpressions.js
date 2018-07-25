@@ -286,9 +286,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'range',
         value: function range() {
-            var value = void 0;
+            var value = '';
 
-            for (var i = 0; i < arguments.length; i += 2) {
+            for (var i = 1; i < arguments.length; i += 2) {
                 var from = VerbalExpression.sanitize(arguments.length <= i - 1 ? undefined : arguments[i - 1]);
                 var to = VerbalExpression.sanitize(arguments.length <= i ? undefined : arguments[i]);
 

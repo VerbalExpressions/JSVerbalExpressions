@@ -199,9 +199,9 @@ class VerbalExpression extends RegExp {
      * @return {VerbalExpression} same instance of VerbalExpression
      */
     range(...ranges) {
-        let value;
+        let value = '';
 
-        for (let i = 0; i < ranges.length; i += 2) {
+        for (let i = 1; i < ranges.length; i += 2) {
             const from = VerbalExpression.sanitize(ranges[i - 1]);
             const to = VerbalExpression.sanitize(ranges[i]);
 
