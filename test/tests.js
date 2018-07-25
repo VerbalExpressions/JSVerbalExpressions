@@ -21,7 +21,7 @@ test('add', (t) => {
     const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p[q]';
     const testRegex = VerEx().startOfLine().then(testString).endOfLine();
 
-    t.true(testRegex.test(testString), 'Special character sanitization');
+    t.true(testRegex.test(testString), 'Special characters are sanitized');
 });
 
 // Rules //
@@ -30,53 +30,53 @@ test('startOfLine', (t) => {
     let testRegex = VerEx().startOfLine().then('a');
     let testString = 'a';
 
-    t.true(testRegex.test(testString), 'Starts with an a');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'ba';
-    t.false(testRegex.test(testString), 'Doesn\'t start with an a');
+    t.false(testRegex.test(testString));
 
     testRegex = testRegex.startOfLine(false); // start of line is no longer necessary
     testString = 'ba';
-    t.true(testRegex.test(testString), 'Has an a');
+    t.true(testRegex.test(testString));
 });
 
 test('endOfLine', (t) => {
     let testRegex = VerEx().find('a').endOfLine();
     let testString = 'a';
 
-    t.true(testRegex.test(testString), 'Ends with an a');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'ab';
-    t.false(testRegex.test(testString), 'Doesn\'t end with an a');
+    t.false(testRegex.test(testString));
 
     testRegex = testRegex.endOfLine(false); // end of line is no longer necessary
     testString = 'ab';
-    t.true(testRegex.test(testString), 'Has an a');
+    t.true(testRegex.test(testString));
 });
 
 function then(name, t) {
     let testRegex = VerEx()[name]('a');
     let testString = 'a';
 
-    t.true(testRegex.test(testString), 'Is "a"');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'b';
-    t.false(testRegex.test(testString), 'Is not "a"');
+    t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = '';
-    t.false(testRegex.test(testString), 'Does not have "a"');
+    t.false(testRegex.test(testString));
 
     testRegex = VerEx()[name]('a')[name]('b');
     testString = 'ab';
-    t.true(testRegex.test(testString), 'Is "ab"');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'ac';
-    t.false(testRegex.test(testString), 'Is not "ab"');
+    t.false(testRegex.test(testString));
 }
 
 test('then', (t) => {
@@ -91,22 +91,22 @@ test('maybe', (t) => {
     const testRegex = VerEx().startOfLine().then('a').maybe('b');
     let testString = 'acb';
 
-    t.true(testRegex.test(testString), 'Maybe has a b after an a');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'abc';
-    t.true(testRegex.test(testString), 'Maybe has a b after an a');
+    t.true(testRegex.test(testString));
 });
 
 test('or', (t) => {
     const testRegex = VerEx().startOfLine().then('abc').or('def');
     let testString = 'defzzz';
 
-    t.true(testRegex.test(testString), 'Starts with an abc or a def');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'xyzabc';
-    t.false(testRegex.test(testString), 'Doesn\'t start with an abc or a def');
+    t.false(testRegex.test(testString));
 });
 
 test('anything', (t) => {
@@ -117,7 +117,7 @@ test('anything', (t) => {
 
     resetLastIndex(testRegex);
     testString = '';
-    t.true(testRegex.test(testString));
+    t.true(testRegex.test(testString), 'May match zero characters');
 });
 
 test('anythingBut', (t) => {
@@ -139,37 +139,37 @@ test('something', (t) => {
     const testRegex = VerEx().something();
     let testString = '';
 
-    t.false(testRegex.test(testString), 'Empty string doesn\'t have something');
+    t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'a';
-    t.true(testRegex.test(testString), 'a is something');
+    t.true(testRegex.test(testString));
 });
 
 test('somethingBut', (t) => {
     const testRegex = VerEx().somethingBut('a');
     let testString = '';
 
-    t.false(testRegex.test(testString), 'Empty string doesn\'t have something');
+    t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'b';
-    t.true(testRegex.test(testString), 'Doesn\'t start with an a');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'a';
-    t.false(testRegex.test(testString), 'Starts with an a');
+    t.false(testRegex.test(testString));
 });
 
 function anyOf(name, t) {
     const testRegex = VerEx().startOfLine().then('a')[name]('xyz');
     let testString = 'ay';
 
-    t.true(testRegex.test(testString), 'Has an x, y, or z after an a');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'abc';
-    t.false(testRegex.test(testString), 'Doesn\'t have an x, y, or z after an a');
+    t.false(testRegex.test(testString));
 }
 
 test('anyOf', (t) => {
@@ -184,11 +184,11 @@ test('range', (t) => {
     const testRegex = VerEx().startOfLine().range('a', 'z', '0', '9').oneOrMore().endOfLine();
     let testString = 'foobarbaz123';
 
-    t.true(testRegex.test(testString), 'Has all characters within defined range');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'fooBarBaz_123';
-    t.false(testRegex.test(testString), 'Has some characters out of defined range');
+    t.false(testRegex.test(testString));
 });
 
 // Special characters //
@@ -197,15 +197,15 @@ function lineBreak(name, t) {
     const testRegex = VerEx().startOfLine().then('abc')[name]().then('def');
     let testString = 'abc\r\ndef';
 
-    t.true(testRegex.test(testString), 'abc,then a line break and then def');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'abc\ndef';
-    t.true(testRegex.test(testString), 'abc, then a line break and then def');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'abc\r\n def';
-    t.false(testRegex.test(testString), 'abc, then a line break, then a space and then def');
+    t.false(testRegex.test(testString));
 }
 
 test('lineBreak', (t) => {
@@ -220,22 +220,22 @@ test('tab', (t) => {
     const testRegex = VerEx().startOfLine().tab().then('abc');
     let testString = '\tabc';
 
-    t.true(testRegex.test(testString), 'tab then abc');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'abc';
-    t.false(testRegex.test(testString), 'No tab then abc');
+    t.false(testRegex.test(testString));
 });
 
 test('word', (t) => {
     const testRegex = VerEx().word().endOfLine();
     let testString = 'azertyuiopqsdfghjklmwxcvbn0123456789_';
 
-    t.true(testRegex.test(testString), 'Should match word');
+    t.true(testRegex.test(testString));
 
     testString = '. @[]|,&~-';
     for (const char of testString) {
-        t.false(testRegex.test(char), `Should not match word (${char})`);
+        t.false(testRegex.test(char));
     }
 });
 
@@ -243,11 +243,11 @@ test('digit', (t) => {
     const testRegex = VerEx().digit();
     let testString = '0123456789';
 
-    t.true(testRegex.test(testString), 'Should match digit');
+    t.true(testRegex.test(testString));
 
     testString = '-.azertyuiopqsdfghjklmwxcvbn @[]|,_&~';
     for (const char of testString) {
-        t.false(testRegex.test(char), `Should not match digit (${char})`);
+        t.false(testRegex.test(char));
     }
 });
 
@@ -255,11 +255,11 @@ test('whitespace', (t) => {
     const testRegex = VerEx().startOfLine().then('a').whitespace().then('z');
     let testString = 'a z';
 
-    t.true(testRegex.test(testString), 'a, then a space and then z');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'a_z';
-    t.false(testRegex.test(testString), 'a, then no whitespace and then z');
+    t.false(testRegex.test(testString));
 });
 
 // Modifiers //
@@ -278,19 +278,19 @@ test('withAnyCase', (t) => {
     let testRegex = VerEx().startOfLine().then('a');
     let testString = 'A';
 
-    t.false(testRegex.test(testString), 'Not case-insensitive');
+    t.false(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().then('a').withAnyCase();
     testString = 'A';
-    t.true(testRegex.test(testString), 'Case-insensitive');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'a';
-    t.true(testRegex.test(testString), 'Case-insensitive');
+    t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().then('a').withAnyCase(false);
     testString = 'A';
-    t.false(testRegex.test(testString), 'Not case-insensitive');
+    t.false(testRegex.test(testString));
 });
 
 test('stopAtFirst', (t) => {
@@ -325,15 +325,15 @@ test('repeatPrevious', (t) => {
     let testRegex = VerEx().startOfLine().find('foo').repeatPrevious(3).endOfLine();
     let testString = 'foofoofoo';
 
-    t.true(testRegex.test(testString), 'Has exactly 3 "foo"s');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'foofoo';
-    t.false(testRegex.test(testString), 'Does not have exactly 3 "foo"s');
+    t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'bar';
-    t.false(testRegex.test(testString), 'Does not have exactly 3 "foo"s');
+    t.false(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().find('foo').repeatPrevious(1, 3).endOfLine();
     testString = 'foo';
@@ -356,42 +356,58 @@ test('oneOrMore', (t) => {
     const testRegex = VerEx().startOfLine().then('foo').oneOrMore().endOfLine();
     let testString = 'foo';
 
-    t.true(testRegex.test(testString), 'Contains \'foo\' at least once ');
+    t.true(testRegex.test(testString), 'Contains "foo" at least once ');
 
     resetLastIndex(testRegex);
     testString = 'foofoo';
-    t.true(testRegex.test(testString), 'Contains \'foo\' at least once in \'foofoo\'');
+    t.true(testRegex.test(testString), 'Contains "foo" at least once in "foofoo"');
 
     resetLastIndex(testRegex);
     testString = 'bar';
-    t.false(testRegex.test(testString), 'Contains \'foo\' at least once');
+    t.false(testRegex.test(testString), 'Contains "foo" at least once');
 });
 
 test('multiple', (t) => {
     let testRegex = VerEx().startOfLine().multiple('foo').endOfLine();
     let testString = 'foo';
 
-    t.true(testRegex.test(testString), 'Contains \'foo\' at least once');
+    t.true(testRegex.test(testString), 'Contains "foo" at least once');
 
     testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
     testString = 'foo';
-    t.false(testRegex.test(testString), 'Should contain \'foo\' at least twice');
+    t.false(testRegex.test(testString));
 
-    testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
+    resetLastIndex(testRegex);
     testString = 'foofoo';
-    t.true(testRegex.test(testString), 'Should contain \'foo\' at least twice');
+    t.true(testRegex.test(testString));
 
-    testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
+    resetLastIndex(testRegex);
     testString = 'foofoofoo';
-    t.true(testRegex.test(testString), 'Should contain \'foo\' at least twice');
-
-    testRegex = VerEx().startOfLine().multiple('foo', 2, 5).endOfLine();
-    testString = 'foofoofoofoo';
-    t.true(testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
+    t.false(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().multiple('foo', 2, 5).endOfLine();
     testString = 'foo';
-    t.false(testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoofoo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoofoofoo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoofoofoofoo';
+    t.false(testRegex.test(testString));
 });
 
 // Capture groups //
@@ -404,11 +420,11 @@ test('capture groups', (t) => {
 
     testRegex = testRegex.endCapture().then('baz');
     testString = 'foobarbaz';
-    t.true(testRegex.test(testString), 'Has "foobarbaz"');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     const matches = testRegex.exec(testString);
-    t.is(matches[1], 'bar', 'Captured string is "bar"');
+    t.is(matches[1], 'bar');
 });
 
 // Miscellaneous //
@@ -417,7 +433,7 @@ test('replace', (t) => {
     const testRegex = VerEx().find(' ');
     const testString = 'foo bar baz';
 
-    t.is(testRegex.replace(testString, '_'), 'foo_bar_baz', 'Spaces are replaced with underscores');
+    t.is(testRegex.replace(testString, '_'), 'foo_bar_baz');
 });
 
 test('toRegExp', (t) => {
