@@ -279,27 +279,36 @@ test('withAnyCase', (t) => {
     resetLastIndex(testRegex);
     testString = 'a';
     t.true(testRegex.test(testString), 'Case-insensitive');
+
+    testRegex = VerEx().startOfLine().then('a').withAnyCase(false);
+    testString = 'A';
+    t.false(testRegex.test(testString), 'Not case-insensitive');
 });
 
 test('stopAtFirst', (t) => {
-    let testRegex = VerEx().stopAtFirst().find('foo');
+    let testRegex = VerEx().find('foo');
     const testString = 'foofoofoo';
 
+    t.is(testString.match(testRegex).length, 3, 'Matches all "foo"s');
+
+    testRegex = VerEx().find('foo').stopAtFirst();
     t.is(testString.match(testRegex).length, 1, 'Matches one "foo"');
 
-    testRegex = VerEx().stopAtFirst(false).find('foo');
+    testRegex = VerEx().find('foo').stopAtFirst(false);
     t.is(testString.match(testRegex).length, 3, 'Matches all "foo"s');
 });
 
 test('searchOneLine', (t) => {
-    let testRegex = VerEx().startOfLine().then('a').br().then('b').endOfLine();
-    let testString = 'a\nb';
+    let testRegex = VerEx().startOfLine().then('b').endOfLine();
+    const testString = 'a\nb\nc';
 
-    t.true(testRegex.test(testString), 'b is on the second line');
+    t.true(testRegex.test(testString), '"b" is at the end of it\'s own line');
 
-    testRegex = VerEx().startOfLine().then('a').br().then('b').endOfLine().searchOneLine();
-    testString = 'a\nb';
-    t.true(testRegex.test(testString), 'b is on the second line, but we are only searching the first');
+    testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine();
+    t.false(testRegex.test(testString), '"c" is at the end of the string');
+
+    testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine(false);
+    t.true(testRegex.test(testString), '"b" is at the end of it\'s own line');
 });
 
 // Loops //
