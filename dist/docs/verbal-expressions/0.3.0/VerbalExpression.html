@@ -30,8 +30,6 @@
     
         <h2><span class="attribs"><span class="type-signature"></span></span>VerbalExpression<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Define the VerbalExpression class.</div>
-        
     
 </header>
 
@@ -40,8 +38,6 @@
     
         
 
-    
-    <h2>Constructor</h2>
     
 
     
@@ -53,7 +49,7 @@
 
 
 <div class="description">
-    Construct an instance of VerbalExpression
+    Define the VerbalExpression class
 </div>
 
 
@@ -97,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line13">line 13</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -129,9 +125,27 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>RegExp</li>
+    </ul>
+
 
     
 
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="global.html#VerEx">VerEx</a></dt>
+            <dd></dd>
+        </dl>
     
 
     
@@ -151,7 +165,7 @@
     
 
     
-    <h4 class="name" id=".sanitize"><span class="type-signature">(static) </span>sanitize<span class="signature">(value)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id=".sanitize"><span class="type-signature">(static) </span>sanitize<span class="signature">(value)</span><span class="type-signature"> &rarr; {string}</span></h4>
     
 
     
@@ -159,164 +173,7 @@
 
 
 <div class="description">
-    Escape metacharacters in the parameter and make it safe for adding to the expression
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">string to sanitize</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    sanitized value
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Add stuff to the expression and compile the new expression so it's ready to be used.
+    Escape meta-characters in the parameter and make it safe for adding to the expression
 </div>
 
 
@@ -359,6 +216,12 @@
             
                 
 <span class="param-type">string</span>
+|
+
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -368,7 +231,7 @@
 
             
 
-            <td class="description last">literal expression, not sanitized</td>
+            <td class="description last">object to sanitize</td>
         </tr>
 
     
@@ -409,7 +272,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line63">line 63</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -436,7 +299,187 @@
 
         
 <div class="param-desc">
-    Freshly recompiled instance of VerbalExpression
+    sanitized value
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(value<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add stuff to the expression and compile the new expression so it's ready to be used.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    ''
+                
+                </td>
+            
+
+            <td class="description last">stuff to add</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line75">line 75</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -473,7 +516,7 @@
 
 
 <div class="description">
-    Add modifier
+    Add a regex modifier/flag
 </div>
 
 
@@ -515,7 +558,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -566,7 +609,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line271">line 271</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line304">line 304</a>
     </li></ul></dd>
     
 
@@ -593,7 +636,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -672,7 +715,10 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -723,7 +769,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line193">line 193</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line216">line 216</a>
     </li></ul></dd>
     
 
@@ -750,7 +796,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -829,7 +875,10 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -839,7 +888,7 @@
 
             
 
-            <td class="description last">value to find</td>
+            <td class="description last">characters to match</td>
         </tr>
 
     
@@ -880,7 +929,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line183">line 183</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -907,7 +956,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -936,7 +985,7 @@
     
 
     
-    <h4 class="name" id="anything"><span class="type-signature"></span>anything<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="anything"><span class="type-signature"></span>anything<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -953,55 +1002,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">value to find</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -1037,7 +1037,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line146">line 146</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
@@ -1064,7 +1064,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1143,7 +1143,10 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -1153,7 +1156,7 @@
 
             
 
-            <td class="description last">value to find</td>
+            <td class="description last">characters to not match</td>
         </tr>
 
     
@@ -1194,7 +1197,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line155">line 155</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -1221,7 +1224,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1302,7 +1305,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line371">line 371</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line412">line 412</a>
     </li></ul></dd>
     
 
@@ -1329,7 +1332,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1410,7 +1413,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line228">line 228</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line256">line 256</a>
     </li></ul></dd>
     
 
@@ -1437,7 +1440,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1518,7 +1521,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line252">line 252</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line283">line 283</a>
     </li></ul></dd>
     
 
@@ -1545,7 +1548,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1626,7 +1629,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line381">line 381</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line423">line 423</a>
     </li></ul></dd>
     
 
@@ -1653,7 +1656,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1682,7 +1685,7 @@
     
 
     
-    <h4 class="name" id="endOfLine"><span class="type-signature"></span>endOfLine<span class="signature">(enable)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="endOfLine"><span class="type-signature"></span>endOfLine<span class="signature">(enable<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -1714,6 +1717,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
         <th>Default</th>
@@ -1734,12 +1739,22 @@
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1750,7 +1765,7 @@
                 </td>
             
 
-            <td class="description last">Control end-of-line matching</td>
+            <td class="description last">whether to enable this behaviour</td>
         </tr>
 
     
@@ -1791,7 +1806,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line89">line 89</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -1818,7 +1833,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -1897,7 +1912,13 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type">numer</span>
 
 
             
@@ -1948,7 +1969,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line109">line 109</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -1975,7 +1996,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2056,7 +2077,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line220">line 220</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line247">line 247</a>
     </li></ul></dd>
     
 
@@ -2083,7 +2104,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2162,7 +2183,13 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -2213,7 +2240,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line118">line 118</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -2240,7 +2267,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2269,7 +2296,7 @@
     
 
     
-    <h4 class="name" id="multiple"><span class="type-signature"></span>multiple<span class="signature">(value, lower<span class="signature-attributes">nullable</span>, upper<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="multiple"><span class="type-signature"></span>multiple<span class="signature">(value, lower<span class="signature-attributes">opt</span>, upper<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -2321,7 +2348,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -2352,7 +2379,7 @@
             <td class="type">
             
                 
-<span class="param-type">Integer</span>
+<span class="param-type">integer</span>
 
 
             
@@ -2361,9 +2388,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -2385,7 +2412,7 @@
             <td class="type">
             
                 
-<span class="param-type">Integer</span>
+<span class="param-type">integer</span>
 
 
             
@@ -2394,9 +2421,9 @@
             
                 <td class="attributes">
                 
-
+                    &lt;optional><br>
                 
-                    &lt;nullable><br>
+
                 
 
                 
@@ -2446,7 +2473,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line348">line 348</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line388">line 388</a>
     </li></ul></dd>
     
 
@@ -2473,7 +2500,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2554,7 +2581,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line337">line 337</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line376">line 376</a>
     </li></ul></dd>
     
 
@@ -2581,7 +2608,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2660,7 +2687,13 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -2711,7 +2744,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line128">line 128</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -2738,7 +2771,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2767,7 +2800,7 @@
     
 
     
-    <h4 class="name" id="range"><span class="type-signature"></span>range<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="range"><span class="type-signature"></span>range<span class="signature">(&hellip;ranges)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -2775,7 +2808,8 @@
 
 
 <div class="description">
-    Usage: .range( from, to [, from, to ... ] )
+    Matching any character within a range of characters
+Usage: .range( from, to [, from, to ... ] )
 </div>
 
 
@@ -2784,6 +2818,67 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ranges</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">characters denoting beginning and ending of ranges</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -2819,7 +2914,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line201">line 201</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line227">line 227</a>
     </li></ul></dd>
     
 
@@ -2846,7 +2941,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -2925,7 +3020,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -2976,7 +3071,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line284">line 284</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -3003,7 +3098,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3040,7 +3135,7 @@
 
 
 <div class="description">
-    Repeat the previous item exactly n times or between n and m times.
+    Repeat the previous item exactly n times or between n and m times
 </div>
 
 
@@ -3084,7 +3179,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line320">line 320</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line358">line 358</a>
     </li></ul></dd>
     
 
@@ -3111,7 +3206,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3148,7 +3243,7 @@
 
 
 <div class="description">
-    Shorthand function for the String.replace function to allow for a more logical flow
+    Shorthand function for the string.replace function to allow for a more logical flow
 </div>
 
 
@@ -3190,7 +3285,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -3213,7 +3308,7 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
 
 
             
@@ -3264,7 +3359,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line395">line 395</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line438">line 438</a>
     </li></ul></dd>
     
 
@@ -3291,7 +3386,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3320,7 +3415,7 @@
     
 
     
-    <h4 class="name" id="searchOneLine"><span class="type-signature"></span>searchOneLine<span class="signature">(enable)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="searchOneLine"><span class="type-signature"></span>searchOneLine<span class="signature">(enable<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -3352,6 +3447,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
         <th>Default</th>
@@ -3372,12 +3469,22 @@
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3388,7 +3495,7 @@
                 </td>
             
 
-            <td class="description last">Control multi-line matching</td>
+            <td class="description last">whether to enable this behaviour</td>
         </tr>
 
     
@@ -3429,7 +3536,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line312">line 312</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line349">line 349</a>
     </li></ul></dd>
     
 
@@ -3456,7 +3563,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3493,7 +3600,7 @@
 
 
 <div class="description">
-    Any character at least one time
+    Any character(s) at least once
 </div>
 
 
@@ -3537,7 +3644,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line164">line 164</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line184">line 184</a>
     </li></ul></dd>
     
 
@@ -3564,7 +3671,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3643,7 +3750,10 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -3653,7 +3763,7 @@
 
             
 
-            <td class="description last">value to find</td>
+            <td class="description last">characters to not match</td>
         </tr>
 
     
@@ -3694,7 +3804,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line173">line 173</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line194">line 194</a>
     </li></ul></dd>
     
 
@@ -3721,7 +3831,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3750,7 +3860,7 @@
     
 
     
-    <h4 class="name" id="startOfLine"><span class="type-signature"></span>startOfLine<span class="signature">(enable)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="startOfLine"><span class="type-signature"></span>startOfLine<span class="signature">(enable<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -3782,6 +3892,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
         <th>Default</th>
@@ -3802,12 +3914,22 @@
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3818,7 +3940,7 @@
                 </td>
             
 
-            <td class="description last">Control start-of-line matching</td>
+            <td class="description last">whether to enable this behaviour</td>
         </tr>
 
     
@@ -3859,7 +3981,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line79">line 79</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line92">line 92</a>
     </li></ul></dd>
     
 
@@ -3886,7 +4008,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -3915,7 +4037,7 @@
     
 
     
-    <h4 class="name" id="stopAtFirst"><span class="type-signature"></span>stopAtFirst<span class="signature">(enable)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="stopAtFirst"><span class="type-signature"></span>stopAtFirst<span class="signature">(enable<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -3947,6 +4069,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
         <th>Default</th>
@@ -3967,12 +4091,22 @@
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -3983,7 +4117,7 @@
                 </td>
             
 
-            <td class="description last">Control global matching</td>
+            <td class="description last">whether to enable this behaviour</td>
         </tr>
 
     
@@ -4024,7 +4158,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line303">line 303</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line339">line 339</a>
     </li></ul></dd>
     
 
@@ -4051,7 +4185,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4132,7 +4266,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line236">line 236</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line265">line 265</a>
     </li></ul></dd>
     
 
@@ -4159,7 +4293,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4238,7 +4372,13 @@
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">string</span>
+|
+
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type">number</span>
 
 
             
@@ -4289,7 +4429,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line99">line 99</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -4316,7 +4456,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4397,7 +4537,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line404">line 404</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line448">line 448</a>
     </li></ul></dd>
     
 
@@ -4424,7 +4564,7 @@
 
         
 <div class="param-desc">
-    Converted RegExp instance
+    equivalent RegExp instance
 </div>
 
 
@@ -4505,7 +4645,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line260">line 260</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line292">line 292</a>
     </li></ul></dd>
     
 
@@ -4532,7 +4672,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4561,7 +4701,7 @@
     
 
     
-    <h4 class="name" id="withAnyCase"><span class="type-signature"></span>withAnyCase<span class="signature">(enable)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
+    <h4 class="name" id="withAnyCase"><span class="type-signature"></span>withAnyCase<span class="signature">(enable<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="VerbalExpression.html">VerbalExpression</a>}</span></h4>
     
 
     
@@ -4569,7 +4709,7 @@
 
 
 <div class="description">
-    Case-insensitivity modifier
+    Control case-insensitive matching
 </div>
 
 
@@ -4593,6 +4733,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
         <th>Default</th>
@@ -4613,12 +4755,22 @@
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -4629,7 +4781,7 @@
                 </td>
             
 
-            <td class="description last">Control case-insensitive matching</td>
+            <td class="description last">whether to enable this behaviour</td>
         </tr>
 
     
@@ -4670,7 +4822,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line294">line 294</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line329">line 329</a>
     </li></ul></dd>
     
 
@@ -4697,7 +4849,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4778,7 +4930,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line244">line 244</a>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line274">line 274</a>
     </li></ul></dd>
     
 
@@ -4805,7 +4957,7 @@
 
         
 <div class="param-desc">
-    same instance of VerbalExpression
+    recompiled instance of VerbalExpression
 </div>
 
 
@@ -4844,13 +4996,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="VerbalExpression.html">VerbalExpression</a></li></ul><h3>Global</h3><ul><li><a href="global.html#VerEx">VerEx</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="VerbalExpression.html">VerbalExpression</a></li><li><a href="global.html#VerEx">VerEx</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Jul 24 2018 23:58:24 GMT+0530 (IST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 26 2018 00:21:31 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>
