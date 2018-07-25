@@ -381,6 +381,10 @@ test('multiple', (t) => {
     testString = 'foofoo';
     t.true(testRegex.test(testString), 'Should contain \'foo\' at least twice');
 
+    testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
+    testString = 'foofoofoo';
+    t.true(testRegex.test(testString), 'Should contain \'foo\' at least twice');
+
     testRegex = VerEx().startOfLine().multiple('foo', 2, 5).endOfLine();
     testString = 'foofoofoofoo';
     t.true(testRegex.test(testString), 'Should be \'foo\' repeated two to five times');
