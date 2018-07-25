@@ -111,16 +111,28 @@ test('or', (t) => {
 
 test('anything', (t) => {
     const testRegex = VerEx().startOfLine().anything();
-    const testString = 'what';
+    let testString = 'foo';
 
-    t.true(testRegex.test(testString), 'Contains anything');
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = '';
+    t.true(testRegex.test(testString));
 });
 
 test('anythingBut', (t) => {
-    const testRegex = VerEx().startOfLine().anythingBut('w');
-    const testString = 'what';
+    let testRegex = VerEx().startOfLine().anythingBut('br').endOfLine();
+    let testString = 'foobar';
 
-    t.true(testRegex.test(testString), 'Starts with a w');
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foo_a_';
+    t.true(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().anythingBut('br');
+    testString = 'bar';
+    t.true(testRegex.test(testString), 'May match zero characters');
 });
 
 test('something', (t) => {
