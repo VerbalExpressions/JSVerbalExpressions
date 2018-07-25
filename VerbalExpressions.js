@@ -394,7 +394,7 @@ class VerbalExpression extends RegExp {
         if (lower === undefined && upper === undefined) {
             this.add('*'); // Any number of times
         } else if (lower !== undefined && upper === undefined) {
-            this.add(`{${lower}}`);
+            this.add(`{${lower},}`);
         } else if (lower !== undefined && upper !== undefined) {
             this.add(`{${lower},${upper}}`);
         }
