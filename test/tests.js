@@ -56,32 +56,37 @@ test('endOfLine', (t) => {
     t.true(testRegex.test(testString), 'Has an a');
 });
 
-function then(t) {
-    let testRegex = VerEx().then('a');
+function then(regex, t) {
     let testString = 'a';
 
-    t.true(testRegex.test(testString), 'Is "a"');
+    t.true(regex.test(testString), 'Is "a"');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = 'b';
-    t.false(testRegex.test(testString), 'Is not "a"');
+    t.false(regex.test(testString), 'Is not "a"');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = '';
-    t.false(testRegex.test(testString), 'Does not have "a"');
+    t.false(regex.test(testString), 'Does not have "a"');
 
-    testRegex = VerEx().then('a').then('b');
+    regex = VerEx().then('a').then('b');
     testString = 'ab';
-    t.true(testRegex.test(testString), 'Is "ab"');
+    t.true(regex.test(testString), 'Is "ab"');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = 'ac';
-    t.false(testRegex.test(testString), 'Is not "ab"');
+    t.false(regex.test(testString), 'Is not "ab"');
 }
 
-test('then', then);
+test('then', (t) => {
+    const testRegex = VerEx().then('a');
+    then(testRegex, t);
+});
 
-test('find', then);
+test('find', (t) => {
+    const testRegex = VerEx().find('a');
+    then(testRegex, t);
+});
 
 test('maybe', (t) => {
     const testRegex = VerEx().startOfLine().then('a').maybe('b');
@@ -145,21 +150,26 @@ test('somethingBut', (t) => {
     t.false(testRegex.test(testString), 'Starts with an a');
 });
 
-function anyOf(t) {
-    const testRegex = VerEx().startOfLine().then('a').anyOf('xyz');
-    resetLastIndex(testRegex);
+function anyOf(regex, t) {
+    // resetLastIndex(regex);
     let testString = 'ay';
 
-    t.true(testRegex.test(testString), 'Has an x, y, or z after an a');
+    t.true(regex.test(testString), 'Has an x, y, or z after an a');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = 'abc';
-    t.false(testRegex.test(testString), 'Doesn\'t have an x, y, or z after an a');
+    t.false(regex.test(testString), 'Doesn\'t have an x, y, or z after an a');
 }
 
-test('anyOf', anyOf);
+test('anyOf', (t) => {
+    const testRegex = VerEx().startOfLine().then('a').anyOf('xyz');
+    anyOf(testRegex, t);
+});
 
-test('any', anyOf);
+test('any', (t) => {
+    const testRegex = VerEx().startOfLine().then('a').any('xyz');
+    anyOf(testRegex, t);
+});
 
 test('range', (t) => {
     const testRegex = VerEx().startOfLine().range('a', 'z', '0', '9').oneOrMore().endOfLine();
@@ -174,24 +184,29 @@ test('range', (t) => {
 
 // Special characters //
 
-function lineBreak(t) {
-    const testRegex = VerEx().startOfLine().then('abc').lineBreak().then('def');
+function lineBreak(regex, t) {
     let testString = 'abc\r\ndef';
 
-    t.true(testRegex.test(testString), 'abc,then a line break and then def');
+    t.true(regex.test(testString), 'abc,then a line break and then def');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = 'abc\ndef';
-    t.true(testRegex.test(testString), 'abc, then a line break and then def');
+    t.true(regex.test(testString), 'abc, then a line break and then def');
 
-    resetLastIndex(testRegex);
+    resetLastIndex(regex);
     testString = 'abc\r\n def';
-    t.false(testRegex.test(testString), 'abc, then a line break, then a space and then def');
+    t.false(regex.test(testString), 'abc, then a line break, then a space and then def');
 }
 
-test('lineBreak', lineBreak);
+test('lineBreak', (t) => {
+    const testRegex = VerEx().startOfLine().then('abc').lineBreak().then('def');
+    lineBreak(testRegex, t);
+});
 
-test('br', lineBreak);
+test('br', (t) => {
+    const testRegex = VerEx().startOfLine().then('abc').br().then('def');
+    lineBreak(testRegex, t);
+});
 
 test('tab', (t) => {
     const testRegex = VerEx().startOfLine().tab().then('abc');
