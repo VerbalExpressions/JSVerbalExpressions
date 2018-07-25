@@ -107,7 +107,7 @@ module.exports = function gruntConfig(grunt) {
 
     grunt.registerTask('default', ['test']);
     grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
-    grunt.registerTask('test:verbose', ['eslint', 'ava:verbose']);
+    grunt.registerTask('test:verbose', ['compile', 'umd:all', 'eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel']);
     grunt.registerTask('build', ['compile', 'umd:all', 'uglify', 'sourcemap_localize', 'test', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);
