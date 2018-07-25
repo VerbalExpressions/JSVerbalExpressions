@@ -586,7 +586,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'replace',
         value: function replace(source, value) {
-            source = source.tostring();
+            source = source.toString();
             return source.replace(this, value);
         }
 
@@ -599,7 +599,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'toRegExp',
         value: function toRegExp() {
-            var components = this.tostring().match(/\/(.*)\/([gimuy]+)?/);
+            var components = this.toString().match(/\/(.*)\/([gimuy]+)?/);
             var pattern = components[1];
             var flags = components[2];
 
