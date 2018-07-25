@@ -436,7 +436,7 @@ class VerbalExpression extends RegExp {
      * @memberof VerbalExpression
      */
     replace(source, value) {
-        source = source.tostring();
+        source = source.toString();
         return source.replace(this, value);
     }
 
@@ -446,7 +446,7 @@ class VerbalExpression extends RegExp {
      * @memberof VerbalExpression
      */
     toRegExp() {
-        const components = this.tostring().match(/\/(.*)\/([gimuy]+)?/);
+        const components = this.toString().match(/\/(.*)\/([gimuy]+)?/);
         const pattern = components[1];
         const flags = components[2];
 
