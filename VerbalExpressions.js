@@ -1,21 +1,23 @@
-/*!
- * VerbalExpressions JavaScript Library
- * https://github.com/VerbalExpressions/JSVerbalExpressions
+/**
+ * @file VerbalExpressions JavaScript Library
+ * @version 0.3.0
+ * @license MIT
  *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * @see https://github.com/VerbalExpressions/JSVerbalExpressions
  */
 
 /**
- * Define the VerbalExpression class.
- * @class
+ * Define the VerbalExpression class
+ *
+ * @class VerbalExpression
+ * @extends {RegExp}
  */
 class VerbalExpression extends RegExp {
     /**
-     * Construct an instance of VerbalExpression
+     * Creates an instance of VerbalExpression.
      * @constructor
      * @alias VerEx
-     * @return {VerbalExpression} A new instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     constructor() {
         // Call the `RegExp` constructor so that `this` can be used
@@ -31,9 +33,11 @@ class VerbalExpression extends RegExp {
     // Utility //
 
     /**
-     * Escape metacharacters in the parameter and make it safe for adding to the expression
-     * @param {String} value string to sanitize
-     * @return {String} sanitized value
+     * Escape meta-characters in the parameter and make it safe for adding to the expression
+     * @static
+     * @param {(string|RegExp|number)} value object to sanitize
+     * @returns {string} sanitized value
+     * @memberof VerbalExpression
      */
     static sanitize(value) {
         if (value.source) {
@@ -58,7 +62,15 @@ class VerbalExpression extends RegExp {
     /**
      * Add stuff to the expression and compile the new expression so it's ready to be used.
      * @param {string} value literal expression, not sanitized
-     * @return {VerbalExpression} Freshly recompiled instance of VerbalExpression
+     * @returns {VerbalExpression} Freshly recompiled instance of VerbalExpression
+     */
+
+
+    /**
+     * Add stuff to the expression and compile the new expression so it's ready to be used.
+     * @param {(string|number)} [value=''] stuff to add
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     add(value = '') {
         this._source += value;
@@ -73,8 +85,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Control start-of-line matching
-     * @param {Boolean} enable Control start-of-line matching
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {boolean} [enable=true] whether to enable this behaviour
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     startOfLine(enable = true) {
         this._prefixes = enable ? '^' : '';
@@ -83,8 +96,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Control end-of-line matching
-     * @param {Boolean} enable Control end-of-line matching
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {boolean} [enable=true] whether to enable this behaviour
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     endOfLine(enable = true) {
         this._suffixes = enable ? '$' : '';
@@ -93,8 +107,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Look for the value passed
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|RegExp|number)} value value to find
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     then(value) {
         value = VerbalExpression.sanitize(value);
@@ -103,8 +118,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Alias for then() to allow for readable syntax when then() is the first method in the chain.
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|RegExp|numer)} value value to find
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     find(value) {
         return this.then(value);
@@ -112,8 +128,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Add optional values
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|RegExp|number)} value value to find
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     maybe(value) {
         value = VerbalExpression.sanitize(value);
@@ -122,8 +139,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Add alternative expressions
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|RegExp|number)} value value to find
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     or(value) {
         this._prefixes += '(?:';
@@ -140,8 +158,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Any character any number of times
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     anything() {
         return this.add('(?:.*)');
@@ -149,8 +167,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Anything but these characters
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|number)} value characters to not match
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     anythingBut(value) {
         value = VerbalExpression.sanitize(value);
@@ -158,8 +177,9 @@ class VerbalExpression extends RegExp {
     }
 
     /**
-     * Any character at least one time
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * Any character(s) at least once
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     something() {
         return this.add('(?:.+)');
@@ -167,8 +187,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Any character at least one time except for these characters
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|number)} value characters to not match
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     somethingBut(value) {
         value = VerbalExpression.sanitize(value);
@@ -177,8 +198,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match any of the given characters
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {(string|number)} value characters to match
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     anyOf(value) {
         value = VerbalExpression.sanitize(value);
@@ -187,16 +209,20 @@ class VerbalExpression extends RegExp {
 
     /**
      * Shorthand for anyOf(value)
-     * @param {String} value value to find
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {string|number} value value to find
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     any(value) {
         return this.anyOf(value);
     }
 
     /**
+     * Matching any character within a range of characters
      * Usage: .range( from, to [, from, to ... ] )
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {...string} ranges characters denoting beginning and ending of ranges
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     range(...ranges) {
         let value = '';
@@ -215,7 +241,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match a Line break
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     lineBreak() {
         return this.add('(?:\\r\\n|\\r|\\n)'); // Unix(LF) + Windows(CRLF)
@@ -223,7 +250,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * A shorthand for lineBreak() for html-minded users
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     br() {
         return this.lineBreak();
@@ -231,7 +259,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match a tab character
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     tab() {
         return this.add('\\t');
@@ -239,7 +268,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match any alphanumeric
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     word() {
         return this.add('\\w+');
@@ -247,7 +277,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match a single digit digit
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     digit() {
         return this.add('\\d');
@@ -255,7 +286,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match a single whitespace
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     whitespace() {
         return this.add('\\s');
@@ -264,9 +296,10 @@ class VerbalExpression extends RegExp {
     // Modifiers //
 
     /**
-     * Add modifier
-     * @param {String} modifier modifier to add
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * Add a regex modifier/flag
+     * @param {string} modifier modifier to add
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     addModifier(modifier) {
         if (!this._modifiers.includes(modifier)) {
@@ -278,8 +311,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Remove modifier
-     * @param {String} modifier modifier to remove
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {string} modifier modifier to remove
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     removeModifier(modifier) {
         this._modifiers = this._modifiers.replace(modifier, '');
@@ -287,9 +321,10 @@ class VerbalExpression extends RegExp {
     }
 
     /**
-     * Case-insensitivity modifier
-     * @param {Boolean} enable Control case-insensitive matching
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * Control case-insensitive matching
+     * @param {boolean} [enable=true] whether to enable this behaviour
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     withAnyCase(enable = true) {
         return enable ? this.addModifier('i') : this.removeModifier('i');
@@ -297,8 +332,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Default behaviour is with "g" modifier, so we can turn this another way around than other modifiers
-     * @param {Boolean} enable Control global matching
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {boolean} [enable=true] whether to enable this behaviour
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     stopAtFirst(enable = true) {
         return enable ? this.removeModifier('g') : this.addModifier('g');
@@ -306,8 +342,9 @@ class VerbalExpression extends RegExp {
 
     /**
      * Control the multiline modifier
-     * @param {Boolean} enable Control multi-line matching
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {boolean} [enable=true] whether to enable this behaviour
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     searchOneLine(enable = true) {
         return enable ? this.removeModifier('m') : this.addModifier('m');
@@ -316,8 +353,9 @@ class VerbalExpression extends RegExp {
     // Loops //
 
     /**
-     * Repeat the previous item exactly n times or between n and m times.
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * Repeat the previous item exactly n times or between n and m times
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     repeatPrevious(...quantity) {
         const isInteger = /\d+/;
@@ -332,7 +370,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Repeat the previous at least once
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     oneOrMore() {
         return this.add('+');
@@ -340,10 +379,11 @@ class VerbalExpression extends RegExp {
 
     /**
      * Match the value zero or more times
-     * @param {String} value value to find
-     * @param {Integer?} lower minimum number of times the value should be repeated
-     * @param {Integer?} upper maximum number of times the value should be repeated
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @param {string} value value to find
+     * @param {integer} [lower] minimum number of times the value should be repeated
+     * @param {integer} [upper] maximum number of times the value should be repeated
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     multiple(value, lower, upper) {
         // Use expression or string
@@ -354,7 +394,7 @@ class VerbalExpression extends RegExp {
         if (lower === undefined && upper === undefined) {
             this.add('*'); // Any number of times
         } else if (lower !== undefined && upper === undefined) {
-            this.add(`{${lower}}`);
+            this.add(`{${lower},}`);
         } else if (lower !== undefined && upper !== undefined) {
             this.add(`{${lower},${upper}}`);
         }
@@ -366,7 +406,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Starts a capturing group
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     beginCapture() {
         // Add the end of the capture group to the suffixes temporarily so that compilation continues to work
@@ -376,7 +417,8 @@ class VerbalExpression extends RegExp {
 
     /**
      * Ends a capturing group
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     endCapture() {
         // Remove the last parenthesis from the _suffixes and add it to the regex
@@ -387,22 +429,24 @@ class VerbalExpression extends RegExp {
     // Miscellaneous //
 
     /**
-     * Shorthand function for the String.replace function to allow for a more logical flow
-     * @param {String} source string to search for
-     * @param {String} value value to replace with
-     * @return {VerbalExpression} same instance of VerbalExpression
+     * Shorthand function for the string.replace function to allow for a more logical flow
+     * @param {string} source string to search for
+     * @param {string} value value to replace with
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     replace(source, value) {
-        source = source.toString();
+        source = source.tostring();
         return source.replace(this, value);
     }
 
     /**
      * Convert to RegExp object
-     * @return {RegExp} Converted RegExp instance
+     * @returns {RegExp} equivalent RegExp instance
+     * @memberof VerbalExpression
      */
     toRegExp() {
-        const components = this.toString().match(/\/(.*)\/([gimuy]+)?/);
+        const components = this.tostring().match(/\/(.*)\/([gimuy]+)?/);
         const pattern = components[1];
         const flags = components[2];
 
@@ -412,7 +456,8 @@ class VerbalExpression extends RegExp {
 
 /**
  * Return a new instance of `VerbalExpression`
- * @return {VerbalExpression} new instance
+ * @export
+ * @returns {VerbalExpression} new instance
  */
 function VerEx() {
     return new VerbalExpression();
