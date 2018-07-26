@@ -61,13 +61,6 @@ class VerbalExpression extends RegExp {
 
     /**
      * Add stuff to the expression and compile the new expression so it's ready to be used.
-     * @param {string} value literal expression, not sanitized
-     * @returns {VerbalExpression} Freshly recompiled instance of VerbalExpression
-     */
-
-
-    /**
-     * Add stuff to the expression and compile the new expression so it's ready to be used.
      * @param {(string|number)} [value=''] stuff to add
      * @returns {VerbalExpression} recompiled instance of VerbalExpression
      * @memberof VerbalExpression

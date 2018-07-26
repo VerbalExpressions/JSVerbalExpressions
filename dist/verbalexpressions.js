@@ -103,12 +103,6 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Add stuff to the expression and compile the new expression so it's ready to be used.
-         * @param {string} value literal expression, not sanitized
-         * @returns {VerbalExpression} Freshly recompiled instance of VerbalExpression
-         */
-
-        /**
-         * Add stuff to the expression and compile the new expression so it's ready to be used.
          * @param {(string|number)} [value=''] stuff to add
          * @returns {VerbalExpression} recompiled instance of VerbalExpression
          * @memberof VerbalExpression
@@ -475,6 +469,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
             return enable ? this.removeModifier('m') : this.addModifier('m');
         }
 
+        // Loops //
+
         /**
          * Repeat the previous item exactly n times or between n and m times
          * @returns {VerbalExpression} recompiled instance of VerbalExpression
@@ -500,8 +496,6 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
             return this;
         }
-
-        // Loops //
 
         /**
          * Repeat the previous at least once
