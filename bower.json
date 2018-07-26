@@ -1,17 +1,17 @@
 {
-  "name": "verbal-expressions",
-  "description": "JavaScript Regular expressions made easy",
-  "keywords": [ "regular expressions", "regex" ],
-  "main": "dist/verbalexpressions.js",
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests",
-    "Gruntfile.js",
-    "package.json",
-    "bower.json"
-  ]
+    "name": "verbal-expressions",
+    "description": "JavaScript Regular expressions made easy",
+    "keywords": [ "regular expressions", "regex" ],
+    "main": "dist/verbalexpressions.js",
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests",
+        "Gruntfile.js",
+        "package.json",
+        "bower.json"
+    ]
 }
