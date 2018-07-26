@@ -383,7 +383,7 @@ test('multiple', (t) => {
 
     resetLastIndex(testRegex);
     testString = 'foofoofoo';
-    t.false(testRegex.test(testString));
+    t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().multiple('foo', 2, 5).endOfLine();
     testString = 'foo';
