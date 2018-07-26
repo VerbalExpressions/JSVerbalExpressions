@@ -11,8 +11,8 @@ function resetLastIndex(regex) {
 test('constructor', (t) => {
     const testRegex = VerEx();
 
-    t.true(testRegex instanceof RegExp, 'Extends RegExp');
-    t.is(testRegex.toString(), '/(?:)/gm', 'Is empty regex with global, multiline matching');
+    t.true(testRegex instanceof RegExp, 'Should extend RegExp');
+    t.is(testRegex.toString(), '/(?:)/gm', 'Should be empty regex with global, multiline matching');
 });
 
 // Utility //
@@ -21,7 +21,7 @@ test('add', (t) => {
     const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p[q]';
     const testRegex = VerEx().startOfLine().then(testString).endOfLine();
 
-    t.true(testRegex.test(testString), 'Special characters are sanitized');
+    t.true(testRegex.test(testString), 'Special characters should be sanitized');
 });
 
 // Rules //
@@ -117,7 +117,7 @@ test('anything', (t) => {
 
     resetLastIndex(testRegex);
     testString = '';
-    t.true(testRegex.test(testString), 'May match zero characters');
+    t.true(testRegex.test(testString), 'Should be able to match zero characters');
 });
 
 test('anythingBut', (t) => {
@@ -132,7 +132,7 @@ test('anythingBut', (t) => {
 
     testRegex = VerEx().startOfLine().anythingBut('br');
     testString = 'bar';
-    t.true(testRegex.test(testString), 'May match zero characters');
+    t.true(testRegex.test(testString), 'Should be able to match zero characters');
 });
 
 test('something', (t) => {
@@ -297,26 +297,26 @@ test('stopAtFirst', (t) => {
     let testRegex = VerEx().find('foo');
     const testString = 'foofoofoo';
 
-    t.is(testString.match(testRegex).length, 3, 'Matches all "foo"s');
+    t.is(testString.match(testRegex).length, 3, 'Should match all "foo"s');
 
     testRegex = VerEx().find('foo').stopAtFirst();
-    t.is(testString.match(testRegex).length, 1, 'Matches one "foo"');
+    t.is(testString.match(testRegex).length, 1, 'Should match one "foo"');
 
     testRegex = VerEx().find('foo').stopAtFirst(false);
-    t.is(testString.match(testRegex).length, 3, 'Matches all "foo"s');
+    t.is(testString.match(testRegex).length, 3, 'Should match all "foo"s');
 });
 
 test('searchOneLine', (t) => {
     let testRegex = VerEx().startOfLine().then('b').endOfLine();
     const testString = 'a\nb\nc';
 
-    t.true(testRegex.test(testString), '"b" is at the end of it\'s own line');
+    t.true(testRegex.test(testString), 'Should match "b"');
 
     testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine();
-    t.false(testRegex.test(testString), '"c" is at the end of the string');
+    t.false(testRegex.test(testString), 'Should not match "b"');
 
     testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine(false);
-    t.true(testRegex.test(testString), '"b" is at the end of it\'s own line');
+    t.true(testRegex.test(testString), 'Should match "b"');
 });
 
 // Loops //
@@ -337,41 +337,41 @@ test('repeatPrevious', (t) => {
 
     testRegex = VerEx().startOfLine().find('foo').repeatPrevious(1, 3).endOfLine();
     testString = 'foo';
-    t.true(testRegex.test(testString), 'Has between 1 and 3 (inclusive) "foo"s');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'foofoo';
-    t.true(testRegex.test(testString), 'Has between 1 and 3 (inclusive) "foo"s');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'foofoofoo';
-    t.true(testRegex.test(testString), 'Has between 1 and 3 (inclusive) "foo"s');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'foofoofoofoo';
-    t.false(testRegex.test(testString), 'Does not have between 1 and 3 (inclusive) "foo"s');
+    t.false(testRegex.test(testString));
 });
 
 test('oneOrMore', (t) => {
     const testRegex = VerEx().startOfLine().then('foo').oneOrMore().endOfLine();
     let testString = 'foo';
 
-    t.true(testRegex.test(testString), 'Contains "foo" at least once ');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'foofoo';
-    t.true(testRegex.test(testString), 'Contains "foo" at least once in "foofoo"');
+    t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
     testString = 'bar';
-    t.false(testRegex.test(testString), 'Contains "foo" at least once');
+    t.false(testRegex.test(testString));
 });
 
 test('multiple', (t) => {
     let testRegex = VerEx().startOfLine().multiple('foo').endOfLine();
     let testString = 'foo';
 
-    t.true(testRegex.test(testString), 'Contains "foo" at least once');
+    t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
     testString = 'foo';
@@ -416,7 +416,7 @@ test('capture groups', (t) => {
     let testRegex = VerEx().find('foo').beginCapture().then('bar');
     let testString = 'foobar';
 
-    t.true(testRegex.test(testString), 'Expressions with incomplete capture groups work');
+    t.true(testRegex.test(testString), 'Expressions with incomplete capture groups should work');
 
     testRegex = testRegex.endCapture().then('baz');
     testString = 'foobarbaz';
@@ -440,5 +440,5 @@ test('toRegExp', (t) => {
     const testRegex = VerEx().anything();
     const converted = testRegex.toRegExp();
 
-    t.is(converted.toString(), testRegex.toString(), 'Converted regex has same behaviour');
+    t.is(converted.toString(), testRegex.toString(), 'Converted regex should have same behaviour');
 });
