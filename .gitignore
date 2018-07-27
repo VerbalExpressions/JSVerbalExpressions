@@ -4,3 +4,4 @@ node_modules
 /dist/docs/verbal-expressions/*
 !/dist/docs/verbal-expressions/0.3.0/
 .idea/
+.nyc_output

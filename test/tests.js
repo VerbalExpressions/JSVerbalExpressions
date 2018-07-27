@@ -17,11 +17,36 @@ test('constructor', (t) => {
 
 // Utility //
 
-test('add', (t) => {
-    const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p[q]';
-    const testRegex = VerEx().startOfLine().then(testString).endOfLine();
+test('sanitize', (t) => {
+    // VerEx().then() sanitizes the parameter and calls `add`
+    // Hence, using `then()` is a fair proxy for testing sanitize
+
+    let testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p[q]';
+    let testRegex = VerEx().startOfLine().then(testString).endOfLine();
 
     t.true(testRegex.test(testString), 'Special characters should be sanitized');
+
+    testRegex = VerEx().startOfLine().then(42).endOfLine();
+    testString = '42';
+    t.true(testRegex.test(testString), 'Numbers are handled');
+
+    testRegex = VerEx().startOfLine().then(/foo/).endOfLine();
+    testString = 'foo';
+    t.true(testRegex.test(testString), 'Regular expressions are handled');
+});
+
+test('add', (t) => {
+    let testRegex = VerEx().startOfLine().withAnyCase().endOfLine();
+    testRegex = testRegex.add('(?:foo)?');
+
+    t.true(testRegex.source.startsWith('^'), 'Should retain old prefixes');
+    t.true(testRegex.source.endsWith('$'), 'Should retain old suffixes');
+
+    t.true(testRegex.test('foo'), 'Should add new rules');
+    resetLastIndex(testRegex);
+    t.true(testRegex.test(''), 'Should add new rules');
+
+    t.true(testRegex.flags.includes('i'), 'Should retain old modifiers');
 });
 
 // Rules //
@@ -99,9 +124,25 @@ test('maybe', (t) => {
 });
 
 test('or', (t) => {
-    const testRegex = VerEx().startOfLine().then('abc').or('def');
+    let testRegex = VerEx().startOfLine().then('abc').or('def');
     let testString = 'defzzz';
 
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'abczzz';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'xyzabc';
+    t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().then('abc').or().then('def');
+    testString = 'defzzz';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'abczzz';
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
@@ -265,8 +306,11 @@ test('whitespace', (t) => {
 // Modifiers //
 
 test('addModifier', (t) => {
-    const testRegex = VerEx().addModifier('y');
+    let testRegex = VerEx().addModifier('y');
     t.true(testRegex.flags.includes('y'));
+
+    testRegex = VerEx().addModifier('g');
+    // t.true(testRegex._modifiers.match(/g/g).length === 1, 'Should not add extra modifier if it already exists');
 });
 
 test('removeModifier', (t) => {
@@ -350,6 +394,14 @@ test('repeatPrevious', (t) => {
     resetLastIndex(testRegex);
     testString = 'foofoofoofoo';
     t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().find('foo').repeatPrevious().endOfLine();
+    testString = 'foofoo';
+    t.false(testRegex.test(testString), 'Should silently fail on edge cases');
+
+    testRegex = VerEx().startOfLine().find('foo').repeatPrevious(1, 2, 3).endOfLine();
+    testString = 'foofoo';
+    t.false(testRegex.test(testString), 'Should silently fail on edge cases');
 });
 
 test('oneOrMore', (t) => {
