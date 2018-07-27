@@ -490,9 +490,11 @@ var VerbalExpression = function (_extendableBuiltin2) {
                 return isInteger.test(argument);
             });
 
-            if (values.length > 0) {
-                this.add('{' + values.join(',') + '}');
+            if (values.length === 0 || values.length > 2) {
+                return this;
             }
+
+            this.add('{' + values.join(',') + '}');
 
             return this;
         }
