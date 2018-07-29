@@ -43,18 +43,19 @@
 
 
     <section>
-        <article><h1>VerbalExpressions v0.3.0</h1><p><a href="https://travis-ci.org/VerbalExpressions/JSVerbalExpressions"><img src="https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg" alt="Build Status"></a></p>
+        <article><h1>VerbalExpressions</h1><p><a href="https://travis-ci.org/VerbalExpressions/JSVerbalExpressions"><img src="https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg" alt="Build Status"></a></p>
 <h2>JavaScript Regular Expressions made easy</h2><p>VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.</p>
-<h2>How to get started</h2><h3>In the browser</h3><pre class="prettyprint source lang-HTML"><code>&lt;script src=&quot;VerbalExpressions.js&quot;>&lt;/script></code></pre><p>Or use the <a href="http://www.jsdelivr.com/projects/jsverbalexpressions">jsDelivr CDN</a>.</p>
+<h2>How to get started</h2><h3>In the browser</h3><pre class="prettyprint source lang-html"><code>&lt;script src=&quot;VerbalExpressions.js&quot;>&lt;/script></code></pre><p>Or use the <a href="http://www.jsdelivr.com/projects/jsverbalexpressions">jsDelivr CDN</a>.</p>
 <h3>On the server (node.js)</h3><p>Install:</p>
-<pre class="prettyprint source"><code>npm install verbal-expressions</code></pre><p>Require:</p>
-<pre class="prettyprint source lang-javascript"><code>var VerEx = require('verbal-expressions');</code></pre><h2>Running tests</h2><pre class="prettyprint source"><code>$ npm run grunt
-(or)
-$ npm test</code></pre><h2>Creating a minified version</h2><p>This will generate a minified version of VerbalExpressions.js (aptly named VerbalExpressions.min.js) in a <em>dist</em> folder.</p>
-<pre class="prettyprint source"><code>$ npm run build</code></pre><p>A source map will also be created in the same folder, so you can use the original unminified source file (copied to <em>dist</em> as well) for debugging purposes.</p>
-<h2>Examples</h2><p>Here's a couple of simple examples to give an idea of how VerbalExpressions works:</p>
+<pre class="prettyprint source lang-sh"><code>$ npm install verbal-expressions</code></pre><p>Require:</p>
+<pre class="prettyprint source lang-javascript"><code>const VerEx = require('verbal-expressions');</code></pre><p>Or use ES6's <code>import</code>:</p>
+<pre class="prettyprint source lang-javascript"><code>import VerEx from 'verbal-expressions';</code></pre><h2>Running tests</h2><pre class="prettyprint source lang-sh"><code>$ npm test</code></pre><p>(or)</p>
+<pre class="prettyprint source lang-sh"><code>$ npm run test:verbose</code></pre><h2>Creating a minified version</h2><pre class="prettyprint source lang-sh"><code>$ npm run build</code></pre><p>This will run <a href="https://babeljs.io">Babel</a> on <code>VerbalExpressions.js</code> and output the result to <code>dist/verbalexpressions.js</code>. A minified version of the same will also be written to <code>dist/verbalexpressions.min.js</code>.</p>
+<p>A source map will also be created in <code>dist</code>, so you can use the original &quot;un-babelified&quot;, unminified source file for debugging purposes.</p>
+<h2>API documentation</h2><p>You can find the API documentation at the <a href="https://github.com/VerbalExpressions/JSVerbalExpressions/wiki">wiki pages</a>.</p>
+<h2>Examples</h2><p>Here are some simple examples to give an idea of how VerbalExpressions works:</p>
 <h3>Testing if we have a valid URL</h3><pre class="prettyprint source lang-javascript"><code>// Create an example of how to test for correctly formed URLs
-var tester = VerEx()
+const tester = VerEx()
     .startOfLine()
     .then('http')
     .maybe('s')
@@ -64,7 +65,7 @@ var tester = VerEx()
     .endOfLine();
 
 // Create an example URL
-var testMe = 'https://www.google.com';
+const testMe = 'https://www.google.com';
 
 // Use RegExp object's native test() function
 if (tester.test(testMe)) {
@@ -74,24 +75,22 @@ if (tester.test(testMe)) {
 }
 
 console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/</code></pre><h3>Replacing strings</h3><pre class="prettyprint source lang-javascript"><code>// Create a test string
-var replaceMe = 'Replace bird with a duck';
+const replaceMe = 'Replace bird with a duck';
 
 // Create an expression that seeks for word &quot;bird&quot;
-var expression = VerEx().find('bird');
+const expression = VerEx().find('bird');
 
 // Execute the expression like a normal RegExp object
-var result = expression.replace(replaceMe, 'duck');
+const result = expression.replace(replaceMe, 'duck');
 
 // Outputs &quot;Replace duck with a duck&quot;
-alert(result);</code></pre><h3>Shorthand for string replace:</h3><pre class="prettyprint source lang-javascript"><code>var result = VerEx().find('red').replace('We have a red house', 'blue');
+alert(result);</code></pre><h3>Shorthand for string replace:</h3><pre class="prettyprint source lang-javascript"><code>const result = VerEx().find('red').replace('We have a red house', 'blue');
 
 // Outputs &quot;We have a blue house&quot;
-alert(result);</code></pre><h2>API documentation</h2><p>You can find the API documentation at the <a href="https://github.com/VerbalExpressions/JSVerbalExpressions/wiki">wiki pages</a>.</p>
-<h2>A little word for a big help</h2><p>I'd like to promote a special thank-you to <a href="http://www.bennadel.com/">Ben Nadel</a> for his <a href="http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm">great article about extending native JS objects</a></p>
-<h2>Contributions</h2><p>Clone the repo and fork:
-<code>git clone https://github.com/jehna/VerbalExpressions.git</code>.</p>
-<h3>Style guide</h3><p>The <a href="https://github.com/airbnb/javascript">Airbnb</a> style guide is loosely used as a basis for creating clean and readable JavaScript code.</p>
-<p>Pull requests are warmly welcome!</p>
+alert(result);</code></pre><h2>A little word for a big help</h2><p>I'd like to promote a special thank-you to <a href="http://www.bennadel.com/">Ben Nadel</a> for his <a href="http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm">great article about extending native JS objects</a></p>
+<h2>Contributions</h2><p>Pull requests are warmly welcome!</p>
+<p>Clone the repo and fork:</p>
+<pre class="prettyprint source lang-sh"><code>git clone https://github.com/jehna/VerbalExpressions.git</code></pre><h3>Style guide</h3><p>The <a href="https://github.com/airbnb/javascript">Airbnb</a> style guide is loosely used as a basis for creating clean and readable JavaScript code. Check <a href=".eslintrc"><code>.eslintrc</code></a>.</p>
 <p>Check out these slide decks for handy Github &amp; git tips:</p>
 <ul>
 <li><a href="http://zachholman.com/talk/git-github-secrets/">Git and Github Secrets</a></li>
@@ -112,7 +111,7 @@ alert(result);</code></pre><h2>API documentation</h2><p>You can find the API doc
 <li><a href="https://github.com/VerbalExpressions/PerlVerbalExpressions">Perl</a></li>
 <li><a href="https://github.com/VerbalExpressions/SwiftVerbalExpressions">Swift</a></li>
 </ul>
-<p>If you would like to contribute another port (which would be awesome!), please open an issue specifying the language.  A repo in the <a href="https://github.com/VerbalExpressions">VerbalExpressions organization</a> will be created for it.  Please don't open PRs for other languages against this repo.</p></article>
+<p>If you would like to contribute another port (which would be awesome!), please <a href="https://github.com/VerbalExpressions/implementation/issues/new">open an issue</a> specifying the language in the <a href="https://github.com/VerbalExpressions/implementation/issues">VerbalExpressions/implementation repo</a>. Please don't open PRs for other languages against this repo.</p></article>
     </section>
 
 
@@ -120,16 +119,122 @@ alert(result);</code></pre><h2>API documentation</h2><p>You can find the API doc
 
 
 
+
+
+
+<section>
+
+<header>
+    
+        <h2>VerbalExpressions.js</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">VerbalExpressions JavaScript Library</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-license">License:</dt>
+    <dd class="tag-license"><ul class="dummy"><li>MIT</li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="VerbalExpressions.js.html">VerbalExpressions.js</a>, <a href="VerbalExpressions.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://github.com/VerbalExpressions/JSVerbalExpressions">https://github.com/VerbalExpressions/JSVerbalExpressions</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="VerEx.html">VerEx</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="VerbalExpression.html">VerbalExpression</a></li><li><a href="global.html#VerEx">VerEx</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 12 2018 22:55:04 GMT+0100 (West-Europa (standaardtijd))
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Jul 26 2018 19:41:22 GMT+0530 (IST)
 </footer>
 
 <script> prettyPrint(); </script>

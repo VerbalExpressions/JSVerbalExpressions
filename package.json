@@ -8,16 +8,23 @@
   ],
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
-    "eslint": "^2.5.1",
-    "eslint-config-airbnb": "^6.2.0",
-    "grunt": "^1.0.2",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-qunit": "^1.3.0",
-    "grunt-contrib-uglify": "^3.3.0",
-    "grunt-eslint": "^18.0.0",
-    "grunt-jsdoc": "^1.1.0",
-    "grunt-sourcemap-localize": "^0.1.0"
+    "ava": "^0.25.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.10.0",
+    "grunt": "^1.0.3",
+    "grunt-ava": "^0.19.0",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-eslint": "^21.0.0",
+    "grunt-jsdoc": "^2.2.1",
+    "grunt-sourcemap-localize": "^0.1.0",
+    "grunt-umd": "^3.0.0"
   },
   "repository": {
     "type": "git",
@@ -26,17 +33,19 @@
   "bugs": {
     "url": "https://github.com/VerbalExpressions/JSVerbalExpressions/issues"
   },
-  "main": "VerbalExpressions.js",
+  "main": "dist/verbalexpressions.js",
   "license": "MIT",
   "scripts": {
-    "grunt": "grunt",
     "test": "grunt test",
-    "test:verbose": "grunt test --verbose",
+    "test:verbose": "grunt test:verbose",
+    "compile": "grunt compile",
+    "grunt": "grunt",
     "build": "grunt build",
     "docs": "grunt docs"
   },
   "types": "./typings/verbalexpression.d.ts",
   "engines": {
-    "node": ">= 0.10.0"
-  }
+    "node": "^9.2.0"
+  },
+  "dependencies": {}
 }

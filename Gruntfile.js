@@ -6,37 +6,60 @@ module.exports = function gruntConfig(grunt) {
             options: {
                 configFile: '.eslintrc',
             },
-            target: ['VerbalExpressions.js', 'test/tests.js'],
+            target: ['VerbalExpressions.js', 'test/tests.js', 'Gruntfile.js'],
         },
 
-        qunit: {
-            files: ['test/index.html'],
+        ava: {
+            test: ['test/tests.js'],
+            verbose: {
+                test: ['test/tests.js'],
+                options: {
+                    verbose: true,
+                },
+            },
         },
 
-        copy: {
-            build: {
-                src: '<%= pkg.main %>',
-                dest: 'dist/verbalexpressions.js',
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: [
+                    ['env', { modules: false }],
+                ],
+                plugins: [
+                    ['transform-builtin-extend', { globals: ['RegExp'] }],
+                ],
+            },
+            dist: {
+                files: {
+                    'dist/verbalexpressions.js': 'VerbalExpressions.js',
+                },
+            },
+        },
+
+        umd: {
+            all: {
+                options: {
+                    src: 'dist/verbalexpressions.js',
+                    objectToExport: 'VerEx',
+                    amdModuleId: 'VerEx',
+                    globalAlias: 'VerEx',
+                },
             },
         },
 
         uglify: {
             options: {
-                banner: '/*!\n' +
-                    '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n' +
-                    '* <%= pkg.homepage %>\n' +
-                    '*\n' +
-                    '*\n' +
-                    '* Released under the <%= pkg.license %> license\n' +
-                    '*\n' +
-                    '* Date: <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-                    '*\n' +
-                    '*/\n',
+                banner: '/*!\n'
+                    + '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n'
+                    + '* <%= pkg.homepage %>\n'
+                    + '*\n'
+                    + '* Released under the <%= pkg.license %> license\n'
+                    + '*/\n',
                 sourceMap: true,
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['<%= pkg.main %>'],
+                    'dist/verbalexpressions.min.js': ['dist/verbalexpressions.js'],
                 },
             },
         },
@@ -69,20 +92,23 @@ module.exports = function gruntConfig(grunt) {
                 options: {
                     destination: 'dist/docs',
                 },
-                src: ['dist/verbalexpressions.js'],
+                src: ['VerbalExpressions.js'],
             },
         },
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-jsdoc');
+    grunt.loadNpmTasks('grunt-ava');
+    grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-umd');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
-    grunt.registerTask('test', ['eslint', 'qunit']);
-    grunt.registerTask('default', ['qunit']);
-    grunt.registerTask('build', ['test', 'copy', 'uglify', 'sourcemap_localize', 'jsdoc:dist']);
+    grunt.registerTask('default', ['test']);
+    grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
+    grunt.registerTask('test:verbose', ['compile', 'umd:all', 'eslint', 'ava:verbose']);
+    grunt.registerTask('compile', ['babel']);
+    grunt.registerTask('build', ['compile', 'umd:all', 'uglify', 'sourcemap_localize', 'test', 'jsdoc:dist']);
     grunt.registerTask('docs', ['test', 'jsdoc:src']);
 };

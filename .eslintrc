@@ -1,29 +1,36 @@
 {
-  "extends": "airbnb/legacy",
-  "rules": {
-    // Override Airbnb style guide defaults for ES5
-    "indent": [2, 4],
-    "max-len": [2, 255, 4],
-    "no-param-reassign": 0,
-    "spaced-comment": [2, "always", { "markers": ["/", "!"] }],
-    "valid-jsdoc": [2, {
-      "prefer": {
-        "return": "return"
-      }
-    }],
-    "require-jsdoc": [2, {
-      "require": {
-        "FunctionDeclaration": true,
-        "MethodDefinition": true,
-        "ClassDeclaration": true
-      }
-    }]
-  },
-  "env": {
-    "amd": true,
-    "qunit": true
-  },
-  "globals": {
-    "VerEx": true
-  }
+    "extends": "airbnb",
+    "rules": {
+        "indent": [2, 4],
+        "no-underscore-dangle": [2, {"allowAfterThis": true }],
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+        "newline-per-chained-call": "off",
+        "max-len": [2, 255, 4],
+        "no-param-reassign": 0,
+        "spaced-comment": [2, "always", { "markers": ["/", "!"] }],
+        "valid-jsdoc": [2, {
+            "prefer": {
+                "return": "return"
+            }
+        }],
+        "require-jsdoc": [2, {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": true
+            }
+        }],
+        "no-unused-vars": 0,
+        "no-plusplus": 0
+    },
+    "env": {
+        "amd": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true,
+        "browser": true
+    },
+    "globals": {
+        "VerEx": true
+    }
 }
