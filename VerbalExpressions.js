@@ -382,7 +382,7 @@ class VerbalExpression extends RegExp {
      */
     multiple(value, lower, upper) {
         // Use expression or string
-        value = value.source || VerbalExpression.sanitize(value);
+        value = VerbalExpression.sanitize(value);
 
         this.add(`(?:${value})`);
 
