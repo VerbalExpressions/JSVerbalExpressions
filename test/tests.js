@@ -309,8 +309,9 @@ test('addModifier', (t) => {
     let testRegex = VerEx().addModifier('y');
     t.true(testRegex.flags.includes('y'));
 
-    testRegex = VerEx().addModifier('g');
-    // t.true(testRegex._modifiers.match(/g/g).length === 1, 'Should not add extra modifier if it already exists');
+    t.notThrows(() => {
+        testRegex = VerEx().addModifier('g');
+    }, 'Should not add extra modifier if it already exists');
 });
 
 test('removeModifier', (t) => {
@@ -354,13 +355,13 @@ test('searchOneLine', (t) => {
     let testRegex = VerEx().startOfLine().then('b').endOfLine();
     const testString = 'a\nb\nc';
 
-    t.true(testRegex.test(testString), 'Should match "b"');
+    t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine();
-    t.false(testRegex.test(testString), 'Should not match "b"');
+    t.false(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().then('b').endOfLine().searchOneLine(false);
-    t.true(testRegex.test(testString), 'Should match "b"');
+    t.true(testRegex.test(testString));
 });
 
 // Loops //
@@ -423,6 +424,14 @@ test('multiple', (t) => {
     let testRegex = VerEx().startOfLine().multiple('foo').endOfLine();
     let testString = 'foo';
 
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = '';
     t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().multiple('foo', 2).endOfLine();
