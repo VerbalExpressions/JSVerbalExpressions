@@ -245,7 +245,6 @@ test('range', (t) => {
 
     testRegex = VerEx().startOfLine().range('a', 'z', '0').oneOrMore().endOfLine();
     testString = 'foobarbaz';
-
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
@@ -301,7 +300,6 @@ test('word', (t) => {
 
     testRegex = VerEx().word();
     testString = '. @[]|,&~-';
-
     t.false(testRegex.test(testString));
 });
 
@@ -317,7 +315,7 @@ test('digit', (t) => {
 });
 
 test('whitespace', (t) => {
-    const testRegex = VerEx().startOfLine().whitespace().oneOrMore().endOfLine();
+    const testRegex = VerEx().startOfLine().whitespace().oneOrMore().searchOneLine().endOfLine();
     let testString = ' \t\r\n\v\f';
 
     t.true(testRegex.test(testString));
