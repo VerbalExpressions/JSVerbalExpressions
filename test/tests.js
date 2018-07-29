@@ -188,7 +188,7 @@ test('something', (t) => {
 });
 
 test('somethingBut', (t) => {
-    const testRegex = VerEx().somethingBut('a');
+    let testRegex = VerEx().startOfLine().somethingBut('a').endOfLine();
     let testString = '';
 
     t.false(testRegex.test(testString));
@@ -200,6 +200,14 @@ test('somethingBut', (t) => {
     resetLastIndex(testRegex);
     testString = 'a';
     t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().somethingBut('abc').endOfLine();
+    testString = 'foo';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'fab';
+    t.false(testRegex.test(testString));
 });
 
 function anyOf(name, t) {
@@ -209,7 +217,11 @@ function anyOf(name, t) {
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
-    testString = 'abc';
+    testString = 'ab';
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'a';
     t.false(testRegex.test(testString));
 }
 
@@ -222,7 +234,7 @@ test('any', (t) => {
 });
 
 test('range', (t) => {
-    const testRegex = VerEx().startOfLine().range('a', 'z', '0', '9').oneOrMore().endOfLine();
+    let testRegex = VerEx().startOfLine().range('a', 'z', '0', '9').oneOrMore().endOfLine();
     let testString = 'foobarbaz123';
 
     t.true(testRegex.test(testString));
@@ -230,6 +242,15 @@ test('range', (t) => {
     resetLastIndex(testRegex);
     testString = 'fooBarBaz_123';
     t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().range('a', 'z', '0').oneOrMore().endOfLine();
+    testString = 'foobarbaz';
+
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foobarbaz123';
+    t.false(testRegex.test(testString), 'Should ignore extra parameters');
 });
 
 // Special characters //
@@ -245,7 +266,11 @@ function lineBreak(name, t) {
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
-    testString = 'abc\r\n def';
+    testString = 'abc\rdef';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'abc\r\n\ndef';
     t.false(testRegex.test(testString));
 }
 
@@ -269,37 +294,36 @@ test('tab', (t) => {
 });
 
 test('word', (t) => {
-    const testRegex = VerEx().word().endOfLine();
+    let testRegex = VerEx().startOfLine().word().endOfLine();
     let testString = 'azertyuiopqsdfghjklmwxcvbn0123456789_';
 
     t.true(testRegex.test(testString));
 
+    testRegex = VerEx().word();
     testString = '. @[]|,&~-';
-    for (const char of testString) {
-        t.false(testRegex.test(char));
-    }
+
+    t.false(testRegex.test(testString));
 });
 
 test('digit', (t) => {
-    const testRegex = VerEx().digit();
+    let testRegex = VerEx().startOfLine().digit().oneOrMore().endOfLine();
     let testString = '0123456789';
 
     t.true(testRegex.test(testString));
 
+    testRegex = VerEx().digit();
     testString = '-.azertyuiopqsdfghjklmwxcvbn @[]|,_&~';
-    for (const char of testString) {
-        t.false(testRegex.test(char));
-    }
+    t.false(testRegex.test(testString));
 });
 
 test('whitespace', (t) => {
-    const testRegex = VerEx().startOfLine().then('a').whitespace().then('z');
-    let testString = 'a z';
+    const testRegex = VerEx().startOfLine().whitespace().oneOrMore().endOfLine();
+    let testString = ' \t\r\n\v\f';
 
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
-    testString = 'a_z';
+    testString = 'a z';
     t.false(testRegex.test(testString));
 });
 
@@ -374,6 +398,10 @@ test('repeatPrevious', (t) => {
 
     resetLastIndex(testRegex);
     testString = 'foofoo';
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foofoofoofoo';
     t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
