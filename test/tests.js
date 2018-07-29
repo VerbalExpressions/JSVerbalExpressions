@@ -407,20 +407,17 @@ test('repeatPrevious', (t) => {
     t.false(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().find('foo').repeatPrevious(1, 3).endOfLine();
-    testString = 'foo';
-    t.true(testRegex.test(testString));
 
-    resetLastIndex(testRegex);
-    testString = 'foofoo';
-    t.true(testRegex.test(testString));
+    for (let i = 0; i <= 4; i++) {
+        resetLastIndex(testRegex);
+        testString = 'foo'.repeat(i);
 
-    resetLastIndex(testRegex);
-    testString = 'foofoofoo';
-    t.true(testRegex.test(testString));
-
-    resetLastIndex(testRegex);
-    testString = 'foofoofoofoo';
-    t.false(testRegex.test(testString));
+        if (i < 1 || i > 3) {
+            t.false(testRegex.test(testString));
+        } else {
+            t.true(testRegex.test(testString));
+        }
+    }
 
     testRegex = VerEx().startOfLine().find('foo').repeatPrevious().endOfLine();
     testString = 'foofoo';
@@ -473,28 +470,17 @@ test('multiple', (t) => {
     t.true(testRegex.test(testString));
 
     testRegex = VerEx().startOfLine().multiple('foo', 2, 5).endOfLine();
-    testString = 'foo';
-    t.false(testRegex.test(testString));
 
-    resetLastIndex(testRegex);
-    testString = 'foofoo';
-    t.true(testRegex.test(testString));
+    for (let i = 0; i <= 6; i++) {
+        resetLastIndex(testRegex);
+        testString = 'foo'.repeat(i);
 
-    resetLastIndex(testRegex);
-    testString = 'foofoofoo';
-    t.true(testRegex.test(testString));
-
-    resetLastIndex(testRegex);
-    testString = 'foofoofoofoo';
-    t.true(testRegex.test(testString));
-
-    resetLastIndex(testRegex);
-    testString = 'foofoofoofoofoo';
-    t.true(testRegex.test(testString));
-
-    resetLastIndex(testRegex);
-    testString = 'foofoofoofoofoofoo';
-    t.false(testRegex.test(testString));
+        if (i < 2 || i > 5) {
+            t.false(testRegex.test(testString));
+        } else {
+            t.true(testRegex.test(testString));
+        }
+    }
 });
 
 // Capture groups //

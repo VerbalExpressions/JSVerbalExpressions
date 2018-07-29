@@ -1,7 +1,6 @@
 {
     "extends": "airbnb",
     "rules": {
-        // Override Airbnb style guide defaults for ES5
         "indent": [2, 4],
         "no-underscore-dangle": [2, {"allowAfterThis": true }],
         "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
@@ -21,7 +20,8 @@
                 "ClassDeclaration": true
             }
         }],
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "no-plusplus": 0
     },
     "env": {
         "amd": true,
