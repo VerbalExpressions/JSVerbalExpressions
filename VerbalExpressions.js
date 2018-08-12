@@ -1,15 +1,15 @@
-/*!
- * VerbalExpressions JavaScript Library
- * https://github.com/VerbalExpressions/JSVerbalExpressions
+/**
+ * @file VerbalExpressions JavaScript Library
+ * @version 0.3.0
+ * @license MIT
  *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * @see https://github.com/VerbalExpressions/JSVerbalExpressions
  */
 
 class VerbalExpression extends RegExp {
     constructor() {
         // Call the `RegExp` constructor so that `this` can be used
-        super('//gm');
+        super('', 'gm');
 
         // Variables to hold the expression construction in order
         this._prefixes = '';
@@ -116,9 +116,9 @@ class VerbalExpression extends RegExp {
     }
 
     range(...ranges) {
-        let value;
+        let value = '';
 
-        for (let i = 0; i < ranges.length; i += 2) {
+        for (let i = 1; i < ranges.length; i += 2) {
             const from = VerbalExpression.sanitize(ranges[i - 1]);
             const to = VerbalExpression.sanitize(ranges[i]);
 
@@ -185,9 +185,11 @@ class VerbalExpression extends RegExp {
         const isInteger = /\d+/;
         const values = quantity.filter(argument => isInteger.test(argument));
 
-        if (values.length > 0) {
-            this.add(`{${values.join()}}`);
+        if (values.length === 0 || values.length > 2) {
+            return this;
         }
+
+        this.add(`{${values.join(',')}}`);
 
         return this;
     }
@@ -200,14 +202,16 @@ class VerbalExpression extends RegExp {
 
     multiple(value, count) {
         // Use expression or string
-        value = value.source || VerbalExpression.sanitize(value);
+        value = VerbalExpression.sanitize(value);
 
         this.add(`(?:${value})`);
 
-        if (count === undefined) {
+        if (lower === undefined && upper === undefined) {
             this.add('*'); // Any number of times
-        } else {
-            this.add(`{${count}}`);
+        } else if (lower !== undefined && upper === undefined) {
+            this.add(`{${lower},}`);
+        } else if (lower !== undefined && upper !== undefined) {
+            this.add(`{${lower},${upper}}`);
         }
 
         return this;
@@ -243,17 +247,11 @@ class VerbalExpression extends RegExp {
     }
 }
 
-// UMD (Universal Module Definition)
-// https://github.com/umdjs/umd
-((root, factory) => {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define([], factory);
-    } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.VerEx = factory();
-    }
-})(this, () => () => new VerbalExpression());
+/**
+ * Return a new instance of `VerbalExpression`
+ * @export
+ * @returns {VerbalExpression} new instance
+ */
+function VerEx() {
+    return new VerbalExpression();
+}

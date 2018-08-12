@@ -20,8 +20,6 @@
     "grunt": "^1.0.3",
     "grunt-ava": "^0.19.0",
     "grunt-babel": "^7.0.0",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-eslint": "^21.0.0",
     "grunt-sourcemap-localize": "^0.1.0"
@@ -33,13 +31,13 @@
   "bugs": {
     "url": "https://github.com/VerbalExpressions/JSVerbalExpressions/issues"
   },
-  "main": "VerbalExpressions.js",
+  "main": "dist/verbalexpressions.js",
   "license": "MIT",
   "scripts": {
-    "grunt": "grunt",
-    "compile": "grunt compile",
     "test": "grunt test",
     "test:verbose": "grunt test:verbose",
+    "compile": "grunt compile",
+    "grunt": "grunt",
     "build": "grunt build",
     "docs": "grunt docs"
   },

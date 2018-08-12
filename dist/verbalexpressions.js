@@ -1,6 +1,19 @@
-'use strict';
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+(function (root, factory) {
+  if (root === undefined && window !== undefined) root = window;
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module unless amdModuleId is set
+    define('VerEx', [], function () {
+      return (root['VerEx'] = factory());
+    });
+  } else if (typeof module === 'object' && module.exports) {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like environments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    root['VerEx'] = factory();
+  }
+}(this, function () {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -35,32 +48,34 @@ function _extendableBuiltin(cls) {
     return ExtendableBuiltin;
 }
 
-/*!
- * VerbalExpressions JavaScript Library
- * https://github.com/VerbalExpressions/JSVerbalExpressions
+/**
+ * @file VerbalExpressions JavaScript Library
+ * @version 0.3.0
+ * @license MIT
  *
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * @see https://github.com/VerbalExpressions/JSVerbalExpressions
  */
 
 /**
- * Define the VerbalExpression class.
- * @class
+ * Define the VerbalExpression class
+ *
+ * @class VerbalExpression
+ * @extends {RegExp}
  */
 var VerbalExpression = function (_extendableBuiltin2) {
     _inherits(VerbalExpression, _extendableBuiltin2);
 
     /**
-     * Construct an instance of VerbalExpression
+     * Creates an instance of VerbalExpression.
      * @constructor
      * @alias VerEx
-     * @return {VerbalExpression} A new instance of VerbalExpression
+     * @memberof VerbalExpression
      */
     function VerbalExpression() {
         _classCallCheck(this, VerbalExpression);
 
         // Variables to hold the expression construction in order
-        var _this = _possibleConstructorReturn(this, (VerbalExpression.__proto__ || Object.getPrototypeOf(VerbalExpression)).call(this, '//gm'));
+        var _this = _possibleConstructorReturn(this, (VerbalExpression.__proto__ || Object.getPrototypeOf(VerbalExpression)).call(this, '', 'gm'));
         // Call the `RegExp` constructor so that `this` can be used
 
 
@@ -74,9 +89,11 @@ var VerbalExpression = function (_extendableBuiltin2) {
     // Utility //
 
     /**
-     * Escape metacharacters in the parameter and make it safe for adding to the expression
-     * @param {String} value string to sanitize
-     * @return {String} sanitized value
+     * Escape meta-characters in the parameter and make it safe for adding to the expression
+     * @static
+     * @param {(string|RegExp|number)} value object to sanitize
+     * @returns {string} sanitized value
+     * @memberof VerbalExpression
      */
 
 
@@ -86,8 +103,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Add stuff to the expression and compile the new expression so it's ready to be used.
-         * @param {string} value literal expression, not sanitized
-         * @return {VerbalExpression} Freshly recompiled instance of VerbalExpression
+         * @param {(string|number)} [value=''] stuff to add
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
         value: function add() {
             var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -104,8 +122,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Control start-of-line matching
-         * @param {Boolean} enable Control start-of-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {boolean} [enable=true] whether to enable this behaviour
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -119,8 +138,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Control end-of-line matching
-         * @param {Boolean} enable Control end-of-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {boolean} [enable=true] whether to enable this behaviour
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -134,8 +154,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Look for the value passed
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|RegExp|number)} value value to find
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -147,8 +168,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Alias for then() to allow for readable syntax when then() is the first method in the chain.
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|RegExp|numer)} value value to find
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -159,8 +181,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Add optional values
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|RegExp|number)} value value to find
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -172,8 +195,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Add alternative expressions
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|RegExp|number)} value value to find
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -193,8 +217,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Any character any number of times
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -205,8 +229,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Anything but these characters
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|number)} value characters to not match
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -217,8 +242,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
         }
 
         /**
-         * Any character at least one time
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Any character(s) at least once
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -229,8 +255,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Any character at least one time except for these characters
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {(string|number)} value characters to not match
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -241,9 +268,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
         }
 
         /**
-         * Match any given character
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Match any of the given characters
+         * @param {(string|number)} value characters to match
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -255,8 +283,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Shorthand for anyOf(value)
-         * @param {String} value value to find
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {string|number} value value to find
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -266,16 +295,19 @@ var VerbalExpression = function (_extendableBuiltin2) {
         }
 
         /**
+         * Matching any character within a range of characters
          * Usage: .range( from, to [, from, to ... ] )
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {...string} ranges characters denoting beginning and ending of ranges
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
         key: 'range',
         value: function range() {
-            var value = void 0;
+            var value = '';
 
-            for (var i = 0; i < arguments.length; i += 2) {
+            for (var i = 1; i < arguments.length; i += 2) {
                 var from = VerbalExpression.sanitize(arguments.length <= i - 1 ? undefined : arguments[i - 1]);
                 var to = VerbalExpression.sanitize(arguments.length <= i ? undefined : arguments[i]);
 
@@ -289,7 +321,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a Line break
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -300,7 +333,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * A shorthand for lineBreak() for html-minded users
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -311,7 +345,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a tab character
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -322,7 +357,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match any alphanumeric
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -333,7 +369,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a single digit digit
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -344,7 +381,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match a single whitespace
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -356,9 +394,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
         // Modifiers //
 
         /**
-         * Add modifier
-         * @param {String} modifier modifier to add
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Add a regex modifier/flag
+         * @param {string} modifier modifier to add
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -373,8 +412,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Remove modifier
-         * @param {String} modifier modifier to remove
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {string} modifier modifier to remove
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -385,9 +425,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
         }
 
         /**
-         * Case-insensitivity modifier
-         * @param {Boolean} enable Control case-insensitive matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Control case-insensitive matching
+         * @param {boolean} [enable=true] whether to enable this behaviour
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -400,8 +441,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Default behaviour is with "g" modifier, so we can turn this another way around than other modifiers
-         * @param {Boolean} enable Control global matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {boolean} [enable=true] whether to enable this behaviour
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -414,8 +456,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Control the multiline modifier
-         * @param {Boolean} enable Control multi-line matching
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {boolean} [enable=true] whether to enable this behaviour
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -426,9 +469,12 @@ var VerbalExpression = function (_extendableBuiltin2) {
             return enable ? this.removeModifier('m') : this.addModifier('m');
         }
 
+        // Loops //
+
         /**
-         * Repeat the previous item exactly n times or between n and m times.
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Repeat the previous item exactly n times or between n and m times
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -444,18 +490,19 @@ var VerbalExpression = function (_extendableBuiltin2) {
                 return isInteger.test(argument);
             });
 
-            if (values.length > 0) {
-                this.add('{' + values.join() + '}');
+            if (values.length === 0 || values.length > 2) {
+                return this;
             }
+
+            this.add('{' + values.join(',') + '}');
 
             return this;
         }
 
-        // Loops //
-
         /**
          * Repeat the previous at least once
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -466,23 +513,27 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Match the value zero or more times
-         * @param {String} value value to find
-         * @param {Integer?} count number of times the value should be repeated
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @param {string} value value to find
+         * @param {integer} [lower] minimum number of times the value should be repeated
+         * @param {integer} [upper] maximum number of times the value should be repeated
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
         key: 'multiple',
-        value: function multiple(value, count) {
+        value: function multiple(value, lower, upper) {
             // Use expression or string
             value = value.source || VerbalExpression.sanitize(value);
 
             this.add('(?:' + value + ')');
 
-            if (count === undefined) {
+            if (lower === undefined && upper === undefined) {
                 this.add('*'); // Any number of times
-            } else {
-                this.add('{' + count + '}');
+            } else if (lower !== undefined && upper === undefined) {
+                this.add('{' + lower + ',}');
+            } else if (lower !== undefined && upper !== undefined) {
+                this.add('{' + lower + ',' + upper + '}');
             }
 
             return this;
@@ -492,7 +543,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Starts a capturing group
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -505,7 +557,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Ends a capturing group
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -519,10 +572,11 @@ var VerbalExpression = function (_extendableBuiltin2) {
         // Miscellaneous //
 
         /**
-         * Shorthand function for the String.replace function to allow for a more logical flow.
-         * @param {String} source string to search for
-         * @param {String} value value to replace with
-         * @return {VerbalExpression} same instace of VerbalExpression
+         * Shorthand function for the string.replace function to allow for a more logical flow
+         * @param {string} source string to search for
+         * @param {string} value value to replace with
+         * @returns {VerbalExpression} recompiled instance of VerbalExpression
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -534,7 +588,8 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Convert to RegExp object
-         * @return {RegExp} Converted RegExp instance
+         * @returns {RegExp} equivalent RegExp instance
+         * @memberof VerbalExpression
          */
 
     }, {
@@ -572,24 +627,18 @@ var VerbalExpression = function (_extendableBuiltin2) {
     return VerbalExpression;
 }(_extendableBuiltin(RegExp));
 
-// UMD (Universal Module Definition)
-// https://github.com/umdjs/umd
+/**
+ * Return a new instance of `VerbalExpression`
+ * @export
+ * @returns {VerbalExpression} new instance
+ */
 
 
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define([], factory);
-    } else if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS
-        module.exports = factory();
-    } else {
-        // Browser globals (root is window)
-        root.VerEx = factory();
-    }
-})(undefined, function () {
-    return function () {
-        return new VerbalExpression();
-    };
-});
+function VerEx() {
+    return new VerbalExpression();
+}
 //# sourceMappingURL=verbalexpressions.js.map
+
+return VerEx;
+
+}));
