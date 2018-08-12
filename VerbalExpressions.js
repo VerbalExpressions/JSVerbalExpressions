@@ -247,11 +247,6 @@ class VerbalExpression extends RegExp {
     }
 }
 
-/**
- * Return a new instance of `VerbalExpression`
- * @export
- * @returns {VerbalExpression} new instance
- */
 function VerEx() {
     return new VerbalExpression();
 }
