@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+
+        <p>{{ site.description | default: site.github.project_tagline }}</p>
+
+        {% if site.logo %}
+          <img src="{{ site.logo | relative_url }}" alt="Logo" />
+        {% endif %}
+
+        {% if site.github.is_project_page %}
+        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <br> <small>{{ site.github.repository_nwo }}</small></a></p>
+        {% endif %}
+
+        {% if site.github.is_user_page %}
+        <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
+        {% endif %}
+
+        <br>
+
+        <a href="/VerEx"><code>VerEx</code></a> • <a href="/VerbalExpression"><code>VerbalExpression</code></a>
+
+        <br>
+        <br>
+        <br>
+
+        <ul>
+            <li><a href="{{ site.minified_js }}">Download <strong>Minified</strong></a></li>
+            <li><a href="{{ site.cdn_url }}">Use via <strong>JSDelivr</strong></a></li>
+            <li><a href="{{ site.npm_url }}">View on <strong>NPM</strong></a></li>
+        </ul>
+      </header>
+
+      <section> {{ content }} </section>
+
+      <footer>
+        {% if site.github.is_project_page %}
+        <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+        {% endif %}
+        <p><small>Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>

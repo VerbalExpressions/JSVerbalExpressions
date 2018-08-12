@@ -2,3 +2,6 @@ node_modules
 .DS_Store
 .idea/
 .nyc_output
+docs/_site
+docs/.sass-cache
+docs/.jekyll-metadata
