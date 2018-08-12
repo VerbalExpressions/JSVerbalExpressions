@@ -200,7 +200,7 @@ class VerbalExpression extends RegExp {
         return this.add('+');
     }
 
-    multiple(value, count) {
+    multiple(value, lower, upper) {
         // Use expression or string
         value = VerbalExpression.sanitize(value);
 
