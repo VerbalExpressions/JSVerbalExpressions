@@ -76,11 +76,24 @@ Parameter | Expected type | Description
 
 ## `anyOf`
 
-Match any of these characters.
+Match any of these characters exactly once.
 
 Parameter | Expected type | Description
 ----------|---------------|------------------------------
 `value`   | `String`      | String of characters to match
 
 ## `any`
+
+Alias for [`anyOf`](#anyof).
+
 ## `range`
+
+Match any character within the range defined by the parameters.
+
+Parameter  | Expected type | Description
+-----------|---------------|--------------------
+`...range` | `String[]`    | Range of characters
+
+Arguments will be interpreted as pairs.
+
+For example, `.range('a', 'z', '0', '9')` will be interpreted to mean any character within the ranges `a–z` (ascii x–y) or `0–9` (ascii x–y). The method expects an even number of parameters; unpaired parameters are ignored.

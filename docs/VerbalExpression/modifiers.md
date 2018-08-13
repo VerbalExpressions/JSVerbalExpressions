@@ -2,7 +2,7 @@
 
 ## `addModifier`
 
-Manually add a regex modifier.
+Manually add a regex modifier (flag).
 
 Parameter | Expected type | Description
 ----------|---------------|----------------
@@ -10,7 +10,7 @@ Parameter | Expected type | Description
 
 ## `removeModifier`
 
-Manually remove a regex modifier.
+Manually remove a regex modifier (flag).
 
 Parameter | Expected type | Description
 ----------|---------------|-------------------
@@ -42,15 +42,17 @@ Parameter | Expected type | Description
 
 ## `repeatPrevious`
 
-Repeat the previous item exactly `count` times or between `mix` and `max` (inclusive) times.
-
 Usage 1:
+
+Repeat the previous item exactly `count` times.
 
 Parameter | Expected type | Description
 ----------|---------------|------------
 `count`   | `Number`      | Number of times to repeat the previous item
 
 Usage 2:
+
+Repeat the previous item between `mix` and `max` (inclusive) times.
 
 Parameter | Expected type | Description
 ----------|---------------|------------
