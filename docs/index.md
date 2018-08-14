@@ -2,7 +2,9 @@
 title: Home
 ---
 
-# Table Of Contents
+VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions. For more details, refer to the [README](//github.com/VerbalExpressions/JSVerbalExpressions#readme).
+
+## Table Of Contents
 
 - [`VerEx`](/VerEx)
 - [`VerbalExpression`](/VerbalExpression)

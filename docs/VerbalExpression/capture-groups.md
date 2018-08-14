@@ -9,3 +9,18 @@ Begin a capture group.
 ## `endCapture`
 
 End a capture group.
+
+_________________
+
+```js
+const phoneNumber = VerEx()
+    .find('+')
+    .beginCapture()
+        .digit().repeatPrevious(2)
+    .endCapture()
+    .then('-')
+    .digit().repeatPrevious(10);
+
+const [, countryCode] = phoneNumber.exec('+91-2223387510');
+console.log(countryCode); // => '91'
+```

@@ -4,6 +4,8 @@ title: VerbalExpression
 
 # `VerbalExpression`
 
+A class that extends [`RegExp`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) and wraps all VerbalExpressions functionality.
+
 ## Table of Contents
 
 - [Constructor](/VerbalExpression/constructor/)
