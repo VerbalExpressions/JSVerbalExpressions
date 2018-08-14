@@ -68,22 +68,6 @@ module.exports = function gruntConfig(grunt) {
                 },
             },
         },
-
-        babel: {
-            options: {
-                sourceMap: true,
-                presets: ["env"],
-                plugins: [
-                    ["transform-builtin-extend", {"globals": ["RegExp"]}],
-                ],
-            },
-            dist: {
-                files: {
-                    'dist/verbalexpressions.js': 'VerbalExpressions.js',
-                },
-            },
-        },
-
     });
 
     grunt.loadNpmTasks('grunt-eslint');
