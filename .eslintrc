@@ -9,11 +9,7 @@
     "max-len": [2, 255, 4],
     "no-param-reassign": 0,
     "spaced-comment": [2, "always", { "markers": ["/", "!"] }],
-    "valid-jsdoc": [2, {
-      "prefer": {
-        "return": "return"
-      }
-    }]
+    "no-plusplus": 0
   },
   "env": {
     "amd": true,

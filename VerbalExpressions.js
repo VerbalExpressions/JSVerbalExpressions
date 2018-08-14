@@ -247,6 +247,6 @@ class VerbalExpression extends RegExp {
     }
 }
 
-function VerEx() {
+function VerEx() { // eslint-disable-line no-unused-vars
     return new VerbalExpression();
 }

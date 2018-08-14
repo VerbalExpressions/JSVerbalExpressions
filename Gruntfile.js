@@ -76,11 +76,10 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
-    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
-    grunt.registerTask('test:verbose', ['compile', 'umd:all', 'eslint', 'ava:verbose']);
-    grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('build', ['test', 'copy', 'compile', 'uglify', 'sourcemap_localize']);
+    grunt.registerTask('test', ['compile', 'eslint', 'ava:test']);
+    grunt.registerTask('test:verbose', ['compile', 'eslint', 'ava:verbose']);
+    grunt.registerTask('compile', ['babel', 'umd:all']);
+    grunt.registerTask('build', ['compile', 'ava:test', 'uglify', 'sourcemap_localize']);
 };
