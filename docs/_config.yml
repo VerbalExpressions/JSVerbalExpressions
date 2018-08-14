@@ -5,8 +5,6 @@ repository: VerbalExpressions/JSVerbalExpressions
 show_downloads: true
 
 theme: jekyll-theme-minimal
-plugins:
-  - jekyll-feed
 
 exclude:
   - Gemfile
@@ -17,9 +15,3 @@ cdn_url: https://jsdelivr.com/package/npm/verbal-expressions
 npm_url: https://npmjs.com/package/verbal-expressions
 minified_url: https://cdn.jsdelivr.net/npm/verbal-expressions@@latest/verbalexpressions.min.js
 
-defaults:
--
-    scope:
-        path: "./VerbalExpressions/"
-    values:
-        permalink: "/VerbalExpressions/:slug/"
