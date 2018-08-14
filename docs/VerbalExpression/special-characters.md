@@ -30,8 +30,11 @@ console.log(tabs.replace(code, '    '));
 Match a word—a string of word characters (a–z, A–Z, 0–9 or \_).
 
 ```js
-const word = VerEx().word();
-const words = 'foo bar foo_bar foo-bar foo123';
+const word = VerEx().startOfLine().word().endOfLine();
+
+console.log(word.test('foo')); // => true
+word.lastIndex = 0;
+console.log(word.test('foo-bar')); // => false
 ```
 
 ## `digit`
