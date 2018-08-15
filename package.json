@@ -42,7 +42,7 @@
     "build": "grunt build",
     "docs": "grunt docs"
   },
-  "types": "./typings/verbalexpression.d.ts",
+  "types": "./typings/VerbalExpressions.d.ts",
   "engines": {
     "node": "^9.2.0"
   },

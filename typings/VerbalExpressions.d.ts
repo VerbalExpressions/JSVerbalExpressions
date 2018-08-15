@@ -48,4 +48,5 @@ interface VerbalExpressionConstructor {
 }
 
 declare var VerEx: VerbalExpressionConstructor;
+export = VerEx;
 
