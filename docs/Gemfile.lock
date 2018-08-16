@@ -23,10 +23,12 @@ GEM
     ethon (0.11.0)
       ffi (>= 1.3.0)
     eventmachine (1.2.7)
+    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
+    ffi (1.9.25-x64-mingw32)
     forwardable-extended (2.6.0)
     gemoji (3.0.0)
     github-pages (187)
@@ -208,6 +210,8 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.3-x64-mingw32)
+      mini_portile2 (~> 2.3.0)
     octokit (4.9.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     pathutil (0.16.1)
@@ -241,9 +245,10 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   github-pages
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
