@@ -61,7 +61,7 @@ A source map will also be created in `dist`, so you can use the original "un-bab
 
 ## API documentation
 
-You can find the API documentation at the [wiki pages](https://github.com/VerbalExpressions/JSVerbalExpressions/wiki).
+You can find the API documentation at https://verbalexpressions.github.io/JSVerbalExpressions
 
 ## Examples
 
