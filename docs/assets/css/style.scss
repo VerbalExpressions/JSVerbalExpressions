@@ -1,0 +1,38 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.wrapper {
+    width: 900px;
+}
+
+section {
+    width: 540px;
+}
+
+ul {
+    margin-bottom: 5px;
+    list-style: none;
+    padding-left: 2em;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+a:hover {
+    font-weight: inherit;
+}
+
+a code {
+    color: #267CB9;
+}
+
+a code:hover {
+    color: #006699;
+}
+
+details {
+    padding-bottom: 20px;
+}

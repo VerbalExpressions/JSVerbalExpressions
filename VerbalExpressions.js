@@ -454,6 +454,6 @@ class VerbalExpression extends RegExp {
  * @export
  * @returns {VerbalExpression} new instance
  */
-function VerEx() {
+function VerEx() { // eslint-disable-line no-unused-vars
     return new VerbalExpression();
 }

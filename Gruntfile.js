@@ -12,10 +12,10 @@ module.exports = function gruntConfig(grunt) {
         ava: {
             test: ['test/tests.js'],
             verbose: {
-                test: ['test/tests.js'],
                 options: {
                     verbose: true,
                 },
+                test: ['test/tests.js'],
             },
         },
 
@@ -74,27 +74,6 @@ module.exports = function gruntConfig(grunt) {
                 },
             },
         },
-
-        jsdoc: {
-            options: {
-                pedantic: true,
-                verbose: true,
-                readme: 'README.md',
-                package: 'package.json',
-            },
-            src: {
-                options: {
-                    destination: 'docs',
-                },
-                src: ['VerbalExpressions.js'],
-            },
-            dist: {
-                options: {
-                    destination: 'dist/docs',
-                },
-                src: ['VerbalExpressions.js'],
-            },
-        },
     });
 
     grunt.loadNpmTasks('grunt-eslint');
@@ -103,12 +82,10 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
-    grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['compile', 'umd:all', 'eslint', 'ava:test']);
-    grunt.registerTask('test:verbose', ['compile', 'umd:all', 'eslint', 'ava:verbose']);
-    grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('build', ['compile', 'umd:all', 'uglify', 'sourcemap_localize', 'test', 'jsdoc:dist']);
-    grunt.registerTask('docs', ['test', 'jsdoc:src']);
+    grunt.registerTask('test', ['compile', 'eslint', 'ava:test']);
+    grunt.registerTask('test:verbose', ['compile', 'eslint', 'ava:verbose']);
+    grunt.registerTask('compile', ['babel', 'umd:all']);
+    grunt.registerTask('build', ['compile', 'ava:test', 'uglify', 'sourcemap_localize']);
 };

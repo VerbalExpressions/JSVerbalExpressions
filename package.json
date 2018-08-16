@@ -22,7 +22,6 @@
     "grunt-babel": "^7.0.0",
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-eslint": "^21.0.0",
-    "grunt-jsdoc": "^2.2.1",
     "grunt-sourcemap-localize": "^0.1.0",
     "grunt-umd": "^3.0.0"
   },

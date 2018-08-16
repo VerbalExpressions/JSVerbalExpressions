@@ -1,5 +1,3 @@
-/* eslint require-jsdoc: 0 */
-
 import test from 'ava';
 import VerEx from '../dist/verbalexpressions';
 
