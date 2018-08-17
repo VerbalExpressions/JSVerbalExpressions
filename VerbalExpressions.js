@@ -211,6 +211,19 @@ class VerbalExpression extends RegExp {
     }
 
     /**
+     * Ensure that the parameter does not follow
+     * @param {string|number} value
+     * @returns {VerbalExpression} recompiled instance of VerbalExpression
+     * @memberof VerbalExpression
+     */
+    not(value) {
+        value = VerbalExpression.sanitize(value);
+        this.add(`(?!${value})`);
+
+        return this;
+    }
+
+    /**
      * Matching any character within a range of characters
      * Usage: .range( from, to [, from, to ... ] )
      * @param {...string} ranges characters denoting beginning and ending of ranges
@@ -269,7 +282,7 @@ class VerbalExpression extends RegExp {
     }
 
     /**
-     * Match a single digit digit
+     * Match a single digit
      * @returns {VerbalExpression} recompiled instance of VerbalExpression
      * @memberof VerbalExpression
      */
