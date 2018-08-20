@@ -172,6 +172,18 @@ test('anythingBut', (t) => {
     testRegex = VerEx().startOfLine().anythingBut('br');
     testString = 'bar';
     t.true(testRegex.test(testString), 'Should be able to match zero characters');
+
+    testRegex = VerEx().startOfLine().anythingBut(['b', 'r']).endOfLine();
+    testString = 'foobar';
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'foo_a_';
+    t.true(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().anythingBut(['b', 'r']);
+    testString = 'bar';
+    t.true(testRegex.test(testString), 'Should be able to match zero characters');
 });
 
 test('something', (t) => {
@@ -186,20 +198,23 @@ test('something', (t) => {
 });
 
 test('somethingBut', (t) => {
-    let testRegex = VerEx().startOfLine().somethingBut('a').endOfLine();
+    let testRegex = VerEx().startOfLine().somethingBut('abc').endOfLine();
     let testString = '';
-
     t.false(testRegex.test(testString));
 
     resetLastIndex(testRegex);
-    testString = 'b';
+    testString = 'foo';
     t.true(testRegex.test(testString));
 
     resetLastIndex(testRegex);
-    testString = 'a';
+    testString = 'fab';
     t.false(testRegex.test(testString));
 
-    testRegex = VerEx().startOfLine().somethingBut('abc').endOfLine();
+    testRegex = VerEx().startOfLine().somethingBut(['a', 'b', 'c']).endOfLine();
+    testString = '';
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
     testString = 'foo';
     t.true(testRegex.test(testString));
 
@@ -209,8 +224,21 @@ test('somethingBut', (t) => {
 });
 
 function anyOf(name, t) {
-    const testRegex = VerEx().startOfLine().then('a')[name]('xyz');
+    let testRegex = VerEx().startOfLine().then('a')[name]('xyz');
     let testString = 'ay';
+
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'ab';
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'a';
+    t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().then('a')[name](['x', 'y', 'z']);
+    testString = 'ay';
 
     t.true(testRegex.test(testString));
 

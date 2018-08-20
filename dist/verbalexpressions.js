@@ -229,7 +229,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Anything but these characters
-         * @param {(string|number)} value characters to not match
+         * @param {(string|number|string[]|number[])} value characters to not match
          * @returns {VerbalExpression} recompiled instance of VerbalExpression
          * @memberof VerbalExpression
          */
@@ -237,6 +237,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'anythingBut',
         value: function anythingBut(value) {
+            if (Array.isArray(value)) {
+                value = value.join('');
+            }
+
             value = VerbalExpression.sanitize(value);
             return this.add('(?:[^' + value + ']*)');
         }
@@ -255,7 +259,7 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
         /**
          * Any character at least one time except for these characters
-         * @param {(string|number)} value characters to not match
+         * @param {(string|number|string[]|number[])} value characters to not match
          * @returns {VerbalExpression} recompiled instance of VerbalExpression
          * @memberof VerbalExpression
          */
@@ -263,13 +267,17 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'somethingBut',
         value: function somethingBut(value) {
+            if (Array.isArray(value)) {
+                value = value.join('');
+            }
+
             value = VerbalExpression.sanitize(value);
             return this.add('(?:[^' + value + ']+)');
         }
 
         /**
          * Match any of the given characters
-         * @param {(string|number)} value characters to match
+         * @param {(string|number|string[]|number[])} value characters to match
          * @returns {VerbalExpression} recompiled instance of VerbalExpression
          * @memberof VerbalExpression
          */
@@ -277,6 +285,10 @@ var VerbalExpression = function (_extendableBuiltin2) {
     }, {
         key: 'anyOf',
         value: function anyOf(value) {
+            if (Array.isArray(value)) {
+                value = value.join('');
+            }
+
             value = VerbalExpression.sanitize(value);
             return this.add('[' + value + ']');
         }

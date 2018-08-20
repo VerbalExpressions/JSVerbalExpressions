@@ -160,11 +160,15 @@ class VerbalExpression extends RegExp {
 
     /**
      * Anything but these characters
-     * @param {(string|number)} value characters to not match
+     * @param {(string|number|string[]|number[])} value characters to not match
      * @returns {VerbalExpression} recompiled instance of VerbalExpression
      * @memberof VerbalExpression
      */
     anythingBut(value) {
+        if (Array.isArray(value)) {
+            value = value.join('');
+        }
+
         value = VerbalExpression.sanitize(value);
         return this.add(`(?:[^${value}]*)`);
     }
@@ -180,22 +184,30 @@ class VerbalExpression extends RegExp {
 
     /**
      * Any character at least one time except for these characters
-     * @param {(string|number)} value characters to not match
+     * @param {(string|number|string[]|number[])} value characters to not match
      * @returns {VerbalExpression} recompiled instance of VerbalExpression
      * @memberof VerbalExpression
      */
     somethingBut(value) {
+        if (Array.isArray(value)) {
+            value = value.join('');
+        }
+
         value = VerbalExpression.sanitize(value);
         return this.add(`(?:[^${value}]+)`);
     }
 
     /**
      * Match any of the given characters
-     * @param {(string|number)} value characters to match
+     * @param {(string|number|string[]|number[])} value characters to match
      * @returns {VerbalExpression} recompiled instance of VerbalExpression
      * @memberof VerbalExpression
      */
     anyOf(value) {
+        if (Array.isArray(value)) {
+            value = value.join('');
+        }
+
         value = VerbalExpression.sanitize(value);
         return this.add(`[${value}]`);
     }
