@@ -453,8 +453,16 @@ test('oneOrMore', (t) => {
 });
 
 test('multiple', (t) => {
-    let testRegex = VerEx().startOfLine().multiple('foo').endOfLine();
-    let testString = 'foo';
+    let testRegex = VerEx().startOfLine().find(' ').multiple().endOfLine();
+    let testString = '   ';
+    t.true(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = ' a ';
+    t.false(testRegex.test(testString));
+
+    testRegex = VerEx().startOfLine().multiple('foo').endOfLine();
+    testString = 'foo';
 
     t.true(testRegex.test(testString));
 
