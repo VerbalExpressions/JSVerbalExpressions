@@ -176,7 +176,7 @@ Parameter | Expected type   | Description
 `value`   | `String|Number` | Value to ensure absence of
 
 ```js
-const notLeapDay = VerEx().startOfLine()not('FEB-29').something().endOfLine();
+const notLeapDay = VerEx().startOfLine().not('FEB-29').something().endOfLine();
 
 console.log(notLeapDay.test('FEB-29-2017')); // => false
 notLeapDay.lastIndex = 0;
