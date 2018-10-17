@@ -231,6 +231,17 @@ test('any', (t) => {
     anyOf('any', t);
 });
 
+test('not', (t) => {
+    const testRegex = VerEx().startOfLine().not('foo').anything().endOfLine();
+    let testString = 'foobar';
+
+    t.false(testRegex.test(testString));
+
+    resetLastIndex(testRegex);
+    testString = 'bar';
+    t.true(testRegex.test(testString));
+});
+
 test('range', (t) => {
     let testRegex = VerEx().startOfLine().range('a', 'z', '0', '9').oneOrMore().endOfLine();
     let testString = 'foobarbaz123';

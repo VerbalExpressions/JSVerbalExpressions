@@ -26,6 +26,7 @@ A class that extends [`RegExp`](//developer.mozilla.org/en-US/docs/Web/JavaScrip
     - [`somethingBut`](../VerbalExpression/rules#somethingBut)
     - [`anyOf`](../VerbalExpression/rules#anyOf)
     - [`any`](../VerbalExpression/rules#any)
+    - [`not`](../VerbalExpression/rules#not)
     - [`range`](../VerbalExpression/rules#range)
 - [Special Characters](../VerbalExpression/special-characters)
     - [`lineBreak`](../VerbalExpression/special-characters#lineBreak)

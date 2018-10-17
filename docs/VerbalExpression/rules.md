@@ -167,6 +167,22 @@ console.log(expr.test('d')); // => false
 
 Alias for [`anyOf`](#anyof).
 
+## `not`
+
+Ensure that the parameter does not follow.
+
+Parameter | Expected type   | Description
+----------|-----------------|---------------------------
+`value`   | `String|Number` | Value to ensure absence of
+
+```js
+const notLeapDay = VerEx().startOfLine().not('FEB-29').something().endOfLine();
+
+console.log(notLeapDay.test('FEB-29-2017')); // => false
+notLeapDay.lastIndex = 0;
+console.log(notLeapDay.test('FEB-28-2017')); // => true
+```
+
 ## `range`
 
 Match any character within the range defined by the parameters.
