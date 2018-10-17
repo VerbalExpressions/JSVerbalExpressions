@@ -104,9 +104,9 @@ console.log(anything.test('x')); // => true
 
 Match any character(s) except these any (including zero) number of times.
 
-Parameter | Expected type      | Description
-----------|--------------------|----------------------------------
-`value`   | `String`           | String of characters to not match
+Parameter | Expected type        | Description
+----------|----------------------|------------------------
+`value`   | `String`, `[String]` | Characters to not match
 
 ```js
 const anythingButXyz = VerEx().anythingBut('xyz');
@@ -134,9 +134,9 @@ console.log(something.test('')); // => false
 
 Match any character(s) except these at least once.
 
-Parameter | Expected type | Description
-----------|---------------|----------------------------------
-`value`   | `String`      | String of characters to not match
+Parameter | Expected type        | Description
+----------|----------------------|------------------------
+`value`   | `String`, `[String]` | Characters to not match
 
 ```js
 const somethingButXyz = VerEx().somethingBut('xyz');
@@ -152,9 +152,9 @@ console.log(somethingButXyz.test('xyz')); // => false
 
 Match any of these characters exactly once.
 
-Parameter | Expected type | Description
-----------|---------------|------------------------------
-`value`   | `String`      | String of characters to match
+Parameter | Expected type         | Description
+----------|-----------------------|--------------------
+`value`   | `String`,  `[String]` | Characters to match
 
 ```js
 const expr = VerEx().anyOf('abc');
