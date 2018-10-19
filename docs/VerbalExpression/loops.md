@@ -13,6 +13,17 @@ console.log(integer.exec('foo 12345')[0]); // => '12345'
 
 ### Usage 1
 
+Match the previous group any number of times.
+
+```js
+const expr = VerEx().startOfLine().find(' ').multiple().endOfLine();
+const testString = '   ';
+
+console.log(expr.test('   ')); // => true
+```
+
+### Usage 2
+
 Match something zero or more times.
 
 Parameter | Expected type | Description
@@ -29,7 +40,7 @@ expr.lastIndex = 0;
 console.log(expr.test('what???'));// => true
 ```
 
-### Usage 2
+### Usage 3
 
 Match something greater than or equal to `min` number of times.
 
@@ -48,7 +59,7 @@ expr.lastIndex = 0;
 console.log(expr.test('hurray!!')); // => true
 ```
 
-### Usage 3
+### Usage 4
 
 Match something between `min` and `max` (inclusive) number of times.
 
