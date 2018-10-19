@@ -406,10 +406,10 @@ class VerbalExpression extends RegExp {
      * @memberof VerbalExpression
      */
     multiple(value, lower, upper) {
-        // Use expression or string
-        value = VerbalExpression.sanitize(value);
-
-        this.add(`(?:${value})`);
+        if (value !== undefined) {
+            value = VerbalExpression.sanitize(value);
+            this.add(`(?:${value})`);
+        }
 
         if (lower === undefined && upper === undefined) {
             this.add('*'); // Any number of times
