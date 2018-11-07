@@ -1,5 +1,4 @@
-VerbalExpressions
-=================
+# VerbalExpressions
 
 [![Build Status](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg)](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions)
 
@@ -22,37 +21,37 @@ Or use the [jsDelivr CDN](http://www.jsdelivr.com/projects/jsverbalexpressions).
 Install:
 
 ```sh
-$ npm install verbal-expressions
+npm install verbal-expressions
 ```
 
 Require:
 
-```javascript
+```js
 const VerEx = require('verbal-expressions');
 ```
 
 Or use ES6's `import`:
 
-```javascript
+```js
 import VerEx from 'verbal-expressions';
 ```
 
 ## Running tests
 
 ```sh
-$ npm test
+npm test
 ```
 
 (or)
 
 ```sh
-$ npm run test:verbose
+npm run test:verbose
 ```
 
 ## Creating a minified version
 
 ```sh
-$ npm run build
+npm run build
 ```
 
 This will run [Babel](https://babeljs.io) on `VerbalExpressions.js` and output the result to `dist/verbalexpressions.js`. A minified version of the same will also be written to `dist/verbalexpressions.min.js`.
@@ -61,7 +60,7 @@ A source map will also be created in `dist`, so you can use the original "un-bab
 
 ## API documentation
 
-You can find the API documentation at https://verbalexpressions.github.io/JSVerbalExpressions
+You can find the API documentation at [verbalexpressions.github.io/JSVerbalExpressions](https://verbalexpressions.github.io/JSVerbalExpressions).
 
 ## Examples
 
@@ -69,7 +68,7 @@ Here are some simple examples to give an idea of how VerbalExpressions works:
 
 ### Testing if we have a valid URL
 
-```javascript
+```js
 // Create an example of how to test for correctly formed URLs
 const tester = VerEx()
     .startOfLine()
@@ -95,7 +94,7 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
 
 ### Replacing strings
 
-```javascript
+```js
 // Create a test string
 const replaceMe = 'Replace bird with a duck';
 
@@ -109,9 +108,9 @@ const result = expression.replace(replaceMe, 'duck');
 alert(result);
 ```
 
-### Shorthand for string replace:
+### Shorthand for string replace
 
-```javascript
+```js
 const result = VerEx().find('red').replace('We have a red house', 'blue');
 
 // Outputs "We have a blue house"
@@ -137,6 +136,7 @@ git clone https://github.com/jehna/VerbalExpressions.git
 The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used as a basis for creating clean and readable JavaScript code. Check [`.eslintrc`](.eslintrc).
 
 Check out these slide decks for handy Github & git tips:
+
 - [Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/)
 - [More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/)
 
@@ -144,6 +144,7 @@ Check out these slide decks for handy Github & git tips:
 [extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
 
 ## Other Implementations
+
 You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
 
 - [Ruby](https://github.com/ryan-endacott/verbal_expressions)
