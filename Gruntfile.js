@@ -11,11 +11,16 @@ module.exports = function gruntConfig(grunt) {
 
         ava: {
             test: ['test/tests.js'],
+            options: {
+                nyc: true,
+            },
+
             verbose: {
+                test: ['test/tests.js'],
                 options: {
                     verbose: true,
+                    nyc: true,
                 },
-                test: ['test/tests.js'],
             },
         },
 
