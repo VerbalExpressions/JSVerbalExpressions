@@ -17,7 +17,6 @@ Match the previous group any number of times.
 
 ```js
 const expr = VerEx().startOfLine().find(' ').multiple().endOfLine();
-const testString = '   ';
 
 console.log(expr.test('   ')); // => true
 ```
