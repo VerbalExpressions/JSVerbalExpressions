@@ -14,7 +14,7 @@ This method will not be accessible from outside the source file since `VerEx()` 
 const stringToEscape = '(http://example.com?arg=foo+bar)';
 
 // => '\(http:\/\/example.com\?arg\=foo\+bar\)'
-console.log(VerbalExpressions.sanitize(stringToEscape));
+console.log(VerbalExpression.sanitize(stringToEscape));
 ```
 
 ## `add`
