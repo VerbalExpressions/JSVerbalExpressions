@@ -17,6 +17,8 @@ const stringToEscape = '(http://example.com?arg=foo+bar)';
 console.log(VerbalExpressions.sanitize(stringToEscape));
 ```
 
+`sanitize` is a static method on the `VerbalExpression` class. However, it is also exposed as `VerEx().sanitize`.
+
 ## `add`
 
 Append a literal expression to the object.

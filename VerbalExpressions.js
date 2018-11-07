@@ -480,5 +480,7 @@ class VerbalExpression extends RegExp {
  * @returns {VerbalExpression} new instance
  */
 function VerEx() { // eslint-disable-line no-unused-vars
-    return new VerbalExpression();
+    const instance = new VerbalExpression();
+    instance.sanitize = VerbalExpression.sanitize;
+    return instance;
 }

@@ -664,7 +664,9 @@ var VerbalExpression = function (_extendableBuiltin2) {
 
 function VerEx() {
     // eslint-disable-line no-unused-vars
-    return new VerbalExpression();
+    var instance = new VerbalExpression();
+    instance.sanitize = VerbalExpression.sanitize;
+    return instance;
 }
 //# sourceMappingURL=verbalexpressions.js.map
 
