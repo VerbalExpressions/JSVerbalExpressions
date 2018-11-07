@@ -14,21 +14,21 @@ interface VerbalExpression extends RegExp {
     then(value: Appendable): VerbalExpression;
     find(value: Appendable): VerbalExpression;
     maybe(value: Appendable): VerbalExpression;
+    or(value: Appendable): VerbalExpression;
     anything(): VerbalExpression;
     anythingBut(value: Appendable | string[]): VerbalExpression;
     something(): VerbalExpression;
     somethingBut(value: Appendable | string[]): VerbalExpression;
-    replace(source: string, value: string): string;
+    anyOf(value: Appendable | string[]): VerbalExpression;
+    any(value: Appendable | string[]): VerbalExpression;
+    not(value: Appendable): VerbalExpression;
+    range(): VerbalExpression;
     lineBreak(): VerbalExpression;
     br(): VerbalExpression;
     tab(): VerbalExpression;
     word(): VerbalExpression;
     digit(): VerbalExpression;
     whitespace(): VerbalExpression;
-    anyOf(value: Appendable | string[]): VerbalExpression;
-    any(value: Appendable | string[]): VerbalExpression;
-    not(value: Appendable): VerbalExpression;
-    range(): VerbalExpression;
     addModifier(modifier: RegExpFlags): VerbalExpression;
     removeModifier(modifier: RegExpFlags): VerbalExpression;
     withAnyCase(enable = true): VerbalExpression;
@@ -40,9 +40,9 @@ interface VerbalExpression extends RegExp {
     multiple(value: string, lower: number, upper?: number): VerbalExpression;
     multiple(value: string): VerbalExpression;
     multiple(): VerbalExpression;
-    or(value: Appendable): VerbalExpression;
     beginCapture(): VerbalExpression;
     endCapture(): VerbalExpression;
+    replace(source: string, value: string): string;
     toRegExp(): RegExp;
 }
 
