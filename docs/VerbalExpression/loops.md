@@ -32,7 +32,7 @@ Parameter | Expected type | Description
 
 ```js
 const expr = VerEx()
-    .find('what').then('?').multiple()
+    .find('what').multiple('?')
     .endOfLine();
 
 console.log(expr.test('what')); // => true
