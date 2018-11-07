@@ -10,7 +10,7 @@ Begin a capture group.
 
 End a capture group.
 
-_________________
+___
 
 ```js
 const phoneNumber = VerEx()

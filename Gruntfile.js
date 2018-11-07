@@ -79,6 +79,13 @@ module.exports = function gruntConfig(grunt) {
                 },
             },
         },
+
+        markdownlint: {
+            options: {
+                config: grunt.file.readJSON('.mdlintrc.json'),
+            },
+            src: ['README.md', 'docs/*.md', 'docs/VerbalExpression/*.md'],
+        },
     });
 
     grunt.loadNpmTasks('grunt-eslint');
@@ -87,9 +94,10 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-uglify-es');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
+    grunt.loadNpmTasks('grunt-markdownlint');
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['compile', 'eslint', 'ava:test']);
+    grunt.registerTask('test', ['compile', 'eslint', 'markdownlint', 'ava:test']);
     grunt.registerTask('test:verbose', ['compile', 'eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel', 'umd:all']);
     grunt.registerTask('build', ['compile', 'ava:test', 'uglify', 'sourcemap_localize']);
