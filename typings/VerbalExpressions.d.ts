@@ -7,8 +7,11 @@ type RegExpFlags = "g" | "i" | "m" | "u" | "y";
 type Appendable = VerbalExpression | RegExp | string | number;
 
 interface VerbalExpression extends RegExp {
+    // Utility //
     sanitize(value: Appendable): VerbalExpression;
     add(value: string | number): VerbalExpression;
+
+    // Rules //
     startOfLine(enable = true): VerbalExpression;
     endOfLine(enable = true): VerbalExpression;
     then(value: Appendable): VerbalExpression;
@@ -23,17 +26,23 @@ interface VerbalExpression extends RegExp {
     any(value: Appendable | string[]): VerbalExpression;
     not(value: Appendable): VerbalExpression;
     range(): VerbalExpression;
+
+    // Special Characters
     lineBreak(): VerbalExpression;
     br(): VerbalExpression;
     tab(): VerbalExpression;
     word(): VerbalExpression;
     digit(): VerbalExpression;
     whitespace(): VerbalExpression;
+
+    // Modifiers //
     addModifier(modifier: RegExpFlags): VerbalExpression;
     removeModifier(modifier: RegExpFlags): VerbalExpression;
     withAnyCase(enable = true): VerbalExpression;
     stopAtFirst(enable = true): VerbalExpression;
     searchOneLine(enable = true): VerbalExpression;
+
+    // Loops //
     repeatPrevious(min: number, max: number): VerbalExpression;
     repeatPrevious(count: number): VerbalExpression;
     oneOrMore(): VerbalExpression;
@@ -42,6 +51,8 @@ interface VerbalExpression extends RegExp {
     multiple(): VerbalExpression;
     beginCapture(): VerbalExpression;
     endCapture(): VerbalExpression;
+
+    // Miscellaneous
     replace(source: string, value: string): string;
     toRegExp(): RegExp;
 }
@@ -54,4 +65,3 @@ interface VerbalExpressionConstructor {
 
 declare var VerEx: VerbalExpressionConstructor;
 export = VerEx;
-
