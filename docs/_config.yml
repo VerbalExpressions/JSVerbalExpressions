@@ -7,9 +7,9 @@ show_downloads: true
 theme: jekyll-theme-minimal
 
 exclude:
-  - Gemfile
-  - Gemfile.lock
-  - .gitignore
+    - Gemfile
+    - Gemfile.lock
+    - .gitignore
 
 cdn_url: https://jsdelivr.com/package/npm/verbal-expressions
 npm_url: https://npmjs.com/package/verbal-expressions
