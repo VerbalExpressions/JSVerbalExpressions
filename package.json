@@ -23,7 +23,8 @@
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-eslint": "^21.0.0",
     "grunt-sourcemap-localize": "^0.1.0",
-    "grunt-umd": "^3.0.0"
+    "grunt-umd": "^3.0.0",
+    "nyc": "^13.1.0"
   },
   "repository": {
     "type": "git",
