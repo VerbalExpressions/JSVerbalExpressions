@@ -4,19 +4,20 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 type RegExpFlags = "g" | "i" | "m" | "u" | "y";
+type Appendable = VerbalExpression | RegExp | string | number;
 
 interface VerbalExpression extends RegExp {
-    sanitize(value: string): VerbalExpression;
-    add(value: string): VerbalExpression;
-    startOfLine(enable?: boolean): VerbalExpression;
-    endOfLine(enable?: boolean): VerbalExpression;
-    then(value: string): VerbalExpression;
-    find(value: string): VerbalExpression;
-    maybe(value: string): VerbalExpression;
+    sanitize(value: Appendable): VerbalExpression;
+    add(value: string | number): VerbalExpression;
+    startOfLine(enable = true): VerbalExpression;
+    endOfLine(enable = true): VerbalExpression;
+    then(value: Appendable): VerbalExpression;
+    find(value: Appendable): VerbalExpression;
+    maybe(value: Appendable): VerbalExpression;
     anything(): VerbalExpression;
-    anythingBut(value: string): VerbalExpression;
+    anythingBut(value: Appendable | string[]): VerbalExpression;
     something(): VerbalExpression;
-    somethingBut(value: string): VerbalExpression;
+    somethingBut(value: Appendable | string[]): VerbalExpression;
     replace(source: string, value: string): string;
     lineBreak(): VerbalExpression;
     br(): VerbalExpression;
@@ -24,18 +25,22 @@ interface VerbalExpression extends RegExp {
     word(): VerbalExpression;
     digit(): VerbalExpression;
     whitespace(): VerbalExpression;
-    anyOf(value: string): VerbalExpression;
-    any(value: string): VerbalExpression;
+    anyOf(value: Appendable | string[]): VerbalExpression;
+    any(value: Appendable | string[]): VerbalExpression;
+    not(value: Appendable): VerbalExpression;
     range(): VerbalExpression;
     addModifier(modifier: RegExpFlags): VerbalExpression;
     removeModifier(modifier: RegExpFlags): VerbalExpression;
-    withAnyCase(enable?: boolean): VerbalExpression;
-    stopAtFirst(enable?: boolean): VerbalExpression;
-    searchOneLine(enable?: boolean): VerbalExpression;
-    repeatPrevious(): VerbalExpression;
+    withAnyCase(enable = true): VerbalExpression;
+    stopAtFirst(enable = true): VerbalExpression;
+    searchOneLine(enable = true): VerbalExpression;
+    repeatPrevious(min: number, max: number): VerbalExpression;
+    repeatPrevious(count: number): VerbalExpression;
     oneOrMore(): VerbalExpression;
-    multiple(value: string, lower?: number, upper?: number): VerbalExpression;
-    or(value: string): VerbalExpression;
+    multiple(value: string, lower: number, upper?: number): VerbalExpression;
+    multiple(value: string): VerbalExpression;
+    multiple(): VerbalExpression;
+    or(value: Appendable): VerbalExpression;
     beginCapture(): VerbalExpression;
     endCapture(): VerbalExpression;
     toRegExp(): RegExp;
