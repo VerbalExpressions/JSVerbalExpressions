@@ -16,21 +16,12 @@ test('constructor', (t) => {
 // Utility //
 
 test('sanitize', (t) => {
-    // VerEx().then() sanitizes the parameter and calls `add`
-    // Hence, using `then()` is a fair proxy for testing sanitize
+    const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p';
+    const escaped = '\\$a\\^b\\\\c\\|d\\(e\\)f\\[g\\]h\\{i\\}j\\.k\\*l\\+m\\?n\\:o\\=p';
+    t.is(VerEx().sanitize(testString), escaped, 'Special characters should be sanitized');
 
-    let testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p[q]';
-    let testRegex = VerEx().startOfLine().then(testString).endOfLine();
-
-    t.true(testRegex.test(testString), 'Special characters should be sanitized');
-
-    testRegex = VerEx().startOfLine().then(42).endOfLine();
-    testString = '42';
-    t.true(testRegex.test(testString), 'Numbers are handled');
-
-    testRegex = VerEx().startOfLine().then(/foo/).endOfLine();
-    testString = 'foo';
-    t.true(testRegex.test(testString), 'Regular expressions are handled');
+    t.is(VerEx().sanitize(42), 42);
+    t.is(VerEx().sanitize(/foo/), 'foo');
 });
 
 test('add', (t) => {
