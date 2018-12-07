@@ -143,6 +143,9 @@ Check out these slide decks for handy Github & git tips:
 [ben-nadel]:http://www.bennadel.com/
 [extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
 
+## Tools
+- https://verbalregex.com - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
+
 ## Other Implementations
 
 You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
