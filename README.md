@@ -144,7 +144,9 @@ Check out these slide decks for handy Github & git tips:
 [extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
 
 ## Tools
+
 - https://verbalregex.com - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
+- https://jsbin.com/jaxivafezu/edit?js,console - JSBin Playground
 
 ## Other Implementations
 
