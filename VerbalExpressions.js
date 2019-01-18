@@ -40,12 +40,16 @@ class VerbalExpression extends RegExp {
      * @memberof VerbalExpression
      */
     static sanitize(value) {
-        if (value.source) {
+        if (value instanceof RegExp) {
             return value.source;
         }
 
         if (typeof value === 'number') {
             return value;
+        }
+
+        if (typeof value !== 'string') {
+            return '';
         }
 
         // Regular expression to match meta characters
