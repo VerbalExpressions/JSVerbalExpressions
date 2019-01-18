@@ -1,10 +1,13 @@
 # VerbalExpressions
 
 [![Build Status](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions.svg)](https://travis-ci.org/VerbalExpressions/JSVerbalExpressions)
+[![Latest Version](https://img.shields.io/npm/v/verbal-expressions.svg)](https://www.npmjs.com/package/verbal-expressions)
+[![jsDelivr](https://img.shields.io/badge/dynamic/json.svg?label=jsDelivr&url=https%3A%2F%2Fdata.jsdelivr.com%2Fv1%2Fpackage%2Fnpm%2Fverbal-expressions&query=%24..tags.latest&colorB=blue&prefix=v)](https://www.jsdelivr.com/package/npm/verbal-expressions)
+[![License](https://img.shields.io/github/license/VerbalExpressions/JSVerbalExpressions.svg)](LICENSE)
 
 ## JavaScript Regular Expressions made easy
 
-VerbalExpressions is a JavaScript library that helps to construct difficult regular expressions.
+VerbalExpressions is a JavaScript library that helps construct difficult regular expressions.
 
 ## How to get started
 
@@ -14,7 +17,7 @@ VerbalExpressions is a JavaScript library that helps to construct difficult regu
 <script src="VerbalExpressions.js"></script>
 ```
 
-Or use the [jsDelivr CDN](http://www.jsdelivr.com/projects/jsverbalexpressions).
+Or use the [jsDelivr CDN](https://www.jsdelivr.com/package/npm/verbal-expressions).
 
 ### On the server (node.js)
 
@@ -60,7 +63,7 @@ A source map will also be created in `dist`, so you can use the original "un-bab
 
 ## API documentation
 
-You can find the API documentation at [verbalexpressions.github.io/JSVerbalExpressions](https://verbalexpressions.github.io/JSVerbalExpressions).
+You can find the API documentation at [verbalexpressions.github.io/JSVerbalExpressions](https://verbalexpressions.github.io/JSVerbalExpressions). You can find the source code for the docs in [`docs`](docs/).
 
 ## Examples
 
@@ -117,10 +120,6 @@ const result = VerEx().find('red').replace('We have a red house', 'blue');
 alert(result);
 ```
 
-## A little word for a big help
-
-I'd like to promote a special thank-you to [Ben Nadel][ben-nadel] for his [great article about extending native JS objects][extending]
-
 ## Contributions
 
 Pull requests are warmly welcome!
@@ -128,7 +127,7 @@ Pull requests are warmly welcome!
 Clone the repo and fork:
 
 ```sh
-git clone https://github.com/jehna/VerbalExpressions.git
+git clone https://github.com/VerbalExpressions/JSVerbalExpressions.git
 ```
 
 ### Style guide
@@ -137,18 +136,16 @@ The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used a
 
 Check out these slide decks for handy Github & git tips:
 
-- [Git and Github Secrets](http://zachholman.com/talk/git-github-secrets/)
-- [More Git and Github Secrets](http://zachholman.com/talk/more-git-and-github-secrets/)
-
-[ben-nadel]:http://www.bennadel.com/
-[extending]:http://www.bennadel.com/blog/2292-extending-javascript-arrays-while-keeping-native-bracket-notation-functionality.htm
+- [Git and Github Secrets](https://zachholman.com/talk/git-github-secrets/)
+- [More Git and Github Secrets](https://zachholman.com/talk/more-git-and-github-secrets/)
 
 ## Tools
+
 - https://verbalregex.com - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
 
 ## Other Implementations
 
-You can see an up to date list of all ports on [VerbalExpressions.github.io](http://VerbalExpressions.github.io).
+You can see an up to date list of all ports on [VerbalExpressions.github.io](https://VerbalExpressions.github.io).
 
 - [Ruby](https://github.com/ryan-endacott/verbal_expressions)
 - [C#](https://github.com/VerbalExpressions/CSharpVerbalExpressions)
