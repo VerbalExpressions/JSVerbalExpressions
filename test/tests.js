@@ -18,10 +18,16 @@ test('constructor', (t) => {
 test('sanitize', (t) => {
     const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p';
     const escaped = '\\$a\\^b\\\\c\\|d\\(e\\)f\\[g\\]h\\{i\\}j\\.k\\*l\\+m\\?n\\:o\\=p';
+
     t.is(VerEx().sanitize(testString), escaped, 'Special characters should be sanitized');
 
     t.is(VerEx().sanitize(42), 42);
     t.is(VerEx().sanitize(/foo/), 'foo');
+
+    t.notThrows(() => VerEx().sanitize());
+    t.notThrows(() => VerEx().sanitize(NaN));
+    t.notThrows(() => VerEx().sanitize(null));
+    t.notThrows(() => VerEx().sanitize(true));
 });
 
 test('add', (t) => {
