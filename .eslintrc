@@ -8,16 +8,18 @@
         "max-len": [2, 255, 4],
         "no-param-reassign": 0,
         "spaced-comment": [2, "always", { "markers": ["/", "!"] }],
-        "no-plusplus": 0
+        "no-plusplus": 0,
+        "no-console": 0,
+        "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
     },
     "env": {
         "amd": true,
         "node": true,
         "commonjs": true,
         "es6": true,
-        "browser": true
+        "browser": true,
     },
     "globals": {
-        "VerEx": true
-    }
+        "VerEx": true,
+    },
 }

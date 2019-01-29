@@ -48,6 +48,34 @@ npm test
 npm run test:verbose
 ```
 
+## Running Benchmarks
+
+```sh
+npm run bench
+```
+
+With around 15 benchmarks, running takes approximately 2 minutes.
+
+Example output:
+
+```sh
+$ npm run bench
+
+> verbal-expressions@1.0.0 bench /Users/shreyasminocha/dev/forks/JSVerbalExpressions
+> node benchmark/run.js
+
+╔═════════════════════╤═══════╤═════════════╗
+║ Description         │ Time  │ Uncertainty ║
+╟─────────────────────┼───────┼─────────────╢
+║ VerEx  constructor  │ 0ms   │ ±0.00%      ║
+║ RegExp constructor  │ 132ns │ ±12.29%     ║
+╟─────────────────────┼───────┼─────────────╢
+║ ...                 │ ...   │ ...         ║
+╚═════════════════════╧═══════╧═════════════╝
+```
+
+The uncertainty column is a measure of how accurate the time in the `Time` column is.
+
 ## Creating a minified version
 
 ```sh
