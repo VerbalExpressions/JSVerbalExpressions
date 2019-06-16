@@ -92,7 +92,7 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-ava');
     grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-umd');
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-sourcemap-localize');
     grunt.loadNpmTasks('grunt-markdownlint');
 
