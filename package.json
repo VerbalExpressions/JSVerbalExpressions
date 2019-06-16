@@ -1,7 +1,7 @@
 {
   "name": "verbal-expressions",
   "description": "JavaScript Regular expressions made easy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "regular expressions",
     "regex"
@@ -46,7 +46,7 @@
   },
   "types": "./typings/VerbalExpressions.d.ts",
   "engines": {
-    "node": "^9.2.0"
+    "node": ">=9.2.0"
   },
   "dependencies": {}
 }
