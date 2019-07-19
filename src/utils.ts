@@ -6,3 +6,11 @@ export function simplifyExpression(expression: Expression): string {
   }
   return expression;
 }
+
+export function simplifyAndGroup(expression: Expression) {
+  return `(?:${simplifyExpression(expression)})`;
+}
+
+export function simpleExp(callback: (exp: string) => string) {
+  return (input: Expression) => callback(simplifyAndGroup(input));
+}

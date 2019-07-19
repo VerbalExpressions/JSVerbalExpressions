@@ -1,9 +1,6 @@
 import { Expression } from "./types";
-import { simplifyExpression } from "./utils";
+import { simplifyAndGroup } from "./utils";
 
 export default function or(...inputs: Expression[]) {
-  return inputs
-    .map(simplifyExpression)
-    .map(expression => `(?:${expression})`)
-    .join("|");
+  return inputs.map(simplifyAndGroup).join("|");
 }

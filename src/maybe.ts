@@ -1,6 +1,3 @@
-import { Expression } from "./types";
-import { simplifyExpression } from "./utils";
+import { simpleExp } from "./utils";
 
-export function maybe(input: Expression) {
-  return `(?:${simplifyExpression(input)})?`;
-}
+export const maybe = simpleExp(exp => `${exp}?`);
