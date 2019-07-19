@@ -1,11 +1,5 @@
-type Expression = RegExp | string;
-
-function simplifyExpression(expression: Expression): string {
-  if (expression instanceof RegExp) {
-    return expression.source;
-  }
-  return expression;
-}
+import { Expression } from "./types";
+import { simplifyExpression } from "./utils";
 
 function VerEx(...args: Expression[]): RegExp {
   return new RegExp(compile(...args));
