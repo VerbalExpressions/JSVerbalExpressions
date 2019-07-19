@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "umd",
     "outDir": "dist/",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "es6"
   },
   "include": ["src/**/*.ts"]
 }

@@ -11,6 +11,8 @@ export function simplifyAndGroup(expression: Expression) {
   return `(?:${simplifyExpression(expression)})`;
 }
 
-export function simpleExp(callback: (exp: string) => string) {
-  return (input: Expression) => callback(simplifyAndGroup(input));
+export function simpleExp<ExpType extends Expression = Expression>(
+  callback: (exp: string) => string
+) {
+  return (input: ExpType) => callback(simplifyAndGroup(input));
 }
