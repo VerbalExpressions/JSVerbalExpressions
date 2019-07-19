@@ -1,4 +1,4 @@
-import { startOfLine, endOfLine, anything } from "./constants";
+import { startOfLine, endOfLine, anything, something } from "./constants";
 import VerEx from "./verbalexpressions";
 
 describe("startOfLine", () => {
@@ -48,5 +48,27 @@ describe("anything", () => {
 
   it("should match if all other conditions are met with anything being empty", () => {
     expect(VerEx("foo", anything, "bar").test("foobar")).toBeTruthy();
+  });
+});
+
+describe("something", () => {
+  it("should match a random string", () => {
+    expect(VerEx(something).test("foobar" + Math.random())).toBeTruthy();
+  });
+
+  it("should not match an empty string", () => {
+    expect(VerEx(something).test("")).toBeFalsy();
+  });
+
+  it("should require all other conditions", () => {
+    expect(VerEx("foo", something).test("bar")).toBeFalsy();
+  });
+
+  it("should match if all other conditions are met", () => {
+    expect(VerEx("foo", something).test("foobar")).toBeTruthy();
+  });
+
+  it("should not match if all other conditions are met with something being empty", () => {
+    expect(VerEx("foo", something, "bar").test("foobar")).toBeFalsy();
   });
 });
