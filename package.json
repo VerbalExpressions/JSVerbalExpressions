@@ -8,6 +8,9 @@
   ],
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   },
   "repository": {
