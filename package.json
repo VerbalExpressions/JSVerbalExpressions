@@ -1,31 +1,14 @@
 {
   "name": "verbal-expressions",
   "description": "JavaScript Regular expressions made easy",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "keywords": [
     "regular expressions",
     "regex"
   ],
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
-    "ava": "^2.1.0",
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.10.0",
-    "grunt": "^1.0.4",
-    "grunt-ava": "^0.19.0",
-    "grunt-babel": "^7.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
-    "grunt-eslint": "^21.0.0",
-    "grunt-markdownlint": "^2.1.0",
-    "grunt-sourcemap-localize": "^0.1.0",
-    "grunt-umd": "^3.0.0",
-    "nyc": "^14.1.1"
+    "typescript": "^3.5.3"
   },
   "repository": {
     "type": "git",
@@ -37,15 +20,10 @@
   "main": "dist/verbalexpressions.js",
   "license": "MIT",
   "scripts": {
-    "test": "grunt test",
-    "test:verbose": "grunt test:verbose",
-    "compile": "grunt compile",
-    "grunt": "grunt",
-    "build": "grunt build"
+    "test": "jest",
+    "build": "tsc"
   },
-  "types": "./typings/VerbalExpressions.d.ts",
   "engines": {
     "node": ">=9.2.0"
-  },
-  "dependencies": {}
+  }
 }

@@ -1,15 +1,25 @@
 {
     "heading-increment": true,
-    "first-heading-h1": { "level": 1 },
-    "heading-style": { "style": "atx" },
-    "ul-style": { "style": "dash" },
+    "first-heading-h1": {
+        "level": 1
+    },
+    "heading-style": {
+        "style": "atx"
+    },
+    "ul-style": {
+        "style": "dash"
+    },
     "list-indent": true,
     "ul-start-left": true,
-    "ul-indent": { "indent": 4 },
+    "ul-indent": {
+        "indent": 4
+    },
     "no-trailing-spaces": true,
     "no-hard-tabs": true,
     "no-reversed-links": true,
-    "no-multiple-blanks": { "maximum": 1 },
+    "no-multiple-blanks": {
+        "maximum": 1
+    },
     "line-length": false,
     "commands-show-output": true,
     "no-missing-space-atx": true,
@@ -21,13 +31,17 @@
     "no-duplicate-heading": true,
     "single-h1": true,
     "no-trailing-punctuation": true,
-    "ol-prefix": { "style": "ordered" },
+    "ol-prefix": {
+        "style": "ordered"
+    },
     "list-marker-space": 1,
     "blanks-around-fences": true,
     "blanks-around-lists": true,
     "no-inline-html": false,
     "no-bare-urls": true,
-    "hr-style": { "style": "___" },
+    "hr-style": {
+        "style": "___"
+    },
     "no-emphasis-as-heading": true,
     "no-space-in-emphasis": true,
     "no-space-in-code": false,

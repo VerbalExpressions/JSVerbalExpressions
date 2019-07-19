@@ -30,25 +30,19 @@ npm install verbal-expressions
 Require:
 
 ```js
-const VerEx = require('verbal-expressions');
+const VerEx = require("verbal-expressions");
 ```
 
 Or use ES6's `import`:
 
 ```js
-import VerEx from 'verbal-expressions';
+import VerEx from "verbal-expressions";
 ```
 
 ## Running tests
 
 ```sh
 npm test
-```
-
-(or)
-
-```sh
-npm run test:verbose
 ```
 
 ## Creating a minified version
@@ -74,22 +68,22 @@ Here are some simple examples to give an idea of how VerbalExpressions works:
 ```js
 // Create an example of how to test for correctly formed URLs
 const tester = VerEx()
-    .startOfLine()
-    .then('http')
-    .maybe('s')
-    .then('://')
-    .maybe('www.')
-    .anythingBut(' ')
-    .endOfLine();
+  .startOfLine()
+  .then("http")
+  .maybe("s")
+  .then("://")
+  .maybe("www.")
+  .anythingBut(" ")
+  .endOfLine();
 
 // Create an example URL
-const testMe = 'https://www.google.com';
+const testMe = "https://www.google.com";
 
 // Use RegExp object's native test() function
 if (tester.test(testMe)) {
-    alert('We have a correct URL'); // This output will fire
+  alert("We have a correct URL"); // This output will fire
 } else {
-    alert('The URL is incorrect');
+  alert("The URL is incorrect");
 }
 
 console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
@@ -99,13 +93,13 @@ console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)
 
 ```js
 // Create a test string
-const replaceMe = 'Replace bird with a duck';
+const replaceMe = "Replace bird with a duck";
 
 // Create an expression that seeks for word "bird"
-const expression = VerEx().find('bird');
+const expression = VerEx().find("bird");
 
 // Execute the expression like a normal RegExp object
-const result = expression.replace(replaceMe, 'duck');
+const result = expression.replace(replaceMe, "duck");
 
 // Outputs "Replace duck with a duck"
 alert(result);
@@ -114,7 +108,9 @@ alert(result);
 ### Shorthand for string replace
 
 ```js
-const result = VerEx().find('red').replace('We have a red house', 'blue');
+const result = VerEx()
+  .find("red")
+  .replace("We have a red house", "blue");
 
 // Outputs "We have a blue house"
 alert(result);
