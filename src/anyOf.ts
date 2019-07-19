@@ -1,3 +1,3 @@
 export default function anyOf(input: string) {
-  return `[${input}]`;
+  return new RegExp(`[${input}]`);
 }

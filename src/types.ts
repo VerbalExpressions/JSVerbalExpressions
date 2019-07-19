@@ -1,1 +1,1 @@
-export type Expression = RegExp | string;
+export type Expression = RegExp | string | number;

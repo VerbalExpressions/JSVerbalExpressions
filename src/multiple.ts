@@ -6,7 +6,8 @@ export default function multiple(
   minTimes?: number,
   maxTimes?: number
 ) {
-  return minTimes
+  const output = minTimes
     ? `${simplifyAndGroup(input)}{${minTimes},${maxTimes || ""}}`
     : `${simplifyAndGroup(input)}*`;
+  return new RegExp(output);
 }
