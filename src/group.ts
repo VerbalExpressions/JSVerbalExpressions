@@ -1,4 +1,4 @@
-import { Expression } from "./types";
+import Expression from "./types/expression";
 import { compile } from "./verbalexpressions";
 
 export default function group(...inputs: Expression[]) {

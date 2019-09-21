@@ -1,5 +1,5 @@
-import { Expression } from "./types";
-import { sanitize } from "./utils";
+import Expression from "./types/expression";
+import sanitize from "./util/sanitize";
 
 export function simplifyExpression(expression: Expression): string {
   if (expression instanceof RegExp) {

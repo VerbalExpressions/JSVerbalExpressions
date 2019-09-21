@@ -1,16 +1,6 @@
-import { Expression } from "./types";
+import Expression from "../types/expression";
 
-export function simplifyAndGroup(expression: Expression) {
-  return `(?:${sanitize(expression)})`;
-}
-
-export function simpleExp<ExpType extends Expression = Expression>(
-  callback: (exp: string) => string
-) {
-  return (input: ExpType) => new RegExp(callback(simplifyAndGroup(input)));
-}
-
-export function sanitize(input: Expression) {
+export default function sanitize(input: Expression) {
   if (input instanceof RegExp) {
     return input.source;
   }

@@ -1,3 +1,3 @@
-import { simpleExp } from "./utils";
+import simpleExp from "./util/simple-exp";
 
 export const maybe = simpleExp(exp => `${exp}?`);
