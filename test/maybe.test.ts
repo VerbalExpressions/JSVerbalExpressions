@@ -1,4 +1,4 @@
-import { maybe } from "../src/maybe";
+import maybe from "../src/maybe";
 import VerEx from "../src/verbalexpressions";
 
 describe("maybe", () => {

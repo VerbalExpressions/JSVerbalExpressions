@@ -1,13 +1,15 @@
-import Expression from "./types/expression";
-import simplifyAndGroup from "./util/simplify-and-group";
+import RawExpression from "./types/raw-expression";
+import SanitizeWorthy from "./types/sanitize-worthy";
 
-export default function multiple(
-  input: Expression,
+function multiple(
+  input: SanitizeWorthy | RegExp | RawExpression,
   minTimes?: number,
   maxTimes?: number
-) {
+): RawExpression {
   const output = minTimes
-    ? `${simplifyAndGroup(input)}{${minTimes},${maxTimes || ""}}`
-    : `${simplifyAndGroup(input)}*`;
-  return new RegExp(output);
+    ? `${input}{${minTimes},${maxTimes || ""}}`
+    : `${input}*`;
+  return new RawExpression(output);
 }
+
+export default multiple;

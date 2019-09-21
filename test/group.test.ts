@@ -1,7 +1,7 @@
 import group from "../src/group";
 import VerEx from "../src/verbalexpressions";
 import { anything } from "../src/constants";
-import { maybe } from "../src/maybe";
+import maybe from "../src/maybe";
 
 describe("group", () => {
   it("should export a function", () => {

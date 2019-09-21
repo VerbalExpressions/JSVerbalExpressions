@@ -1,3 +1,11 @@
-import simpleExp from "./util/simple-exp";
+import RawExpression from "./types/raw-expression";
+import SanitizeWorthy from "./types/sanitize-worthy";
+import exprToRaw from "./util/expr-to-raw";
 
-export const maybe = simpleExp(exp => `${exp}?`);
+function maybe(exp: RawExpression | RegExp | SanitizeWorthy): RawExpression {
+  const raw = exprToRaw(exp);
+
+  return new RawExpression(`(?:${raw})?`);
+}
+
+export default maybe;

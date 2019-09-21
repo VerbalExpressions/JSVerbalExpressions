@@ -1,3 +1,11 @@
-export default function anyOf(input: string) {
-  return new RegExp(`[${input}]`);
+import RawExpression from "./types/raw-expression";
+import SanitizeWorthy from "./types/sanitize-worthy";
+import exprToRaw from "./util/expr-to-raw";
+
+function anyOf(exp: SanitizeWorthy | RegExp | RawExpression): RawExpression {
+  const raw = exprToRaw(exp);
+
+  return new RawExpression(`[${raw}]`);
 }
+
+export default anyOf;

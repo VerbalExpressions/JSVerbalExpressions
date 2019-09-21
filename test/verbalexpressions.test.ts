@@ -1,6 +1,6 @@
 import VerEx from "../src/verbalexpressions";
 import { startOfLine, endOfLine } from "../src/constants";
-import { maybe } from "../src/maybe";
+import maybe from "../src/maybe";
 import anythingBut from "../src/anythingBut";
 import or from "../src/or";
 
@@ -38,6 +38,7 @@ describe("Complex expressions", () => {
 
   it("should sanitize special characters", () => {
     const exp = VerEx("[foo]", or(".", "\\w"));
+
     expect(exp.test("[foo].")).toBeTruthy();
     expect(exp.test("[foo]\\w")).toBeTruthy();
     expect(exp.test("[foo] ")).toBeFalsy();
@@ -46,6 +47,7 @@ describe("Complex expressions", () => {
 
   it("should sanitize dot in numbers", () => {
     const exp = VerEx(startOfLine, 1.5, endOfLine);
+
     expect(exp.test("105")).toBeFalsy();
     expect(exp.test("1.5")).toBeTruthy();
   });

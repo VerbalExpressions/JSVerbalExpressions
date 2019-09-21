@@ -1,20 +1,10 @@
-import Expression from "./types/expression";
-import sanitize from "./util/sanitize";
+import SanitizeWorthy from "./types/sanitize-worthy";
+import RawExpression from "./types/raw-expression";
+import mixedToRawArray from "./util/mixed-to-raw-array";
 
-export function simplifyExpression(expression: Expression): string {
-  if (expression instanceof RegExp) {
-    return expression.source;
-  }
-
-  return sanitize(expression.toString());
-}
-
-function VerEx(...args: Expression[]): RegExp {
-  return new RegExp(compile(...args));
-}
-
-export function compile(...args: Expression[]): string {
-  return args.map(simplifyExpression).join("");
+function VerEx(...args: (SanitizeWorthy | RegExp | RawExpression)[]): RegExp {
+  args = mixedToRawArray(args);
+  return new RegExp(args.join(''));
 }
 
 export default VerEx;

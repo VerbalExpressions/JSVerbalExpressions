@@ -1,10 +1,7 @@
-import Expression from "../types/expression";
+import SanitizeWorthy from "../types/sanitize-worthy";
+import RawExpression from "../types/raw-expression";
 
-export default function sanitize(input: Expression) {
-  if (input instanceof RegExp) {
-    return input.source;
-  }
-
+export default function sanitize(input: SanitizeWorthy): SanitizeWorthy {
   // Regular expression to match meta characters
   // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
   const toEscape = /([\].|*?+(){}^$\\:=[])/g;

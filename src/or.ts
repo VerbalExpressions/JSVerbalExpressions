@@ -1,6 +1,10 @@
-import Expression from "./types/expression";
-import simplifyAndGroup from "./util/simplify-and-group";
+import RawExpression from "./types/raw-expression";
+import SanitizeWorthy from "./types/sanitize-worthy";
+import mixedToRawArray from "./util/mixed-to-raw-array";
 
-export default function or(...inputs: Expression[]) {
-  return new RegExp(inputs.map(simplifyAndGroup).join("|"));
+function or(...inputs: (SanitizeWorthy | RegExp | RawExpression)[]): RawExpression {
+  inputs = mixedToRawArray(inputs);
+  return new RawExpression(`(?:${inputs.join("|")})`);
 }
+
+export default or;
