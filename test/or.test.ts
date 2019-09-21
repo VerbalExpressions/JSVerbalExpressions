@@ -1,5 +1,5 @@
-import VerEx from "./verbalexpressions";
-import or from "./or";
+import VerEx from "../src/verbalexpressions";
+import or from "../src/or";
 
 describe("or", () => {
   it("should export a function", () => {

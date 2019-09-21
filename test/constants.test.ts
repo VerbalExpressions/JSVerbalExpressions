@@ -1,5 +1,5 @@
-import { startOfLine, endOfLine, anything, something } from "./constants";
-import VerEx from "./verbalexpressions";
+import { startOfLine, endOfLine, anything, something } from "../src/constants";
+import VerEx from "../src/verbalexpressions";
 
 describe("startOfLine", () => {
   it("should match line that starts with specified string", () => {

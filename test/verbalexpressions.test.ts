@@ -1,8 +1,8 @@
-import VerEx from "./verbalexpressions";
-import { startOfLine, endOfLine } from "./constants";
-import { maybe } from "./maybe";
-import anythingBut from "./anythingBut";
-import or from "./or";
+import VerEx from "../src/verbalexpressions";
+import { startOfLine, endOfLine } from "../src/constants";
+import { maybe } from "../src/maybe";
+import anythingBut from "../src/anythingBut";
+import or from "../src/or";
 
 describe("Complex expressions", () => {
   it("should match simple URLs", () => {

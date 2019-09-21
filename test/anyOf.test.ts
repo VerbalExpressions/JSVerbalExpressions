@@ -1,6 +1,6 @@
-import anyOf from "./anyOf";
-import VerEx from "./verbalexpressions";
-import { startOfLine, endOfLine } from "./constants";
+import anyOf from "../src/anyOf";
+import VerEx from "../src/verbalexpressions";
+import { startOfLine, endOfLine } from "../src/constants";
 
 describe("anyOf", () => {
   it("should export a function", () => {

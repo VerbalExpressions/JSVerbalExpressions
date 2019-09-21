@@ -1,6 +1,6 @@
-import multiple from "./multiple";
-import VerEx from "./verbalexpressions";
-import { startOfLine, endOfLine } from "./constants";
+import multiple from "../src/multiple";
+import VerEx from "../src/verbalexpressions";
+import { startOfLine, endOfLine } from "../src/constants";
 
 describe("multiple", () => {
   it("should export a function", () => {

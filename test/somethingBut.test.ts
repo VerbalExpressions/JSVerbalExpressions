@@ -1,6 +1,6 @@
-import somethingBut from "./somethingBut";
-import VerEx from "./verbalexpressions";
-import { startOfLine, endOfLine } from "./constants";
+import somethingBut from "../src/somethingBut";
+import VerEx from "../src/verbalexpressions";
+import { startOfLine, endOfLine } from "../src/constants";
 
 describe("somethingBut", () => {
   const somethingButAbc = VerEx(startOfLine, somethingBut("abc"), endOfLine);

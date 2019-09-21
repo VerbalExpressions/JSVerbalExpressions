@@ -1,5 +1,5 @@
-import { maybe } from "./maybe";
-import VerEx from "./verbalexpressions";
+import { maybe } from "../src/maybe";
+import VerEx from "../src/verbalexpressions";
 
 describe("maybe", () => {
   it("should export a function", () => {
