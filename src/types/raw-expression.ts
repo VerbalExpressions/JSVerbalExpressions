@@ -1,7 +1,7 @@
 type Primitives = string | number;
 
 class RawExpression {
-  value: Primitives;
+  public value: Primitives;
 
   constructor(value: Primitives | RegExp | RawExpression) {
     if (value instanceof RawExpression) {
@@ -17,7 +17,7 @@ class RawExpression {
     this.value = value;
   }
 
-  toString() {
+  public toString() {
     if (typeof this.value === "number") {
       return this.value.toString();
     }

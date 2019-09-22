@@ -1,5 +1,5 @@
-import RawExpression from "../types/raw-expression";
 import Expression from "../types/expression";
+import RawExpression from "../types/raw-expression";
 import sanitize from "./sanitize";
 
 function exprToRaw(arg: Expression): RawExpression {

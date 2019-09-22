@@ -1,5 +1,5 @@
-import SanitizeWorthy from "./sanitize-worthy";
 import RawExpression from "./raw-expression";
+import SanitizeWorthy from "./sanitize-worthy";
 
 type Expression = SanitizeWorthy | RegExp | RawExpression;
 

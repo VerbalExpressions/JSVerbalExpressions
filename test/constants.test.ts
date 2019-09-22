@@ -1,4 +1,4 @@
-import { startOfLine, endOfLine, anything, something } from "../src/constants";
+import {  anything, endOfLine, something, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 
 describe("startOfLine", () => {

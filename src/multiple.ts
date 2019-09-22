@@ -1,5 +1,5 @@
-import RawExpression from "./types/raw-expression";
 import Expression from "./types/expression";
+import RawExpression from "./types/raw-expression";
 
 function multiple(
   input: Expression,

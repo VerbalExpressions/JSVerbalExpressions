@@ -1,6 +1,6 @@
+import { endOfLine, startOfLine } from "../src/constants";
 import oneOrMore from "../src/oneOrMore";
 import VerEx from "../src/verbalexpressions";
-import { startOfLine, endOfLine } from "../src/constants";
 
 describe("oneOrMore", () => {
   it("should export a function", () => {
