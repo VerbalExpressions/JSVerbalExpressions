@@ -8,4 +8,12 @@ function group(...inputs: Expression[]): RawExpression {
   return new RawExpression(`(${inputs.join("")})`);
 }
 
+group.capturing = group;
+
+group.nonCapturing = (...inputs: Expression[]): RawExpression => {
+  inputs = mixedToRawArray(inputs);
+
+  return new RawExpression(`(?:${inputs.join("")})`);
+};
+
 export default group;
