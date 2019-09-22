@@ -11,6 +11,8 @@ function multiple(
   if (minTimes === undefined && maxTimes === undefined) {
     output = `(?:${input})*`;
   } else if (maxTimes === undefined) {
+    output = `(?:${input}){${minTimes}}`;
+  } else if (maxTimes === Infinity) {
     output = `(?:${input}){${minTimes},}`;
   } else {
     output = `(?:${input}){${minTimes},${maxTimes}}`;
