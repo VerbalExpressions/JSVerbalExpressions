@@ -1,8 +1,8 @@
 import RawExpression from "./types/raw-expression";
-import SanitizeWorthy from "./types/sanitize-worthy";
 import mixedToRawArray from "./util/mixed-to-raw-array";
+import Expression from "./types/expression";
 
-function group(...inputs: (SanitizeWorthy | RegExp | RawExpression)[]): RawExpression {
+function group(...inputs: Expression[]): RawExpression {
   inputs = mixedToRawArray(inputs);
 
   return new RawExpression(`(${inputs.join("")})`);

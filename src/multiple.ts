@@ -1,8 +1,8 @@
 import RawExpression from "./types/raw-expression";
-import SanitizeWorthy from "./types/sanitize-worthy";
+import Expression from "./types/expression";
 
 function multiple(
-  input: SanitizeWorthy | RegExp | RawExpression,
+  input: Expression,
   minTimes?: number,
   maxTimes?: number
 ): RawExpression {

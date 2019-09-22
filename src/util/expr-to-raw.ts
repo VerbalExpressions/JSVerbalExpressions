@@ -1,8 +1,8 @@
 import RawExpression from "../types/raw-expression";
-import SanitizeWorthy from "../types/sanitize-worthy";
+import Expression from "../types/expression";
 import sanitize from "./sanitize";
 
-function exprToRaw(arg: SanitizeWorthy | RegExp | RawExpression): RawExpression {
+function exprToRaw(arg: Expression): RawExpression {
   if (arg instanceof RawExpression) {
     return arg;
   } else if (arg instanceof RegExp) {

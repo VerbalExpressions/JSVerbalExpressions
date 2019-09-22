@@ -1,8 +1,8 @@
 import RawExpression from "./types/raw-expression";
-import SanitizeWorthy from "./types/sanitize-worthy";
+import Expression from "./types/expression";
 import exprToRaw from "./util/expr-to-raw";
 
-function somethingBut(exp: SanitizeWorthy | RegExp | RawExpression): RawExpression {
+function somethingBut(exp: Expression): RawExpression {
   const raw = exprToRaw(exp);
 
   return new RawExpression(`[^${raw}]+`);
