@@ -1,4 +1,4 @@
-import anythingBut from "../src/anythingBut";
+import anythingBut from "../src/anything-but";
 import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 

@@ -1,5 +1,5 @@
 import { endOfLine, startOfLine } from "../src/constants";
-import oneOrMore from "../src/oneOrMore";
+import oneOrMore from "../src/one-or-more";
 import VerEx from "../src/verbalexpressions";
 
 describe("oneOrMore", () => {

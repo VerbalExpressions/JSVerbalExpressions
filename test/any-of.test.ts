@@ -1,4 +1,4 @@
-import anyOf from "../src/anyOf";
+import anyOf from "../src/any-of";
 import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 

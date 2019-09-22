@@ -1,5 +1,5 @@
 import { endOfLine, startOfLine } from "../src/constants";
-import somethingBut from "../src/somethingBut";
+import somethingBut from "../src/something-but";
 import VerEx from "../src/verbalexpressions";
 
 describe("somethingBut", () => {
