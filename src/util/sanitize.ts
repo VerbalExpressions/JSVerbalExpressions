@@ -1,7 +1,6 @@
 import SanitizeWorthy from "../types/sanitize-worthy";
-import RawExpression from "../types/raw-expression";
 
-export default function sanitize(input: SanitizeWorthy): SanitizeWorthy {
+export default function sanitize(input: SanitizeWorthy): string {
   // Regular expression to match meta characters
   // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
   const toEscape = /([\].|*?+(){}^$\\:=[])/g;
