@@ -6,9 +6,16 @@ function multiple(
   minTimes?: number,
   maxTimes?: number
 ): RawExpression {
-  const output = minTimes
-    ? `${input}{${minTimes},${maxTimes || ""}}`
-    : `${input}*`;
+  let output: string;
+
+  if (minTimes === undefined && maxTimes === undefined) {
+    output = `(?:${input})*`;
+  } else if (maxTimes === undefined) {
+    output = `(?:${input}){${minTimes},}`;
+  } else {
+    output = `(?:${input}){${minTimes},${maxTimes}}`;
+  }
+
   return new RawExpression(output);
 }
 
