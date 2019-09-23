@@ -14,6 +14,6 @@ lookbehind.negative = (input: Expression): RawExpression => {
   input = exprToRaw(input);
 
   return new RawExpression(`(?>!${input})`);
-}
+};
 
 export default lookbehind;

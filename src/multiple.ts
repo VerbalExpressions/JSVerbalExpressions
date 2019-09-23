@@ -1,6 +1,6 @@
+import group from "./group";
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
-import group from "./group";
 
 function multiple(
   input: Expression,
