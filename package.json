@@ -24,8 +24,9 @@
   "main": "dist/verbalexpressions.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "jest": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
+    "test": "status=0; npm run lint || status=$?; npm run jest || status=$?; exit $status",
     "build": "tsc"
   },
   "engines": {
