@@ -1,21 +1,24 @@
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
+import group from "./group";
 
 function multiple(
   input: Expression,
   minTimes?: number,
   maxTimes?: number
 ): RawExpression {
+  const grouped = group.nonCapturing(input);
+
   let output: string;
 
   if (minTimes === undefined && maxTimes === undefined) {
-    output = `(?:${input})*`;
+    output = `${grouped}*`;
   } else if (maxTimes === undefined) {
-    output = `(?:${input}){${minTimes}}`;
+    output = `${grouped}{${minTimes}}`;
   } else if (maxTimes === Infinity) {
-    output = `(?:${input}){${minTimes},}`;
+    output = `${grouped}{${minTimes},}`;
   } else {
-    output = `(?:${input}){${minTimes},${maxTimes}}`;
+    output = `${grouped}{${minTimes},${maxTimes}}`;
   }
 
   return new RawExpression(output);

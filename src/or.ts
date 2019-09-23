@@ -1,10 +1,13 @@
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 import mixedToRawArray from "./util/mixed-to-raw-array";
+import group from "./group";
 
 function or(...inputs: Expression[]): RawExpression {
   inputs = mixedToRawArray(inputs);
-  return new RawExpression(`(?:${inputs.join("|")})`);
+  const alternation = new RawExpression(inputs.join("|"));
+
+  return group.nonCapturing(alternation);
 }
 
 export default or;
