@@ -1,13 +1,13 @@
-import anyOf from "../src/any-of";
+import anyCharacterFrom from "../src/any-character-from";
 import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 
-describe("anyOf", () => {
+describe("anyCharacterFrom", () => {
   it("should export a function", () => {
-    expect(anyOf).toBeInstanceOf(Function);
+    expect(anyCharacterFrom).toBeInstanceOf(Function);
   });
 
-  const exp = VerEx(startOfLine, "foo ", anyOf("xyz"), endOfLine);
+  const exp = VerEx(startOfLine, "foo ", anyCharacterFrom(["x", "y", "z"]), endOfLine);
   it("should match any single character", () => {
     expect(exp.test("foo x")).toBeTruthy();
     expect(exp.test("foo y")).toBeTruthy();

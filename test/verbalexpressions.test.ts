@@ -1,6 +1,7 @@
-import anythingBut from "../src/anything-but";
+import anyCharacterBut from "../src/any-character-but";
 import { endOfLine, startOfLine } from "../src/constants";
 import maybe from "../src/maybe";
+import multiple from "../src/multiple";
 import or from "../src/or";
 import VerEx from "../src/verbalexpressions";
 
@@ -12,7 +13,7 @@ describe("Complex expressions", () => {
       maybe("s"),
       "://",
       maybe("www."),
-      anythingBut(" "),
+      multiple(anyCharacterBut(" ")),
       endOfLine
     );
 
@@ -25,7 +26,7 @@ describe("Complex expressions", () => {
   it("should match simple protocols", () => {
     const protocol = or(VerEx("http", maybe("s"), "://"), "ftp://", "smtp://");
     const removeWww = maybe("www.");
-    const domain = anythingBut(" /");
+    const domain = multiple(anyCharacterBut([" ", "/"]));
     const exp = VerEx(startOfLine, protocol, removeWww, domain);
 
     expect(exp.test("http://www.google.com")).toBeTruthy();
