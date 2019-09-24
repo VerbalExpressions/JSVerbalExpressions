@@ -2,20 +2,19 @@ import { endOfLine, startOfLine } from "../src/constants";
 import multiple from "../src/multiple";
 import VerEx from "../src/verbalexpressions";
 
-describe("multiple", () => {
-  it("should export a function", () => {
+describe("multiple()", () => {
+  it("should be a function", () => {
     expect(multiple).toBeInstanceOf(Function);
   });
 });
 
 describe("multiple(arg)", () => {
-
-  it("should match zero times", () => {
+  it("should match zero repetitions", () => {
     const exp = VerEx(startOfLine, multiple("foo"), endOfLine);
     expect(exp.test("")).toBeTruthy();
   });
 
-  it("should match * number of times", () => {
+  it("should match * number of repetitions", () => {
     const exp = VerEx(startOfLine, multiple("foo"), endOfLine);
     for (let i = 0; i < 20; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
@@ -24,39 +23,68 @@ describe("multiple(arg)", () => {
 });
 
 describe("multiple(arg, n)", () => {
-  it("should match exactly n times", () => {
-    const exp = VerEx(startOfLine, multiple("foo", 2), endOfLine);
+  const exp = VerEx(startOfLine, multiple("foo", 2), endOfLine);
+
+  it("should match exactly `n` repetitions", () => {
+    expect(exp.test("foo".repeat(2))).toBeTruthy();
+  });
+
+  it("should not match less than `n` repetitions", () => {
     expect(exp.test("")).toBeFalsy();
     expect(exp.test("foo")).toBeFalsy();
-    expect(exp.test("foofoo")).toBeTruthy();
-    expect(exp.test("foofoofoo")).toBeFalsy();
+  });
+
+  it("should not match more than `n` repetitions", () => {
+    expect(exp.test("foo".repeat(3))).toBeFalsy();
+    expect(exp.test("foo".repeat(4))).toBeFalsy();
   });
 });
 
 describe("multiple(arg, min, Infinity)", () => {
-  it("should not match less than `min` times", () => {
-    const exp = VerEx(startOfLine, multiple("foo", 2, Infinity), endOfLine);
+  const exp = VerEx(startOfLine, multiple("foo", 2, Infinity), endOfLine);
+
+  it("should not match less than `min` repetitions", () => {
+    expect(exp.test("")).toBeFalsy();
     expect(exp.test("foo")).toBeFalsy();
   });
 
-  it("should match exactly or more than `min` times", () => {
-    const exp = VerEx(startOfLine, multiple("foo", 2, Infinity), endOfLine);
+  it("should match `min` repetitions", () => {
+    expect(exp.test("foo".repeat(2))).toBeTruthy();
+  });
+
+  it("should match more than `min` repetitions", () => {
     for (let i = 2; i < 20; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
   });
 });
 
-describe("multiple(arg, min, max", () => {
-  it("should not match less than maxTimes times", () => {
-    const exp = VerEx(startOfLine, multiple("foo", 2, 10), endOfLine);
-    expect(exp.test("foo".repeat(11))).toBeFalsy();
+describe("multiple(arg, min, max)", () => {
+  const exp = VerEx(startOfLine, multiple("foo", 3, 10), endOfLine);
+
+  it("should not match less than `min` repetitions", () => {
+    expect(exp.test("")).toBeFalsy();
+    expect(exp.test("foo".repeat(1))).toBeFalsy();
+    expect(exp.test("foo".repeat(2))).toBeFalsy();
   });
 
-  it("should match more than minTimes and exactly maxTimes times", () => {
-    const exp = VerEx(startOfLine, multiple("foo", 2, 10), endOfLine);
-    for (let i = 2; i <= 10; i++) {
+  it("should match `min` repetitions", () => {
+    expect(exp.test("foo".repeat(3))).toBeTruthy();
+  });
+
+  it("should match `min < x < max` repetitions", () => {
+    for (let i = 4; i < 10; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
+  });
+
+  it("should match `max` repetitions", () => {
+    expect(exp.test("foo".repeat(10))).toBeTruthy();
+  });
+
+  it("should not match more than `max` repetitions", () => {
+    expect(exp.test("foo".repeat(11))).toBeFalsy();
+    expect(exp.test("foo".repeat(12))).toBeFalsy();
+    expect(exp.test("foo".repeat(13))).toBeFalsy();
   });
 });

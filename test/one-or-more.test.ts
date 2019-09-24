@@ -2,8 +2,8 @@ import { endOfLine, startOfLine } from "../src/constants";
 import oneOrMore from "../src/one-or-more";
 import VerEx from "../src/verbalexpressions";
 
-describe("oneOrMore", () => {
-  it("should export a function", () => {
+describe("oneOrMore(expression)", () => {
+  it("should be a function", () => {
     expect(oneOrMore).toBeInstanceOf(Function);
   });
 
@@ -20,7 +20,7 @@ describe("oneOrMore", () => {
     expect(nFoos.test("")).toBeFalsy();
   });
 
-  it("should match n instances", () => {
+  it("should match several instances", () => {
     const manyFoos = "foo".repeat(100);
     expect(nFoos.test(manyFoos)).toBeTruthy();
   });

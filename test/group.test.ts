@@ -3,13 +3,9 @@ import group from "../src/group";
 import maybe from "../src/maybe";
 import VerEx from "../src/verbalexpressions";
 
-describe("group", () => {
-  it("should export a function", () => {
+describe("group(...expressions)", () => {
+  it("should be a function", () => {
     expect(group).toBeInstanceOf(Function);
-  });
-
-  it("should have `group.capturing` as an alias", () => {
-    expect(group.capturing).toEqual(group);
   });
 
   it("should add a capture gorup that to the expression", () => {
@@ -26,7 +22,17 @@ describe("group", () => {
   });
 });
 
-describe("group.nonCapturing", () => {
+describe("group.capturing(...expressions)", () => {
+  it("should be an alias for group", () => {
+    expect(group.capturing).toEqual(group);
+  });
+});
+
+describe("group.nonCapturing(...expressions)", () => {
+  it("should be a function", () => {
+    expect(group.nonCapturing).toBeInstanceOf(Function);
+  });
+
   it("should not create capturing groups", () => {
     const exp = VerEx(
       group("http", maybe("s")),
@@ -36,5 +42,13 @@ describe("group.nonCapturing", () => {
 
     const [, protocol] = exp.exec("https://google.com");
     expect(protocol).toEqual("https");
+  });
+
+  it("should create a non-capturing group", () => {
+    const exp = VerEx(group.nonCapturing("foo"));
+
+    // Can't think of a way to test this without:
+    // …using other functions. This seems like our best bet at the moment.
+    expect(exp.source).toEqual("(?:foo)");
   });
 });

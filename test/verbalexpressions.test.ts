@@ -5,6 +5,17 @@ import multiple from "../src/multiple";
 import or from "../src/or";
 import VerEx from "../src/verbalexpressions";
 
+describe("VerEx(...expressions)", () => {
+  it("should be a function", () => {
+    expect(VerEx).toBeInstanceOf(Function);
+  });
+
+  it("should return an instance of `RegExp`", () => {
+    const expression = VerEx("foo");
+    expect(expression).toBeInstanceOf(RegExp);
+  });
+});
+
 describe("Complex expressions", () => {
   it("should match simple URLs", () => {
     const exp = VerEx(

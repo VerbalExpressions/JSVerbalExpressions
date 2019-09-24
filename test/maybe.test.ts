@@ -1,20 +1,23 @@
 import maybe from "../src/maybe";
 import VerEx from "../src/verbalexpressions";
+import { endOfLine, startOfLine } from "../src/constants";
 
 describe("maybe", () => {
-  it("should export a function", () => {
+  const fooMaybeBarBaz = VerEx(startOfLine, maybe("bar"), endOfLine);
+
+  it("should be a function", () => {
     expect(maybe).toBeInstanceOf(Function);
   });
 
   it("should match strings with the argument", () => {
-    expect(VerEx("foo", maybe("bar"), "baz").test("foobaz")).toBeTruthy();
+    expect(fooMaybeBarBaz.test("bar")).toBeTruthy();
   });
 
   it("should match strings without the argument", () => {
-    expect(VerEx("foo", maybe("bar"), "baz").test("foobarbaz")).toBeTruthy();
+    expect(fooMaybeBarBaz.test("")).toBeTruthy();
   });
 
-  it("should not match partial argument", () => {
-    expect(VerEx("foo", maybe("bar"), "baz").test("foobrbaz")).toBeFalsy();
+  it("should not match strings with something instead of the argument", () => {
+    expect(fooMaybeBarBaz.test("baz")).toBeFalsy();
   });
 });

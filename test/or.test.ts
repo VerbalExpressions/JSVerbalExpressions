@@ -2,15 +2,17 @@ import or from "../src/or";
 import VerEx from "../src/verbalexpressions";
 
 describe("or", () => {
-  it("should export a function", () => {
+  it("should be a function", () => {
     expect(or).toBeInstanceOf(Function);
   });
 
-  it("should match either of the provided arguments", () => {
+  it("should match either of the options", () => {
     const exp = VerEx(or("abc", "def"));
     expect(exp.test("fooabc")).toBeTruthy();
     expect(exp.test("defzzz")).toBeTruthy();
   });
+
+  it.todo("should not match when neither of the options is present");
 
   it("should match any number of arguments", () => {
     const lipsum = "Cupidatat irure consectetur amet dolor aliqua";

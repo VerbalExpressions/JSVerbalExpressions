@@ -5,7 +5,7 @@ import VerEx from "../src/verbalexpressions";
 describe("somethingBut", () => {
   const somethingButAbc = VerEx(startOfLine, somethingBut("abc"), endOfLine);
 
-  it("should export a function", () => {
+  it("should be a function", () => {
     expect(somethingBut).toBeInstanceOf(Function);
   });
 
@@ -14,7 +14,6 @@ describe("somethingBut", () => {
   });
 
   it("should not match characters in arguments", () => {
-    const exp = VerEx(startOfLine, somethingBut("abc"), endOfLine);
     expect(somethingButAbc.test("ced")).toBeFalsy();
   });
 

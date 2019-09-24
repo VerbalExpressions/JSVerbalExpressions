@@ -2,12 +2,12 @@ import anyCharacterBut from "../src/any-character-but";
 import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 
-describe("anyCharacterBut", () => {
+describe("anyCharacterBut(characters)", () => {
   const anyCharacterButAbc = VerEx(
     startOfLine, anyCharacterBut(["a", "b", "c"]), endOfLine
   );
 
-  it("should export a function", () => {
+  it("should be a function", () => {
     expect(anyCharacterBut).toBeInstanceOf(Function);
   });
 

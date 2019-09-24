@@ -1,4 +1,13 @@
-import {  anything, endOfLine, something, startOfLine } from "../src/constants";
+import {
+  anything,
+  digit,
+  endOfLine,
+  something,
+  startOfLine,
+  whitespaceCharacter,
+  wordCharacter
+} from "../src/constants";
+import oneOrMore from "../src/one-or-more";
 import VerEx from "../src/verbalexpressions";
 
 describe("startOfLine", () => {
@@ -28,6 +37,63 @@ describe("endOfLine", () => {
     expect(VerEx(endOfLine, "bar").test("foobar")).toBeFalsy();
   });
 });
+
+describe("digit", () => {
+  const aDigit = VerEx(startOfLine, digit, endOfLine);
+
+  it("should match Arabic numeral characters", () => {
+    expect(aDigit.test("0")).toBeTruthy();
+    expect(aDigit.test("2")).toBeTruthy();
+    expect(aDigit.test("8")).toBeTruthy();
+  });
+
+  it("should not match non-digit and digit-like characters", () => {
+    expect(aDigit.test("a")).toBeFalsy();
+    expect(aDigit.test("₉")).toBeFalsy();
+    expect(aDigit.test("❾")).toBeFalsy();
+    expect(aDigit.test("１")).toBeFalsy();
+    expect(aDigit.test("2️⃣")).toBeFalsy();
+  });
+});
+
+describe("wordCharacter", () => {
+  const wordCharacters = VerEx(startOfLine, oneOrMore(wordCharacter), endOfLine);
+
+  it("should match a–z and A–Z", () => {
+    expect(wordCharacters.test("abcdefghijklmnopqrstuvwxyz")).toBeTruthy();
+    expect(wordCharacters.test("ABCDEFGHIJKLMNOPQRSTUVWXYZ")).toBeTruthy();
+  });
+
+  it("should match arabic numerals", () => {
+    expect(wordCharacters.test("0123456789")).toBeTruthy();
+  });
+
+  it("should match an underscore", () => {
+    expect(wordCharacters.test("_")).toBeTruthy();
+  });
+
+  it("should not match non-word characters", () => {
+    expect(wordCharacters.test("-")).toBeFalsy();
+    expect(wordCharacters.test("%")).toBeFalsy();
+    expect(wordCharacters.test("ℳ")).toBeFalsy();
+    expect(wordCharacters.test("µ")).toBeFalsy();
+    expect(wordCharacters.test("👍")).toBeFalsy();
+  });
+});
+
+describe("whitespaceCharacter", () => {
+  const whitespaceCharacters = VerEx(startOfLine, oneOrMore(whitespaceCharacter), endOfLine);;
+
+  it("should match whitespace characters", () => {
+    const validWhitespace = [" ", "\f", "\n", "\r", "\t", "\v","\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
+
+    expect(whitespaceCharacters.test(validWhitespace.join(""))).toBeTruthy();
+  });
+});
+
+describe("wordBoundary", () => {});
+
+describe("anyCharacter", () => {});
 
 describe("anything", () => {
   it("should match a random string", () => {

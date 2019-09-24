@@ -1,7 +1,11 @@
 import lookahead from "../src/lookahead";
 import VerEx from "../src/verbalexpressions";
 
-describe("lookahead", () => {
+describe("lookahead(expression)", () => {
+  it("should be a function", () => {
+    expect(lookahead).toBeInstanceOf(Function);
+  });
+
   it("should ensure the argument exists", () => {
     const exp = VerEx(
       "foo",
@@ -19,13 +23,17 @@ describe("lookahead", () => {
   });
 });
 
-describe("lookahead.positive", () => {
+describe("lookahead.positive(expression)", () => {
   it("should be an alias for lookahead", () => {
     expect(lookahead.positive).toEqual(lookahead);
   });
 });
 
-describe("lookahead.negative", () => {
+describe("lookahead.negative(expression)", () => {
+  it("should be a function", () => {
+    expect(lookahead.negative).toBeInstanceOf(Function);
+  });
+
   it("should ensure that the argument does not exist", () => {
     const exp = VerEx(
       "foo",
