@@ -2,10 +2,10 @@ import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 import mixedToRawArray from "./util/mixed-to-raw-array";
 
-function group(...inputs: Expression[]): RawExpression {
-  inputs = mixedToRawArray(inputs);
+function group(...expressions: Expression[]): RawExpression {
+  expressions = mixedToRawArray(expressions);
 
-  return new RawExpression(`(${inputs.join("")})`);
+  return new RawExpression(`(${expressions.join("")})`);
 }
 
 group.capturing = group;

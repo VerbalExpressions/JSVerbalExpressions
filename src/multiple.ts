@@ -3,11 +3,11 @@ import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 
 function multiple(
-  input: Expression,
+  expression: Expression,
   minTimes?: number,
   maxTimes?: number
 ): RawExpression {
-  const grouped = group.nonCapturing(input);
+  const grouped = group.nonCapturing(expression);
 
   let output: string;
 

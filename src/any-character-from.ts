@@ -2,12 +2,12 @@ import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 import exprToRaw from "./util/expr-to-raw";
 
-function anyCharacterFrom(exp: Expression[] | Expression): RawExpression {
-  if (exp instanceof Array) {
-    exp = exp.join("");
+function anyCharacterFrom(characters: Expression[] | Expression): RawExpression {
+  if (characters instanceof Array) {
+    characters = characters.join("");
   }
 
-  const raw = exprToRaw(exp);
+  const raw = exprToRaw(characters);
 
   return new RawExpression(`[${raw}]`);
 }

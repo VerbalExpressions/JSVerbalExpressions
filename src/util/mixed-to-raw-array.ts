@@ -2,10 +2,10 @@ import Expression from "../types/expression";
 import RawExpression from "../types/raw-expression";
 import exprToRaw from "./expr-to-raw";
 
-function mixedToRawArray(args: Expression[]): RawExpression[] {
+function mixedToRawArray(expressions: Expression[]): RawExpression[] {
   const converted: RawExpression[] = [];
 
-  for (const arg of args) {
+  for (const arg of expressions) {
     converted.push(exprToRaw(arg));
   }
 

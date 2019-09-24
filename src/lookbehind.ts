@@ -2,18 +2,18 @@ import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 import exprToRaw from "./util/expr-to-raw";
 
-function lookbehind(input: Expression): RawExpression {
-  input = exprToRaw(input);
+function lookbehind(expression: Expression): RawExpression {
+  expression = exprToRaw(expression);
 
-  return new RawExpression(`(?<=${input})`);
+  return new RawExpression(`(?<=${expression})`);
 }
 
 lookbehind.positive = lookbehind;
 
-lookbehind.negative = (input: Expression): RawExpression => {
-  input = exprToRaw(input);
+lookbehind.negative = (expression: Expression): RawExpression => {
+  expression = exprToRaw(expression);
 
-  return new RawExpression(`(?>!${input})`);
+  return new RawExpression(`(?>!${expression})`);
 };
 
 export default lookbehind;

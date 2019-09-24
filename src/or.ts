@@ -3,9 +3,9 @@ import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
 import mixedToRawArray from "./util/mixed-to-raw-array";
 
-function or(...inputs: Expression[]): RawExpression {
-  inputs = mixedToRawArray(inputs);
-  const alternation = new RawExpression(inputs.join("|"));
+function or(...options: Expression[]): RawExpression {
+  options = mixedToRawArray(options);
+  const alternation = new RawExpression(options.join("|"));
 
   return group.nonCapturing(alternation);
 }
