@@ -13,7 +13,7 @@ lookbehind.positive = lookbehind;
 lookbehind.negative = (expression: Expression): RawExpression => {
   expression = exprToRaw(expression);
 
-  return new RawExpression(`(?>!${expression})`);
+  return new RawExpression(`(?<!${expression})`);
 };
 
 export default lookbehind;
