@@ -3,7 +3,7 @@ import VerEx from "../src/verbalexpressions";
 
 describe("anyCharacterBut(characters)", () => {
   const exp = VerEx(
-    /^/, anyCharacterBut(["a", "b", "c", ["m", "z"]]), /$/
+    /^/, anyCharacterBut([["a", "z"], ["A", "Z"], "_"]), /$/
   );
 
   it("should be a function", () => {
@@ -11,19 +11,21 @@ describe("anyCharacterBut(characters)", () => {
   });
 
   it("should match a character not in passed set", () => {
-    expect(exp.test("d")).toBeTruthy();
+    expect(exp.test("0")).toBeTruthy();
+    expect(exp.test("%")).toBeTruthy();
+    expect(exp.test("é")).toBeTruthy();
+    expect(exp.test("-")).toBeTruthy();
   });
 
   it("should not match more than one character", () => {
-    expect(exp.test("def")).toBeFalsy();
+    expect(exp.test("100")).toBeFalsy();
+    expect(exp.test("!@#$")).toBeFalsy();
   });
 
   it("should not match characters in passed set", () => {
-    expect(exp.test("c")).toBeFalsy();
-  });
-
-  it("should not match characters part of ranges in passed set", () => {
-    expect(exp.test("n")).toBeFalsy();
+    expect(exp.test("b")).toBeFalsy();
+    expect(exp.test("A")).toBeFalsy();
+    expect(exp.test("_")).toBeFalsy();
   });
 
   it("should not match an empty string", () => {
