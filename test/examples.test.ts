@@ -78,4 +78,27 @@ describe("Complex expressions", () => {
     expect(ipAddress.test("١٢٣.१२३.೧೨೩.๑๒๓")).toBeFalsy();
     expect(ipAddress.test("999.999.999.999")).toBeFalsy();
   });
+
+  it("should match hex colour codes", () => {
+    const hexCharacter = anyCharacterFrom([["a", "f"], ["A", "F"], [0, 9]]);
+    const hexColour = VerEx(
+      startOfLine,
+      "#",
+      or(
+        multiple(hexCharacter, 3),
+        multiple(hexCharacter, 6)
+      ),
+      endOfLine
+    );
+
+    expect(hexColour.test("#FFF")).toBeTruthy();
+    expect(hexColour.test("#bae")).toBeTruthy();
+    expect(hexColour.test("#8ce060")).toBeTruthy();
+    expect(hexColour.test("#E6E6FA")).toBeTruthy();
+
+    expect(hexColour.test("E6E6FA")).toBeFalsy();
+    expect(hexColour.test("#fb0_7d")).toBeFalsy();
+    expect(hexColour.test("#9134")).toBeFalsy();
+    expect(hexColour.test("#")).toBeFalsy();
+  });
 });
