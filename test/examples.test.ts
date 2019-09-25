@@ -1,5 +1,7 @@
+import anyCharacterFrom from "../src/any-character-from";
 import anyCharacterBut from "../src/any-character-but";
-import { endOfLine, startOfLine } from "../src/constants";
+import concat from "../src/concat";
+import { wordBoundary, digit, endOfLine, startOfLine } from "../src/constants";
 import maybe from "../src/maybe";
 import multiple from "../src/multiple";
 import or from "../src/or";
@@ -51,5 +53,29 @@ describe("Complex expressions", () => {
 
     expect(exp.test("105")).toBeFalsy();
     expect(exp.test("1.5")).toBeTruthy();
+  });
+
+  it("should match IP addresses", () => {
+    const octet = or(
+      concat("25", anyCharacterFrom([[0, 5]])),
+      concat("2", anyCharacterFrom([[0, 4]]), digit),
+      concat(maybe(anyCharacterFrom([0, 1])), maybe(digit), digit)
+    );
+
+    const ipAddress = VerEx(
+      startOfLine,
+      octet, ".", octet, ".", octet, ".", octet,
+      endOfLine
+    );
+
+    expect(ipAddress.test("192.168.0.1")).toBeTruthy();
+    expect(ipAddress.test("10.255.255.255")).toBeTruthy();
+    expect(ipAddress.test("172.16.254.1")).toBeTruthy();
+    expect(ipAddress.test("172.8.184.233")).toBeTruthy();
+    expect(ipAddress.test("127.0.0.1")).toBeTruthy();
+
+    expect(ipAddress.test("127x0x0x1")).toBeFalsy();
+    expect(ipAddress.test("١٢٣.१२३.೧೨೩.๑๒๓")).toBeFalsy();
+    expect(ipAddress.test("999.999.999.999")).toBeFalsy();
   });
 });
