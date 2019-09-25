@@ -7,7 +7,7 @@ type CharacterOrRange = Expression | [Expression, Expression];
 function anyCharacterBut(characters: CharacterOrRange[]): RawExpression {
   for (const [i, expression] of Object.entries(characters)) {
     if (expression instanceof Array) {
-      characters[i] = expression.join('-');
+      characters[i] = expression.join("-");
     }
   }
 

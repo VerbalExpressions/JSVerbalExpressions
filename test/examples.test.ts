@@ -1,7 +1,7 @@
-import anyCharacterFrom from "../src/any-character-from";
 import anyCharacterBut from "../src/any-character-but";
+import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
-import { wordBoundary, digit, endOfLine, startOfLine } from "../src/constants";
+import { digit, endOfLine, startOfLine, wordBoundary } from "../src/constants";
 import maybe from "../src/maybe";
 import multiple from "../src/multiple";
 import or from "../src/or";

@@ -53,6 +53,10 @@ describe("digit", () => {
     expect(aDigit.test("❾")).toBeFalsy();
     expect(aDigit.test("１")).toBeFalsy();
     expect(aDigit.test("2️⃣")).toBeFalsy();
+    expect(aDigit.test("١")).toBeFalsy();
+    expect(aDigit.test("१")).toBeFalsy();
+    expect(aDigit.test("೧")).toBeFalsy();
+    expect(aDigit.test("๑")).toBeFalsy();
   });
 });
 
@@ -82,10 +86,10 @@ describe("wordCharacter", () => {
 });
 
 describe("whitespaceCharacter", () => {
-  const whitespaceCharacters = VerEx(/^/, oneOrMore(whitespaceCharacter), /$/);;
+  const whitespaceCharacters = VerEx(/^/, oneOrMore(whitespaceCharacter), /$/);
 
   it("should match whitespace characters", () => {
-    const validWhitespace = [" ", "\f", "\n", "\r", "\t", "\v","\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
+    const validWhitespace = [" ", "\f", "\n", "\r", "\t", "\v", "\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
 
     expect(whitespaceCharacters.test(validWhitespace.join(""))).toBeTruthy();
   });
