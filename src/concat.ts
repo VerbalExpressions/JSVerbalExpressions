@@ -5,10 +5,9 @@ import mixedToRawArray from "./util/mixed-to-raw-array";
 
 function concat(...expressions: Expression[]): RawExpression {
   expressions = mixedToRawArray(expressions);
+  const concatenated = new RawExpression(expressions.join(""));
 
-  return new RawExpression(
-    group.nonCapturing(expressions.join(""))
-  );
+  return group.nonCapturing(concatenated);
 }
 
 export default concat;
