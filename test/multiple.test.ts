@@ -1,4 +1,3 @@
-import { endOfLine, startOfLine } from "../src/constants";
 import multiple from "../src/multiple";
 import VerEx from "../src/verbalexpressions";
 
@@ -10,12 +9,12 @@ describe("multiple()", () => {
 
 describe("multiple(arg)", () => {
   it("should match zero repetitions", () => {
-    const exp = VerEx(startOfLine, multiple("foo"), endOfLine);
+    const exp = VerEx(/^/, multiple("foo"), /$/);
     expect(exp.test("")).toBeTruthy();
   });
 
   it("should match * number of repetitions", () => {
-    const exp = VerEx(startOfLine, multiple("foo"), endOfLine);
+    const exp = VerEx(/^/, multiple("foo"), /$/);
     for (let i = 0; i < 20; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
@@ -23,7 +22,7 @@ describe("multiple(arg)", () => {
 });
 
 describe("multiple(arg, n)", () => {
-  const exp = VerEx(startOfLine, multiple("foo", 2), endOfLine);
+  const exp = VerEx(/^/, multiple("foo", 2), /$/);
 
   it("should match exactly `n` repetitions", () => {
     expect(exp.test("foo".repeat(2))).toBeTruthy();
@@ -41,7 +40,7 @@ describe("multiple(arg, n)", () => {
 });
 
 describe("multiple(arg, min, Infinity)", () => {
-  const exp = VerEx(startOfLine, multiple("foo", 2, Infinity), endOfLine);
+  const exp = VerEx(/^/, multiple("foo", 2, Infinity), /$/);
 
   it("should not match less than `min` repetitions", () => {
     expect(exp.test("")).toBeFalsy();
@@ -60,7 +59,7 @@ describe("multiple(arg, min, Infinity)", () => {
 });
 
 describe("multiple(arg, min, max)", () => {
-  const exp = VerEx(startOfLine, multiple("foo", 3, 10), endOfLine);
+  const exp = VerEx(/^/, multiple("foo", 3, 10), /$/);
 
   it("should not match less than `min` repetitions", () => {
     expect(exp.test("")).toBeFalsy();

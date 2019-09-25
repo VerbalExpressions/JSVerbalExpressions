@@ -1,9 +1,8 @@
-import { endOfLine, startOfLine } from "../src/constants";
 import somethingBut from "../src/something-but";
 import VerEx from "../src/verbalexpressions";
 
 describe("somethingBut", () => {
-  const somethingButAbc = VerEx(startOfLine, somethingBut("abc"), endOfLine);
+  const somethingButAbc = VerEx(/^/, somethingBut("abc"), /$/);
 
   it("should be a function", () => {
     expect(somethingBut).toBeInstanceOf(Function);

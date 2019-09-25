@@ -39,7 +39,7 @@ describe("endOfLine", () => {
 });
 
 describe("digit", () => {
-  const aDigit = VerEx(startOfLine, digit, endOfLine);
+  const aDigit = VerEx(/^/, digit, /$/);
 
   it("should match Arabic numeral characters", () => {
     expect(aDigit.test("0")).toBeTruthy();
@@ -57,7 +57,7 @@ describe("digit", () => {
 });
 
 describe("wordCharacter", () => {
-  const wordCharacters = VerEx(startOfLine, oneOrMore(wordCharacter), endOfLine);
+  const wordCharacters = VerEx(/^/, oneOrMore(wordCharacter), /$/);
 
   it("should match a–z and A–Z", () => {
     expect(wordCharacters.test("abcdefghijklmnopqrstuvwxyz")).toBeTruthy();
@@ -82,7 +82,7 @@ describe("wordCharacter", () => {
 });
 
 describe("whitespaceCharacter", () => {
-  const whitespaceCharacters = VerEx(startOfLine, oneOrMore(whitespaceCharacter), endOfLine);;
+  const whitespaceCharacters = VerEx(/^/, oneOrMore(whitespaceCharacter), /$/);;
 
   it("should match whitespace characters", () => {
     const validWhitespace = [" ", "\f", "\n", "\r", "\t", "\v","\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];

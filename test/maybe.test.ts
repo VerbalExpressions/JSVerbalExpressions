@@ -1,9 +1,8 @@
 import maybe from "../src/maybe";
 import VerEx from "../src/verbalexpressions";
-import { endOfLine, startOfLine } from "../src/constants";
 
 describe("maybe", () => {
-  const fooMaybeBarBaz = VerEx(startOfLine, maybe("bar"), endOfLine);
+  const fooMaybeBarBaz = VerEx(/^/, maybe("bar"), /$/);
 
   it("should be a function", () => {
     expect(maybe).toBeInstanceOf(Function);

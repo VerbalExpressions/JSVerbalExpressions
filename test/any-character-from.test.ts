@@ -1,9 +1,8 @@
 import anyCharacterFrom from "../src/any-character-from";
-import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 
 describe("anyCharacterFrom(characters)", () => {
-  const exp = VerEx(startOfLine, anyCharacterFrom(["x", "y", "z"]), endOfLine);
+  const exp = VerEx(/^/, anyCharacterFrom(["x", "y", "z"]), /$/);
 
   it("should be a function", () => {
     expect(anyCharacterFrom).toBeInstanceOf(Function);

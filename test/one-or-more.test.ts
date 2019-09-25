@@ -1,4 +1,3 @@
-import { endOfLine, startOfLine } from "../src/constants";
 import oneOrMore from "../src/one-or-more";
 import VerEx from "../src/verbalexpressions";
 
@@ -7,7 +6,7 @@ describe("oneOrMore(expression)", () => {
     expect(oneOrMore).toBeInstanceOf(Function);
   });
 
-  const nFoos = VerEx(startOfLine, oneOrMore("foo"), endOfLine);
+  const nFoos = VerEx(/^/, oneOrMore("foo"), /$/);
   it("should match one instance", () => {
     expect(nFoos.test("foo")).toBeTruthy();
   });

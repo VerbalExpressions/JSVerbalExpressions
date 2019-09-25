@@ -1,10 +1,9 @@
 import anyCharacterBut from "../src/any-character-but";
-import { endOfLine, startOfLine } from "../src/constants";
 import VerEx from "../src/verbalexpressions";
 
 describe("anyCharacterBut(characters)", () => {
   const anyCharacterButAbc = VerEx(
-    startOfLine, anyCharacterBut(["a", "b", "c"]), endOfLine
+    /^/, anyCharacterBut(["a", "b", "c"]), /$/
   );
 
   it("should be a function", () => {
