@@ -3,7 +3,7 @@
     "module": "umd",
     "outDir": "dist/",
     "esModuleInterop": true,
-    "target": "es6"
+    "target": "es2017"
   },
   "include": ["src/**/*.ts"]
 }
