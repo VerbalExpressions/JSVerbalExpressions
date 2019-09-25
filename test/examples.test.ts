@@ -13,7 +13,7 @@ describe("Complex expressions", () => {
       maybe("s"),
       "://",
       maybe("www."),
-      multiple(anyCharacterBut(" ")),
+      multiple(anyCharacterBut([" "])),
       endOfLine
     );
 
