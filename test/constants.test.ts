@@ -7,7 +7,7 @@ import {
   whitespaceCharacter,
   wordCharacter
 } from "../src/constants";
-import oneOrMore from "../src/one-or-more";
+import RawExpression from "../src/types/raw-expression";
 import VerEx from "../src/verbalexpressions";
 
 describe("startOfLine", () => {
@@ -61,7 +61,7 @@ describe("digit", () => {
 });
 
 describe("wordCharacter", () => {
-  const wordCharacters = VerEx(/^/, oneOrMore(wordCharacter), /$/);
+  const wordCharacters = VerEx(/^/, wordCharacter, new RawExpression("+"), /$/);
 
   it("should match a–z and A–Z", () => {
     expect(wordCharacters.test("abcdefghijklmnopqrstuvwxyz")).toBeTruthy();
@@ -86,12 +86,18 @@ describe("wordCharacter", () => {
 });
 
 describe("whitespaceCharacter", () => {
-  const whitespaceCharacters = VerEx(/^/, oneOrMore(whitespaceCharacter), /$/);
+  const whitespaceCharacters = VerEx(/^/, whitespaceCharacter, /$/);
 
   it("should match whitespace characters", () => {
-    const validWhitespace = [" ", "\f", "\n", "\r", "\t", "\v", "\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
+    const whitespaces = [" ", "\f", "\n", "\r", "\t", "\v", "\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
 
-    expect(whitespaceCharacters.test(validWhitespace.join(""))).toBeTruthy();
+    for (const whitespace of whitespaces) {
+      expect(whitespaceCharacters.test(whitespace)).toBeTruthy();
+    }
+
+    expect(whitespaceCharacters.test("a")).toBeFalsy();
+    expect(whitespaceCharacters.test("1")).toBeFalsy();
+    expect(whitespaceCharacters.test("-")).toBeFalsy();
   });
 });
 
