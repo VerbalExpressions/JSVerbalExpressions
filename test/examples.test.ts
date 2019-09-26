@@ -1,10 +1,11 @@
 import anyCharacterBut from "../src/any-character-but";
 import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
-import { digit, endOfLine, startOfLine, wordBoundary } from "../src/constants";
+import { digit, endOfLine, startOfLine } from "../src/constants";
 import maybe from "../src/maybe";
 import multiple from "../src/multiple";
 import or from "../src/or";
+import repeat from "../src/repeat";
 import VerEx from "../src/verbalexpressions";
 
 describe("Complex expressions", () => {
@@ -85,8 +86,8 @@ describe("Complex expressions", () => {
       startOfLine,
       "#",
       or(
-        multiple(hexCharacter, 3),
-        multiple(hexCharacter, 6)
+        repeat(hexCharacter, 3),
+        repeat(hexCharacter, 6)
       ),
       endOfLine
     );
