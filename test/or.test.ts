@@ -1,23 +1,43 @@
 import or from "../src/or";
 import VerEx from "../src/verbalexpressions";
 
-describe("or", () => {
+describe("or(...options)", () => {
+  const abcOrDef = VerEx(/^/, or("abc", "def"), /$/);
+
   it("should be a function", () => {
     expect(or).toBeInstanceOf(Function);
   });
 
   it("should match either of the options", () => {
-    const exp = VerEx(or("abc", "def"));
-    expect(exp.test("fooabc")).toBeTruthy();
-    expect(exp.test("defzzz")).toBeTruthy();
+    expect(abcOrDef.test("abc")).toBeTruthy();
+    expect(abcOrDef.test("def")).toBeTruthy();
   });
 
-  it.todo("should not match when neither of the options is present");
+  it("should group each option", () => {
+    // `exp` should not be `abc|def`
 
-  it("should match any number of arguments", () => {
+    expect(abcOrDef.test("abcef")).toBeFalsy();
+    expect(abcOrDef.test("abdef")).toBeFalsy();
+  });
+
+  it("should not match when neither of the options is present", () => {
+    expect(abcOrDef.test("")).toBeFalsy();
+  });
+
+  it("should work with one argument", () => {
+    const abc = VerEx(/^/, or("abc"), /$/);
+
+    expect(abc.test("abc")).toBeTruthy();
+    expect(abc.test("a")).toBeFalsy();
+  });
+
+  it("should work with any number of arguments", () => {
     const lipsum = "Cupidatat irure consectetur amet dolor aliqua";
-    const args = lipsum.split(" ");
-    const exp = VerEx(or(...args));
-    args.forEach((arg) => expect(exp.test(arg)).toBeTruthy());
+    const words = lipsum.split(" ");
+    const exp = VerEx(/^/, or(...words), /$/);
+
+    for (const word of words) {
+      expect(exp.test(word)).toBeTruthy();
+    }
   });
 });

@@ -1,7 +1,23 @@
 import sanitize from "../src/util/sanitize";
 
+const raw = String.raw;
+
 describe("sanitize(input)", () => {
-  it.todo("should escape escape-worthy characters");
-  it.todo("should not unnecessarily escape characters");
-  it.todo("should not incorrectly escape characters");
+  it("should escape escape-worthy characters", () => {
+    const unescaped = raw`\.|*?+(){}^$:=[]`;
+    const expected = raw`\\\.\|\*\?\+\(\)\{\}\^\$\:\=\[\]`;
+
+    expect(sanitize(unescaped)).toEqual(expected);
+  });
+
+  it("should not unnecessarily escape characters", () => {
+    const unescaped = "foo %@#! 1234";
+
+    expect(sanitize(unescaped)).toEqual(unescaped);
+  });
+
+  it("should not incorrectly escape characters", () => {
+    expect(sanitize(raw`\\\\`)).toEqual(raw`\\\\\\\\`);
+    expect(sanitize(raw`\\.`)).toEqual(raw`\\\\\.`);
+  });
 });
