@@ -1,7 +1,8 @@
 import maybe from "../src/maybe";
+import optionally from "../src/maybe";
 import VerEx from "../src/verbalexpressions";
 
-describe("maybe", () => {
+describe("maybe(expression)", () => {
   const fooMaybeBarBaz = VerEx(/^/, maybe("bar"), /$/);
 
   it("should be a function", () => {
@@ -18,5 +19,11 @@ describe("maybe", () => {
 
   it("should not match strings with something instead of the argument", () => {
     expect(fooMaybeBarBaz.test("baz")).toBeFalsy();
+  });
+});
+
+describe("optionally(expression)", () => {
+  it("should be an alias for maybe", () => {
+    expect(optionally).toEqual(maybe);
   });
 });

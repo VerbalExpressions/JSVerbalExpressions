@@ -11,3 +11,4 @@ function maybe(expression: Expression): RawExpression {
 }
 
 export default maybe;
+export const optionally = maybe;

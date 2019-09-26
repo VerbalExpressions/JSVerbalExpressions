@@ -7,3 +7,4 @@ function VerEx(...expressions: Expression[]): RegExp {
 }
 
 export default VerEx;
+export const VerExp = VerEx;
