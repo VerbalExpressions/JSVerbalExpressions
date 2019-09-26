@@ -10,9 +10,9 @@
         "multiline": "never",
         "singleline": "never"
       },
-    "max-line-length": false,
-    "no-empty": false,
-    "interface-name": false
+      "max-line-length": false,
+      "no-empty": false,
+      "interface-name": false
     },
     "rulesDirectory": []
 }
