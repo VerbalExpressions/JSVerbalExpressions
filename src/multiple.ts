@@ -9,3 +9,4 @@ function multiple(expression: Expression): RawExpression {
 }
 
 export default multiple;
+export const zeroOrMore = multiple;

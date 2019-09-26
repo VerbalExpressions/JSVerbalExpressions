@@ -1,4 +1,5 @@
 import multiple from "../src/multiple";
+import zeroOrMore from "../src/multiple";
 import VerEx from "../src/verbalexpressions";
 
 describe("multiple(arg)", () => {
@@ -16,5 +17,11 @@ describe("multiple(arg)", () => {
     for (let i = 0; i < 20; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
+  });
+});
+
+describe("zeroOrMore(arg)", () => {
+  it("should be an alias for multiple", () => {
+    expect(zeroOrMore).toEqual(multiple);
   });
 });
