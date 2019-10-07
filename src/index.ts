@@ -22,8 +22,8 @@ import { zeroOrMore } from "./multiple";
 import oneOrMore from "./one-or-more";
 import or from "./or";
 import repeat from "./repeat";
-import VerEx from "./verbalexpressions";
-import { VerExp } from "./verbalexpressions";
+import VerEx from "./verex";
+import { VerExp } from "./verex";
 
 export default VerEx;
 

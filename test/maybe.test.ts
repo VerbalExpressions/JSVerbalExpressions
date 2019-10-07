@@ -1,6 +1,6 @@
 import maybe from "../src/maybe";
 import optionally from "../src/maybe";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("maybe(expression)", () => {
   const fooMaybeBarBaz = VerEx(/^/, maybe("bar"), /$/);

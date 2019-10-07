@@ -1,6 +1,6 @@
 import concat from "../src/concat";
 import RawExpression from "../src/types/raw-expression";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("concat(...expressions)", () => {
   it("should concatenate simple strings", () => {

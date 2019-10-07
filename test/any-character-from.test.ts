@@ -1,5 +1,5 @@
 import anyCharacterFrom from "../src/any-character-from";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("anyCharacterFrom(characters)", () => {
   const exp = VerEx(/^/, anyCharacterFrom([["a", "f"], [0, 9], " ", "_"]), /$/);

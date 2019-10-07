@@ -1,5 +1,5 @@
 import lookahead from "../src/lookahead";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("lookahead(expression)", () => {
   it("should be a function", () => {

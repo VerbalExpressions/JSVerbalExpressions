@@ -1,5 +1,5 @@
 import anyCharacterBut from "../src/any-character-but";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("anyCharacterBut(characters)", () => {
   const exp = VerEx(

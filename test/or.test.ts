@@ -1,5 +1,5 @@
 import or from "../src/or";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("or(...options)", () => {
   const abcOrDef = VerEx(/^/, or("abc", "def"), /$/);

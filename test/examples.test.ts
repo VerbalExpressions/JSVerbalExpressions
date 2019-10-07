@@ -6,7 +6,7 @@ import maybe from "../src/maybe";
 import multiple from "../src/multiple";
 import or from "../src/or";
 import repeat from "../src/repeat";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("Complex expressions", () => {
   it("should match simple URLs", () => {

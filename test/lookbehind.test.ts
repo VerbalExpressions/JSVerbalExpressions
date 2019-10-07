@@ -1,5 +1,5 @@
 import lookbehind from "../src/lookbehind";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("lookbehind(expression)", () => {
   it("should be a function", () => {

@@ -1,5 +1,5 @@
 import oneOrMore from "../src/one-or-more";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("oneOrMore(expression)", () => {
   it("should be a function", () => {

@@ -1,6 +1,6 @@
 import multiple from "../src/multiple";
 import zeroOrMore from "../src/multiple";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("multiple(arg)", () => {
   it("should be a function", () => {

@@ -1,5 +1,5 @@
 import repeat from "../src/repeat";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("repeat()", () => {
   it("should be a function", () => {

@@ -8,7 +8,7 @@ import {
   wordCharacter
 } from "../src/constants";
 import RawExpression from "../src/types/raw-expression";
-import VerEx from "../src/verbalexpressions";
+import VerEx from "../src/verex";
 
 describe("startOfLine", () => {
   it("should match line that starts with specified string", () => {

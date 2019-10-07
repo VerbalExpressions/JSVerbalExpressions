@@ -1,5 +1,5 @@
-import VerEx from "../src/verbalexpressions";
-import VerExp from "../src/verbalexpressions";
+import VerEx from "../src/verex";
+import VerExp from "../src/verex";
 
 describe("VerEx(...expressions)", () => {
   it("should be a function", () => {
