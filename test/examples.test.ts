@@ -2,6 +2,8 @@ import anyCharacterBut from "../src/any-character-but";
 import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
 import { digit, endOfLine, startOfLine } from "../src/constants";
+import group from "../src/group";
+import lookahead from "../src/lookahead";
 import maybe from "../src/maybe";
 import multiple from "../src/multiple";
 import or from "../src/or";
@@ -101,5 +103,97 @@ describe("Complex expressions", () => {
     expect(hexColour.test("#fb0_7d")).toBeFalsy();
     expect(hexColour.test("#9134")).toBeFalsy();
     expect(hexColour.test("#")).toBeFalsy();
+  });
+
+  it("should match dates", () => {
+    // Please.
+    // Don't do this in production.
+    //
+    // Instead, replace the hyphens with spaces and use `Date.parse`.
+
+    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+    const notAMultipleOfFour = or(
+      concat(anyCharacterFrom([0, 2, 4, 6, 8]), anyCharacterBut([0, 4, 8])),
+      concat(anyCharacterFrom([1, 3, 5, 7, 9]), anyCharacterBut([2, 6]))
+    );
+
+    const noIllegalXX00LeapDate = lookahead.negative(
+      concat(notAMultipleOfFour, "00-FEB-29")
+    );
+
+    const nineteenThroughNinetyNine = or(
+      "19",
+      concat(anyCharacterFrom([[2, 9]]), digit)
+    );
+
+    const noNonMultipleOfFourLeapDate = lookahead.negative(
+      concat(nineteenThroughNinetyNine, notAMultipleOfFour, "-FEB-29")
+    );
+
+    const noIllegalFebThirties = lookahead.negative(
+      concat("FEB-3", anyCharacterFrom([0, 1]))
+    );
+
+    const noIllegalThirtyFirsts = lookahead.negative(
+      concat(group.nonCapturing(or("APR", "JUN", "SEP", "NOV")), "-31")
+    );
+
+    const noZeroDates = lookahead.negative("00");
+
+    const year = concat(
+      nineteenThroughNinetyNine, digit, digit
+    );
+
+    const month = or(...months);
+
+    const date = or(
+      concat(anyCharacterFrom([[0, 2]]), anyCharacterFrom([[0, 9]])),
+      concat(3, anyCharacterFrom([0, 1]))
+    );
+
+    const completeDate = VerEx(
+      startOfLine,
+
+      noIllegalXX00LeapDate, noNonMultipleOfFourLeapDate,
+      group(year), "-",
+
+      noIllegalFebThirties, noIllegalThirtyFirsts,
+      group(month), "-",
+
+      noZeroDates,
+      group(date),
+
+      endOfLine
+    );
+
+    expect(completeDate.test("1920-JAN-31")).toBeTruthy();
+    expect(completeDate.test("1920-FEB-29")).toBeTruthy();
+    expect(completeDate.test("2001-NOV-21")).toBeTruthy();
+    expect(completeDate.test("2016-NOV-09")).toBeTruthy();
+    expect(completeDate.test("2024-AUG-31")).toBeTruthy();
+    expect(completeDate.test("1921-FEB-28")).toBeTruthy();
+    expect(completeDate.test("1920-FEB-28")).toBeTruthy();
+    expect(completeDate.test("9920-FEB-28")).toBeTruthy();
+    expect(completeDate.test("2920-FEB-28")).toBeTruthy();
+
+    const [
+      , matchedYear, matchedMonth, matchedDate
+    ] = completeDate.exec("1971-JAN-01");
+
+    expect(matchedYear).toEqual("1971");
+    expect(matchedMonth).toEqual("JAN");
+    expect(matchedDate).toEqual("01");
+
+    expect(completeDate.test("2900-FEB-29")).toBeFalsy();
+    expect(completeDate.test("1921-FEB-29")).toBeFalsy();
+    expect(completeDate.test("1920-JAN-35")).toBeFalsy();
+    expect(completeDate.test("1920-FEB-30")).toBeFalsy();
+    expect(completeDate.test("1920-FEB-31")).toBeFalsy();
+    expect(completeDate.test("1920-FOO-28")).toBeFalsy();
+    expect(completeDate.test("1920-APR-31")).toBeFalsy();
+    expect(completeDate.test("1820-NOV-02")).toBeFalsy();
+    expect(completeDate.test("1920-NOV-00")).toBeFalsy();
+    expect(completeDate.test("1857-JAN-01")).toBeFalsy();
   });
 });
