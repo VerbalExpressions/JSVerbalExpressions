@@ -11,29 +11,23 @@ import RawExpression from "../src/types/raw-expression";
 import VerEx from "../src/verex";
 
 describe("startOfLine", () => {
-  it("should match line that starts with specified string", () => {
+  it("should anchor matches to the start of the line", () => {
     expect(VerEx(startOfLine, "foo").test("foobar")).toBeTruthy();
-  });
-
-  it("should not match line that does not start with specified string", () => {
     expect(VerEx(startOfLine, "bar").test("foobar")).toBeFalsy();
   });
 
-  it("should not match if startOfLine is not the first argument", () => {
+  it("should not allow matches when not the first arg to VerEx", () => {
     expect(VerEx("foo", startOfLine).test("foobar")).toBeFalsy();
   });
 });
 
 describe("endOfLine", () => {
-  it("should match line that starts with specified string", () => {
+  it("should anchor matches to the end of the line", () => {
     expect(VerEx("bar", endOfLine).test("foobar")).toBeTruthy();
-  });
-
-  it("should not match line that does not start with specified string", () => {
     expect(VerEx("foo", endOfLine).test("foobar")).toBeFalsy();
   });
 
-  it("should not match if endOfLine is not the last argument", () => {
+  it("should not allow matches when not the last arg to VerEx", () => {
     expect(VerEx(endOfLine, "bar").test("foobar")).toBeFalsy();
   });
 });
@@ -41,7 +35,7 @@ describe("endOfLine", () => {
 describe("digit", () => {
   const aDigit = VerEx(/^/, digit, /$/);
 
-  it("should match Arabic numeral characters", () => {
+  it("should match arabic numeral characters", () => {
     expect(aDigit.test("0")).toBeTruthy();
     expect(aDigit.test("2")).toBeTruthy();
     expect(aDigit.test("8")).toBeTruthy();
@@ -112,18 +106,12 @@ describe("anything", () => {
 
   it("should match an empty string", () => {
     expect(VerEx(anything).test("")).toBeTruthy();
-  });
-
-  it("should require all other conditions", () => {
-    expect(VerEx("foo", anything).test("bar")).toBeFalsy();
-  });
-
-  it("should match if all other conditions are met", () => {
-    expect(VerEx("foo", anything).test("foobar")).toBeTruthy();
-  });
-
-  it("should match if all other conditions are met with anything being empty", () => {
     expect(VerEx("foo", anything, "bar").test("foobar")).toBeTruthy();
+  });
+
+  it("should be usable in conjunction with other arguments", () => {
+    expect(VerEx("foo", anything).test("foobar")).toBeTruthy();
+    expect(VerEx("foo", anything).test("bar")).toBeFalsy();
   });
 });
 
@@ -134,17 +122,11 @@ describe("something", () => {
 
   it("should not match an empty string", () => {
     expect(VerEx(something).test("")).toBeFalsy();
-  });
-
-  it("should require all other conditions", () => {
-    expect(VerEx("foo", something).test("bar")).toBeFalsy();
-  });
-
-  it("should match if all other conditions are met", () => {
-    expect(VerEx("foo", something).test("foobar")).toBeTruthy();
-  });
-
-  it("should not match if all other conditions are met with something being empty", () => {
     expect(VerEx("foo", something, "bar").test("foobar")).toBeFalsy();
+  });
+
+  it("should be usable in conjunction with other arguments", () => {
+    expect(VerEx("foo", something).test("foobar")).toBeTruthy();
+    expect(VerEx("foo", something).test("bar")).toBeFalsy();
   });
 });

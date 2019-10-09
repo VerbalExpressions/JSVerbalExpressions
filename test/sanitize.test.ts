@@ -16,7 +16,7 @@ describe("sanitize(input)", () => {
     expect(sanitize(unescaped)).toEqual(unescaped);
   });
 
-  it("should not incorrectly escape characters", () => {
+  it("should correctly escape a bunch of back slashes", () => {
     expect(sanitize(raw`\\\\`)).toEqual(raw`\\\\\\\\`);
     expect(sanitize(raw`\\.`)).toEqual(raw`\\\\\.`);
   });

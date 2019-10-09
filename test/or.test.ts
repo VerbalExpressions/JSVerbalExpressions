@@ -31,7 +31,7 @@ describe("or(...options)", () => {
     expect(abc.test("a")).toBeFalsy();
   });
 
-  it("should work with any number of arguments", () => {
+  it("should work with multiple arguments", () => {
     const lipsum = "Cupidatat irure consectetur amet dolor aliqua";
     const words = lipsum.split(" ");
     const exp = VerEx(/^/, or(...words), /$/);

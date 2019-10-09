@@ -12,7 +12,7 @@ describe("multiple(arg)", () => {
     expect(exp.test("")).toBeTruthy();
   });
 
-  it("should match * number of repetitions", () => {
+  it("should match any number of repetitions", () => {
     const exp = VerEx(/^/, multiple("foo"), /$/);
     for (let i = 0; i < 20; i++) {
       expect(exp.test("foo".repeat(i))).toBeTruthy();

@@ -7,19 +7,19 @@ describe("oneOrMore(expression)", () => {
   });
 
   const nFoos = VerEx(/^/, oneOrMore("foo"), /$/);
-  it("should match one instance", () => {
+  it("should match one repetition", () => {
     expect(nFoos.test("foo")).toBeTruthy();
   });
 
-  it("should match two instances", () => {
+  it("should match two repetitions", () => {
     expect(nFoos.test("foofoo")).toBeTruthy();
   });
 
-  it("should not match zero instances", () => {
+  it("should not match zero repetitions", () => {
     expect(nFoos.test("")).toBeFalsy();
   });
 
-  it("should match several instances", () => {
+  it("should match a hundred repetitions", () => {
     const manyFoos = "foo".repeat(100);
     expect(nFoos.test(manyFoos)).toBeTruthy();
   });

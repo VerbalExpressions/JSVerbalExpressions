@@ -8,7 +8,7 @@ describe("group(...expressions)", () => {
     expect(group).toBeInstanceOf(Function);
   });
 
-  it("should add a capture group that to the expression", () => {
+  it("should create a capturing group", () => {
     const exp = VerEx("foo", group("bar"), "baz");
     const [, result] = exp.exec("foobarbaz");
     expect(result).toEqual("bar");
@@ -33,7 +33,7 @@ describe("group.nonCapturing(...expressions)", () => {
     expect(group.nonCapturing).toBeInstanceOf(Function);
   });
 
-  it("should not create capturing groups", () => {
+  it("should not create a capturing group", () => {
     const exp = VerEx(
       group("http", maybe("s")),
       "://",
