@@ -42,22 +42,6 @@ describe("Complex expressions", () => {
     expect(exp.test("http://some.com/lengthty/url.html")).toBeTruthy();
   });
 
-  it("should sanitize special characters", () => {
-    const exp = VerEx("[foo]", or(".", "\\w"));
-
-    expect(exp.test("[foo].")).toBeTruthy();
-    expect(exp.test("[foo]\\w")).toBeTruthy();
-    expect(exp.test("[foo] ")).toBeFalsy();
-    expect(exp.test("[foo]x")).toBeFalsy();
-  });
-
-  it("should sanitize dot in numbers", () => {
-    const exp = VerEx(startOfLine, 1.5, endOfLine);
-
-    expect(exp.test("105")).toBeFalsy();
-    expect(exp.test("1.5")).toBeTruthy();
-  });
-
   it("should match IP addresses", () => {
     const octet = or(
       concat("25", anyCharacterFrom([[0, 5]])),

@@ -20,4 +20,14 @@ describe("sanitize(input)", () => {
     expect(sanitize(raw`\\\\`)).toEqual(raw`\\\\\\\\`);
     expect(sanitize(raw`\\.`)).toEqual(raw`\\\\\.`);
   });
+
+  it("should sanitize decimals in numbers", () => {
+    expect(sanitize(1.5)).toEqual(raw`1\.5`);
+  });
+
+  it("should sanitize unusual numbers", () => {
+    expect(sanitize(Infinity)).toEqual("Infinity");
+    expect(sanitize(-Infinity)).toEqual("-Infinity");
+    expect(sanitize(NaN)).toEqual("NaN");
+  });
 });

@@ -7,7 +7,7 @@ describe("repeat()", () => {
   });
 });
 
-describe("repeat(arg, n)", () => {
+describe("repeat(expression, n)", () => {
   const exp = VerEx(/^/, repeat("foo", 2), /$/);
 
   it("should match exactly `n` repetitions", () => {
@@ -25,7 +25,7 @@ describe("repeat(arg, n)", () => {
   });
 });
 
-describe("repeat(arg, min, Infinity)", () => {
+describe("repeat(expression, min, Infinity)", () => {
   const exp = VerEx(/^/, repeat("foo", 2, Infinity), /$/);
 
   it("should not match less than `min` repetitions", () => {
@@ -44,7 +44,7 @@ describe("repeat(arg, min, Infinity)", () => {
   });
 });
 
-describe("repeat(arg, min, max)", () => {
+describe("repeat(expression, min, max)", () => {
   const exp = VerEx(/^/, repeat("foo", 3, 10), /$/);
 
   it("should not match less than `min` repetitions", () => {

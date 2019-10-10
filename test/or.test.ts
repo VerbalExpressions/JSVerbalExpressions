@@ -14,10 +14,20 @@ describe("or(...options)", () => {
   });
 
   it("should group each option", () => {
-    // `exp` should not be `abc|def`
+    // `abcOrDef` should not be `abc|def`
 
     expect(abcOrDef.test("abcef")).toBeFalsy();
     expect(abcOrDef.test("abdef")).toBeFalsy();
+  });
+
+  it("should wrap the alternation in a non-capturing group", () => {
+    const exp = VerEx("a", or("b", "c"), "d");
+
+    expect(exp.test("abd")).toBeTruthy();
+    expect(exp.test("acd")).toBeTruthy();
+
+    expect(exp.test("ab")).toBeFalsy();
+    expect(exp.test("cd")).toBeFalsy();
   });
 
   it("should not match when neither of the options is present", () => {

@@ -20,6 +20,10 @@ describe("maybe(expression)", () => {
   it("should not match strings with something instead of the argument", () => {
     expect(fooMaybeBarBaz.test("baz")).toBeFalsy();
   });
+
+  it("should wrap the argument in a non-capturing group", () => {
+    expect(fooMaybeBarBaz.test("ba")).toBeFalsy();
+  });
 });
 
 describe("optionally(expression)", () => {

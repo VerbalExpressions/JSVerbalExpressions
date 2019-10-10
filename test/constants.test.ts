@@ -1,10 +1,12 @@
 import {
+  anyCharacter,
   anything,
   digit,
   endOfLine,
   something,
   startOfLine,
   whitespaceCharacter,
+  wordBoundary,
   wordCharacter
 } from "../src/constants";
 import RawExpression from "../src/types/raw-expression";
@@ -16,7 +18,7 @@ describe("startOfLine", () => {
     expect(VerEx(startOfLine, "bar").test("foobar")).toBeFalsy();
   });
 
-  it("should not allow matches when not the first arg to VerEx", () => {
+  it("should not allow matches when not the first argument to VerEx", () => {
     expect(VerEx("foo", startOfLine).test("foobar")).toBeFalsy();
   });
 });
@@ -72,6 +74,7 @@ describe("wordCharacter", () => {
 
   it("should not match non-word characters", () => {
     expect(wordCharacters.test("-")).toBeFalsy();
+    expect(wordCharacters.test("é")).toBeFalsy();
     expect(wordCharacters.test("%")).toBeFalsy();
     expect(wordCharacters.test("ℳ")).toBeFalsy();
     expect(wordCharacters.test("µ")).toBeFalsy();
@@ -95,13 +98,40 @@ describe("whitespaceCharacter", () => {
   });
 });
 
-describe("wordBoundary", () => {});
+describe("wordBoundary", () => {
+  const expression = VerEx(wordBoundary, "foo", wordBoundary);
 
-describe("anyCharacter", () => {});
+  it("should anchor matches to word boundaries", () => {
+    expect(expression.test("bar foo baz?")).toBeTruthy();
+    expect(expression.test("baz-foo-bar")).toBeTruthy();
+    expect(expression.test("foo")).toBeTruthy();
+
+    expect(expression.test("foobar?")).toBeFalsy();
+    expect(expression.test("baz foo_ bar")).toBeFalsy();
+    expect(expression.test("foo33")).toBeFalsy();
+  });
+});
+
+describe("anyCharacter", () => {
+  it("should match any character", () => {
+    const expression = VerEx(anyCharacter);
+
+    expect(expression.test("a")).toBeTruthy();
+    expect(expression.test("1")).toBeTruthy();
+    expect(expression.test("%")).toBeTruthy();
+    expect(expression.test("ℳ")).toBeTruthy();
+    expect(expression.test("µ")).toBeTruthy();
+    expect(expression.test("👍")).toBeTruthy();
+  });
+
+  it("should not match the newline character", () => {
+    expect(VerEx(anyCharacter).test("\n")).toBeFalsy();
+  });
+});
 
 describe("anything", () => {
-  it("should match a random string", () => {
-    expect(VerEx(anything).test("foobar" + Math.random())).toBeTruthy();
+  it("should match a non-empty string", () => {
+    expect(VerEx(anything).test("foobar")).toBeTruthy();
   });
 
   it("should match an empty string", () => {
@@ -116,8 +146,8 @@ describe("anything", () => {
 });
 
 describe("something", () => {
-  it("should match a random string", () => {
-    expect(VerEx(something).test("foobar" + Math.random())).toBeTruthy();
+  it("should match a non-empty string", () => {
+    expect(VerEx(something).test("foobar")).toBeTruthy();
   });
 
   it("should not match an empty string", () => {

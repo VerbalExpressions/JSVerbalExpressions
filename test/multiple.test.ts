@@ -2,7 +2,7 @@ import multiple from "../src/multiple";
 import zeroOrMore from "../src/multiple";
 import VerEx from "../src/verex";
 
-describe("multiple(arg)", () => {
+describe("multiple(expression)", () => {
   it("should be a function", () => {
     expect(multiple).toBeInstanceOf(Function);
   });
@@ -20,7 +20,7 @@ describe("multiple(arg)", () => {
   });
 });
 
-describe("zeroOrMore(arg)", () => {
+describe("zeroOrMore(expression)", () => {
   it("should be an alias for multiple", () => {
     expect(zeroOrMore).toEqual(multiple);
   });

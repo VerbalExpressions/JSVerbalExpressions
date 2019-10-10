@@ -1,6 +1,5 @@
 import { anything } from "../src/constants";
 import group from "../src/group";
-import maybe from "../src/maybe";
 import VerEx from "../src/verex";
 
 describe("group(...expressions)", () => {
@@ -11,12 +10,14 @@ describe("group(...expressions)", () => {
   it("should create a capturing group", () => {
     const exp = VerEx("foo", group("bar"), "baz");
     const [, result] = exp.exec("foobarbaz");
+
     expect(result).toEqual("bar");
   });
 
   it("should work with multiple arguments", () => {
-    const exp = VerEx(group("http", maybe("s")), "://", group(anything));
+    const exp = VerEx(group("https"), "://", group(anything));
     const [, protocol, domain] = exp.exec("https://google.com");
+
     expect(protocol).toEqual("https");
     expect(domain).toEqual("google.com");
   });
@@ -35,20 +36,24 @@ describe("group.nonCapturing(...expressions)", () => {
 
   it("should not create a capturing group", () => {
     const exp = VerEx(
-      group("http", maybe("s")),
+      group("https"),
       "://",
       group.nonCapturing(anything)
     );
 
     const [, protocol] = exp.exec("https://google.com");
+
+    expect(protocol).not.toEqual("google.com");
     expect(protocol).toEqual("https");
   });
 
   it("should create a non-capturing group", () => {
     const exp = VerEx(group.nonCapturing("foo"));
 
-    // Can't think of a way to test this without:
+    // Can't think of a way to test this without
     // …using other functions. This seems like our best bet at the moment.
+    expect(exp.source).not.toEqual("(foo)");
+    expect(exp.source).not.toEqual("foo");
     expect(exp.source).toEqual("(?:foo)");
   });
 });

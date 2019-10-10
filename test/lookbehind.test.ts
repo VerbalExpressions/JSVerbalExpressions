@@ -15,8 +15,10 @@ describe("lookbehind(expression)", () => {
     let match: string;
 
     expect(exp.test("barfoo")).toBeTruthy();
+
     [match] = exp.exec("barfoo");
     expect(match).toEqual("foo");
+    expect(match).not.toEqual("barfoo");
 
     expect(exp.test("bazfoo")).toBeFalsy();
     expect(exp.test("banfoo")).toBeFalsy();
@@ -43,10 +45,12 @@ describe("lookbehind.negative(expression)", () => {
     let match: string;
 
     expect(exp.test("bazfoo")).toBeTruthy();
+
     [match] = exp.exec("bazfoo");
     expect(match).toEqual("foo");
 
     expect(exp.test("banfoo")).toBeTruthy();
+
     [match] = exp.exec("banfoo");
     expect(match).toEqual("foo");
 
