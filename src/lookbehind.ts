@@ -1,19 +1,19 @@
+import concat from "./concat";
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
-import exprToRaw from "./util/expr-to-raw";
 
-function lookbehind(expression: Expression): RawExpression {
-  expression = exprToRaw(expression);
+function lookbehind(...expressions: Expression[]): RawExpression {
+  const concatenated = concat(...expressions);
 
-  return new RawExpression(`(?<=${expression})`);
+  return new RawExpression(`(?<=${concatenated})`);
 }
 
 lookbehind.positive = lookbehind;
 
-lookbehind.negative = (expression: Expression): RawExpression => {
-  expression = exprToRaw(expression);
+lookbehind.negative = (...expressions: Expression[]): RawExpression => {
+  const concatenated = concat(...expressions);
 
-  return new RawExpression(`(?<!${expression})`);
+  return new RawExpression(`(?<!${concatenated})`);
 };
 
 export default lookbehind;

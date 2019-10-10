@@ -103,7 +103,7 @@ describe("Complex expressions", () => {
     );
 
     const noIllegalXX00LeapDate = lookahead.negative(
-      concat(notAMultipleOfFour, "00-FEB-29")
+      notAMultipleOfFour, "00-FEB-29"
     );
 
     const nineteenThroughNinetyNine = or(
@@ -112,15 +112,15 @@ describe("Complex expressions", () => {
     );
 
     const noNonMultipleOfFourLeapDate = lookahead.negative(
-      concat(nineteenThroughNinetyNine, notAMultipleOfFour, "-FEB-29")
+      nineteenThroughNinetyNine, notAMultipleOfFour, "-FEB-29"
     );
 
     const noIllegalFebThirties = lookahead.negative(
-      concat("FEB-3", anyCharacterFrom([0, 1]))
+      "FEB-3", anyCharacterFrom([0, 1])
     );
 
     const noIllegalThirtyFirsts = lookahead.negative(
-      concat(group.nonCapturing(or("APR", "JUN", "SEP", "NOV")), "-31")
+      group.nonCapturing(or("APR", "JUN", "SEP", "NOV")), "-31"
     );
 
     const noZeroDates = lookahead.negative("00");

@@ -15,13 +15,25 @@ describe("lookahead(expression)", () => {
     let match: string;
 
     expect(exp.test("foobar")).toBeTruthy();
-
     [match] = exp.exec("foobar");
     expect(match).toEqual("foo");
     expect(match).not.toEqual("foobar");
 
     expect(exp.test("foobaz")).toBeFalsy();
     expect(exp.test("fooban")).toBeFalsy();
+  });
+
+  it("should be able to accept multiple arguments", () => {
+    const exp = VerEx(
+      "foo",
+      lookahead("bar", "baz")
+    );
+
+    expect(exp.test("foobarbaz")).toBeTruthy();
+
+    expect(exp.test("foo")).toBeFalsy();
+    expect(exp.test("foobar")).toBeFalsy();
+    expect(exp.test("foobaz")).toBeFalsy();
   });
 });
 
@@ -45,15 +57,26 @@ describe("lookahead.negative(expression)", () => {
     let match: string;
 
     expect(exp.test("foobaz")).toBeTruthy();
-
     [match] = exp.exec("foobaz");
     expect(match).toEqual("foo");
 
     expect(exp.test("fooban")).toBeTruthy();
-
     [match] = exp.exec("fooban");
     expect(match).toEqual("foo");
 
     expect(exp.test("foobar")).toBeFalsy();
+  });
+
+  it("should be able to accept multiple arguments", () => {
+    const exp = VerEx(
+      "foo",
+      lookahead.negative("bar", "baz")
+    );
+
+    expect(exp.test("foobaz")).toBeTruthy();
+    expect(exp.test("foobar")).toBeTruthy();
+    expect(exp.test("fooban")).toBeTruthy();
+
+    expect(exp.test("foobarbaz")).toBeFalsy();
   });
 });

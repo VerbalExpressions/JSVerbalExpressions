@@ -1,19 +1,19 @@
+import concat from "./concat";
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
-import exprToRaw from "./util/expr-to-raw";
 
-function lookahead(expression: Expression): RawExpression {
-  expression = exprToRaw(expression);
+function lookahead(...expressions: Expression[]): RawExpression {
+  const concatenated = concat(...expressions);
 
-  return new RawExpression(`(?=${expression})`);
+  return new RawExpression(`(?=${concatenated})`);
 }
 
 lookahead.positive = lookahead;
 
-lookahead.negative = (expression: Expression): RawExpression => {
-  expression = exprToRaw(expression);
+lookahead.negative = (...expressions: Expression[]): RawExpression => {
+  const concatenated = concat(...expressions);
 
-  return new RawExpression(`(?!${expression})`);
+  return new RawExpression(`(?!${concatenated})`);
 };
 
 export default lookahead;
