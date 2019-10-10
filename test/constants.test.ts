@@ -29,7 +29,7 @@ describe("endOfLine", () => {
     expect(VerEx("foo", endOfLine).test("foobar")).toBeFalsy();
   });
 
-  it("should not allow matches when not the last arg to VerEx", () => {
+  it("should not allow matches when not the last argument to VerEx", () => {
     expect(VerEx(endOfLine, "bar").test("foobar")).toBeFalsy();
   });
 });
