@@ -10,10 +10,10 @@ function group(...expressions: Expression[]): RawExpression {
 
 group.capturing = group;
 
-group.nonCapturing = (...inputs: Expression[]): RawExpression => {
-  inputs = mixedToRawArray(inputs);
+group.nonCapturing = (...expressions: Expression[]): RawExpression => {
+  expressions = mixedToRawArray(expressions);
 
-  return new RawExpression(`(?:${inputs.join("")})`);
+  return new RawExpression(`(?:${expressions.join("")})`);
 };
 
 export default group;
