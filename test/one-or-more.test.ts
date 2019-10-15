@@ -11,16 +11,16 @@ describe("oneOrMore(expression)", () => {
     expect(nFoos.test("foo")).toBeTruthy();
   });
 
-  it("should match two repetitions", () => {
+  it("should match more than one repetition", () => {
     expect(nFoos.test("foofoo")).toBeTruthy();
+
+    const manyFoos = "foo".repeat(100);
+    expect(nFoos.test(manyFoos)).toBeTruthy();
   });
 
   it("should not match zero repetitions", () => {
     expect(nFoos.test("")).toBeFalsy();
   });
 
-  it("should match a hundred repetitions", () => {
-    const manyFoos = "foo".repeat(100);
-    expect(nFoos.test(manyFoos)).toBeTruthy();
-  });
+  it.todo("should be greedy");
 });

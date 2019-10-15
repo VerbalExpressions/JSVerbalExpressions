@@ -17,11 +17,6 @@ describe("anyCharacterBut(characters)", () => {
     expect(exp.test("-")).toBeTruthy();
   });
 
-  it("should not match more than one character", () => {
-    expect(exp.test("100")).toBeFalsy();
-    expect(exp.test("!@#$")).toBeFalsy();
-  });
-
   it("should not match characters in passed set", () => {
     expect(exp.test("b")).toBeFalsy();
     expect(exp.test("A")).toBeFalsy();
@@ -31,4 +26,11 @@ describe("anyCharacterBut(characters)", () => {
   it("should not match an empty string", () => {
     expect(exp.test("")).toBeFalsy();
   });
+
+  it("should not match more than one character", () => {
+    expect(exp.test("100")).toBeFalsy();
+    expect(exp.test("!@#$")).toBeFalsy();
+  });
+
+  it.todo("should work with predefined character classes");
 });

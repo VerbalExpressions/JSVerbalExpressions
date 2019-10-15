@@ -37,7 +37,7 @@ describe("endOfLine", () => {
 describe("digit", () => {
   const aDigit = VerEx(/^/, digit, /$/);
 
-  it("should match arabic numeral characters", () => {
+  it("should match arabic numerals", () => {
     expect(aDigit.test("0")).toBeTruthy();
     expect(aDigit.test("2")).toBeTruthy();
     expect(aDigit.test("8")).toBeTruthy();
@@ -54,6 +54,8 @@ describe("digit", () => {
     expect(aDigit.test("೧")).toBeFalsy();
     expect(aDigit.test("๑")).toBeFalsy();
   });
+
+  it.todo("should not match more than one character");
 });
 
 describe("wordCharacter", () => {
@@ -80,22 +82,28 @@ describe("wordCharacter", () => {
     expect(wordCharacters.test("µ")).toBeFalsy();
     expect(wordCharacters.test("👍")).toBeFalsy();
   });
+
+  it.todo("should not match more than one character");
 });
 
 describe("whitespaceCharacter", () => {
-  const whitespaceCharacters = VerEx(/^/, whitespaceCharacter, /$/);
+  const aWhitespaceCharacter = VerEx(/^/, whitespaceCharacter, /$/);
 
   it("should match whitespace characters", () => {
     const whitespaces = [" ", "\f", "\n", "\r", "\t", "\v", "\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
 
     for (const whitespace of whitespaces) {
-      expect(whitespaceCharacters.test(whitespace)).toBeTruthy();
+      expect(aWhitespaceCharacter.test(whitespace)).toBeTruthy();
     }
 
-    expect(whitespaceCharacters.test("a")).toBeFalsy();
-    expect(whitespaceCharacters.test("1")).toBeFalsy();
-    expect(whitespaceCharacters.test("-")).toBeFalsy();
+    expect(aWhitespaceCharacter.test("a")).toBeFalsy();
+    expect(aWhitespaceCharacter.test("1")).toBeFalsy();
+    expect(aWhitespaceCharacter.test("-")).toBeFalsy();
   });
+
+  it.todo("should not match non-whitespace characters");
+
+  it.todo("should not match more than one character");
 });
 
 describe("wordBoundary", () => {
@@ -124,9 +132,14 @@ describe("anyCharacter", () => {
     expect(expression.test("👍")).toBeTruthy();
   });
 
-  it("should not match the newline character", () => {
+  it("should not match line terminators", () => {
     expect(VerEx(anyCharacter).test("\n")).toBeFalsy();
+    expect(VerEx(anyCharacter).test("\r")).toBeFalsy();
+    expect(VerEx(anyCharacter).test("\u2028")).toBeFalsy();
+    expect(VerEx(anyCharacter).test("\u2029")).toBeFalsy();
   });
+
+  it.todo("should not match more than one character");
 });
 
 describe("anything", () => {

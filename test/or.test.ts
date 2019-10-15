@@ -40,14 +40,4 @@ describe("or(...options)", () => {
     expect(abc.test("abc")).toBeTruthy();
     expect(abc.test("a")).toBeFalsy();
   });
-
-  it("should work with multiple arguments", () => {
-    const lipsum = "Cupidatat irure consectetur amet dolor aliqua";
-    const words = lipsum.split(" ");
-    const exp = VerEx(/^/, or(...words), /$/);
-
-    for (const word of words) {
-      expect(exp.test(word)).toBeTruthy();
-    }
-  });
 });

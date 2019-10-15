@@ -16,10 +16,6 @@ describe("anyCharacterFrom(characters)", () => {
     expect(exp.test("_")).toBeTruthy();
   });
 
-  it("should not match more than one character", () => {
-    expect(exp.test("abc")).toBeFalsy();
-  });
-
   it("should not match a character not in the passed set", () => {
     expect(exp.test("g")).toBeFalsy();
     expect(exp.test("%")).toBeFalsy();
@@ -29,4 +25,10 @@ describe("anyCharacterFrom(characters)", () => {
   it("should not match an empty string", () => {
     expect(exp.test("")).toBeFalsy();
   });
+
+  it("should not match more than one character", () => {
+    expect(exp.test("abc")).toBeFalsy();
+  });
+
+  it.todo("should work with predefined character classes");
 });

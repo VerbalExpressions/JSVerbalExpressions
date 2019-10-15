@@ -24,6 +24,8 @@ describe("maybe(expression)", () => {
   it("should wrap the argument in a non-capturing group", () => {
     expect(fooMaybeBarBaz.test("ba")).toBeFalsy();
   });
+
+  it.todo("should be greedy");
 });
 
 describe("optionally(expression)", () => {

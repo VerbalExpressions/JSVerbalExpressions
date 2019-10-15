@@ -18,6 +18,8 @@ describe("multiple(expression)", () => {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
   });
+
+  it.todo("should be greedy");
 });
 
 describe("zeroOrMore(expression)", () => {

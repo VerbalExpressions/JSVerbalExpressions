@@ -23,6 +23,8 @@ describe("repeat(expression, n)", () => {
     expect(exp.test("foo".repeat(3))).toBeFalsy();
     expect(exp.test("foo".repeat(4))).toBeFalsy();
   });
+
+  it.todo("should be greedy");
 });
 
 describe("repeat(expression, min, Infinity)", () => {
@@ -42,6 +44,8 @@ describe("repeat(expression, min, Infinity)", () => {
       expect(exp.test("foo".repeat(i))).toBeTruthy();
     }
   });
+
+  it.todo("should be greedy");
 });
 
 describe("repeat(expression, min, max)", () => {
@@ -72,4 +76,6 @@ describe("repeat(expression, min, max)", () => {
     expect(exp.test("foo".repeat(12))).toBeFalsy();
     expect(exp.test("foo".repeat(13))).toBeFalsy();
   });
+
+  it.todo("should be greedy");
 });

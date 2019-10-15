@@ -1,7 +1,7 @@
 import anyCharacterBut from "../src/any-character-but";
 import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
-import { digit, endOfLine, startOfLine } from "../src/constants";
+import { digit, endOfLine, startOfLine, whitespaceCharacter } from "../src/constants";
 import group from "../src/group";
 import lookahead from "../src/lookahead";
 import maybe from "../src/maybe";
@@ -44,9 +44,9 @@ describe("Complex expressions", () => {
 
   it("should match IP addresses", () => {
     const octet = or(
-      concat("25", anyCharacterFrom([[0, 5]])),
-      concat("2", anyCharacterFrom([[0, 4]]), digit),
-      concat(maybe(anyCharacterFrom([0, 1])), maybe(digit), digit)
+      concat("25", anyCharacterFrom([[0, 5]])), // 250–255
+      concat("2", anyCharacterFrom([[0, 4]]), digit), // 200–249
+      concat(maybe(anyCharacterFrom([0, 1])), maybe(digit), digit) // 0–199
     );
 
     const ipAddress = VerEx(
@@ -65,6 +65,8 @@ describe("Complex expressions", () => {
     expect(ipAddress.test("١٢٣.१२३.೧೨೩.๑๒๓")).toBeFalsy();
     expect(ipAddress.test("999.999.999.999")).toBeFalsy();
   });
+
+  it.todo("should match email addresses");
 
   it("should match hex colour codes", () => {
     const hexCharacter = anyCharacterFrom([["a", "f"], ["A", "F"], [0, 9]]);
@@ -87,6 +89,38 @@ describe("Complex expressions", () => {
     expect(hexColour.test("#fb0_7d")).toBeFalsy();
     expect(hexColour.test("#9134")).toBeFalsy();
     expect(hexColour.test("#")).toBeFalsy();
+  });
+
+  it("should match 24 hour time", () => {
+    const hour = or(
+      concat(maybe(anyCharacterFrom([[0, 1]])), digit),
+      concat(2, anyCharacterFrom([[0, 3]]))
+    );
+
+    const zeroThroughFiftyNine = concat(
+      anyCharacterFrom([[0, 5]]), digit
+    );
+
+    const time = VerEx(
+      startOfLine,
+      group(hour), ":",
+      group(zeroThroughFiftyNine),
+      maybe(concat(":", zeroThroughFiftyNine)),
+      endOfLine
+    );
+
+    expect(time.test("23:50:00")).toBeTruthy();
+    expect(time.test("14:00")).toBeTruthy();
+    expect(time.test("22:09")).toBeTruthy();
+    expect(time.test("23:00")).toBeTruthy();
+    expect(time.test("9:30")).toBeTruthy();
+    expect(time.test("09:30")).toBeTruthy();
+    expect(time.test("19:30")).toBeTruthy();
+
+    expect(time.test("27:30")).toBeFalsy();
+    expect(time.test("13:70")).toBeFalsy();
+    expect(time.test("9:60")).toBeFalsy();
+    expect(time.test("12:24:63")).toBeFalsy();
   });
 
   it("should match dates", () => {
