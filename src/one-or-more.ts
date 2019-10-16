@@ -10,4 +10,9 @@ function oneOrMore(expression: Expression): RawExpression {
   return new RawExpression(`${grouped}+`);
 }
 
+oneOrMore.lazy = (expression: Expression): RawExpression => {
+  const greedy = oneOrMore(expression).toString();
+  return new RawExpression(`${greedy}?`);
+};
+
 export default oneOrMore;

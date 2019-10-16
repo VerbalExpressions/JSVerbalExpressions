@@ -22,4 +22,13 @@ function repeat(
   return new RawExpression(output);
 }
 
+repeat.lazy = (
+  expression: Expression,
+  minTimes: number,
+  maxTimes: number
+): RawExpression => {
+  const greedy = repeat(expression, minTimes, maxTimes);
+  return new RawExpression(`${greedy}?`);
+};
+
 export default repeat;

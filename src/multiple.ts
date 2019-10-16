@@ -8,5 +8,10 @@ function multiple(expression: Expression): RawExpression {
   return new RawExpression(`${grouped}*`);
 }
 
+multiple.lazy = (expression: Expression): RawExpression => {
+  const greedy = multiple(expression).toString();
+  return new RawExpression(`${greedy}?`);
+};
+
 export default multiple;
 export const zeroOrMore = multiple;

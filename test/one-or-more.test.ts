@@ -22,5 +22,19 @@ describe("oneOrMore(expression)", () => {
     expect(nFoos.test("")).toBeFalsy();
   });
 
-  it.todo("should be greedy");
+  it("should be greedy", () => {
+    const para = VerEx("<p>", oneOrMore(/./), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p> <p>bar</p>");
+  });
+});
+
+describe("oneOrMore.lazy(expression)", () => {
+  it("should be lazy", () => {
+    const para = VerEx("<p>", oneOrMore.lazy(/./), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p>");
+  });
 });

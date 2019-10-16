@@ -23,8 +23,6 @@ describe("repeat(expression, n)", () => {
     expect(exp.test("foo".repeat(3))).toBeFalsy();
     expect(exp.test("foo".repeat(4))).toBeFalsy();
   });
-
-  it.todo("should be greedy");
 });
 
 describe("repeat(expression, min, Infinity)", () => {
@@ -45,7 +43,21 @@ describe("repeat(expression, min, Infinity)", () => {
     }
   });
 
-  it.todo("should be greedy");
+  it("should be greedy", () => {
+    const para = VerEx("<p>", repeat(/./, 0, Infinity), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p> <p>bar</p>");
+  });
+});
+
+describe("repeat.lazy(expression, min, Infinity)", () => {
+  it("should be lazy", () => {
+    const para = VerEx("<p>", repeat.lazy(/./, 0, Infinity), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p>");
+  });
 });
 
 describe("repeat(expression, min, max)", () => {
@@ -77,5 +89,19 @@ describe("repeat(expression, min, max)", () => {
     expect(exp.test("foo".repeat(13))).toBeFalsy();
   });
 
-  it.todo("should be greedy");
+  it("should be greedy", () => {
+    const para = VerEx("<p>", repeat(/./, 0, 20), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p> <p>bar</p>");
+  });
+});
+
+describe("repeat.lazy(expression, min, max)", () => {
+  it("should be lazy", () => {
+    const para = VerEx("<p>", repeat.lazy(/./, 0, 20), "</p>");
+    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+    expect(match).toEqual("<p>foo</p>");
+  });
 });

@@ -25,7 +25,21 @@ describe("maybe(expression)", () => {
     expect(fooMaybeBarBaz.test("ba")).toBeFalsy();
   });
 
-  it.todo("should be greedy");
+  it("should be greedy", () => {
+    const exp = VerEx("'", maybe(/./), "'");
+    const [match] = exp.exec("'''");
+
+    expect(match).toEqual("'''");
+  });
+});
+
+describe("maybe.lazy(expression)", () => {
+  it("should be lazy", () => {
+    const exp = VerEx("'", maybe.lazy(/./), "'");
+    const [match] = exp.exec("'''");
+
+    expect(match).toEqual("``");
+  });
 });
 
 describe("optionally(expression)", () => {
