@@ -35,48 +35,48 @@ describe("lookbehind(expression)", () => {
     expect(exp.test("barfoo")).toBeFalsy();
     expect(exp.test("bazfoo")).toBeFalsy();
   });
-});
 
-describe("lookbehind.positive(expression)", () => {
-  it("should be an alias for lookbehind", () => {
-    expect(lookbehind.positive).toEqual(lookbehind);
-  });
-});
-
-describe("lookbehind.negative(expression)", () => {
-  it("should be a function", () => {
-    expect(lookbehind.negative).toBeInstanceOf(Function);
+  describe("lookbehind.positive(expression)", () => {
+    it("should be an alias for lookbehind", () => {
+      expect(lookbehind.positive).toEqual(lookbehind);
+    });
   });
 
-  it("should ensure that the argument does not exist", () => {
-    const exp = VerEx(
-      lookbehind.negative("bar"),
-      "foo"
-    );
+  describe("lookbehind.negative(expression)", () => {
+    it("should be a function", () => {
+      expect(lookbehind.negative).toBeInstanceOf(Function);
+    });
 
-    let match: string;
+    it("should ensure that the argument does not exist", () => {
+      const exp = VerEx(
+        lookbehind.negative("bar"),
+        "foo"
+      );
 
-    expect(exp.test("bazfoo")).toBeTruthy();
-    [match] = exp.exec("bazfoo");
-    expect(match).toEqual("foo");
+      let match: string;
 
-    expect(exp.test("banfoo")).toBeTruthy();
-    [match] = exp.exec("banfoo");
-    expect(match).toEqual("foo");
+      expect(exp.test("bazfoo")).toBeTruthy();
+      [match] = exp.exec("bazfoo");
+      expect(match).toEqual("foo");
 
-    expect(exp.test("barfoo")).toBeFalsy();
-  });
+      expect(exp.test("banfoo")).toBeTruthy();
+      [match] = exp.exec("banfoo");
+      expect(match).toEqual("foo");
 
-  it("should be able to accept multiple arguments", () => {
-    const exp = VerEx(
-      lookbehind.negative("bar", "baz"),
-      "foo"
-    );
+      expect(exp.test("barfoo")).toBeFalsy();
+    });
 
-    expect(exp.test("bazfoo")).toBeTruthy();
-    expect(exp.test("barfoo")).toBeTruthy();
-    expect(exp.test("banfoo")).toBeTruthy();
+    it("should be able to accept multiple arguments", () => {
+      const exp = VerEx(
+        lookbehind.negative("bar", "baz"),
+        "foo"
+      );
 
-    expect(exp.test("barbazfoo")).toBeFalsy();
+      expect(exp.test("bazfoo")).toBeTruthy();
+      expect(exp.test("barfoo")).toBeTruthy();
+      expect(exp.test("banfoo")).toBeTruthy();
+
+      expect(exp.test("barbazfoo")).toBeFalsy();
+    });
   });
 });

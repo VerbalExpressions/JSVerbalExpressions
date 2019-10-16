@@ -31,14 +31,14 @@ describe("maybe(expression)", () => {
 
     expect(match).toEqual("'''");
   });
-});
 
-describe("maybe.lazy(expression)", () => {
-  it("should be lazy", () => {
-    const exp = VerEx("'", maybe.lazy(/./), "'");
-    const [match] = exp.exec("'''");
+  describe("maybe.lazy(expression)", () => {
+    it("should be lazy", () => {
+      const exp = VerEx("'", maybe.lazy(/./), "'");
+      const [match] = exp.exec("'''");
 
-    expect(match).toEqual("``");
+      expect(match).toEqual("``");
+    });
   });
 });
 

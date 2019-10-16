@@ -25,14 +25,14 @@ describe("multiple(expression)", () => {
 
     expect(match).toEqual("<p>foo</p> <p>bar</p>");
   });
-});
 
-describe("multiple.lazy(expression)", () => {
-  it("should be lazy", () => {
-    const para = VerEx("<p>", multiple.lazy(/./), "</p>");
-    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+  describe("multiple.lazy(expression)", () => {
+    it("should be lazy", () => {
+      const para = VerEx("<p>", multiple.lazy(/./), "</p>");
+      const [match] = para.exec("<p>foo</p> <p>bar</p>");
 
-    expect(match).toEqual("<p>foo</p>");
+      expect(match).toEqual("<p>foo</p>");
+    });
   });
 });
 

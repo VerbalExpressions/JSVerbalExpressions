@@ -10,7 +10,7 @@ import or from "../src/or";
 import repeat from "../src/repeat";
 import VerEx from "../src/verex";
 
-describe("Complex expressions", () => {
+describe("complex expressions", () => {
   it("should match simple URLs", () => {
     const exp = VerEx(
       startOfLine,

@@ -21,39 +21,39 @@ describe("group(...expressions)", () => {
     expect(protocol).toEqual("https");
     expect(domain).toEqual("google.com");
   });
-});
 
-describe("group.capturing(...expressions)", () => {
-  it("should be an alias for group", () => {
-    expect(group.capturing).toEqual(group);
-  });
-});
-
-describe("group.nonCapturing(...expressions)", () => {
-  it("should be a function", () => {
-    expect(group.nonCapturing).toBeInstanceOf(Function);
+  describe("group.capturing(...expressions)", () => {
+    it("should be an alias for group", () => {
+      expect(group.capturing).toEqual(group);
+    });
   });
 
-  it("should not create a capturing group", () => {
-    const exp = VerEx(
-      group("https"),
-      "://",
-      group.nonCapturing(anything)
-    );
+  describe("group.nonCapturing(...expressions)", () => {
+    it("should be a function", () => {
+      expect(group.nonCapturing).toBeInstanceOf(Function);
+    });
 
-    const [, protocol] = exp.exec("https://google.com");
+    it("should not create a capturing group", () => {
+      const exp = VerEx(
+        group("https"),
+        "://",
+        group.nonCapturing(anything)
+      );
 
-    expect(protocol).not.toEqual("google.com");
-    expect(protocol).toEqual("https");
-  });
+      const [, protocol] = exp.exec("https://google.com");
 
-  it("should create a non-capturing group", () => {
-    const exp = VerEx(group.nonCapturing("foo"));
+      expect(protocol).not.toEqual("google.com");
+      expect(protocol).toEqual("https");
+    });
 
-    // Can't think of a way to test this without
-    // …using other functions. This seems like our best bet at the moment.
-    expect(exp.source).not.toEqual("(foo)");
-    expect(exp.source).not.toEqual("foo");
-    expect(exp.source).toEqual("(?:foo)");
+    it("should create a non-capturing group", () => {
+      const exp = VerEx(group.nonCapturing("foo"));
+
+      // Can't think of a way to test this without
+      // …using other functions. This seems like our best bet at the moment.
+      expect(exp.source).not.toEqual("(foo)");
+      expect(exp.source).not.toEqual("foo");
+      expect(exp.source).toEqual("(?:foo)");
+    });
   });
 });
