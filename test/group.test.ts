@@ -56,4 +56,26 @@ describe("group(...expressions)", () => {
       expect(exp.source).toEqual("(?:foo)");
     });
   });
+
+  describe("group.named(name, ...expressions)", () => {
+    it("should create a named group", () => {
+      const exp = VerEx(
+        group.named("a", "foo"),
+        group.named("b", "bar")
+      );
+
+      const matches = exp.exec("foobar");
+
+      expect(matches.groups).toEqual({
+        a: "foo",
+        b: "bar"
+      });
+    });
+  });
+
+  describe("group.capturing.named(name, ...expressions)", () => {
+    it("should be an alias for group.named", () => {
+      expect(group.capturing.named).toEqual(group.named);
+    });
+  });
 });
