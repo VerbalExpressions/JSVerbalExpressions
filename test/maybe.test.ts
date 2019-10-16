@@ -37,7 +37,7 @@ describe("maybe(expression)", () => {
       const exp = VerEx("'", maybe.lazy(/./), "'");
       const [match] = exp.exec("'''");
 
-      expect(match).toEqual("``");
+      expect(match).toEqual("''");
     });
   });
 });
