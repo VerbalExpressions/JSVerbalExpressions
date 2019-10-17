@@ -1,5 +1,6 @@
 import anyCharacterBut from "./any-character-but";
 import anyCharacterFrom from "./any-character-from";
+import backReference from "./back-reference";
 import concat from "./concat";
 import {
   anyCharacter,
@@ -32,6 +33,7 @@ export {
   anyCharacterBut,
   anyCharacterFrom,
   anything,
+  backReference,
   concat,
   digit,
   endOfLine,
