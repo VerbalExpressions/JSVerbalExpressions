@@ -28,13 +28,19 @@ describe("oneOrMore(expression)", () => {
 
     expect(match).toEqual("<p>foo</p> <p>bar</p>");
   });
-});
 
-describe("oneOrMore.lazy(expression)", () => {
-  it("should be lazy", () => {
-    const para = VerEx("<p>", oneOrMore.lazy(/./), "</p>");
-    const [match] = para.exec("<p>foo</p> <p>bar</p>");
+  describe("oneOrMore.greedy(expression)", () => {
+    it("should be an alias for oneOrMore", () => {
+      expect(oneOrMore.greedy).toEqual(oneOrMore);
+    });
+  });
 
-    expect(match).toEqual("<p>foo</p>");
+  describe("oneOrMore.lazy(expression)", () => {
+    it("should be lazy", () => {
+      const para = VerEx("<p>", oneOrMore.lazy(/./), "</p>");
+      const [match] = para.exec("<p>foo</p> <p>bar</p>");
+
+      expect(match).toEqual("<p>foo</p>");
+    });
   });
 });

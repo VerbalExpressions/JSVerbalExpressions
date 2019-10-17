@@ -10,6 +10,8 @@ function maybe(expression: Expression): RawExpression {
   return new RawExpression(`${grouped}?`);
 }
 
+maybe.greedy = maybe;
+
 maybe.lazy = (expression: Expression): RawExpression => {
   const greedy = maybe(expression);
   return new RawExpression(`${greedy}?`);

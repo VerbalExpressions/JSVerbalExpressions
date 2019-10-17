@@ -22,6 +22,8 @@ function repeat(
   return new RawExpression(output);
 }
 
+repeat.greedy = repeat;
+
 repeat.lazy = (
   expression: Expression,
   minTimes: number,

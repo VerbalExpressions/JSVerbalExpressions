@@ -26,6 +26,12 @@ describe("multiple(expression)", () => {
     expect(match).toEqual("<p>foo</p> <p>bar</p>");
   });
 
+  describe("multiple.greedy(expression)", () => {
+    it("should be an alias for multiple", () => {
+      expect(multiple.greedy).toEqual(multiple);
+    });
+  });
+
   describe("multiple.lazy(expression)", () => {
     it("should be lazy", () => {
       const para = VerEx("<p>", multiple.lazy(/./), "</p>");

@@ -6,6 +6,12 @@ describe("repeat", () => {
     expect(repeat).toBeInstanceOf(Function);
   });
 
+  describe("repeat.greedy", () => {
+    it("should be an alias for repeat", () => {
+      expect(repeat.greedy).toEqual(repeat);
+    });
+  });
+
   describe("repeat(expression, n)", () => {
     const exp = VerEx(/^/, repeat("foo", 2), /$/);
 
