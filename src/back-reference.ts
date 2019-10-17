@@ -1,6 +1,6 @@
 import RawExpression from "./types/raw-expression";
 
-function backReference(reference: number | string) {
+function backReference(reference: number | string): RawExpression {
   if (typeof reference === "number") {
     return new RawExpression(`\\${reference}`);
   }
