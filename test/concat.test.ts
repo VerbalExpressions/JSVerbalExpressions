@@ -1,6 +1,7 @@
 import concat from "../src/concat";
 import RawExpression from "../src/types/raw-expression";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("concat(...expressions)", () => {
   it("should concatenate simple strings", () => {
@@ -8,10 +9,10 @@ describe("concat(...expressions)", () => {
       /^/, concat("abc", "def"), /$/
     );
 
-    expect(abcdef.test("abcdef")).toBeTruthy();
+    expect(abcdef).toMatchString("abcdef");
 
-    expect(abcdef.test("abc")).toBeFalsy();
-    expect(abcdef.test("def")).toBeFalsy();
+    expect(abcdef).not.toMatchString("abc");
+    expect(abcdef).not.toMatchString("def");
   });
 
   it("should concatenate raw expressions", () => {
@@ -19,9 +20,9 @@ describe("concat(...expressions)", () => {
       /^/, concat("http", "s", new RawExpression("?")), /$/
     );
 
-    expect(httpMaybeSecure.test("https")).toBeTruthy();
-    expect(httpMaybeSecure.test("http")).toBeTruthy();
+    expect(httpMaybeSecure).toMatchString("https");
+    expect(httpMaybeSecure).toMatchString("http");
 
-    expect(httpMaybeSecure.test("https?")).toBeFalsy();
+    expect(httpMaybeSecure).not.toMatchString("https?");
   });
 });

@@ -1,5 +1,6 @@
 import VerEx from "../src/verex";
 import VerExp from "../src/verex";
+import "./custom-matchers";
 
 describe("VerEx(...expressions)", () => {
   it("should be a function", () => {
@@ -19,23 +20,23 @@ describe("VerEx(...expressions)", () => {
   it("should accept multiple strings", () => {
     const expression = VerEx("foo", "bar", "baz");
 
-    expect(expression.test("foobarbaz")).toBeTruthy();
+    expect(expression).toMatchString("foobarbaz");
   });
 
   it("should accept regular expressions", () => {
     const expression = VerEx(/^/, /foo/, /(?:bar)?/, /$/);
 
-    expect(expression.test("foo")).toBeTruthy();
-    expect(expression.test("foobar")).toBeTruthy();
+    expect(expression).toMatchString("foo");
+    expect(expression).toMatchString("foobar");
   });
 
   it("should accept numbers", () => {
     const expression = VerEx(3.14159);
 
-    expect(expression.test("3.14159")).toBeTruthy();
-    expect(expression.test("33.14159%")).toBeTruthy();
+    expect(expression).toMatchString("3.14159");
+    expect(expression).toMatchString("33.14159%");
 
-    expect(expression.test("3014159")).toBeFalsy();
+    expect(expression).not.toMatchString("3014159");
   });
 });
 

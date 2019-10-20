@@ -1,7 +1,7 @@
 import anyCharacterBut from "../src/any-character-but";
 import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
-import { digit, endOfLine, startOfLine, whitespaceCharacter } from "../src/constants";
+import { digit, endOfLine, startOfLine } from "../src/constants";
 import group from "../src/group";
 import lookahead from "../src/lookahead";
 import maybe from "../src/maybe";
@@ -9,6 +9,7 @@ import multiple from "../src/multiple";
 import or from "../src/or";
 import repeat from "../src/repeat";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("complex expressions", () => {
   it("should match simple URLs", () => {
@@ -22,10 +23,10 @@ describe("complex expressions", () => {
       endOfLine
     );
 
-    expect(exp.test("https://google.com/")).toBeTruthy();
-    expect(exp.test("http://www.msn.com/en-us")).toBeTruthy();
-    expect(exp.test("foobar")).toBeFalsy();
-    expect(exp.test("ftp://foo.bar")).toBeFalsy();
+    expect(exp).toMatchString("https://google.com/");
+    expect(exp).toMatchString("http://www.msn.com/en-us");
+    expect(exp).not.toMatchString("foobar");
+    expect(exp).not.toMatchString("ftp://foo.bar");
   });
 
   it("should match simple protocols", () => {
@@ -34,12 +35,12 @@ describe("complex expressions", () => {
     const domain = multiple(anyCharacterBut([" ", "/"]));
     const exp = VerEx(startOfLine, protocol, removeWww, domain);
 
-    expect(exp.test("http://www.google.com")).toBeTruthy();
-    expect(exp.test("https://msn.com")).toBeTruthy();
-    expect(exp.test("ftp://192.168.0.1")).toBeTruthy();
-    expect(exp.test("smtp://imap.fastmail.com")).toBeTruthy();
-    expect(exp.test("foobar")).toBeFalsy();
-    expect(exp.test("http://some.com/lengthty/url.html")).toBeTruthy();
+    expect(exp).toMatchString("http://www.google.com");
+    expect(exp).toMatchString("https://msn.com");
+    expect(exp).toMatchString("ftp://192.168.0.1");
+    expect(exp).toMatchString("smtp://imap.fastmail.com");
+    expect(exp).not.toMatchString("foobar");
+    expect(exp).toMatchString("http://some.com/lengthty/url.html");
   });
 
   it("should match IP addresses", () => {
@@ -55,15 +56,15 @@ describe("complex expressions", () => {
       endOfLine
     );
 
-    expect(ipAddress.test("192.168.0.1")).toBeTruthy();
-    expect(ipAddress.test("10.255.255.255")).toBeTruthy();
-    expect(ipAddress.test("172.16.254.1")).toBeTruthy();
-    expect(ipAddress.test("172.8.184.233")).toBeTruthy();
-    expect(ipAddress.test("127.0.0.1")).toBeTruthy();
+    expect(ipAddress).toMatchString("192.168.0.1");
+    expect(ipAddress).toMatchString("10.255.255.255");
+    expect(ipAddress).toMatchString("172.16.254.1");
+    expect(ipAddress).toMatchString("172.8.184.233");
+    expect(ipAddress).toMatchString("127.0.0.1");
 
-    expect(ipAddress.test("127x0x0x1")).toBeFalsy();
-    expect(ipAddress.test("١٢٣.१२३.೧೨೩.๑๒๓")).toBeFalsy();
-    expect(ipAddress.test("999.999.999.999")).toBeFalsy();
+    expect(ipAddress).not.toMatchString("127x0x0x1");
+    expect(ipAddress).not.toMatchString("١٢٣.१२३.೧೨೩.๑๒๓");
+    expect(ipAddress).not.toMatchString("999.999.999.999");
   });
 
   it.todo("should match email addresses");
@@ -80,15 +81,15 @@ describe("complex expressions", () => {
       endOfLine
     );
 
-    expect(hexColour.test("#FFF")).toBeTruthy();
-    expect(hexColour.test("#bae")).toBeTruthy();
-    expect(hexColour.test("#8ce060")).toBeTruthy();
-    expect(hexColour.test("#E6E6FA")).toBeTruthy();
+    expect(hexColour).toMatchString("#FFF");
+    expect(hexColour).toMatchString("#bae");
+    expect(hexColour).toMatchString("#8ce060");
+    expect(hexColour).toMatchString("#E6E6FA");
 
-    expect(hexColour.test("E6E6FA")).toBeFalsy();
-    expect(hexColour.test("#fb0_7d")).toBeFalsy();
-    expect(hexColour.test("#9134")).toBeFalsy();
-    expect(hexColour.test("#")).toBeFalsy();
+    expect(hexColour).not.toMatchString("E6E6FA");
+    expect(hexColour).not.toMatchString("#fb0_7d");
+    expect(hexColour).not.toMatchString("#9134");
+    expect(hexColour).not.toMatchString("#");
   });
 
   it("should match 24 hour time", () => {
@@ -109,18 +110,18 @@ describe("complex expressions", () => {
       endOfLine
     );
 
-    expect(time.test("23:50:00")).toBeTruthy();
-    expect(time.test("14:00")).toBeTruthy();
-    expect(time.test("22:09")).toBeTruthy();
-    expect(time.test("23:00")).toBeTruthy();
-    expect(time.test("9:30")).toBeTruthy();
-    expect(time.test("09:30")).toBeTruthy();
-    expect(time.test("19:30")).toBeTruthy();
+    expect(time).toMatchString("23:50:00");
+    expect(time).toMatchString("14:00");
+    expect(time).toMatchString("22:09");
+    expect(time).toMatchString("23:00");
+    expect(time).toMatchString("9:30");
+    expect(time).toMatchString("09:30");
+    expect(time).toMatchString("19:30");
 
-    expect(time.test("27:30")).toBeFalsy();
-    expect(time.test("13:70")).toBeFalsy();
-    expect(time.test("9:60")).toBeFalsy();
-    expect(time.test("12:24:63")).toBeFalsy();
+    expect(time).not.toMatchString("27:30");
+    expect(time).not.toMatchString("13:70");
+    expect(time).not.toMatchString("9:60");
+    expect(time).not.toMatchString("12:24:63");
   });
 
   it("should match dates", () => {
@@ -185,15 +186,15 @@ describe("complex expressions", () => {
       endOfLine
     );
 
-    expect(completeDate.test("1920-JAN-31")).toBeTruthy();
-    expect(completeDate.test("1920-FEB-29")).toBeTruthy();
-    expect(completeDate.test("2001-NOV-21")).toBeTruthy();
-    expect(completeDate.test("2016-NOV-09")).toBeTruthy();
-    expect(completeDate.test("2024-AUG-31")).toBeTruthy();
-    expect(completeDate.test("1921-FEB-28")).toBeTruthy();
-    expect(completeDate.test("1920-FEB-28")).toBeTruthy();
-    expect(completeDate.test("9920-FEB-28")).toBeTruthy();
-    expect(completeDate.test("2920-FEB-28")).toBeTruthy();
+    expect(completeDate).toMatchString("1920-JAN-31");
+    expect(completeDate).toMatchString("1920-FEB-29");
+    expect(completeDate).toMatchString("2001-NOV-21");
+    expect(completeDate).toMatchString("2016-NOV-09");
+    expect(completeDate).toMatchString("2024-AUG-31");
+    expect(completeDate).toMatchString("1921-FEB-28");
+    expect(completeDate).toMatchString("1920-FEB-28");
+    expect(completeDate).toMatchString("9920-FEB-28");
+    expect(completeDate).toMatchString("2920-FEB-28");
 
     const [
       , matchedYear, matchedMonth, matchedDate
@@ -203,15 +204,15 @@ describe("complex expressions", () => {
     expect(matchedMonth).toEqual("JAN");
     expect(matchedDate).toEqual("01");
 
-    expect(completeDate.test("2900-FEB-29")).toBeFalsy();
-    expect(completeDate.test("1921-FEB-29")).toBeFalsy();
-    expect(completeDate.test("1920-JAN-35")).toBeFalsy();
-    expect(completeDate.test("1920-FEB-30")).toBeFalsy();
-    expect(completeDate.test("1920-FEB-31")).toBeFalsy();
-    expect(completeDate.test("1920-FOO-28")).toBeFalsy();
-    expect(completeDate.test("1920-APR-31")).toBeFalsy();
-    expect(completeDate.test("1820-NOV-02")).toBeFalsy();
-    expect(completeDate.test("1920-NOV-00")).toBeFalsy();
-    expect(completeDate.test("1857-JAN-01")).toBeFalsy();
+    expect(completeDate).not.toMatchString("2900-FEB-29");
+    expect(completeDate).not.toMatchString("1921-FEB-29");
+    expect(completeDate).not.toMatchString("1920-JAN-35");
+    expect(completeDate).not.toMatchString("1920-FEB-30");
+    expect(completeDate).not.toMatchString("1920-FEB-31");
+    expect(completeDate).not.toMatchString("1920-FOO-28");
+    expect(completeDate).not.toMatchString("1920-APR-31");
+    expect(completeDate).not.toMatchString("1820-NOV-02");
+    expect(completeDate).not.toMatchString("1920-NOV-00");
+    expect(completeDate).not.toMatchString("1857-JAN-01");
   });
 });

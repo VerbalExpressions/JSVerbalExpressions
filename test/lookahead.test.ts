@@ -1,5 +1,6 @@
 import lookahead from "../src/lookahead";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("lookahead(expression)", () => {
   it("should be a function", () => {
@@ -14,13 +15,13 @@ describe("lookahead(expression)", () => {
 
     let match: string;
 
-    expect(exp.test("foobar")).toBeTruthy();
+    expect(exp).toMatchString("foobar");
     [match] = exp.exec("foobar");
     expect(match).toEqual("foo");
     expect(match).not.toEqual("foobar");
 
-    expect(exp.test("foobaz")).toBeFalsy();
-    expect(exp.test("fooban")).toBeFalsy();
+    expect(exp).not.toMatchString("foobaz");
+    expect(exp).not.toMatchString("fooban");
   });
 
   it("should be able to accept multiple arguments", () => {
@@ -29,11 +30,11 @@ describe("lookahead(expression)", () => {
       lookahead("bar", "baz")
     );
 
-    expect(exp.test("foobarbaz")).toBeTruthy();
+    expect(exp).toMatchString("foobarbaz");
 
-    expect(exp.test("foo")).toBeFalsy();
-    expect(exp.test("foobar")).toBeFalsy();
-    expect(exp.test("foobaz")).toBeFalsy();
+    expect(exp).not.toMatchString("foo");
+    expect(exp).not.toMatchString("foobar");
+    expect(exp).not.toMatchString("foobaz");
   });
 
   describe("lookahead.positive(expression)", () => {
@@ -55,15 +56,15 @@ describe("lookahead(expression)", () => {
 
       let match: string;
 
-      expect(exp.test("foobaz")).toBeTruthy();
+      expect(exp).toMatchString("foobaz");
       [match] = exp.exec("foobaz");
       expect(match).toEqual("foo");
 
-      expect(exp.test("fooban")).toBeTruthy();
+      expect(exp).toMatchString("fooban");
       [match] = exp.exec("fooban");
       expect(match).toEqual("foo");
 
-      expect(exp.test("foobar")).toBeFalsy();
+      expect(exp).not.toMatchString("foobar");
     });
 
     it("should be able to accept multiple arguments", () => {
@@ -72,11 +73,11 @@ describe("lookahead(expression)", () => {
         lookahead.negative("bar", "baz")
       );
 
-      expect(exp.test("foobaz")).toBeTruthy();
-      expect(exp.test("foobar")).toBeTruthy();
-      expect(exp.test("fooban")).toBeTruthy();
+      expect(exp).toMatchString("foobaz");
+      expect(exp).toMatchString("foobar");
+      expect(exp).toMatchString("fooban");
 
-      expect(exp.test("foobarbaz")).toBeFalsy();
+      expect(exp).not.toMatchString("foobarbaz");
     });
   });
 });

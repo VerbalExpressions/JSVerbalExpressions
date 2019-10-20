@@ -1,5 +1,6 @@
 import repeat from "../src/repeat";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("repeat", () => {
   it("should be a function", () => {
@@ -16,17 +17,17 @@ describe("repeat", () => {
     const exp = VerEx(/^/, repeat("foo", 2), /$/);
 
     it("should match exactly `n` repetitions", () => {
-      expect(exp.test("foo".repeat(2))).toBeTruthy();
+      expect(exp).toMatchString("foo".repeat(2));
     });
 
     it("should not match less than `n` repetitions", () => {
-      expect(exp.test("")).toBeFalsy();
-      expect(exp.test("foo")).toBeFalsy();
+      expect(exp).not.toMatchString("");
+      expect(exp).not.toMatchString("foo");
     });
 
     it("should not match more than `n` repetitions", () => {
-      expect(exp.test("foo".repeat(3))).toBeFalsy();
-      expect(exp.test("foo".repeat(4))).toBeFalsy();
+      expect(exp).not.toMatchString("foo".repeat(3));
+      expect(exp).not.toMatchString("foo".repeat(4));
     });
   });
 
@@ -34,17 +35,17 @@ describe("repeat", () => {
     const exp = VerEx(/^/, repeat("foo", 2, Infinity), /$/);
 
     it("should not match less than `min` repetitions", () => {
-      expect(exp.test("")).toBeFalsy();
-      expect(exp.test("foo")).toBeFalsy();
+      expect(exp).not.toMatchString("");
+      expect(exp).not.toMatchString("foo");
     });
 
     it("should match `min` repetitions", () => {
-      expect(exp.test("foo".repeat(2))).toBeTruthy();
+      expect(exp).toMatchString("foo".repeat(2));
     });
 
     it("should match more than `min` repetitions", () => {
       for (let i = 2; i < 20; i++) {
-        expect(exp.test("foo".repeat(i))).toBeTruthy();
+        expect(exp).toMatchString("foo".repeat(i));
       }
     });
 
@@ -69,29 +70,29 @@ describe("repeat", () => {
     const exp = VerEx(/^/, repeat("foo", 3, 10), /$/);
 
     it("should not match less than `min` repetitions", () => {
-      expect(exp.test("")).toBeFalsy();
-      expect(exp.test("foo".repeat(1))).toBeFalsy();
-      expect(exp.test("foo".repeat(2))).toBeFalsy();
+      expect(exp).not.toMatchString("");
+      expect(exp).not.toMatchString("foo".repeat(1));
+      expect(exp).not.toMatchString("foo".repeat(2));
     });
 
     it("should match `min` repetitions", () => {
-      expect(exp.test("foo".repeat(3))).toBeTruthy();
+      expect(exp).toMatchString("foo".repeat(3));
     });
 
     it("should match `min < x < max` repetitions", () => {
       for (let i = 4; i < 10; i++) {
-        expect(exp.test("foo".repeat(i))).toBeTruthy();
+        expect(exp).toMatchString("foo".repeat(i));
       }
     });
 
     it("should match `max` repetitions", () => {
-      expect(exp.test("foo".repeat(10))).toBeTruthy();
+      expect(exp).toMatchString("foo".repeat(10));
     });
 
     it("should not match more than `max` repetitions", () => {
-      expect(exp.test("foo".repeat(11))).toBeFalsy();
-      expect(exp.test("foo".repeat(12))).toBeFalsy();
-      expect(exp.test("foo".repeat(13))).toBeFalsy();
+      expect(exp).not.toMatchString("foo".repeat(11));
+      expect(exp).not.toMatchString("foo".repeat(12));
+      expect(exp).not.toMatchString("foo".repeat(13));
     });
 
     it("should be greedy", () => {

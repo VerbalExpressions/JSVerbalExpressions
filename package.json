@@ -9,7 +9,9 @@
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "chalk": "^2.4.2",
     "jest": "^24.8.0",
+    "pretty-format": "^24.9.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.0",
     "typescript": "^3.5.3"

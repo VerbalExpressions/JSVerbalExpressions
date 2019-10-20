@@ -1,5 +1,6 @@
 import oneOrMore from "../src/one-or-more";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("oneOrMore(expression)", () => {
   it("should be a function", () => {
@@ -8,18 +9,18 @@ describe("oneOrMore(expression)", () => {
 
   const nFoos = VerEx(/^/, oneOrMore("foo"), /$/);
   it("should match one repetition", () => {
-    expect(nFoos.test("foo")).toBeTruthy();
+    expect(nFoos).toMatchString("foo");
   });
 
   it("should match more than one repetition", () => {
-    expect(nFoos.test("foofoo")).toBeTruthy();
+    expect(nFoos).toMatchString("foofoo");
 
     const manyFoos = "foo".repeat(100);
-    expect(nFoos.test(manyFoos)).toBeTruthy();
+    expect(nFoos).toMatchString(manyFoos);
   });
 
   it("should not match zero repetitions", () => {
-    expect(nFoos.test("")).toBeFalsy();
+    expect(nFoos).not.toMatchString("");
   });
 
   it("should be greedy", () => {

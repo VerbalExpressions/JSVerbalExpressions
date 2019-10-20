@@ -1,5 +1,6 @@
 import anyCharacterFrom from "../src/any-character-from";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("anyCharacterFrom(characters)", () => {
   const exp = VerEx(/^/, anyCharacterFrom([["a", "f"], [0, 9], " ", "_"]), /$/);
@@ -9,25 +10,25 @@ describe("anyCharacterFrom(characters)", () => {
   });
 
   it("should match a character in the passed set", () => {
-    expect(exp.test("a")).toBeTruthy();
-    expect(exp.test("b")).toBeTruthy();
-    expect(exp.test("5")).toBeTruthy();
-    expect(exp.test(" ")).toBeTruthy();
-    expect(exp.test("_")).toBeTruthy();
+    expect(exp).toMatchString("a");
+    expect(exp).toMatchString("b");
+    expect(exp).toMatchString("5");
+    expect(exp).toMatchString(" ");
+    expect(exp).toMatchString("_");
   });
 
   it("should not match a character not in the passed set", () => {
-    expect(exp.test("g")).toBeFalsy();
-    expect(exp.test("%")).toBeFalsy();
-    expect(exp.test("A")).toBeFalsy();
+    expect(exp).not.toMatchString("g");
+    expect(exp).not.toMatchString("%");
+    expect(exp).not.toMatchString("A");
   });
 
   it("should not match an empty string", () => {
-    expect(exp.test("")).toBeFalsy();
+    expect(exp).not.toMatchString("");
   });
 
   it("should not match more than one character", () => {
-    expect(exp.test("abc")).toBeFalsy();
+    expect(exp).not.toMatchString("abc");
   });
 
   it.todo("should work with predefined character classes");

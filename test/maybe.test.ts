@@ -1,6 +1,7 @@
 import maybe from "../src/maybe";
 import optionally from "../src/maybe";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("maybe(expression)", () => {
   const fooMaybeBarBaz = VerEx(/^/, maybe("bar"), /$/);
@@ -10,19 +11,19 @@ describe("maybe(expression)", () => {
   });
 
   it("should match strings with the argument", () => {
-    expect(fooMaybeBarBaz.test("bar")).toBeTruthy();
+    expect(fooMaybeBarBaz).toMatchString("bar");
   });
 
   it("should match strings without the argument", () => {
-    expect(fooMaybeBarBaz.test("")).toBeTruthy();
+    expect(fooMaybeBarBaz).toMatchString("");
   });
 
   it("should not match strings with something instead of the argument", () => {
-    expect(fooMaybeBarBaz.test("baz")).toBeFalsy();
+    expect(fooMaybeBarBaz).not.toMatchString("baz");
   });
 
   it("should wrap the argument in a non-capturing group", () => {
-    expect(fooMaybeBarBaz.test("ba")).toBeFalsy();
+    expect(fooMaybeBarBaz).not.toMatchString("ba");
   });
 
   it("should be greedy", () => {

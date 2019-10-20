@@ -1,6 +1,7 @@
 import multiple from "../src/multiple";
 import zeroOrMore from "../src/multiple";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("multiple(expression)", () => {
   it("should be a function", () => {
@@ -9,13 +10,13 @@ describe("multiple(expression)", () => {
 
   it("should match zero repetitions", () => {
     const exp = VerEx(/^/, multiple("foo"), /$/);
-    expect(exp.test("")).toBeTruthy();
+    expect(exp).toMatchString("");
   });
 
   it("should match any number of repetitions", () => {
     const exp = VerEx(/^/, multiple("foo"), /$/);
     for (let i = 0; i < 20; i++) {
-      expect(exp.test("foo".repeat(i))).toBeTruthy();
+      expect(exp).toMatchString("foo".repeat(i));
     }
   });
 

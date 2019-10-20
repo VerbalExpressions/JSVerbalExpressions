@@ -1,5 +1,6 @@
 import anyCharacterBut from "../src/any-character-but";
 import VerEx from "../src/verex";
+import "./custom-matchers";
 
 describe("anyCharacterBut(characters)", () => {
   const exp = VerEx(
@@ -11,25 +12,25 @@ describe("anyCharacterBut(characters)", () => {
   });
 
   it("should match a character not in passed set", () => {
-    expect(exp.test("0")).toBeTruthy();
-    expect(exp.test("%")).toBeTruthy();
-    expect(exp.test("é")).toBeTruthy();
-    expect(exp.test("-")).toBeTruthy();
+    expect(exp).toMatchString("0");
+    expect(exp).toMatchString("%");
+    expect(exp).toMatchString("é");
+    expect(exp).toMatchString("-");
   });
 
   it("should not match characters in passed set", () => {
-    expect(exp.test("b")).toBeFalsy();
-    expect(exp.test("A")).toBeFalsy();
-    expect(exp.test("_")).toBeFalsy();
+    expect(exp).not.toMatchString("b");
+    expect(exp).not.toMatchString("A");
+    expect(exp).not.toMatchString("_");
   });
 
   it("should not match an empty string", () => {
-    expect(exp.test("")).toBeFalsy();
+    expect(exp).not.toMatchString("");
   });
 
   it("should not match more than one character", () => {
-    expect(exp.test("100")).toBeFalsy();
-    expect(exp.test("!@#$")).toBeFalsy();
+    expect(exp).not.toMatchString("100");
+    expect(exp).not.toMatchString("!@#$");
   });
 
   it.todo("should work with predefined character classes");
