@@ -33,5 +33,18 @@ describe("anyCharacterBut(characters)", () => {
     expect(exp).not.toMatchString("!@#$");
   });
 
-  it.todo("should work with predefined character classes");
+  it("should work with predefined character classes", () => {
+    const neitherDigitNorA = VerEx(anyCharacterBut([/\d/, "A"]));
+
+    expect(neitherDigitNorA).not.toMatchString("A");
+    expect(neitherDigitNorA).not.toMatchString("9");
+    expect(neitherDigitNorA).toMatchString("_");
+
+    const nonWord = VerEx(anyCharacterBut([/\w/]));
+
+    expect(nonWord).not.toMatchString("a");
+    expect(nonWord).not.toMatchString("9");
+    expect(nonWord).not.toMatchString("_");
+    expect(nonWord).toMatchString("%");
+  });
 });

@@ -1,18 +1,20 @@
 import Expression from "./types/expression";
 import RawExpression from "./types/raw-expression";
-import exprToRaw from "./util/expr-to-raw";
+import mixedToRawArray from "./util/mixed-to-raw-array";
 
 type CharacterOrRange = Expression | [Expression, Expression];
 
 function anyCharacterBut(characters: CharacterOrRange[]): RawExpression {
-  for (const [i, expression] of Object.entries(characters)) {
+  const rawCharacters = characters.map((expression) => {
     if (expression instanceof Array) {
-      characters[i] = expression.join("-");
+      const rawRange = mixedToRawArray(expression);
+      return new RawExpression(rawRange.join("-"));
+    } else {
+      return new RawExpression(expression);
     }
-  }
+  });
 
-  const setAsString = characters.join("");
-  const raw = exprToRaw(setAsString);
+  const raw = rawCharacters.join("");
 
   return new RawExpression(`[^${raw}]`);
 }
