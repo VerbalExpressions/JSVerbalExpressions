@@ -9,7 +9,6 @@ import {
   wordBoundary,
   wordCharacter
 } from "../src/constants";
-import RawExpression from "../src/types/raw-expression";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
@@ -60,28 +59,34 @@ describe("digit", () => {
 });
 
 describe("wordCharacter", () => {
-  const wordCharacters = VerEx(/^/, wordCharacter, new RawExpression("+"), /$/);
+  const aWordCharacter = VerEx(/^/, wordCharacter, /$/);
 
   it("should match a–z and A–Z", () => {
-    expect(wordCharacters).toMatchString("abcdefghijklmnopqrstuvwxyz");
-    expect(wordCharacters).toMatchString("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+    for (const alpha of alphabet.split("")) {
+      expect(aWordCharacter).toMatchString(alpha);
+      expect(aWordCharacter).toMatchString(alpha.toUpperCase());
+    }
   });
 
   it("should match arabic numerals", () => {
-    expect(wordCharacters).toMatchString("0123456789");
+    for (let i = 0; i <= 9; i++) {
+      expect(aWordCharacter).toMatchString(String(i));
+    }
   });
 
   it("should match an underscore", () => {
-    expect(wordCharacters).toMatchString("_");
+    expect(aWordCharacter).toMatchString("_");
   });
 
   it("should not match non-word characters", () => {
-    expect(wordCharacters).not.toMatchString("-");
-    expect(wordCharacters).not.toMatchString("é");
-    expect(wordCharacters).not.toMatchString("%");
-    expect(wordCharacters).not.toMatchString("ℳ");
-    expect(wordCharacters).not.toMatchString("µ");
-    expect(wordCharacters).not.toMatchString("👍");
+    expect(aWordCharacter).not.toMatchString("-");
+    expect(aWordCharacter).not.toMatchString("é");
+    expect(aWordCharacter).not.toMatchString("%");
+    expect(aWordCharacter).not.toMatchString("ℳ");
+    expect(aWordCharacter).not.toMatchString("µ");
+    expect(aWordCharacter).not.toMatchString("👍");
   });
 
   it.todo("should not match more than one character");
@@ -91,9 +96,9 @@ describe("whitespaceCharacter", () => {
   const aWhitespaceCharacter = VerEx(/^/, whitespaceCharacter, /$/);
 
   it("should match whitespace characters", () => {
-    const whitespaces = [" ", "\f", "\n", "\r", "\t", "\v", "\u00a0", "\u1680", "\u2000", "\u2001", "\u2002", "\u2002", "\u2003", "\u2004", "\u2005", "\u2006", "\u2007", "\u2008", "\u2009", "\u200a", "\u2028", "\u2029", "\u202f", "\u205f", "\u3000", "\ufeff"];
+    const whitespaces = " \f\n\r\t\v\u00a0\u1680\u2000\u2001\u2002\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff";
 
-    for (const whitespace of whitespaces) {
+    for (const whitespace of whitespaces.split("")) {
       expect(aWhitespaceCharacter).toMatchString(whitespace);
     }
 
