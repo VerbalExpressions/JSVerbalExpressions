@@ -56,6 +56,8 @@ describe("digit", () => {
   });
 
   it.todo("should not match more than one character");
+
+  describe("nonDigit", () => {});
 });
 
 describe("wordCharacter", () => {
@@ -90,6 +92,8 @@ describe("wordCharacter", () => {
   });
 
   it.todo("should not match more than one character");
+
+  describe("nonWordCharacter", () => {});
 });
 
 describe("whitespaceCharacter", () => {
@@ -110,6 +114,8 @@ describe("whitespaceCharacter", () => {
   it.todo("should not match non-whitespace characters");
 
   it.todo("should not match more than one character");
+
+  describe("nonWhitespaceCharacter", () => {});
 });
 
 describe("wordBoundary", () => {
@@ -124,6 +130,8 @@ describe("wordBoundary", () => {
     expect(expression).not.toMatchString("baz foo_ bar");
     expect(expression).not.toMatchString("foo33");
   });
+
+  describe("nonWordBoundary", () => {});
 });
 
 describe("anyCharacter", () => {
