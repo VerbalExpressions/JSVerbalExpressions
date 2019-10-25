@@ -1,5 +1,6 @@
 import {
   endOfLine,
+  nonWordBoundary,
   startOfLine,
   wordBoundary
 } from "../src/constants";
@@ -29,17 +30,30 @@ describe("endOfLine", () => {
 });
 
 describe("wordBoundary", () => {
-  const expression = VerEx(wordBoundary, "foo", wordBoundary);
+  const fooWithinBoundaries = VerEx(wordBoundary, "foo", wordBoundary);
 
   it("should anchor matches to word boundaries", () => {
-    expect(expression).toMatchString("bar foo baz?");
-    expect(expression).toMatchString("baz-foo-bar");
-    expect(expression).toMatchString("foo");
+    expect(fooWithinBoundaries).toMatchString("bar foo baz?");
+    expect(fooWithinBoundaries).toMatchString("baz-foo-bar");
+    expect(fooWithinBoundaries).toMatchString("foo");
 
-    expect(expression).not.toMatchString("foobar?");
-    expect(expression).not.toMatchString("baz foo_ bar");
-    expect(expression).not.toMatchString("foo33");
+    expect(fooWithinBoundaries).not.toMatchString("foobar?");
+    expect(fooWithinBoundaries).not.toMatchString("baz foo_ bar");
+    expect(fooWithinBoundaries).not.toMatchString("foo33");
   });
 
-  describe("nonWordBoundary", () => {});
+  describe("nonWordBoundary", () => {
+    const expression = VerEx(nonWordBoundary, "foo", nonWordBoundary);
+
+    it("should anchor matches to non-word-boundaries", () => {
+      expect(expression).toMatchString("bazfoobar");
+      expect(expression).toMatchString("baz_foo_bar");
+      expect(expression).toMatchString("bazfoo33");
+
+      expect(expression).not.toMatchString("baz foo bar?");
+      expect(expression).not.toMatchString("baz-foo-bar");
+      expect(expression).not.toMatchString("foo");
+      expect(expression).not.toMatchString("foo?");
+    });
+  });
 });

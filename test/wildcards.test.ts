@@ -7,25 +7,27 @@ import VerEx from "../src/verex";
 import "./custom-matchers";
 
 describe("anyCharacter", () => {
-  it("should match any character", () => {
-    const expression = VerEx(anyCharacter);
+  const aCharacter = VerEx(/^/, anyCharacter, /$/);
 
-    expect(expression).toMatchString("a");
-    expect(expression).toMatchString("1");
-    expect(expression).toMatchString("%");
-    expect(expression).toMatchString("ℳ");
-    expect(expression).toMatchString("µ");
-    expect(expression).toMatchString("👍");
+  it("should match any character", () => {
+    expect(aCharacter).toMatchString("a");
+    expect(aCharacter).toMatchString("1");
+    expect(aCharacter).toMatchString("%");
+    expect(aCharacter).toMatchString("ℳ");
+    expect(aCharacter).toMatchString("µ");
+    expect(aCharacter).toMatchString("👍");
   });
 
   it("should not match line terminators", () => {
-    expect(VerEx(anyCharacter)).not.toMatchString("\n");
-    expect(VerEx(anyCharacter)).not.toMatchString("\r");
-    expect(VerEx(anyCharacter)).not.toMatchString("\u2028");
-    expect(VerEx(anyCharacter)).not.toMatchString("\u2029");
+    expect(aCharacter).not.toMatchString("\n");
+    expect(aCharacter).not.toMatchString("\r");
+    expect(aCharacter).not.toMatchString("\u2028");
+    expect(aCharacter).not.toMatchString("\u2029");
   });
 
-  it.todo("should not match more than one character");
+  it("should not match more than one character", () => {
+    expect(aCharacter).not.toMatchString("abc");
+  });
 });
 
 describe("anything", () => {
