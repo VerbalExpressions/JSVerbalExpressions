@@ -75,8 +75,8 @@ describe("complex expressions", () => {
       startOfLine,
       "#",
       or(
-        repeat(hexCharacter, 3),
-        repeat(hexCharacter, 6)
+        repeat(hexCharacter, 6),
+        repeat(hexCharacter, 3)
       ),
       endOfLine
     );
