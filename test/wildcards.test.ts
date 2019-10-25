@@ -15,7 +15,6 @@ describe("anyCharacter", () => {
     expect(aCharacter).toMatchString("%");
     expect(aCharacter).toMatchString("ℳ");
     expect(aCharacter).toMatchString("µ");
-    expect(aCharacter).toMatchString("👍");
   });
 
   it("should not match line terminators", () => {
