@@ -1,8 +1,8 @@
 import Expression from "./types/expression";
-import mixedToRawArray from "./util/mixed-to-raw-array";
+import RawExpression from "./types/raw-expression";
 
 function VerEx(...expressions: Expression[]): RegExp {
-  expressions = mixedToRawArray(expressions);
+  expressions = RawExpression.arrayFromExpressions(expressions);
   return new RegExp(expressions.join(""));
 }
 
