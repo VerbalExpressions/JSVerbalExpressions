@@ -2,7 +2,7 @@ import anyCharacterFrom from "../src/any-character-from";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
-describe("anyCharacterFrom(characters)", () => {
+describe("anyCharacterFrom(charactersAndRanges)", () => {
   const exp = VerEx(/^/, anyCharacterFrom([["a", "f"], [0, 9], " ", "_"]), /$/);
 
   it("should be a function", () => {

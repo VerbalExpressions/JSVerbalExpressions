@@ -2,7 +2,7 @@ import anyCharacterBut from "../src/any-character-but";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
-describe("anyCharacterBut(characters)", () => {
+describe("anyCharacterBut(charactersAndRanges)", () => {
   const exp = VerEx(
     /^/, anyCharacterBut([["a", "z"], ["A", "Z"], "_"]), /$/
   );

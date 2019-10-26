@@ -3,8 +3,8 @@ import RawExpression from "./types/raw-expression";
 
 type CharacterOrRange = Expression | [Expression, Expression];
 
-function anyCharacterFrom(characters: CharacterOrRange[]): RawExpression {
-  const rawCharacters = characters.map((expression) => {
+function anyCharacterFrom(charactersAndRanges: CharacterOrRange[]): RawExpression {
+  const rawCharacters = charactersAndRanges.map((expression) => {
     if (expression instanceof Array) {
       const rawRange = RawExpression.arrayFromExpressions(expression);
       return new RawExpression(rawRange.join("-"));
