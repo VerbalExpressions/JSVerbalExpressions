@@ -1,5 +1,5 @@
 import concat from "../src/concat";
-import RawExpression from "../src/types/raw-expression";
+import Fragment from "../src/types/fragment";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
@@ -17,7 +17,7 @@ describe("concat(...expressions)", () => {
 
   it("should concatenate raw expressions", () => {
     const httpMaybeSecure = VerEx(
-      /^/, concat("http", "s", new RawExpression("?")), /$/
+      /^/, concat("http", "s", new Fragment("?")), /$/
     );
 
     expect(httpMaybeSecure).toMatchString("https");

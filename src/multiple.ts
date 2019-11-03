@@ -1,18 +1,18 @@
 import group from "./group";
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
-function multiple(expression: Expression): RawExpression {
+function multiple(expression: Expression): Fragment {
   const grouped = group.nonCapturing(expression);
 
-  return new RawExpression(`${grouped}*`);
+  return new Fragment(`${grouped}*`);
 }
 
 multiple.greedy = multiple;
 
-multiple.lazy = (expression: Expression): RawExpression => {
+multiple.lazy = (expression: Expression): Fragment => {
   const greedy = multiple(expression).toString();
-  return new RawExpression(`${greedy}?`);
+  return new Fragment(`${greedy}?`);
 };
 
 export default multiple;

@@ -1,29 +1,29 @@
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
-function group(...expressions: Expression[]): RawExpression {
-  expressions = RawExpression.arrayFromExpressions(expressions);
+function group(...expressions: Expression[]): Fragment {
+  expressions = Fragment.arrayFromExpressions(expressions);
   const combined = expressions.join("");
 
-  return new RawExpression(`(${combined})`);
+  return new Fragment(`(${combined})`);
 }
 
-group.named = (name: string, ...expressions: Expression[]): RawExpression => {
-  expressions = RawExpression.arrayFromExpressions(expressions);
+group.named = (name: string, ...expressions: Expression[]): Fragment => {
+  expressions = Fragment.arrayFromExpressions(expressions);
   const combined = expressions.join("");
 
-  return new RawExpression(`(?<${name}>${combined})`);
+  return new Fragment(`(?<${name}>${combined})`);
 };
 
 group.capturing = group;
 
 group.capturing.named = group.named;
 
-group.nonCapturing = (...expressions: Expression[]): RawExpression => {
-  expressions = RawExpression.arrayFromExpressions(expressions);
+group.nonCapturing = (...expressions: Expression[]): Fragment => {
+  expressions = Fragment.arrayFromExpressions(expressions);
   const combined = expressions.join("");
 
-  return new RawExpression(`(?:${combined})`);
+  return new Fragment(`(?:${combined})`);
 };
 
 export default group;

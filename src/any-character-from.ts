@@ -1,21 +1,21 @@
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
 type CharacterOrRange = Expression | [Expression, Expression];
 
-function anyCharacterFrom(charactersAndRanges: CharacterOrRange[]): RawExpression {
+function anyCharacterFrom(charactersAndRanges: CharacterOrRange[]): Fragment {
   const rawCharacters = charactersAndRanges.map((expression) => {
     if (expression instanceof Array) {
-      const rawRange = RawExpression.arrayFromExpressions(expression);
-      return new RawExpression(rawRange.join("-"));
+      const rawRange = Fragment.arrayFromExpressions(expression);
+      return new Fragment(rawRange.join("-"));
     } else {
-      return new RawExpression(expression);
+      return new Fragment(expression);
     }
   });
 
   const raw = rawCharacters.join("");
 
-  return new RawExpression(`[${raw}]`);
+  return new Fragment(`[${raw}]`);
 }
 
 export default anyCharacterFrom;

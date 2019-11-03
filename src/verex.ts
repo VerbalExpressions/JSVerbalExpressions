@@ -1,8 +1,8 @@
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
 function VerEx(...expressions: Expression[]): RegExp {
-  expressions = RawExpression.arrayFromExpressions(expressions);
+  expressions = Fragment.arrayFromExpressions(expressions);
   return new RegExp(expressions.join(""));
 }
 

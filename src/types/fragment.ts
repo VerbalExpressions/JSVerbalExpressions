@@ -3,22 +3,22 @@ import Expression from "./expression";
 
 type Primitives = string | number;
 
-class RawExpression {
-  public static fromExpression(expression: Expression): RawExpression {
-    if (expression instanceof RawExpression) {
+class Fragment {
+  public static fromExpression(expression: Expression): Fragment {
+    if (expression instanceof Fragment) {
       return expression;
     } else if (expression instanceof RegExp) {
-      return new RawExpression(expression);
+      return new Fragment(expression);
     } else {
-      return new RawExpression(sanitize(expression));
+      return new Fragment(sanitize(expression));
     }
   }
 
-  public static arrayFromExpressions(expressions: Expression[]): RawExpression[] {
-    const converted: RawExpression[] = [];
+  public static arrayFromExpressions(expressions: Expression[]): Fragment[] {
+    const converted: Fragment[] = [];
 
     for (const arg of expressions) {
-      converted.push(RawExpression.fromExpression(arg));
+      converted.push(Fragment.fromExpression(arg));
     }
 
     return converted;
@@ -26,8 +26,8 @@ class RawExpression {
 
   public value: Primitives;
 
-  constructor(value: Primitives | RegExp | RawExpression) {
-    if (value instanceof RawExpression) {
+  constructor(value: Primitives | RegExp | Fragment) {
+    if (value instanceof Fragment) {
       this.value = value.value;
       return;
     }
@@ -49,4 +49,4 @@ class RawExpression {
   }
 }
 
-export default RawExpression;
+export default Fragment;

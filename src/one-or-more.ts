@@ -1,19 +1,19 @@
 import group from "./group";
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
-function oneOrMore(expression: Expression): RawExpression {
-  const raw = RawExpression.fromExpression(expression);
+function oneOrMore(expression: Expression): Fragment {
+  const raw = Fragment.fromExpression(expression);
   const grouped = group.nonCapturing(raw);
 
-  return new RawExpression(`${grouped}+`);
+  return new Fragment(`${grouped}+`);
 }
 
 oneOrMore.greedy = oneOrMore;
 
-oneOrMore.lazy = (expression: Expression): RawExpression => {
+oneOrMore.lazy = (expression: Expression): Fragment => {
   const greedy = oneOrMore(expression).toString();
-  return new RawExpression(`${greedy}?`);
+  return new Fragment(`${greedy}?`);
 };
 
 export default oneOrMore;

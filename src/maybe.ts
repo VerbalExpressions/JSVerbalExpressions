@@ -1,19 +1,19 @@
 import group from "./group";
 import Expression from "./types/expression";
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
-function maybe(expression: Expression): RawExpression {
-  const raw = RawExpression.fromExpression(expression);
+function maybe(expression: Expression): Fragment {
+  const raw = Fragment.fromExpression(expression);
   const grouped = group.nonCapturing(raw);
 
-  return new RawExpression(`${grouped}?`);
+  return new Fragment(`${grouped}?`);
 }
 
 maybe.greedy = maybe;
 
-maybe.lazy = (expression: Expression): RawExpression => {
+maybe.lazy = (expression: Expression): Fragment => {
   const greedy = maybe(expression);
-  return new RawExpression(`${greedy}?`);
+  return new Fragment(`${greedy}?`);
 };
 
 export default maybe;

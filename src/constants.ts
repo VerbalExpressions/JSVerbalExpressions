@@ -1,23 +1,23 @@
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
 const raw = String.raw;
 
-export const startOfLine = new RawExpression("^");
-export const endOfLine = new RawExpression("$");
+export const startOfLine = new Fragment("^");
+export const endOfLine = new Fragment("$");
 
-export const digit = new RawExpression(raw`\d`);
-export const nonDigit = new RawExpression(raw`\D`);
+export const digit = new Fragment(raw`\d`);
+export const nonDigit = new Fragment(raw`\D`);
 
-export const wordCharacter = new RawExpression(raw`\w`);
-export const nonWordCharacter = new RawExpression(raw`\W`);
+export const wordCharacter = new Fragment(raw`\w`);
+export const nonWordCharacter = new Fragment(raw`\W`);
 
-export const whitespaceCharacter = new RawExpression(raw`\s`);
-export const nonWhitespaceCharacter = new RawExpression(raw`\S`);
+export const whitespaceCharacter = new Fragment(raw`\s`);
+export const nonWhitespaceCharacter = new Fragment(raw`\S`);
 
-export const wordBoundary = new RawExpression(raw`\b`);
-export const nonWordBoundary = new RawExpression(raw`\B`);
+export const wordBoundary = new Fragment(raw`\b`);
+export const nonWordBoundary = new Fragment(raw`\B`);
 
-export const anyCharacter = new RawExpression(".");
+export const anyCharacter = new Fragment(".");
 
-export const anything = new RawExpression(".*");
-export const something = new RawExpression(".+");
+export const anything = new Fragment(".*");
+export const something = new Fragment(".+");

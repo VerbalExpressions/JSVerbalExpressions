@@ -1,12 +1,12 @@
-import RawExpression from "./types/raw-expression";
+import Fragment from "./types/fragment";
 
-function backReference(reference: number | string): RawExpression {
+function backReference(reference: number | string): Fragment {
   if (typeof reference === "number") {
-    return new RawExpression(`\\${reference}`);
+    return new Fragment(`\\${reference}`);
   }
 
   if (typeof reference === "string") {
-    return new RawExpression(`\\k<${reference}>`);
+    return new Fragment(`\\k<${reference}>`);
   }
 }
 
