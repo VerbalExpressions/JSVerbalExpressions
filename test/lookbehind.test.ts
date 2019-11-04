@@ -16,7 +16,7 @@ describe("lookbehind(expression)", () => {
     let match: string;
 
     expect(exp).toMatchString("barfoo");
-    [match] = exp.exec("barfoo");
+    [match] = exp.exec("barfoo"); exp.lastIndex = 0;
     expect(match).toEqual("foo");
     expect(match).not.toEqual("barfoo");
 
@@ -57,7 +57,7 @@ describe("lookbehind(expression)", () => {
       let match: string;
 
       expect(exp).toMatchString("bazfoo");
-      [match] = exp.exec("bazfoo");
+      [match] = exp.exec("bazfoo"); exp.lastIndex = 0;
       expect(match).toEqual("foo");
 
       expect(exp).toMatchString("banfoo");

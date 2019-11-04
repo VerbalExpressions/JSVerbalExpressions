@@ -1,9 +1,35 @@
 import Expression from "./types/expression";
+import Flags, { isFlags, toFlagString } from "./types/flags";
 import Fragment from "./types/fragment";
 
-function VerEx(...expressions: Expression[]): RegExp {
-  expressions = Fragment.arrayFromExpressions(expressions);
-  return new RegExp(expressions.join(""));
+const defaultFlags = {
+  caseInsensitive: false,
+  dotAll: false,
+  global: true,
+  multiLine: true,
+  sticky: false,
+  unicode: false
+};
+
+function VerEx(
+  firstArg: Expression | Flags, ...expressions: Expression[]
+): RegExp {
+  if (firstArg === undefined) {
+    return new RegExp("");
+  }
+
+  let flags: Flags = defaultFlags;
+
+  if (isFlags(firstArg)) {
+    flags = Object.assign(defaultFlags, firstArg);
+  } else {
+    expressions.unshift(firstArg);
+  }
+
+  const rawExpressions = Fragment.arrayFromExpressions(expressions);
+  const flagString = toFlagString(flags);
+
+  return new RegExp(rawExpressions.join(""), flagString);
 }
 
 export default VerEx;
