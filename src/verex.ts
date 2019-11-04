@@ -12,9 +12,10 @@ const defaultFlags = {
 };
 
 function VerEx(
-  firstArg: Expression | Flags, ...expressions: Expression[]
+  firstArg?: Expression | Flags,
+  ...expressions: Expression[]
 ): RegExp {
-  if (firstArg === undefined) {
+  if (firstArg === undefined && expressions.length === 0) {
     return new RegExp("");
   }
 
