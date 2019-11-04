@@ -50,7 +50,7 @@ Parameter | Expected type | Description
 
 ```js
 const expr = VerEx()
-    .find('hurray').then('!').multiple(1)
+    .find('hurray').multiple('!', 1)
     .endOfLine();
 
 console.log(expr.test('hurray')); // => false
@@ -70,7 +70,7 @@ Parameter | Expected type | Description
 
 ```js
 const expr = VerEx()
-    .find('h').then('i').multiple(1, 3)
+    .find('h').multiple('i', 1, 3)
     .endOfLine();
 
 console.log(expr.test('hiii')); // => true
