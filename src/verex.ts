@@ -3,10 +3,10 @@ import Flags, { isFlags, toFlagString } from "./types/flags";
 import Fragment from "./types/fragment";
 
 const defaultFlags = {
-  caseInsensitive: false,
   dotAll: false,
   global: true,
-  multiLine: true,
+  ignoreCase: false,
+  multiline: true,
   sticky: false,
   unicode: false
 };

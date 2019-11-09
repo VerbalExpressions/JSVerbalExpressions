@@ -1,10 +1,10 @@
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
-describe("caseInsensitive", () => {
-  describe("caseInsensitive: true", () => {
+describe("ignoreCase", () => {
+  describe("ignoreCase: true", () => {
     it("should allow case insensitive matches", () => {
-      const foo = VerEx({ caseInsensitive: true }, /^/, "foo", /$/);
+      const foo = VerEx({ ignoreCase: true }, /^/, "foo", /$/);
 
       expect(foo).toMatchString("foo");
       expect(foo).toMatchString("FOO");
@@ -12,9 +12,9 @@ describe("caseInsensitive", () => {
     });
   });
 
-  describe("caseInsensitive: false", () => {
+  describe("ignoreCase: false", () => {
     it("should not allow case insensitive matches", () => {
-      const foo = VerEx({ caseInsensitive: false }, /^/, "foo", /$/);
+      const foo = VerEx({ ignoreCase: false }, /^/, "foo", /$/);
 
       expect(foo).toMatchString("foo");
       expect(foo).not.toMatchString("FOO");
@@ -69,10 +69,10 @@ describe("global", () => {
   });
 });
 
-describe("multiLine", () => {
-  describe("multiLine: true", () => {
+describe("multiline", () => {
+  describe("multiline: true", () => {
     it("should make line anchors match start and end of each line", () => {
-      const fooOnALine = VerEx({ multiLine: true }, /^/, "foo", /$/);
+      const fooOnALine = VerEx({ multiline: true }, /^/, "foo", /$/);
 
       expect(fooOnALine).toMatchString("foo");
       expect(fooOnALine).toMatchString("bar\nfoo\nbaz");
@@ -81,9 +81,9 @@ describe("multiLine", () => {
     });
   });
 
-  describe("multiLine: false", () => {
+  describe("multiline: false", () => {
     it("should make line anchors match start and end of the string", () => {
-      const fooOnALine = VerEx({ multiLine: false }, /^/, "foo", /$/);
+      const fooOnALine = VerEx({ multiline: false }, /^/, "foo", /$/);
 
       expect(fooOnALine).toMatchString("foo");
       expect(fooOnALine).not.toMatchString("bar\nfoo\nbaz");

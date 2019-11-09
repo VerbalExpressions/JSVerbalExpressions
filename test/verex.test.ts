@@ -47,12 +47,12 @@ describe("VerExp(...expressions)", () => {
 });
 
 describe("VerEx.extend(flags)", () => {
-  const VerExIU = VerEx.extend({
-    caseInsensitive: true,
-    multiLine: true
+  const VerExIM = VerEx.extend({
+    ignoreCase: true,
+    multiline: true
   });
 
-  const exp = VerExIU("foo");
+  const exp = VerExIM("foo");
 
   expect(exp.global).toBe(true);
   expect(exp.ignoreCase).toBe(true);

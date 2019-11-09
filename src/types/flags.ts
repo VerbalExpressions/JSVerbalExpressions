@@ -1,8 +1,8 @@
 interface Flags {
-  caseInsensitive?: boolean;
   dotAll?: boolean;
   global?: boolean;
-  multiLine?: boolean;
+  ignoreCase?: boolean;
+  multiline?: boolean;
   sticky?: boolean;
   unicode?: boolean;
 }
@@ -17,7 +17,7 @@ function isFlags(obj: any): obj is Flags {
   }
 
   const possibleFlags = [
-    "caseInsensitive", "dotAll", "global", "multiLine", "sticky", "unicode"
+    "dotAll", "global", "ignoreCase", "multiline", "sticky", "unicode"
   ];
 
   for (const key of Object.keys(obj)) {
@@ -32,12 +32,12 @@ function isFlags(obj: any): obj is Flags {
 function toFlagString(flags: Flags): string {
   let flagsString = "";
 
-  if (flags.global === true) { flagsString += "g"; }
-  if (flags.caseInsensitive === true) { flagsString += "i"; }
-  if (flags.multiLine === true) { flagsString += "m"; }
   if (flags.dotAll === true) { flagsString += "s"; }
-  if (flags.unicode === true) { flagsString += "u"; }
+  if (flags.global === true) { flagsString += "g"; }
+  if (flags.ignoreCase === true) { flagsString += "i"; }
+  if (flags.multiline === true) { flagsString += "m"; }
   if (flags.sticky === true) { flagsString += "y"; }
+  if (flags.unicode === true) { flagsString += "u"; }
 
   return flagsString;
 }
