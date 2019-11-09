@@ -20,7 +20,7 @@ function isFlags(obj: any): obj is Flags {
     "caseInsensitive", "dotAll", "global", "multiLine", "sticky", "unicode"
   ];
 
-  for (const key in Object.keys(obj)) {
+  for (const key of Object.keys(obj)) {
     if (!(possibleFlags.includes(key))) {
       return false;
     }
