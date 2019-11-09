@@ -45,3 +45,19 @@ describe("VerExp(...expressions)", () => {
     expect(VerExp).toEqual(VerEx);
   });
 });
+
+describe("VerEx.extend(flags)", () => {
+  const VerExIU = VerEx.extend({
+    caseInsensitive: true,
+    multiLine: true
+  });
+
+  const exp = VerExIU("foo");
+
+  expect(exp.global).toBe(true);
+  expect(exp.ignoreCase).toBe(true);
+  expect(exp.multiline).toBe(true);
+  expect(exp.dotAll).toBe(false);
+  expect(exp.unicode).toBe(false);
+  expect(exp.sticky).toBe(false);
+});

@@ -33,5 +33,8 @@ function VerEx(
   return new RegExp(rawExpressions.join(""), flagString);
 }
 
+VerEx.extend = (flags: Flags) =>
+  (...expressions: Expression[]) => VerEx(flags, ...expressions);
+
 export default VerEx;
 export const VerExp = VerEx;
