@@ -12,6 +12,9 @@
     "chalk": "^2.4.2",
     "jest": "^24.8.0",
     "pretty-format": "^24.9.0",
+    "rollup": "^1.26.3",
+    "rollup-plugin-multi-entry": "^2.1.0",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.0",
     "typescript": "^3.5.3"
@@ -34,7 +37,7 @@
     "jest": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
     "test": "status=0; npm run lint || status=$?; npm run jest || status=$?; exit $status",
-    "build": "rm -rf dist && tsc --declaration"
+    "build": "rm -rf dist && rollup -c"
   },
   "engines": {
     "node": ">=10.0.0"
