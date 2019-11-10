@@ -9,15 +9,18 @@
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
     "chalk": "^2.4.2",
+    "eslint-config-xo-typescript": "^0.21.0",
     "jest": "^24.8.0",
     "pretty-format": "^24.9.0",
     "rollup": "^1.26.3",
     "rollup-plugin-multi-entry": "^2.1.0",
     "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.20.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "xo": "^0.25.3"
   },
   "repository": {
     "type": "git",
@@ -35,9 +38,25 @@
   "license": "MIT",
   "scripts": {
     "jest": "jest",
-    "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
+    "lint": "xo",
     "test": "status=0; npm run lint || status=$?; npm run jest || status=$?; exit $status",
     "build": "rm -rf dist && rollup -c"
+  },
+  "xo": {
+    "extends": "xo-typescript",
+    "extensions": [
+      "ts"
+    ],
+    "rules": {
+      "@typescript-eslint/quotes": [
+        "error",
+        "double"
+      ],
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ]
+    }
   },
   "engines": {
     "node": ">=10.0.0"
