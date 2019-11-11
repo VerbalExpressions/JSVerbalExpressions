@@ -1,11 +1,10 @@
+const isCI = process.env.CI === 'true';
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  rootDir: "test",
-  collectCoverage: true,
-  collectCoverageFrom: [
-    "src/**.ts",
-    "!src/index.ts"
-  ],
-  verbose: process.env.CI === 'true'
+  testPathIgnorePatterns: ["docs"],
+  collectCoverage: isCI,
+  collectCoverageFrom: ["src/**.ts"],
+  verbose: isCI
 };
