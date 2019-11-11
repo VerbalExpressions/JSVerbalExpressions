@@ -19,10 +19,10 @@ function VerEx(
     return new RegExp("");
   }
 
-  let flags: Flags = defaultFlags;
+  const flags: Flags = Object.assign({}, defaultFlags); // shallow copy
 
   if (isFlags(firstArg)) {
-    flags = Object.assign(defaultFlags, firstArg);
+    Object.assign(flags, firstArg);
   } else {
     expressions.unshift(firstArg);
   }

@@ -39,7 +39,7 @@ function toFlagString(flags: Flags): string {
   if (flags.sticky === true) { flagsString += "y"; }
   if (flags.unicode === true) { flagsString += "u"; }
 
-  return flagsString;
+  return flagsString.split("").sort().join("");
 }
 
 export default Flags;
