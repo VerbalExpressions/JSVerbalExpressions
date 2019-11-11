@@ -1,6 +1,44 @@
 import VerEx from "../src/verex";
 import "./custom-matchers";
 
+describe("defaults", () => {
+  it("should should set gm flags by default", () => {
+    const exp = VerEx("foo");
+
+    expect(exp.global).toBe(true);
+    expect(exp.ignoreCase).toBe(false);
+    expect(exp.multiline).toBe(true);
+    expect(exp.dotAll).toBe(false);
+    expect(exp.unicode).toBe(false);
+    expect(exp.sticky).toBe(false);
+  });
+
+  it("should work with an empty flags object", () => {
+    const exp = VerEx({}, "foo");
+
+    expect(exp.global).toBe(true);
+    expect(exp.ignoreCase).toBe(false);
+    expect(exp.multiline).toBe(true);
+    expect(exp.dotAll).toBe(false);
+    expect(exp.unicode).toBe(false);
+    expect(exp.sticky).toBe(false);
+  });
+
+  it("should extend defaults rather than replace them", () => {
+    const exp = VerEx({
+      ignoreCase: true,
+      multiline: false,
+    }, "foo");
+
+    expect(exp.global).toBe(true);
+    expect(exp.ignoreCase).toBe(true);
+    expect(exp.multiline).toBe(false);
+    expect(exp.dotAll).toBe(false);
+    expect(exp.unicode).toBe(false);
+    expect(exp.sticky).toBe(false);
+  });
+});
+
 describe("ignoreCase", () => {
   describe("ignoreCase: true", () => {
     it("should allow case insensitive matches", () => {
