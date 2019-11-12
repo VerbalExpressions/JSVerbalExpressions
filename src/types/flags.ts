@@ -30,17 +30,28 @@ function isFlags(obj: any): obj is Flags {
 }
 
 function toFlagString(flags: Flags): string {
+  const mapping = {
+    dotAll: "s",
+    global: "g",
+    ignoreCase: "i",
+    multiline: "m",
+    sticky: "y",
+    unicode: "u"
+  };
+
   let flagsString = "";
 
-  if (flags.dotAll === true) { flagsString += "s"; }
-  if (flags.global === true) { flagsString += "g"; }
-  if (flags.ignoreCase === true) { flagsString += "i"; }
-  if (flags.multiline === true) { flagsString += "m"; }
-  if (flags.sticky === true) { flagsString += "y"; }
-  if (flags.unicode === true) { flagsString += "u"; }
+  for (const [name, abbreviation] of Object.entries(mapping)) {
+    if (flags[name] === true) {
+      flagsString += abbreviation;
+    }
+  }
 
-  return flagsString.split("").sort().join("");
+  return flagsString
+    .split("")
+    .sort((a, b) => a.localeCompare(b))
+    .join("");
 }
 
 export default Flags;
-export { isFlags, toFlagString };
+export {isFlags, toFlagString};

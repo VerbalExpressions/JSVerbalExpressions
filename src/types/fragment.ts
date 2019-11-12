@@ -4,26 +4,6 @@ import Expression from "./expression";
 type Primitives = string | number;
 
 class Fragment {
-  public static fromExpression(expression: Expression): Fragment {
-    if (expression instanceof Fragment) {
-      return expression;
-    } else if (expression instanceof RegExp) {
-      return new Fragment(expression);
-    } else {
-      return new Fragment(sanitize(expression));
-    }
-  }
-
-  public static arrayFromExpressions(expressions: Expression[]): Fragment[] {
-    const converted: Fragment[] = [];
-
-    for (const arg of expressions) {
-      converted.push(Fragment.fromExpression(arg));
-    }
-
-    return converted;
-  }
-
   public value: Primitives;
 
   constructor(value: Primitives | RegExp | Fragment) {
@@ -40,7 +20,29 @@ class Fragment {
     this.value = value;
   }
 
-  public toString() {
+  public static fromExpression(expression: Expression): Fragment {
+    if (expression instanceof Fragment) {
+      return expression;
+    }
+
+    if (expression instanceof RegExp) {
+      return new Fragment(expression);
+    }
+
+    return new Fragment(sanitize(expression));
+  }
+
+  public static arrayFromExpressions(expressions: Expression[]): Fragment[] {
+    const converted: Fragment[] = [];
+
+    for (const arg of expressions) {
+      converted.push(Fragment.fromExpression(arg));
+    }
+
+    return converted;
+  }
+
+  public toString(): string {
     if (typeof this.value === "number") {
       return this.value.toString();
     }

@@ -1,5 +1,4 @@
-import multiple from "../src/multiple";
-import zeroOrMore from "../src/multiple";
+import multiple, {zeroOrMore} from "../src/multiple";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 

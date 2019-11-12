@@ -1,4 +1,4 @@
-import { anything } from "../src/constants";
+import {anything} from "../src/constants";
 import group from "../src/group";
 import VerEx from "../src/verex";
 

@@ -1,5 +1,4 @@
-import VerEx from "../src/verex";
-import VerExp from "../src/verex";
+import VerEx, {VerExp} from "../src/verex";
 import "./custom-matchers";
 
 describe("VerEx", () => {
@@ -39,7 +38,6 @@ describe("VerEx", () => {
 
       expect(expression).not.toMatchString("3014159");
     });
-
   });
 
   describe("VerEx(flags, ...expressions)", () => {
@@ -57,7 +55,7 @@ describe("VerEx", () => {
       it("should extend defaults rather than replace them", () => {
         const exp = VerEx({
           ignoreCase: true,
-          multiline: false,
+          multiline: false
         }, "foo");
 
         expect(exp.flags).toEqual("gi");
@@ -67,7 +65,7 @@ describe("VerEx", () => {
     describe("ignoreCase", () => {
       describe("ignoreCase: true", () => {
         it("should allow case insensitive matches", () => {
-          const foo = VerEx({ ignoreCase: true }, /^/, "foo", /$/);
+          const foo = VerEx({ignoreCase: true}, /^/, "foo", /$/);
 
           expect(foo).toMatchString("foo");
           expect(foo).toMatchString("FOO");
@@ -77,7 +75,7 @@ describe("VerEx", () => {
 
       describe("ignoreCase: false", () => {
         it("should not allow case insensitive matches", () => {
-          const foo = VerEx({ ignoreCase: false }, /^/, "foo", /$/);
+          const foo = VerEx({ignoreCase: false}, /^/, "foo", /$/);
 
           expect(foo).toMatchString("foo");
           expect(foo).not.toMatchString("FOO");
@@ -89,7 +87,7 @@ describe("VerEx", () => {
     describe("dotAll", () => {
       describe("dotAll: true", () => {
         it("should allow `.` to match line separators", () => {
-          const dot = VerEx({ dotAll: true }, /^/, /./, /$/);
+          const dot = VerEx({dotAll: true}, /^/, /./, /$/);
 
           expect(dot).toMatchString("\n");
           expect(dot).toMatchString("\r");
@@ -100,7 +98,7 @@ describe("VerEx", () => {
 
       describe("dotAll: false", () => {
         it("should not allow `.` to match line separators", () => {
-          const dot = VerEx({ dotAll: false }, /^/, /./, /$/);
+          const dot = VerEx({dotAll: false}, /^/, /./, /$/);
 
           expect(dot).not.toMatchString("\n");
           expect(dot).not.toMatchString("\r");
@@ -113,14 +111,18 @@ describe("VerEx", () => {
     describe("global", () => {
       describe("global: true", () => {
         it("should allow matching all occurrences", () => {
-          const foo = VerEx({ global: true }, "foo");
+          const foo = VerEx({global: true}, "foo");
+
+          // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
           expect("foo foo foo".match(foo)).toEqual(["foo", "foo", "foo"]);
         });
       });
 
       describe("global: false", () => {
         it("should stop matching after first occurrence", () => {
-          const foo = VerEx({ global: false }, "foo");
+          const foo = VerEx({global: false}, "foo");
+
+          // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
           const result = "foo foo foo".match(foo);
 
           expect(result.length).toEqual(1);
@@ -135,7 +137,7 @@ describe("VerEx", () => {
     describe("multiline", () => {
       describe("multiline: true", () => {
         it("should make line anchors match start and end of each line", () => {
-          const fooOnALine = VerEx({ multiline: true }, /^/, "foo", /$/);
+          const fooOnALine = VerEx({multiline: true}, /^/, "foo", /$/);
 
           expect(fooOnALine).toMatchString("foo");
           expect(fooOnALine).toMatchString("bar\nfoo\nbaz");
@@ -146,7 +148,7 @@ describe("VerEx", () => {
 
       describe("multiline: false", () => {
         it("should make line anchors match start and end of the string", () => {
-          const fooOnALine = VerEx({ multiline: false }, /^/, "foo", /$/);
+          const fooOnALine = VerEx({multiline: false}, /^/, "foo", /$/);
 
           expect(fooOnALine).toMatchString("foo");
           expect(fooOnALine).not.toMatchString("bar\nfoo\nbaz");
@@ -159,7 +161,7 @@ describe("VerEx", () => {
     describe("sticky", () => {
       describe("sticky: true", () => {
         it("should begin matching from lastIndex", () => {
-          const foo = VerEx({ sticky: true }, "foo");
+          const foo = VerEx({sticky: true}, "foo");
 
           expect(foo).not.toMatchString("## foo ##");
 
@@ -172,11 +174,18 @@ describe("VerEx", () => {
 
         it("should should override the global flag", () => {
           const foo = VerEx(
-            { global: true, sticky: true },
+            {global: true, sticky: true},
             "foo"
           );
 
-          expect("foo foo foo".match(foo)).not.toEqual(["foo", "foo", "foo"]);
+          const matches = foo.exec("foo foo foo");
+
+          expect(matches).not.toEqual(["foo", "foo", "foo"]);
+          expect(matches.length).toEqual(1);
+          expect(matches[0]).toEqual("foo");
+          expect(matches.index).toEqual(0);
+          expect(matches.input).toEqual("foo foo foo");
+          expect(matches.groups).toEqual(undefined);
 
           foo.lastIndex = 3;
           expect(foo).toMatchString("## foo ##");
@@ -186,7 +195,7 @@ describe("VerEx", () => {
 
       describe("sticky: false", () => {
         it("should begin matching from the beginning of the string", () => {
-          const foo = VerEx({ sticky: false }, "foo");
+          const foo = VerEx({sticky: false}, "foo");
 
           expect(foo).toMatchString("## foo ##");
           expect(foo).toMatchString("## foo ##");
@@ -198,17 +207,17 @@ describe("VerEx", () => {
     describe("unicode", () => {
       describe("unicode: true", () => {
         it("should allow `.` to match astral symbols", () => {
-          const dot = VerEx({ unicode: true }, /^/, /./, /$/);
+          const dot = VerEx({unicode: true}, /^/, /./, /$/);
 
           expect(dot).toMatchString("𝌆");
         });
 
         it("should make quantifiers to apply to astral symbols", () => {
-          const oneOrMore = VerEx({ unicode: true }, /^/, /𝌆+/, /$/);
-          const zeroOrMore = VerEx({ unicode: true }, /^/, /𝌆*/, /$/);
-          const three = VerEx({ unicode: true }, /^/, /𝌆{3}/, /$/);
-          const twoOrMore = VerEx({ unicode: true }, /^/, /𝌆{2,}/, /$/);
-          const twoToFour = VerEx({ unicode: true }, /^/, /𝌆{2,4}/, /$/);
+          const oneOrMore = VerEx({unicode: true}, /^/, /𝌆+/, /$/);
+          const zeroOrMore = VerEx({unicode: true}, /^/, /𝌆*/, /$/);
+          const three = VerEx({unicode: true}, /^/, /𝌆{3}/, /$/);
+          const twoOrMore = VerEx({unicode: true}, /^/, /𝌆{2,}/, /$/);
+          const twoToFour = VerEx({unicode: true}, /^/, /𝌆{2,4}/, /$/);
 
           expect(oneOrMore).toMatchString("𝌆𝌆𝌆");
           expect(zeroOrMore).toMatchString("𝌆𝌆𝌆");
@@ -218,15 +227,15 @@ describe("VerEx", () => {
         });
 
         it("should allow character classes to match astral symbols", () => {
-          const tetragram = VerEx({ unicode: true }, /^/, /[𝌆]/, /$/);
+          const tetragram = VerEx({unicode: true}, /^/, /[𝌆]/u, /$/);
 
           expect(tetragram).toMatchString("𝌆");
         });
 
         it("should allow `\\D`, `\\S`, `\\W` to match astral symbols", () => {
-          const notDigit = VerEx({ unicode: true }, /^/, /\D/, /$/);
-          const notWhitespace = VerEx({ unicode: true }, /^/, /\S/, /$/);
-          const notWordCharacter = VerEx({ unicode: true }, /^/, /\W/, /$/);
+          const notDigit = VerEx({unicode: true}, /^/, /\D/, /$/);
+          const notWhitespace = VerEx({unicode: true}, /^/, /\S/, /$/);
+          const notWordCharacter = VerEx({unicode: true}, /^/, /\W/, /$/);
 
           expect(notDigit).toMatchString("𝌆");
           expect(notWhitespace).toMatchString("𝌆");
@@ -239,17 +248,17 @@ describe("VerEx", () => {
 
       describe("unicode: false", () => {
         it("should not allow `.` to match astral symbols", () => {
-          const dot = VerEx({ unicode: false }, /^/, /./, /$/);
+          const dot = VerEx({unicode: false}, /^/, /./, /$/);
 
           expect(dot).not.toMatchString("𝌆");
         });
 
         it("should not allow quantifiers to apply to astral symbols", () => {
-          const oneOrMore = VerEx({ unicode: false }, /^/, /𝌆+/, /$/);
-          const zeroOrMore = VerEx({ unicode: false }, /^/, /𝌆*/, /$/);
-          const three = VerEx({ unicode: false }, /^/, /𝌆{3}/, /$/);
-          const twoOrMore = VerEx({ unicode: false }, /^/, /𝌆{2,}/, /$/);
-          const twoToFour = VerEx({ unicode: false }, /^/, /𝌆{2,4}/, /$/);
+          const oneOrMore = VerEx({unicode: false}, /^/, /𝌆+/, /$/);
+          const zeroOrMore = VerEx({unicode: false}, /^/, /𝌆*/, /$/);
+          const three = VerEx({unicode: false}, /^/, /𝌆{3}/, /$/);
+          const twoOrMore = VerEx({unicode: false}, /^/, /𝌆{2,}/, /$/);
+          const twoToFour = VerEx({unicode: false}, /^/, /𝌆{2,4}/, /$/);
 
           expect(oneOrMore).not.toMatchString("𝌆𝌆𝌆");
           expect(zeroOrMore).not.toMatchString("𝌆𝌆𝌆");
@@ -259,15 +268,15 @@ describe("VerEx", () => {
         });
 
         it("should not allow character classes to match astral symbols", () => {
-          const tetragram = VerEx({ unicode: false }, /^/, /[𝌆]/, /$/);
+          const tetragram = VerEx({unicode: false}, /^/, /[𝌆]/u, /$/);
 
           expect(tetragram).not.toMatchString("𝌆");
         });
 
         it("should not allow `\\D`, `\\S`, `\\W` to match astral symbols", () => {
-          const notDigit = VerEx({ unicode: false }, /^/, /\D/, /$/);
-          const notWhitespace = VerEx({ unicode: false }, /^/, /\S/, /$/);
-          const notWordCharacter = VerEx({ unicode: false }, /^/, /\W/, /$/);
+          const notDigit = VerEx({unicode: false}, /^/, /\D/, /$/);
+          const notWhitespace = VerEx({unicode: false}, /^/, /\S/, /$/);
+          const notWordCharacter = VerEx({unicode: false}, /^/, /\W/, /$/);
 
           expect(notDigit).not.toMatchString("𝌆");
           expect(notWhitespace).not.toMatchString("𝌆");

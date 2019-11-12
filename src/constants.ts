@@ -1,6 +1,6 @@
 import Fragment from "./types/fragment";
 
-const raw = String.raw;
+const {raw} = String;
 
 export const startOfLine = new Fragment("^");
 export const endOfLine = new Fragment("$");

@@ -4,13 +4,13 @@ import Fragment from "./types/fragment";
 type CharacterOrRange = Expression | [Expression, Expression];
 
 function anyCharacterBut(charactersAndRanges: CharacterOrRange[]): Fragment {
-  const rawCharacters = charactersAndRanges.map((expression) => {
-    if (expression instanceof Array) {
+  const rawCharacters = charactersAndRanges.map(expression => {
+    if (Array.isArray(expression)) {
       const rawRange = Fragment.arrayFromExpressions(expression);
       return new Fragment(rawRange.join("-"));
-    } else {
-      return new Fragment(expression);
     }
+
+    return new Fragment(expression);
   });
 
   const raw = rawCharacters.join("");

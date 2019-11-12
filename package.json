@@ -44,19 +44,21 @@
   },
   "xo": {
     "extends": "xo-typescript",
-    "extensions": [
-      "ts"
-    ],
+    "extensions": ["ts"],
     "rules": {
-      "@typescript-eslint/quotes": [
-        "error",
-        "double"
-      ],
-      "@typescript-eslint/indent": [
-        "error",
-        2
-      ]
-    }
+      "@typescript-eslint/quotes": ["error", "double"],
+      "@typescript-eslint/indent": ["error", 2],
+      "new-cap": "off",
+      "@typescript-eslint/generic-type-naming": "off",
+      "import/no-unassigned-import": "off",
+      "prefer-named-capture-group": "off"
+    },
+    "overrides": [
+      {
+        "files": ["test/**.test.ts"],
+        "rules": {"max-nested-callbacks": "off"}
+      }
+    ]
   },
   "engines": {
     "node": ">=10.0.0"

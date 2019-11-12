@@ -1,5 +1,5 @@
 import Expression from "./types/expression";
-import Flags, { isFlags, toFlagString } from "./types/flags";
+import Flags, {isFlags, toFlagString} from "./types/flags";
 import Fragment from "./types/fragment";
 
 const defaultFlags = {
@@ -11,15 +11,17 @@ const defaultFlags = {
   unicode: false
 };
 
+// @constructor
 function VerEx(
   firstArg?: Expression | Flags,
   ...expressions: Expression[]
 ): RegExp {
   if (firstArg === undefined && expressions.length === 0) {
+    // eslint-disable-next-line prefer-regex-literals
     return new RegExp("");
   }
 
-  const flags: Flags = Object.assign({}, defaultFlags); // shallow copy
+  const flags: Flags = {...defaultFlags}; // Shallow copy
 
   if (isFlags(firstArg)) {
     Object.assign(flags, firstArg);

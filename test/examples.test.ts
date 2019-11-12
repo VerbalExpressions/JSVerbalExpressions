@@ -1,7 +1,7 @@
 import anyCharacterBut from "../src/any-character-but";
 import anyCharacterFrom from "../src/any-character-from";
 import concat from "../src/concat";
-import { digit, endOfLine, startOfLine } from "../src/constants";
+import {digit, endOfLine, startOfLine} from "../src/constants";
 import group from "../src/group";
 import lookahead from "../src/lookahead";
 import maybe from "../src/maybe";

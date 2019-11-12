@@ -1,5 +1,4 @@
-import maybe from "../src/maybe";
-import optionally from "../src/maybe";
+import maybe, {optionally} from "../src/maybe";
 import VerEx from "../src/verex";
 import "./custom-matchers";
 

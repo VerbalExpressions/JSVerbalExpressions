@@ -1,6 +1,6 @@
 import sanitize from "../src/util/sanitize";
 
-const raw = String.raw;
+const {raw} = String;
 
 describe("sanitize(input)", () => {
   it("should escape escape-worthy characters", () => {

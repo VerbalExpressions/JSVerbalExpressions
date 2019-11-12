@@ -1,14 +1,16 @@
+/* eslint-disable array-element-newline */
+
 import chalk from "chalk";
 import format from "pretty-format";
 
-const { bold, red, green, grey } = chalk;
+const {bold, red, green, grey} = chalk;
 
 expect.extend({
   toMatchString(regex, str) {
     const doesMatch = regex.test(str);
     const exec = regex.exec(str);
 
-    const options = { highlight: true, indent: 4 };
+    const options = {highlight: true, indent: 4};
 
     let line;
     let message;
@@ -33,7 +35,7 @@ ${grey("regex.exec(string)")}
 ${format(exec, options)}
       `;
 
-      return { pass: true, message: () => message.trim() };
+      return {pass: true, message: () => message.trim()};
     }
 
     line = [
@@ -54,7 +56,7 @@ ${grey("regex.exec(string)")}
 ${format(exec, options)}
     `;
 
-    return { pass: false, message: () => message.trim() };
+    return {pass: false, message: () => message.trim()};
   }
 });
 
