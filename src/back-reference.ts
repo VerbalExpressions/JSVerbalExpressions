@@ -5,9 +5,7 @@ function backReference(reference: number | string): Fragment {
     return new Fragment(`\\${reference}`);
   }
 
-  if (typeof reference === "string") {
-    return new Fragment(`\\k<${reference}>`);
-  }
+  return new Fragment(`\\k<${reference}>`);
 }
 
 export default backReference;
