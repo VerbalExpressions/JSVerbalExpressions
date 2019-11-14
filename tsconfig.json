@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2015",
-    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
     "esModuleInterop": true,
-    "target": "es3",
-    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2017",

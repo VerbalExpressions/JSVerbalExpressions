@@ -1,22 +1,39 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
 import multiEntry from "rollup-plugin-multi-entry";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@wessberg/rollup-plugin-ts";
 import {terser} from "rollup-plugin-terser";
 
-export default [
+const noDeclaration = {tsconfig: {declaration: false}};
+const clean = {comments: /[^\w\W]/};
+const beautifyAndClean = {
+  beautify: true,
+  indent_level: 2,
+  ...clean
+};
+
+const builds = [
   {
     input: "src/*.ts",
-    output: [
-      {file: "dist/index.mjs", format: "esm"},
-      {file: "dist/umd.js", name: "ve", format: "umd"}
-    ],
+    output: {file: "dist/index.mjs", format: "esm"},
     plugins: [
       multiEntry(),
       typescript(),
       terser({
         include: [/^.+\.m?js$/],
-        output: {beautify: true, comments: /[^\w\W]/, indent_level: 2}
+        output: beautifyAndClean
+      })
+    ]
+  },
+  {
+    input: "src/*.ts",
+    output: {file: "dist/umd.js", name: "ve", format: "umd"},
+    plugins: [
+      multiEntry(),
+      typescript(noDeclaration),
+      terser({
+        include: [/^.+\.m?js$/],
+        output: beautifyAndClean
       })
     ]
   },
@@ -28,11 +45,13 @@ export default [
     ],
     plugins: [
       multiEntry(),
-      typescript(),
+      typescript(noDeclaration),
       terser({
         include: [/^.+\.min\.m?js$/],
-        output: {comments: /[^\w\W]/, indent_level: 2}
+        output: clean
       })
     ]
   }
 ];
+
+export default builds;

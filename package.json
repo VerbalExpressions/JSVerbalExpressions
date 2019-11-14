@@ -11,14 +11,14 @@
     "@types/jest": "^24.0.15",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
+    "@wessberg/rollup-plugin-ts": "^1.1.78",
     "chalk": "^2.4.2",
     "eslint-config-xo-typescript": "^0.21.0",
     "jest": "^24.8.0",
     "pretty-format": "^24.9.0",
-    "rollup": "^1.26.3",
+    "rollup": "^1.27.0",
     "rollup-plugin-multi-entry": "^2.1.0",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3",
     "xo": "^0.25.3"
@@ -30,7 +30,8 @@
   "bugs": {
     "url": "https://github.com/VerbalExpressions/JSVerbalExpressions/issues"
   },
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md",
@@ -45,10 +46,18 @@
   },
   "xo": {
     "extends": "xo-typescript",
-    "extensions": ["ts"],
+    "extensions": [
+      "ts"
+    ],
     "rules": {
-      "@typescript-eslint/quotes": ["error", "double"],
-      "@typescript-eslint/indent": ["error", 2],
+      "@typescript-eslint/quotes": [
+        "error",
+        "double"
+      ],
+      "@typescript-eslint/indent": [
+        "error",
+        2
+      ],
       "new-cap": "off",
       "@typescript-eslint/generic-type-naming": "off",
       "import/default": "off",
@@ -57,8 +66,12 @@
     },
     "overrides": [
       {
-        "files": ["test/**.test.ts"],
-        "rules": {"max-nested-callbacks": "off"}
+        "files": [
+          "test/**.test.ts"
+        ],
+        "rules": {
+          "max-nested-callbacks": "off"
+        }
       }
     ]
   },
