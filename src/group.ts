@@ -26,4 +26,12 @@ group.nonCapturing = (...expressions: Expression[]): Fragment => {
   return new Fragment(`(?:${combined})`);
 };
 
-export {group};
+function backReference(reference: number | string): Fragment {
+  if (typeof reference === "number") {
+    return new Fragment(`\\${reference}`);
+  }
+
+  return new Fragment(`\\k<${reference}>`);
+}
+
+export {group, backReference};

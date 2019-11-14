@@ -1,6 +1,6 @@
-import {anything} from "../src/constants";
-import {group} from "../src/group";
+import {group, backReference} from "../src/group";
 import {VerEx} from "../src/verex";
+import "./custom-matchers";
 
 describe("group(...expressions)", () => {
   it("should be a function", () => {
@@ -15,7 +15,7 @@ describe("group(...expressions)", () => {
   });
 
   it("should work with multiple arguments", () => {
-    const exp = VerEx(group("https"), "://", group(anything));
+    const exp = VerEx(group("https"), "://", group(/.*/));
     const [, protocol, domain] = exp.exec("https://google.com");
 
     expect(protocol).toEqual("https");
@@ -37,7 +37,7 @@ describe("group(...expressions)", () => {
       const exp = VerEx(
         group("https"),
         "://",
-        group.nonCapturing(anything)
+        group.nonCapturing(/.*/)
       );
 
       const [, protocol] = exp.exec("https://google.com");
@@ -77,5 +77,19 @@ describe("group(...expressions)", () => {
     it("should be an alias for group.named", () => {
       expect(group.capturing.named).toEqual(group.named);
     });
+  });
+});
+
+describe("backReference(reference)", () => {
+  it("should work with numbered references", () => {
+    const exp = VerEx(/^/, /(foo)/, backReference(1), /$/);
+
+    expect(exp).toMatchString("foofoo");
+  });
+
+  it("should work with named references", () => {
+    const exp = VerEx(/^/, /(?<a>foo)/, backReference("a"), /$/);
+
+    expect(exp).toMatchString("foofoo");
   });
 });

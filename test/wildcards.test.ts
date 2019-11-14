@@ -1,8 +1,4 @@
-import {
-  anyCharacter,
-  anything,
-  something
-} from "../src/constants";
+import {anyCharacter, anything, something} from "../src/wildcards";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 

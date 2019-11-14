@@ -5,7 +5,7 @@ import {
   nonWordCharacter,
   whitespaceCharacter,
   wordCharacter
-} from "../src/constants";
+} from "../src/character-escapes";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 

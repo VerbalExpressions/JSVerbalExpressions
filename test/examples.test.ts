@@ -1,9 +1,9 @@
-import {anyCharacterBut} from "../src/any-character-but";
-import {anyCharacterFrom} from "../src/any-character-from";
+import {endOfLine, startOfLine} from "../src/anchors";
+import {anyCharacterFrom, anyCharacterBut} from "../src/character-classes";
+import {digit} from "../src/character-escapes";
 import {concat} from "../src/concat";
-import {digit, endOfLine, startOfLine} from "../src/constants";
 import {group} from "../src/group";
-import {lookahead} from "../src/lookahead";
+import {lookahead} from "../src/lookaround";
 import {maybe} from "../src/maybe";
 import {multiple} from "../src/multiple";
 import {or} from "../src/or";

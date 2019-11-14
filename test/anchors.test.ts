@@ -3,7 +3,7 @@ import {
   nonWordBoundary,
   startOfLine,
   wordBoundary
-} from "../src/constants";
+} from "../src/anchors";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
