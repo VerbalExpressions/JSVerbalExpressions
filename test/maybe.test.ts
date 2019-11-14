@@ -1,5 +1,5 @@
-import maybe, {optionally} from "../src/maybe";
-import VerEx from "../src/verex";
+import {maybe, optionally} from "../src/maybe";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("maybe(expression)", () => {

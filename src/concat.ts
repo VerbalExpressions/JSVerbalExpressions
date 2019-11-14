@@ -1,4 +1,4 @@
-import group from "./group";
+import {group} from "./group";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
 
@@ -9,4 +9,4 @@ function concat(...expressions: Expression[]): Fragment {
   return group.nonCapturing(concatenated);
 }
 
-export default concat;
+export {concat};

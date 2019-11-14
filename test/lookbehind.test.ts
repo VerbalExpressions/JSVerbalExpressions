@@ -1,5 +1,5 @@
-import lookbehind from "../src/lookbehind";
-import VerEx from "../src/verex";
+import {lookbehind} from "../src/lookbehind";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("lookbehind(expression)", () => {

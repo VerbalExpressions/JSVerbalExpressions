@@ -1,6 +1,6 @@
-import concat from "../src/concat";
+import {concat} from "../src/concat";
 import Fragment from "../src/types/fragment";
-import VerEx from "../src/verex";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("concat(...expressions)", () => {

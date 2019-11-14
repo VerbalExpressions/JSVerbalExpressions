@@ -1,5 +1,5 @@
-import multiple, {zeroOrMore} from "../src/multiple";
-import VerEx from "../src/verex";
+import {multiple, zeroOrMore} from "../src/multiple";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("multiple(expression)", () => {

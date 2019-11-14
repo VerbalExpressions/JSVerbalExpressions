@@ -50,6 +50,7 @@
       "@typescript-eslint/indent": ["error", 2],
       "new-cap": "off",
       "@typescript-eslint/generic-type-naming": "off",
+      "import/default": "off",
       "import/no-unassigned-import": "off",
       "prefer-named-capture-group": "off"
     },

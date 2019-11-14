@@ -1,5 +1,5 @@
-import repeat from "../src/repeat";
-import VerEx from "../src/verex";
+import {repeat} from "../src/repeat";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("repeat", () => {

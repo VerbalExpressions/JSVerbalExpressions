@@ -18,4 +18,4 @@ function anyCharacterFrom(charactersAndRanges: CharacterOrRange[]): Fragment {
   return new Fragment(`[${raw}]`);
 }
 
-export default anyCharacterFrom;
+export {anyCharacterFrom};

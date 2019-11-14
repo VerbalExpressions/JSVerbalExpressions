@@ -1,5 +1,5 @@
-import lookahead from "../src/lookahead";
-import VerEx from "../src/verex";
+import {lookahead} from "../src/lookahead";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("lookahead(expression)", () => {

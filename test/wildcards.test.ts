@@ -3,7 +3,7 @@ import {
   anything,
   something
 } from "../src/constants";
-import VerEx from "../src/verex";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("anyCharacter", () => {

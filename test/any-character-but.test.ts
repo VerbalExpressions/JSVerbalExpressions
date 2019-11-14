@@ -1,5 +1,5 @@
-import anyCharacterBut from "../src/any-character-but";
-import VerEx from "../src/verex";
+import {anyCharacterBut} from "../src/any-character-but";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("anyCharacterBut(charactersAndRanges)", () => {

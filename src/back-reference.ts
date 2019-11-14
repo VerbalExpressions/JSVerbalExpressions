@@ -8,4 +8,4 @@ function backReference(reference: number | string): Fragment {
   return new Fragment(`\\k<${reference}>`);
 }
 
-export default backReference;
+export {backReference};

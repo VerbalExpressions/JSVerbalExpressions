@@ -1,5 +1,5 @@
-import oneOrMore from "../src/one-or-more";
-import VerEx from "../src/verex";
+import {oneOrMore} from "../src/one-or-more";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("oneOrMore(expression)", () => {

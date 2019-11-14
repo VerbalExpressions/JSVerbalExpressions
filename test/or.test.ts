@@ -1,5 +1,5 @@
-import or from "../src/or";
-import VerEx from "../src/verex";
+import {or} from "../src/or";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("or(...options)", () => {

@@ -1,4 +1,4 @@
-import group from "./group";
+import {group} from "./group";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
 
@@ -33,4 +33,4 @@ repeat.lazy = (
   return new Fragment(`${greedy}?`);
 };
 
-export default repeat;
+export {repeat};

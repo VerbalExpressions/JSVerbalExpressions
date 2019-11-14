@@ -1,4 +1,4 @@
-import group from "./group";
+import {group} from "./group";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
 
@@ -9,4 +9,4 @@ function or(...options: Expression[]): Fragment {
   return group.nonCapturing(alternation);
 }
 
-export default or;
+export {or};

@@ -1,5 +1,5 @@
-import anyCharacterFrom from "../src/any-character-from";
-import VerEx from "../src/verex";
+import {anyCharacterFrom} from "../src/any-character-from";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("anyCharacterFrom(charactersAndRanges)", () => {

@@ -1,4 +1,4 @@
-import concat from "./concat";
+import {concat} from "./concat";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
 
@@ -16,4 +16,4 @@ lookahead.negative = (...expressions: Expression[]): Fragment => {
   return new Fragment(`(?!${concatenated})`);
 };
 
-export default lookahead;
+export {lookahead};

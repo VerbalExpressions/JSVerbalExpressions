@@ -26,4 +26,4 @@ group.nonCapturing = (...expressions: Expression[]): Fragment => {
   return new Fragment(`(?:${combined})`);
 };
 
-export default group;
+export {group};

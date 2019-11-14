@@ -1,4 +1,4 @@
-import VerEx, {VerExp} from "../src/verex";
+import {VerEx, VerExp} from "../src/verex";
 import "./custom-matchers";
 
 describe("VerEx", () => {

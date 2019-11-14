@@ -1,4 +1,4 @@
-import group from "./group";
+import {group} from "./group";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
 
@@ -16,5 +16,5 @@ maybe.lazy = (expression: Expression): Fragment => {
   return new Fragment(`${greedy}?`);
 };
 
-export default maybe;
+export {maybe};
 export const optionally = maybe;

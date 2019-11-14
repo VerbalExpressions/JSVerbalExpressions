@@ -1,6 +1,6 @@
 import {anything} from "../src/constants";
-import group from "../src/group";
-import VerEx from "../src/verex";
+import {group} from "../src/group";
+import {VerEx} from "../src/verex";
 
 describe("group(...expressions)", () => {
   it("should be a function", () => {

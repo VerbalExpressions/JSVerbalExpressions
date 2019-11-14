@@ -38,5 +38,5 @@ function VerEx(
 VerEx.extend = (flags: Flags) =>
   (...expressions: Expression[]) => VerEx(flags, ...expressions);
 
-export default VerEx;
+export {VerEx};
 export const VerExp = VerEx;

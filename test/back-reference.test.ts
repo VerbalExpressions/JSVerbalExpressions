@@ -1,5 +1,5 @@
-import backReference from "../src/back-reference";
-import VerEx from "../src/verex";
+import {backReference} from "../src/back-reference";
+import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
 describe("backReference(reference)", () => {
