@@ -228,8 +228,15 @@ describe("VerEx", () => {
 
         it("should allow character classes to match astral symbols", () => {
           const tetragram = VerEx({unicode: true}, /^/, /[𝌆]/u, /$/);
-
           expect(tetragram).toMatchString("𝌆");
+
+          const emojiRange = VerEx({unicode: true}, /^/, /[🂡-🃞]/u, /$/);
+          expect(emojiRange).not.toMatchString("⚂");
+          expect(emojiRange).toMatchString("🂡");
+          expect(emojiRange).toMatchString("🂼");
+          expect(emojiRange).toMatchString("🃄");
+          expect(emojiRange).toMatchString("🃞");
+          expect(emojiRange).not.toMatchString("🥳");
         });
 
         it("should allow `\\D`, `\\S`, `\\W` to match astral symbols", () => {
@@ -243,7 +250,11 @@ describe("VerEx", () => {
         });
 
         it.todo("should permit unicode property escapes");
-        it.todo("should allow code point escapes");
+
+        it("should allow codepoint escapes", () => {
+          const tetragram = VerEx({unicode: true}, /^/, /\u{1D306}/u, /$/);
+          expect(tetragram).toMatchString("𝌆");
+        });
       });
 
       describe("unicode: false", () => {
@@ -269,8 +280,13 @@ describe("VerEx", () => {
 
         it("should not allow character classes to match astral symbols", () => {
           const tetragram = VerEx({unicode: false}, /^/, /[𝌆]/u, /$/);
-
           expect(tetragram).not.toMatchString("𝌆");
+          expect(tetragram).toMatchString("\uD834"); // Low surrogate
+          expect(tetragram).toMatchString("\uDF06"); // High surrogate
+
+          expect(() => {
+            VerEx({unicode: false}, /^/, /[🂡-🃞]/u, /$/);
+          }).toThrow(SyntaxError);
         });
 
         it("should not allow `\\D`, `\\S`, `\\W` to match astral symbols", () => {
@@ -284,7 +300,18 @@ describe("VerEx", () => {
         });
 
         it.todo("should not permit unicode property escapes");
-        it.todo("should not allow code point escapes");
+
+        it("should not allow codepoint escapes", () => {
+          const tetragram = VerEx({unicode: false}, /\u{1D306}/u);
+          expect(tetragram).not.toMatchString("𝌆");
+
+          const tetragramSurrogates = VerEx(
+            {unicode: false},
+            /^/, /\uD834\uDF06/, /$/
+          );
+
+          expect(tetragramSurrogates).toMatchString("𝌆");
+        });
       });
     });
   });
