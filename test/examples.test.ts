@@ -14,7 +14,7 @@ import {anyCharacter, anything} from "../src/wildcards";
 import "./custom-matchers";
 
 describe("complex expressions", () => {
-  it("should match simple URLs", () => {
+  test("simple urls", () => {
     const exp = VerEx(
       startOfLine,
       "http",
@@ -31,7 +31,7 @@ describe("complex expressions", () => {
     expect(exp).not.toMatchString("ftp://foo.bar");
   });
 
-  it("should match simple protocols", () => {
+  test("simple protocols", () => {
     const protocol = or(VerEx("http", maybe("s"), "://"), "ftp://", "smtp://");
     const removeWww = maybe("www.");
     const domain = multiple(anyCharacterBut([" ", "/"]));
@@ -45,7 +45,7 @@ describe("complex expressions", () => {
     expect(exp).toMatchString("http://some.com/lengthty/url.html");
   });
 
-  it("should match IP addresses", () => {
+  test("ip addresses", () => {
     const octet = or(
       concat("25", anyCharacterFrom([[0, 5]])), // 250–255
       concat("2", anyCharacterFrom([[0, 4]]), digit), // 200–249
@@ -69,7 +69,7 @@ describe("complex expressions", () => {
     expect(ipAddress).not.toMatchString("999.999.999.999");
   });
 
-  it("should match email addresses", () => {
+  test("email addresses", () => {
     // This is the regex used by <input type="email">
     // It's far from perfect, but good for example's sake.
 
@@ -101,7 +101,7 @@ describe("complex expressions", () => {
     expect(email).not.toMatchString("@example.com");
   });
 
-  it("should match hex colour codes", () => {
+  test("hex colour codes", () => {
     const hexCharacter = anyCharacterFrom([["a", "f"], [0, 9]]);
 
     const hexColour = VerEx(
@@ -126,168 +126,7 @@ describe("complex expressions", () => {
     expect(hexColour).not.toMatchString("#");
   });
 
-  it("should match 24 hour time", () => {
-    const hour = or(
-      concat(maybe(anyCharacterFrom([[0, 1]])), digit),
-      concat(2, anyCharacterFrom([[0, 3]]))
-    );
-
-    const zeroThroughFiftyNine = concat(
-      anyCharacterFrom([[0, 5]]), digit
-    );
-
-    const time = VerEx(
-      startOfLine,
-      group(hour), ":",
-      group(zeroThroughFiftyNine),
-      maybe(concat(":", group(zeroThroughFiftyNine))),
-      endOfLine
-    );
-
-    expect(time).toMatchString("23:50:00");
-    expect(time).toMatchString("14:00");
-    expect(time).toMatchString("22:09");
-    expect(time).toMatchString("23:00");
-    expect(time).toMatchString("9:30");
-    expect(time).toMatchString("09:30");
-    expect(time).toMatchString("19:30");
-
-    expect(time).not.toMatchString("27:30");
-    expect(time).not.toMatchString("13:70");
-    expect(time).not.toMatchString("9:60");
-    expect(time).not.toMatchString("12:24:63");
-  });
-
-  it("should convert camel case to words", () => {
-    const capital = VerEx(
-      lookahead(anyCharacterFrom([["A", "Z"]]))
-    );
-
-    expect("camelCaseFtw".split(capital)).toEqual(["camel", "Case", "Ftw"]);
-    expect("wordWord927".split(capital)).toEqual(["word", "Word927"]);
-  });
-
-  it("should strip trailing whitespace", () => {
-    const trailingWhitespace = VerEx(
-      {multiline: true},
-      oneOrMore(whitespaceCharacter),
-      endOfLine
-    );
-
-    const whitespaceFilledString = `
-      foobar\r\v
-      a b c\t\u00A0
-      def\u2000\u2002\u2002
-      ghi\u2001\u2001
-      jkl\u2006
-      mno\u2007\u2008\u2009\u200A
-    `;
-
-    const whitespaceLess = `
-      foobar
-      a b c
-      def
-      ghi
-      jkl
-      mno`;
-
-    expect(
-      whitespaceFilledString.replace(trailingWhitespace, "")
-    ).toEqual(whitespaceLess);
-  });
-
-  it("should match a username", () => {
-    const username = VerEx(
-      startOfLine,
-      repeat(wordCharacter, 3, 16),
-      endOfLine
-    );
-
-    expect(username).toMatchString("AzureDiamond");
-    expect(username).toMatchString("john_doe_73");
-
-    expect(username).not.toMatchString("probably-too-long");
-    expect(username).not.toMatchString("no");
-    expect(username).not.toMatchString("😀");
-    expect(username).not.toMatchString("john&i");
-    expect(username).not.toMatchString("has spaces");
-  });
-
-  it("should match simple passwords", () => {
-    const validSpecialCharacters = "~`!@#$%^&*()-+={[}]|\\:;\"'<,>.?/".split("");
-    const validCharacter = anyCharacterFrom([
-      wordCharacter,
-      ...validSpecialCharacters
-    ]);
-
-    const atLeastOneDigit = lookahead(anything, digit);
-    const atLeastOneAlpha = lookahead(anything, anyCharacterFrom([["a", "z"]]));
-    const atLeastOneSpecial = lookahead(anything, anyCharacterFrom(validSpecialCharacters));
-
-    const password = VerEx(
-      atLeastOneDigit,
-      atLeastOneSpecial,
-      atLeastOneAlpha,
-      repeat(validCharacter, 12, Infinity)
-    );
-
-    expect(password).toMatchString("foobarbaz123!@#");
-
-    expect(password).not.toMatchString("foo1!");
-    expect(password).not.toMatchString("foobarbaz____");
-    expect(password).not.toMatchString("foobarbaz1234");
-    expect(password).not.toMatchString("1234567890!@#$%^&*()");
-  });
-
-  it("should match floating point numbers", () => {
-    const maybeSign = maybe(anyCharacterFrom(["+", "-"]));
-
-    const noLonePoint = lookahead(
-      or(
-        concat(".", digit),
-        digit
-      )
-    );
-
-    const floatingPoint = VerEx(
-      startOfLine,
-      maybeSign,
-      noLonePoint,
-      maybe(oneOrMore(digit)),
-      maybe("."), zeroOrMore(digit),
-      optionally(concat(
-        anyCharacterFrom(["e", "E"]), maybeSign, oneOrMore(digit)
-      )),
-      endOfLine
-    );
-
-    expect(floatingPoint).toMatchString("1.1e+1");
-    expect(floatingPoint).toMatchString(".1e1");
-    expect(floatingPoint).toMatchString(".1e+1");
-    expect(floatingPoint).toMatchString("1.e1");
-    expect(floatingPoint).toMatchString("1.e+1");
-    expect(floatingPoint).toMatchString("1.1");
-    expect(floatingPoint).toMatchString(".1");
-    expect(floatingPoint).toMatchString("1.");
-    expect(floatingPoint).toMatchString("1");
-    expect(floatingPoint).toMatchString("987");
-    expect(floatingPoint).toMatchString("+4");
-    expect(floatingPoint).toMatchString("-8");
-    expect(floatingPoint).toMatchString("0.1");
-    expect(floatingPoint).toMatchString(".987");
-    expect(floatingPoint).toMatchString("+4.0");
-    expect(floatingPoint).toMatchString("-0.8");
-    expect(floatingPoint).toMatchString("1e2");
-    expect(floatingPoint).toMatchString("0.2e2");
-    expect(floatingPoint).toMatchString("3.e2");
-    expect(floatingPoint).toMatchString(".987e2");
-    expect(floatingPoint).toMatchString("+4e-1");
-    expect(floatingPoint).toMatchString("-8.e+2");
-
-    expect(floatingPoint).not.toMatchString(".");
-  });
-
-  it("should match css colours", () => {
+  test("rgb colours", () => {
     const leadingZeroes = zeroOrMore(0);
 
     const octet = concat(
@@ -350,7 +189,136 @@ describe("complex expressions", () => {
     expect(rgb).not.toMatchString("rgb(10%, 255, 0)");
   });
 
-  it("should match an html tag", () => {
+  test("camelcase to words", () => {
+    const capital = VerEx(
+      lookahead(anyCharacterFrom([["A", "Z"]]))
+    );
+
+    expect("camelCaseFtw".split(capital)).toEqual(["camel", "Case", "Ftw"]);
+    expect("wordWord927".split(capital)).toEqual(["word", "Word927"]);
+  });
+
+  test("strip trailing whitespace", () => {
+    const trailingWhitespace = VerEx(
+      {multiline: true},
+      oneOrMore(whitespaceCharacter),
+      endOfLine
+    );
+
+    const whitespaceFilledString = `
+      foobar\r\v
+      a b c\t\u00A0
+      def\u2000\u2002\u2002
+      ghi\u2001\u2001
+      jkl\u2006
+      mno\u2007\u2008\u2009\u200A
+    `;
+
+    const whitespaceLess = `
+      foobar
+      a b c
+      def
+      ghi
+      jkl
+      mno`;
+
+    expect(
+      whitespaceFilledString.replace(trailingWhitespace, "")
+    ).toEqual(whitespaceLess);
+  });
+
+  test("usernames", () => {
+    const username = VerEx(
+      startOfLine,
+      repeat(wordCharacter, 3, 16),
+      endOfLine
+    );
+
+    expect(username).toMatchString("AzureDiamond");
+    expect(username).toMatchString("john_doe_73");
+
+    expect(username).not.toMatchString("probably-too-long");
+    expect(username).not.toMatchString("no");
+    expect(username).not.toMatchString("😀");
+    expect(username).not.toMatchString("john&i");
+    expect(username).not.toMatchString("has spaces");
+  });
+
+  test("simple passwords", () => {
+    const validSpecialCharacters = "~`!@#$%^&*()-+={[}]|\\:;\"'<,>.?/".split("");
+    const validCharacter = anyCharacterFrom([
+      wordCharacter,
+      ...validSpecialCharacters
+    ]);
+
+    const atLeastOneDigit = lookahead(anything, digit);
+    const atLeastOneAlpha = lookahead(anything, anyCharacterFrom([["a", "z"]]));
+    const atLeastOneSpecial = lookahead(anything, anyCharacterFrom(validSpecialCharacters));
+
+    const password = VerEx(
+      atLeastOneDigit,
+      atLeastOneSpecial,
+      atLeastOneAlpha,
+      repeat(validCharacter, 12, Infinity)
+    );
+
+    expect(password).toMatchString("foobarbaz123!@#");
+
+    expect(password).not.toMatchString("foo1!");
+    expect(password).not.toMatchString("foobarbaz____");
+    expect(password).not.toMatchString("foobarbaz1234");
+    expect(password).not.toMatchString("1234567890!@#$%^&*()");
+  });
+
+  test("floating point numbers", () => {
+    const maybeSign = maybe(anyCharacterFrom(["+", "-"]));
+
+    const noLonePoint = lookahead(
+      or(
+        concat(".", digit),
+        digit
+      )
+    );
+
+    const floatingPoint = VerEx(
+      startOfLine,
+      maybeSign,
+      noLonePoint,
+      maybe(oneOrMore(digit)),
+      maybe("."), zeroOrMore(digit),
+      optionally(concat(
+        anyCharacterFrom(["e", "E"]), maybeSign, oneOrMore(digit)
+      )),
+      endOfLine
+    );
+
+    expect(floatingPoint).toMatchString("1.1e+1");
+    expect(floatingPoint).toMatchString(".1e1");
+    expect(floatingPoint).toMatchString(".1e+1");
+    expect(floatingPoint).toMatchString("1.e1");
+    expect(floatingPoint).toMatchString("1.e+1");
+    expect(floatingPoint).toMatchString("1.1");
+    expect(floatingPoint).toMatchString(".1");
+    expect(floatingPoint).toMatchString("1.");
+    expect(floatingPoint).toMatchString("1");
+    expect(floatingPoint).toMatchString("987");
+    expect(floatingPoint).toMatchString("+4");
+    expect(floatingPoint).toMatchString("-8");
+    expect(floatingPoint).toMatchString("0.1");
+    expect(floatingPoint).toMatchString(".987");
+    expect(floatingPoint).toMatchString("+4.0");
+    expect(floatingPoint).toMatchString("-0.8");
+    expect(floatingPoint).toMatchString("1e2");
+    expect(floatingPoint).toMatchString("0.2e2");
+    expect(floatingPoint).toMatchString("3.e2");
+    expect(floatingPoint).toMatchString(".987e2");
+    expect(floatingPoint).toMatchString("+4e-1");
+    expect(floatingPoint).toMatchString("-8.e+2");
+
+    expect(floatingPoint).not.toMatchString(".");
+  });
+
+  test("html tags", () => {
     const tagName = oneOrMore(anyCharacterFrom([["a", "z"]]));
 
     const htmlTag = VerEx(
@@ -378,7 +346,7 @@ describe("complex expressions", () => {
     expect(htmlTag).not.toMatchString("<foo>...<bar>");
   });
 
-  it("should match playing cards", () => {
+  test("playing cards", () => {
     const spades = anyCharacterFrom([["🂡", "🂮"]]);
     const hearts = anyCharacterFrom([["🂱", "🂾"]]);
     const diamonds = anyCharacterFrom([["🃁", "🃎"]]);
@@ -405,7 +373,39 @@ describe("complex expressions", () => {
     expect(playingCard).not.toMatchString("🂠");
   });
 
-  it("should match dates", () => {
+  test("24 hour time", () => {
+    const hour = or(
+      concat(maybe(anyCharacterFrom([[0, 1]])), digit),
+      concat(2, anyCharacterFrom([[0, 3]]))
+    );
+
+    const zeroThroughFiftyNine = concat(
+      anyCharacterFrom([[0, 5]]), digit
+    );
+
+    const time = VerEx(
+      startOfLine,
+      group(hour), ":",
+      group(zeroThroughFiftyNine),
+      maybe(concat(":", group(zeroThroughFiftyNine))),
+      endOfLine
+    );
+
+    expect(time).toMatchString("23:50:00");
+    expect(time).toMatchString("14:00");
+    expect(time).toMatchString("22:09");
+    expect(time).toMatchString("23:00");
+    expect(time).toMatchString("9:30");
+    expect(time).toMatchString("09:30");
+    expect(time).toMatchString("19:30");
+
+    expect(time).not.toMatchString("27:30");
+    expect(time).not.toMatchString("13:70");
+    expect(time).not.toMatchString("9:60");
+    expect(time).not.toMatchString("12:24:63");
+  });
+
+  test("dates", () => {
     // Please.
     // Don't do this in production.
     //
