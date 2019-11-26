@@ -29,6 +29,12 @@ describe("repeat", () => {
       expect(exp).not.toMatchString("foo".repeat(3));
       expect(exp).not.toMatchString("foo".repeat(4));
     });
+
+    it("should throw an error when an invalid range passed", () => {
+      expect(() => repeat("foo", 2.2)).toThrowError(TypeError);
+      expect(() => repeat("foo", -2)).toThrowError(TypeError);
+      expect(() => repeat("foo", NaN)).toThrowError(TypeError);
+    });
   });
 
   describe("repeat(expression, min, Infinity)", () => {
@@ -54,6 +60,12 @@ describe("repeat", () => {
       const [match] = para.exec("<p>foo</p> <p>bar</p>");
 
       expect(match).toEqual("<p>foo</p> <p>bar</p>");
+    });
+
+    it("should throw an error when an invalid range passed", () => {
+      expect(() => repeat("foo", 2.2, Infinity)).toThrowError(TypeError);
+      expect(() => repeat("foo", -2, Infinity)).toThrowError(TypeError);
+      expect(() => repeat("foo", NaN, Infinity)).toThrowError(TypeError);
     });
 
     describe("repeat.lazy(expression, min, Infinity)", () => {
@@ -100,6 +112,15 @@ describe("repeat", () => {
       const [match] = para.exec("<p>foo</p> <p>bar</p>");
 
       expect(match).toEqual("<p>foo</p> <p>bar</p>");
+    });
+
+    it("should throw an error when an invalid range passed", () => {
+      expect(() => repeat("foo", 2.2, 3.2)).toThrowError(TypeError);
+      expect(() => repeat("foo", 2, 3.2)).toThrowError(TypeError);
+      expect(() => repeat("foo", 2, -2)).toThrowError(TypeError);
+      expect(() => repeat("foo", 2, NaN)).toThrowError(TypeError);
+
+      expect(() => repeat("foo", 3, 2)).toThrowError(RangeError);
     });
 
     describe("repeat.lazy(expression, min, max)", () => {

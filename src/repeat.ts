@@ -1,12 +1,29 @@
 import {group} from "./group";
 import Expression from "./types/expression";
 import Fragment from "./types/fragment";
+import Natural, {isNatural} from "./types/natural";
+
+type Inf = 9e999;
 
 function repeat(
   expression: Expression,
-  minTimes: number,
-  maxTimes?: number
+  minTimes: Natural,
+  maxTimes?: Natural | Inf
 ): Fragment {
+  if (!isNatural(minTimes)) {
+    throw new TypeError(`Invalid minimum: ${minTimes}: Must be a natural number`);
+  }
+
+  if (maxTimes !== undefined) {
+    if (!isNatural(maxTimes) && maxTimes !== Infinity) {
+      throw new TypeError(`Invalid maximum: ${maxTimes}: Must be a natural number or Infinity`);
+    }
+
+    if (minTimes > maxTimes) {
+      throw new RangeError(`Invalid range: [${minTimes}, ${maxTimes}]: Maximum must be greater than or equal to minimum`);
+    }
+  }
+
   const grouped = group.nonCapturing(expression);
 
   let output: string;
@@ -26,8 +43,8 @@ repeat.greedy = repeat;
 
 repeat.lazy = (
   expression: Expression,
-  minTimes: number,
-  maxTimes: number
+  minTimes: Natural,
+  maxTimes: Natural | Inf
 ): Fragment => {
   const greedy = repeat(expression, minTimes, maxTimes);
   return new Fragment(`${greedy}?`);
