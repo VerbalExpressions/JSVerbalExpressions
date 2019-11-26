@@ -17,13 +17,13 @@ function setToString(set: CharacterOrRange[]): string {
   return raw;
 }
 
-function anyCharacterFrom(charactersAndRanges: CharacterOrRange[]): Fragment {
-  const setString = setToString(charactersAndRanges);
+function anyCharacterFrom(set: CharacterOrRange[]): Fragment {
+  const setString = setToString(set);
   return new Fragment(`[${setString}]`);
 }
 
-function anyCharacterBut(charactersAndRanges: CharacterOrRange[]): Fragment {
-  const setString = setToString(charactersAndRanges);
+function anyCharacterBut(set: CharacterOrRange[]): Fragment {
+  const setString = setToString(set);
   return new Fragment(`[^${setString}]`);
 }
 
