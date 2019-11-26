@@ -7,3 +7,6 @@ root = true
   indent_style = space
   indent_size = 2
   charset = utf8
+
+[dist/index.d.ts]
+  indent_size = 4
