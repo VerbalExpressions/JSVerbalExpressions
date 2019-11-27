@@ -316,7 +316,7 @@ describe("VerEx", () => {
     });
   });
 
-  describe("VerEx.extend(flags)", () => {
+  describe("VerEx.extend", () => {
     const VerExIM = VerEx.extend({
       ignoreCase: true,
       multiline: true
@@ -333,7 +333,7 @@ describe("VerEx", () => {
   });
 });
 
-describe("VerExp(...expressions)", () => {
+describe("VerExp", () => {
   it("should be an alias for VerEx", () => {
     expect(VerExp).toEqual(VerEx);
   });

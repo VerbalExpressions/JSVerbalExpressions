@@ -2,7 +2,7 @@ import {maybe, optionally} from "../src/maybe";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("maybe(expression)", () => {
+describe("maybe", () => {
   const maybeBar = VerEx(/^/, maybe("bar"), /$/);
 
   it("should be a function", () => {
@@ -32,13 +32,13 @@ describe("maybe(expression)", () => {
     expect(match).toEqual("'''");
   });
 
-  describe("maybe.greedy(expression)", () => {
+  describe("maybe.greedy", () => {
     it("should be an alias for maybe", () => {
       expect(maybe.greedy).toEqual(maybe);
     });
   });
 
-  describe("maybe.lazy(expression)", () => {
+  describe("maybe.lazy", () => {
     it("should be lazy", () => {
       const exp = VerEx("'", maybe.lazy(/./), "'");
       const [match] = exp.exec("'''");
@@ -48,7 +48,7 @@ describe("maybe(expression)", () => {
   });
 });
 
-describe("optionally(expression)", () => {
+describe("optionally", () => {
   it("should be an alias for maybe", () => {
     expect(optionally).toEqual(maybe);
   });

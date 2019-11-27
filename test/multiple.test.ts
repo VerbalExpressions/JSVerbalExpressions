@@ -2,7 +2,7 @@ import {multiple, zeroOrMore} from "../src/multiple";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("multiple(expression)", () => {
+describe("multiple", () => {
   it("should be a function", () => {
     expect(multiple).toBeInstanceOf(Function);
   });
@@ -26,13 +26,13 @@ describe("multiple(expression)", () => {
     expect(match).toEqual("<p>foo</p> <p>bar</p>");
   });
 
-  describe("multiple.greedy(expression)", () => {
+  describe("multiple.greedy", () => {
     it("should be an alias for multiple", () => {
       expect(multiple.greedy).toEqual(multiple);
     });
   });
 
-  describe("multiple.lazy(expression)", () => {
+  describe("multiple.lazy", () => {
     it("should be lazy", () => {
       const para = VerEx("<p>", multiple.lazy(/./), "</p>");
       const [match] = para.exec("<p>foo</p> <p>bar</p>");
@@ -42,7 +42,7 @@ describe("multiple(expression)", () => {
   });
 });
 
-describe("zeroOrMore(expression)", () => {
+describe("zeroOrMore", () => {
   it("should be an alias for multiple", () => {
     expect(zeroOrMore).toEqual(multiple);
   });

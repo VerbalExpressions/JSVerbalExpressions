@@ -2,7 +2,7 @@ import sanitize from "../src/util/sanitize";
 
 const {raw} = String;
 
-describe("sanitize(input)", () => {
+describe("sanitize", () => {
   it("should escape escape-worthy characters", () => {
     const unescaped = raw`\.|*?+(){}^$:=[]`;
     const expected = raw`\\\.\|\*\?\+\(\)\{\}\^\$\:\=\[\]`;

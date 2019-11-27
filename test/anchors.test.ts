@@ -41,19 +41,19 @@ describe("wordBoundary", () => {
     expect(fooWithinBoundaries).not.toMatchString("baz foo_ bar");
     expect(fooWithinBoundaries).not.toMatchString("foo33");
   });
+});
 
-  describe("nonWordBoundary", () => {
-    const expression = VerEx(nonWordBoundary, "foo", nonWordBoundary);
+describe("nonWordBoundary", () => {
+  const expression = VerEx(nonWordBoundary, "foo", nonWordBoundary);
 
-    it("should anchor matches to non-word-boundaries", () => {
-      expect(expression).toMatchString("bazfoobar");
-      expect(expression).toMatchString("baz_foo_bar");
-      expect(expression).toMatchString("bazfoo33");
+  it("should anchor matches to non-word-boundaries", () => {
+    expect(expression).toMatchString("bazfoobar");
+    expect(expression).toMatchString("baz_foo_bar");
+    expect(expression).toMatchString("bazfoo33");
 
-      expect(expression).not.toMatchString("baz foo bar?");
-      expect(expression).not.toMatchString("baz-foo-bar");
-      expect(expression).not.toMatchString("foo");
-      expect(expression).not.toMatchString("foo?");
-    });
+    expect(expression).not.toMatchString("baz foo bar?");
+    expect(expression).not.toMatchString("baz-foo-bar");
+    expect(expression).not.toMatchString("foo");
+    expect(expression).not.toMatchString("foo?");
   });
 });

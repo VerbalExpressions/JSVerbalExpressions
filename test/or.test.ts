@@ -2,7 +2,7 @@ import {or} from "../src/or";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("or(...options)", () => {
+describe("or", () => {
   const abcOrDef = VerEx(/^/, or("abc", "def"), /$/);
 
   it("should be a function", () => {

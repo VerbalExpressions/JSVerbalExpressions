@@ -2,7 +2,7 @@ import {anyCharacterFrom, anyCharacterBut} from "../src/character-classes";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("anyCharacterFrom(set)", () => {
+describe("anyCharacterFrom", () => {
   const exp = VerEx(/^/, anyCharacterFrom([["a", "f"], [0, 9], " ", "_"]), /$/);
 
   it("should be a function", () => {
@@ -47,7 +47,7 @@ describe("anyCharacterFrom(set)", () => {
   });
 });
 
-describe("anyCharacterBut(set)", () => {
+describe("anyCharacterBut", () => {
   const exp = VerEx(
     /^/, anyCharacterBut([["a", "z"], ["A", "Z"], "_"]), /$/
   );

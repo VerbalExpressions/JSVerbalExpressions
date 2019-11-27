@@ -2,7 +2,7 @@ import {oneOrMore} from "../src/one-or-more";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("oneOrMore(expression)", () => {
+describe("oneOrMore", () => {
   it("should be a function", () => {
     expect(oneOrMore).toBeInstanceOf(Function);
   });
@@ -30,13 +30,13 @@ describe("oneOrMore(expression)", () => {
     expect(match).toEqual("<p>foo</p> <p>bar</p>");
   });
 
-  describe("oneOrMore.greedy(expression)", () => {
+  describe("oneOrMore.greedy", () => {
     it("should be an alias for oneOrMore", () => {
       expect(oneOrMore.greedy).toEqual(oneOrMore);
     });
   });
 
-  describe("oneOrMore.lazy(expression)", () => {
+  describe("oneOrMore.lazy", () => {
     it("should be lazy", () => {
       const para = VerEx("<p>", oneOrMore.lazy(/./), "</p>");
       const [match] = para.exec("<p>foo</p> <p>bar</p>");

@@ -3,7 +3,7 @@ import Fragment from "../src/types/fragment";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("concat(...expressions)", () => {
+describe("concat", () => {
   it("should concatenate simple strings", () => {
     const abcdef = VerEx(
       /^/, concat("abc", "def"), /$/

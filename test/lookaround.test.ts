@@ -2,7 +2,7 @@ import {lookahead, lookbehind} from "../src/lookaround";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("lookahead(...expressions)", () => {
+describe("lookahead", () => {
   it("should be a function", () => {
     expect(lookahead).toBeInstanceOf(Function);
   });
@@ -36,13 +36,13 @@ describe("lookahead(...expressions)", () => {
     expect(exp).not.toMatchString("foobaz");
   });
 
-  describe("lookahead.positive(expression)", () => {
+  describe("lookahead.positive", () => {
     it("should be an alias for lookahead", () => {
       expect(lookahead.positive).toEqual(lookahead);
     });
   });
 
-  describe("lookahead.negative(expression)", () => {
+  describe("lookahead.negative", () => {
     it("should be a function", () => {
       expect(lookahead.negative).toBeInstanceOf(Function);
     });
@@ -83,7 +83,7 @@ describe("lookahead(...expressions)", () => {
   });
 });
 
-describe("lookbehind(...expressions)", () => {
+describe("lookbehind", () => {
   it("should be a function", () => {
     expect(lookbehind).toBeInstanceOf(Function);
   });
@@ -117,13 +117,13 @@ describe("lookbehind(...expressions)", () => {
     expect(exp).not.toMatchString("bazfoo");
   });
 
-  describe("lookbehind.positive(expression)", () => {
+  describe("lookbehind.positive", () => {
     it("should be an alias for lookbehind", () => {
       expect(lookbehind.positive).toEqual(lookbehind);
     });
   });
 
-  describe("lookbehind.negative(expression)", () => {
+  describe("lookbehind.negative", () => {
     it("should be a function", () => {
       expect(lookbehind.negative).toBeInstanceOf(Function);
     });

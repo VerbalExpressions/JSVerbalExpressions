@@ -2,7 +2,7 @@ import {group, backReference} from "../src/group";
 import {VerEx} from "../src/verex";
 import "./custom-matchers";
 
-describe("group(...expressions)", () => {
+describe("group", () => {
   it("should be a function", () => {
     expect(group).toBeInstanceOf(Function);
   });
@@ -22,13 +22,13 @@ describe("group(...expressions)", () => {
     expect(domain).toEqual("google.com");
   });
 
-  describe("group.capturing(...expressions)", () => {
+  describe("group.capturing", () => {
     it("should be an alias for group", () => {
       expect(group.capturing).toEqual(group);
     });
   });
 
-  describe("group.nonCapturing(...expressions)", () => {
+  describe("group.nonCapturing", () => {
     it("should be a function", () => {
       expect(group.nonCapturing).toBeInstanceOf(Function);
     });
@@ -57,7 +57,7 @@ describe("group(...expressions)", () => {
     });
   });
 
-  describe("group.named(name, ...expressions)", () => {
+  describe("group.named", () => {
     it("should create a named group", () => {
       const exp = VerEx(
         group.named("a", "foo"),
@@ -73,14 +73,14 @@ describe("group(...expressions)", () => {
     });
   });
 
-  describe("group.capturing.named(name, ...expressions)", () => {
+  describe("group.capturing.named", () => {
     it("should be an alias for group.named", () => {
       expect(group.capturing.named).toEqual(group.named);
     });
   });
 });
 
-describe("backReference(reference)", () => {
+describe("backReference", () => {
   it("should work with numbered references", () => {
     const exp = VerEx(/^/, /(foo)/, backReference(1), /$/);
 
