@@ -33,24 +33,24 @@ describe("digit", () => {
   it("should not match more than one character", () => {
     expect(aDigit).not.toMatchString("123");
   });
+});
 
-  describe("nonDigit", () => {
-    const aNonDigit = VerEx(/^/, nonDigit, /$/);
+describe("nonDigit", () => {
+  const aNonDigit = VerEx(/^/, nonDigit, /$/);
 
-    it("should not match arabic numerals", () => {
-      expect(aNonDigit).not.toMatchString("1");
-    });
+  it("should not match arabic numerals", () => {
+    expect(aNonDigit).not.toMatchString("1");
+  });
 
-    it("should match non-digit characters", () => {
-      expect(aDigit).not.toMatchString("a");
-      expect(aDigit).not.toMatchString("₉");
-      expect(aDigit).not.toMatchString("❾");
-      expect(aDigit).not.toMatchString("１");
-    });
+  it("should match non-digit characters", () => {
+    expect(aNonDigit).toMatchString("a");
+    expect(aNonDigit).toMatchString("₉");
+    expect(aNonDigit).toMatchString("❾");
+    expect(aNonDigit).toMatchString("１");
+  });
 
-    it("should not match more than one character", () => {
-      expect(aDigit).not.toMatchString("abc");
-    });
+  it("should not match more than one character", () => {
+    expect(aNonDigit).not.toMatchString("abc");
   });
 });
 
@@ -88,33 +88,33 @@ describe("wordCharacter", () => {
   it("should not match more than one character", () => {
     expect(aWordCharacter).not.toMatchString("abc");
   });
+});
 
-  describe("nonWordCharacter", () => {
-    const aNonWordCharacter = VerEx(/^/, nonWordCharacter, /$/);
+describe("nonWordCharacter", () => {
+  const aNonWordCharacter = VerEx(/^/, nonWordCharacter, /$/);
 
-    it("should not match a–z and A–Z", () => {
-      expect(aNonWordCharacter).not.toMatchString("a");
-      expect(aNonWordCharacter).not.toMatchString("A");
-    });
+  it("should not match a–z and A–Z", () => {
+    expect(aNonWordCharacter).not.toMatchString("a");
+    expect(aNonWordCharacter).not.toMatchString("A");
+  });
 
-    it("should not match arabic numerals", () => {
-      expect(aNonWordCharacter).not.toMatchString("1");
-      expect(aNonWordCharacter).not.toMatchString("9");
-    });
+  it("should not match arabic numerals", () => {
+    expect(aNonWordCharacter).not.toMatchString("1");
+    expect(aNonWordCharacter).not.toMatchString("9");
+  });
 
-    it("should not match an underscore", () => {
-      expect(aNonWordCharacter).not.toMatchString("_");
-    });
+  it("should not match an underscore", () => {
+    expect(aNonWordCharacter).not.toMatchString("_");
+  });
 
-    it("should match non-word characters", () => {
-      expect(aNonWordCharacter).toMatchString("-");
-      expect(aNonWordCharacter).toMatchString("%");
-      expect(aNonWordCharacter).toMatchString("£");
-    });
+  it("should match non-word characters", () => {
+    expect(aNonWordCharacter).toMatchString("-");
+    expect(aNonWordCharacter).toMatchString("%");
+    expect(aNonWordCharacter).toMatchString("£");
+  });
 
-    it("should not match more than one character", () => {
-      expect(aWordCharacter).not.toMatchString("***");
-    });
+  it("should not match more than one character", () => {
+    expect(aNonWordCharacter).not.toMatchString("***");
   });
 });
 
@@ -138,23 +138,23 @@ describe("whitespaceCharacter", () => {
   it("should not match more than one character", () => {
     expect(aWhitespaceCharacter).not.toMatchString("    ");
   });
+});
 
-  describe("nonWhitespaceCharacter", () => {
-    const aNonWhitespaceCharacter = VerEx(/^/, nonWhitespaceCharacter, /$/);
+describe("nonWhitespaceCharacter", () => {
+  const aNonWhitespaceCharacter = VerEx(/^/, nonWhitespaceCharacter, /$/);
 
-    it("should not match whitespace characters", () => {
-      expect(aNonWhitespaceCharacter).not.toMatchString(" ");
-      expect(aNonWhitespaceCharacter).not.toMatchString("\t");
-    });
+  it("should not match whitespace characters", () => {
+    expect(aNonWhitespaceCharacter).not.toMatchString(" ");
+    expect(aNonWhitespaceCharacter).not.toMatchString("\t");
+  });
 
-    it("should match non-whitespace characters", () => {
-      expect(aNonWhitespaceCharacter).toMatchString("a");
-      expect(aNonWhitespaceCharacter).toMatchString("1");
-      expect(aNonWhitespaceCharacter).toMatchString("£");
-    });
+  it("should match non-whitespace characters", () => {
+    expect(aNonWhitespaceCharacter).toMatchString("a");
+    expect(aNonWhitespaceCharacter).toMatchString("1");
+    expect(aNonWhitespaceCharacter).toMatchString("£");
+  });
 
-    it("should not match more than one character", () => {
-      expect(aWhitespaceCharacter).not.toMatchString("abc");
-    });
+  it("should not match more than one character", () => {
+    expect(aNonWhitespaceCharacter).not.toMatchString("abc");
   });
 });
