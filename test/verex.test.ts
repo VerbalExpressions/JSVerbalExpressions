@@ -249,7 +249,31 @@ describe("VerEx", () => {
           expect(notWordCharacter).toMatchString("𝌆");
         });
 
-        it.todo("should permit unicode property escapes");
+        it("should permit unicode property escapes", () => {
+          const greek = VerEx(
+            {unicode: true},
+            /^/, /\p{Script_Extensions=Greek}/u, /$/
+          );
+
+          expect(greek).toMatchString("π");
+          expect(greek).toMatchString("Ω");
+
+          expect(greek).not.toMatchString("Z");
+
+          const number = VerEx(
+            {unicode: true},
+            /^/, /\p{Number}/u, /$/
+          );
+
+          expect(number).toMatchString("3");
+          expect(number).toMatchString("³");
+          expect(number).toMatchString("𝟑");
+          expect(number).toMatchString("𝟯");
+          expect(number).toMatchString("Ⅲ");
+
+          expect(number).not.toMatchString("three");
+          expect(number).not.toMatchString("t");
+        });
 
         it("should allow codepoint escapes", () => {
           const tetragram = VerEx({unicode: true}, /^/, /\u{1D306}/u, /$/);
@@ -299,7 +323,29 @@ describe("VerEx", () => {
           expect(notWordCharacter).not.toMatchString("𝌆");
         });
 
-        it.todo("should not permit unicode property escapes");
+        it("should not permit unicode property escapes", () => {
+          const greek = VerEx(
+            {unicode: false},
+            /^/, /\p{Script_Extensions=Greek}/u, /$/
+          );
+
+          expect(greek).not.toMatchString("π");
+          expect(greek).not.toMatchString("Ω");
+          expect(greek).not.toMatchString("Z");
+
+          const number = VerEx(
+            {unicode: false},
+            /^/, /\p{Number}/u, /$/
+          );
+
+          expect(number).not.toMatchString("3");
+          expect(number).not.toMatchString("³");
+          expect(number).not.toMatchString("𝟑");
+          expect(number).not.toMatchString("𝟯");
+          expect(number).not.toMatchString("Ⅲ");
+          expect(number).not.toMatchString("three");
+          expect(number).not.toMatchString("t");
+        });
 
         it("should not allow codepoint escapes", () => {
           const tetragram = VerEx({unicode: false}, /\u{1D306}/u);
