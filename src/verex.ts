@@ -1,6 +1,6 @@
 import Expression from "./types/expression";
 import Flags, {isFlags, toFlagString} from "./types/flags";
-import Fragment from "./types/fragment";
+import {fragmentsFromExpressions} from "./types/fragment";
 
 const defaultFlags = {
   dotAll: false,
@@ -29,7 +29,7 @@ function VerEx(
     expressions.unshift(firstArg);
   }
 
-  const rawExpressions = Fragment.arrayFromExpressions(expressions);
+  const rawExpressions = fragmentsFromExpressions(expressions);
   const flagString = toFlagString(flags);
 
   return new RegExp(rawExpressions.join(""), flagString);

@@ -41,16 +41,6 @@ class Fragment {
     return new Fragment(sanitize(expression));
   }
 
-  public static arrayFromExpressions(expressions: Expression[]): Fragment[] {
-    const converted: Fragment[] = [];
-
-    for (const arg of expressions) {
-      converted.push(Fragment.fromExpression(arg));
-    }
-
-    return converted;
-  }
-
   public toString(): string {
     if (typeof this.value === "number") {
       return this.value.toString();
@@ -60,4 +50,15 @@ class Fragment {
   }
 }
 
+function fragmentsFromExpressions(expressions: Expression[]): Fragment[] {
+  const converted: Fragment[] = [];
+
+  for (const arg of expressions) {
+    converted.push(Fragment.fromExpression(arg));
+  }
+
+  return converted;
+}
+
 export default Fragment;
+export {fragmentsFromExpressions};

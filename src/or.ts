@@ -1,9 +1,9 @@
 import {group} from "./group";
 import Expression from "./types/expression";
-import Fragment from "./types/fragment";
+import Fragment, {fragmentsFromExpressions} from "./types/fragment";
 
 function or(...options: Expression[]): Fragment {
-  options = Fragment.arrayFromExpressions(options);
+  options = fragmentsFromExpressions(options);
   const alternation = new Fragment(options.join("|"));
 
   return group.nonCapturing(alternation);
