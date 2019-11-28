@@ -1,3 +1,8 @@
+/**
+ * A natural number.
+ *
+ * A positive integer. For our purposes, 0 is a natural number too.
+ */
 type Natural = number;
 
 function isNatural(n: any): n is Natural {

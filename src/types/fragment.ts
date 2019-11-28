@@ -3,6 +3,15 @@ import Expression from "./expression";
 
 type Primitives = string | number;
 
+/**
+ * A fragment of a regular expression.
+ *
+ * A string wrapped within a class so that it can be distinguished from regular
+ * strings through instanceof. These "strings" are meant to be interpreted
+ * literally and should not be sanitized, unlike user-supplied strings/numbers.
+ *
+ * This is the return type of many VerBalExpressions methods.
+ */
 class Fragment {
   public value: Primitives;
 

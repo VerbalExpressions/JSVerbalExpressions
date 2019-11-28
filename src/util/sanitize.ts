@@ -1,6 +1,10 @@
 import SanitizeWorthy from "../types/sanitize-worthy";
 
-export default function sanitize(input: SanitizeWorthy): string {
+/**
+ * A function to escape all characters that hold special meanings in
+ * regular expressions (regex meta characters).
+ */
+function sanitize(input: SanitizeWorthy): string {
   // Regular expression to match meta characters
   // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
   const toEscape = /([\].|*?+(){}^$\\:=[])/g;
@@ -11,3 +15,5 @@ export default function sanitize(input: SanitizeWorthy): string {
   // Escape meta characters
   return input.toString().replace(toEscape, `\\${lastMatch}`);
 }
+
+export default sanitize;
