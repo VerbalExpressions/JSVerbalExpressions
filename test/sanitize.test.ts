@@ -4,8 +4,8 @@ const {raw} = String;
 
 describe("sanitize", () => {
   it("should escape escape-worthy characters", () => {
-    const unescaped = raw`\.|*?+(){}^$:=[]`;
-    const expected = raw`\\\.\|\*\?\+\(\)\{\}\^\$\:\=\[\]`;
+    const unescaped = raw`\.|*?+(){}^$-[]`;
+    const expected = raw`\\\.\|\*\?\+\(\)\{\}\^\$\-\[\]`;
 
     expect(sanitize(unescaped)).toEqual(expected);
   });
@@ -27,7 +27,7 @@ describe("sanitize", () => {
 
   it("should sanitize unusual numbers", () => {
     expect(sanitize(Infinity)).toEqual("Infinity");
-    expect(sanitize(-Infinity)).toEqual("-Infinity");
+    expect(sanitize(-Infinity)).toEqual(raw`\-Infinity`);
     expect(sanitize(NaN)).toEqual("NaN");
   });
 });
