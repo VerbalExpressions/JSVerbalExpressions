@@ -1,28 +1,12 @@
-import Expression from "./types/expression";
+import Set, {setToString} from "./types/set";
 import Fragment from "./types/fragment";
 
-type CharacterOrRange = Expression | [Expression, Expression];
-
-function setToString(set: CharacterOrRange[]): string {
-  const rawCharacters = set.map(expression => {
-    if (Array.isArray(expression)) {
-      const rawRange = Fragment.arrayFromExpressions(expression);
-      return rawRange.join("-");
-    }
-
-    return expression;
-  });
-
-  const raw = rawCharacters.join("");
-  return raw;
-}
-
-function anyCharacterFrom(set: CharacterOrRange[]): Fragment {
+function anyCharacterFrom(set: Set): Fragment {
   const setString = setToString(set);
   return new Fragment(`[${setString}]`);
 }
 
-function anyCharacterBut(set: CharacterOrRange[]): Fragment {
+function anyCharacterBut(set: Set): Fragment {
   const setString = setToString(set);
   return new Fragment(`[^${setString}]`);
 }
