@@ -45,6 +45,15 @@ describe("anyCharacterFrom", () => {
     expect(nonWord).toMatchString("_");
     expect(nonWord).not.toMatchString("%");
   });
+
+  it("should work with hyphens", () => {
+    const aHyphenOrC = VerEx(anyCharacterFrom(["a", "-", "c"]));
+
+    expect(aHyphenOrC).toMatchString("a");
+    expect(aHyphenOrC).toMatchString("-");
+    expect(aHyphenOrC).toMatchString("c");
+    expect(aHyphenOrC).not.toMatchString("b");
+  });
 });
 
 describe("anyCharacterBut", () => {
@@ -91,5 +100,14 @@ describe("anyCharacterBut", () => {
     expect(nonWord).not.toMatchString("9");
     expect(nonWord).not.toMatchString("_");
     expect(nonWord).toMatchString("%");
+  });
+
+  it("should work with hyphens", () => {
+    const notAHyphenOrC = VerEx(anyCharacterBut(["a", "-", "c"]));
+
+    expect(notAHyphenOrC).not.toMatchString("a");
+    expect(notAHyphenOrC).not.toMatchString("-");
+    expect(notAHyphenOrC).not.toMatchString("c");
+    expect(notAHyphenOrC).toMatchString("b");
   });
 });

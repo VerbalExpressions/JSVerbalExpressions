@@ -1,5 +1,5 @@
 import Expression from "./expression";
-import {fragmentsFromExpressions} from "./fragment";
+import Fragment, {fragmentsFromExpressions} from "./fragment";
 
 type CharacterOrRange = Expression | [Expression, Expression];
 type Set = CharacterOrRange[];
@@ -11,7 +11,7 @@ function setToString(set: Set): string {
       return rawRange.join("-");
     }
 
-    return expression;
+    return Fragment.fromExpression(expression);
   });
 
   const raw = rawCharacters.join("");
