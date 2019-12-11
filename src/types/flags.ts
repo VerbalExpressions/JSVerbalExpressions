@@ -7,6 +7,15 @@ interface Flags {
   unicode?: boolean;
 }
 
+const defaultFlags = {
+  dotAll: false,
+  global: true,
+  ignoreCase: false,
+  multiline: true,
+  sticky: false,
+  unicode: false
+};
+
 function isFlags(obj: any): obj is Flags {
   if (typeof obj !== "object") {
     return false;
@@ -16,9 +25,7 @@ function isFlags(obj: any): obj is Flags {
     return false;
   }
 
-  const possibleFlags = [
-    "dotAll", "global", "ignoreCase", "multiline", "sticky", "unicode"
-  ];
+  const possibleFlags = Object.keys(defaultFlags);
 
   for (const key of Object.keys(obj)) {
     if (!(possibleFlags.includes(key))) {
@@ -49,9 +56,9 @@ function toFlagString(flags: Flags): string {
 
   return flagsString
     .split("")
-    .sort((a, b) => a.localeCompare(b))
+    .sort()
     .join("");
 }
 
 export default Flags;
-export {isFlags, toFlagString};
+export {isFlags, defaultFlags, toFlagString};

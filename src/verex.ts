@@ -1,15 +1,6 @@
 import Expression from "./types/expression";
-import Flags, {isFlags, toFlagString} from "./types/flags";
+import Flags, {isFlags, defaultFlags, toFlagString} from "./types/flags";
 import {fragmentsFromExpressions} from "./types/fragment";
-
-const defaultFlags = {
-  dotAll: false,
-  global: true,
-  ignoreCase: false,
-  multiline: true,
-  sticky: false,
-  unicode: false
-};
 
 // @constructor
 function VerEx(

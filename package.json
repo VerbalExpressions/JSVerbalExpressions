@@ -62,7 +62,8 @@
       "@typescript-eslint/generic-type-naming": "off",
       "import/default": "off",
       "import/no-unassigned-import": "off",
-      "prefer-named-capture-group": "off"
+      "prefer-named-capture-group": "off",
+      "@typescript-eslint/require-array-sort-compare": "off"
     },
     "overrides": [
       {
