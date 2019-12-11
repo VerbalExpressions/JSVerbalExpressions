@@ -1,16 +1,16 @@
 import Expression from "./types/expression";
-import Fragment, {fragmentsFromExpressions} from "./types/fragment";
+import Fragment, {fragmentsFromExpressions, joinFragments} from "./types/fragment";
 
 function group(...expressions: Expression[]): Fragment {
-  expressions = fragmentsFromExpressions(expressions);
-  const combined = expressions.join("");
+  const fragments = fragmentsFromExpressions(expressions);
+  const combined = joinFragments(fragments);
 
   return new Fragment(`(${combined})`);
 }
 
 group.named = (name: string, ...expressions: Expression[]): Fragment => {
-  expressions = fragmentsFromExpressions(expressions);
-  const combined = expressions.join("");
+  const fragments = fragmentsFromExpressions(expressions);
+  const combined = joinFragments(fragments);
 
   return new Fragment(`(?<${name}>${combined})`);
 };
@@ -20,8 +20,8 @@ group.capturing = group;
 group.capturing.named = group.named;
 
 group.nonCapturing = (...expressions: Expression[]): Fragment => {
-  expressions = fragmentsFromExpressions(expressions);
-  const combined = expressions.join("");
+  const fragments = fragmentsFromExpressions(expressions);
+  const combined = joinFragments(fragments);
 
   return new Fragment(`(?:${combined})`);
 };

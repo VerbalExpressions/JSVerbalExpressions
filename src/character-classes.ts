@@ -1,14 +1,14 @@
-import Set, {setToString} from "./types/set";
+import Set, {setToFragment} from "./types/set";
 import Fragment from "./types/fragment";
 
 function anyCharacterFrom(set: Set): Fragment {
-  const setString = setToString(set);
-  return new Fragment(`[${setString}]`);
+  const setAsFragment = setToFragment(set);
+  return new Fragment(`[${setAsFragment}]`);
 }
 
 function anyCharacterBut(set: Set): Fragment {
-  const setString = setToString(set);
-  return new Fragment(`[^${setString}]`);
+  const setAsFragment = setToFragment(set);
+  return new Fragment(`[^${setAsFragment}]`);
 }
 
 export {anyCharacterFrom, anyCharacterBut};

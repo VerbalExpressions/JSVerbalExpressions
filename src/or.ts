@@ -1,10 +1,10 @@
 import {group} from "./group";
 import Expression from "./types/expression";
-import Fragment, {fragmentsFromExpressions} from "./types/fragment";
+import Fragment, {fragmentsFromExpressions, joinFragments} from "./types/fragment";
 
 function or(...options: Expression[]): Fragment {
-  options = fragmentsFromExpressions(options);
-  const alternation = new Fragment(options.join("|"));
+  const fragments = fragmentsFromExpressions(options);
+  const alternation = joinFragments(fragments, "|");
 
   return group.nonCapturing(alternation);
 }

@@ -1,6 +1,6 @@
 import Expression from "./types/expression";
 import Flags, {isFlags, defaultFlags, toFlagString} from "./types/flags";
-import {fragmentsFromExpressions} from "./types/fragment";
+import {fragmentsFromExpressions, joinFragments} from "./types/fragment";
 
 // @constructor
 function VerEx(
@@ -21,9 +21,11 @@ function VerEx(
   }
 
   const rawExpressions = fragmentsFromExpressions(expressions);
+  const source = joinFragments(rawExpressions);
+
   const flagString = toFlagString(flags);
 
-  return new RegExp(rawExpressions.join(""), flagString);
+  return new RegExp(source.toString(), flagString);
 }
 
 VerEx.extend = (flags: Flags) =>

@@ -60,5 +60,9 @@ function fragmentsFromExpressions(expressions: Expression[]): Fragment[] {
   return converted;
 }
 
+function joinFragments(fragments: Fragment[], delimiter = ""): Fragment {
+  return new Fragment(fragments.join(delimiter));
+}
+
 export default Fragment;
-export {fragmentsFromExpressions};
+export {fragmentsFromExpressions, joinFragments};
