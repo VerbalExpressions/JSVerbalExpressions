@@ -1,0 +1,24 @@
+{
+  "name": "verbal-expressions-docs",
+  "version": "0.0.0",
+  "description": "JSVerbalExpressions Documentation",
+  "main": "content/index.mdx",
+  "dependencies": {
+    "@mdx-js/mdx": "^1.5.5",
+    "@mdx-js/react": "^1.5.5",
+    "gatsby": "^2.19.12",
+    "gatsby-plugin-mdx": "^1.0.70",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "true"
+  },
+  "keywords": [
+    "docs",
+    "regex"
+  ],
+  "author": "Shreyas Minocha",
+  "license": "GFDL-1.3"
+}

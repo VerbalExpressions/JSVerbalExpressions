@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "dist",
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "es2017",
+      "es2018"
+    ]
+  },
+  "include": ["src", "test", "./*.js"]
+}

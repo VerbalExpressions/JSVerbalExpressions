@@ -9,140 +9,31 @@
 
 VerbalExpressions is a JavaScript library that helps construct difficult regular expressions.
 
-## How to get started
+## Examples
+
+## Getting started
 
 ### In the browser
 
-```html
-<script src="VerbalExpressions.js"></script>
-```
-
-Or use the [jsDelivr CDN](https://www.jsdelivr.com/package/npm/verbal-expressions).
-
 ### On the server (node.js)
 
-Install:
+#### Install
 
-```sh
-npm install verbal-expressions
-```
+#### Import
 
-Require:
+## Development
 
-```js
-const VerEx = require('verbal-expressions');
-```
+### Running tests
 
-Or use ES6's `import`:
-
-```js
-import VerEx from 'verbal-expressions';
-```
-
-## Running tests
-
-```sh
-npm test
-```
-
-(or)
-
-```sh
-npm run test:verbose
-```
-
-## Creating a minified version
-
-```sh
-npm run build
-```
-
-This will run [Babel](https://babeljs.io) on `VerbalExpressions.js` and output the result to `dist/verbalexpressions.js`. A minified version of the same will also be written to `dist/verbalexpressions.min.js`.
-
-A source map will also be created in `dist`, so you can use the original "un-babelified", unminified source file for debugging purposes.
+### Building
 
 ## API documentation
 
-You can find the API documentation at [verbalexpressions.github.io/JSVerbalExpressions](https://verbalexpressions.github.io/JSVerbalExpressions). You can find the source code for the docs in [`docs`](docs/).
-
-## Examples
-
-Here are some simple examples to give an idea of how VerbalExpressions works:
-
-### Testing if we have a valid URL
-
-```js
-// Create an example of how to test for correctly formed URLs
-const tester = VerEx()
-    .startOfLine()
-    .then('http')
-    .maybe('s')
-    .then('://')
-    .maybe('www.')
-    .anythingBut(' ')
-    .endOfLine();
-
-// Create an example URL
-const testMe = 'https://www.google.com';
-
-// Use RegExp object's native test() function
-if (tester.test(testMe)) {
-    alert('We have a correct URL'); // This output will fire
-} else {
-    alert('The URL is incorrect');
-}
-
-console.log(tester); // Outputs the actual expression used: /^(http)(s)?(\:\/\/)(www\.)?([^\ ]*)$/
-```
-
-### Replacing strings
-
-```js
-// Create a test string
-const replaceMe = 'Replace bird with a duck';
-
-// Create an expression that seeks for word "bird"
-const expression = VerEx().find('bird');
-
-// Execute the expression like a normal RegExp object
-const result = expression.replace(replaceMe, 'duck');
-
-// Outputs "Replace duck with a duck"
-alert(result);
-```
-
-### Shorthand for string replace
-
-```js
-const result = VerEx().find('red').replace('We have a red house', 'blue');
-
-// Outputs "We have a blue house"
-alert(result);
-```
-
-## Contributions
-
-Pull requests are warmly welcome!
-
-Clone the repo and fork:
-
-```sh
-git clone https://github.com/VerbalExpressions/JSVerbalExpressions.git
-```
+## Contributing
 
 ### Style guide
 
-The [Airbnb](https://github.com/airbnb/javascript) style guide is loosely used as a basis for creating clean and readable JavaScript code. Check [`.eslintrc`](.eslintrc).
-
-Check out these slide decks for handy Github & git tips:
-
-- [Git and Github Secrets](https://zachholman.com/talk/git-github-secrets/)
-- [More Git and Github Secrets](https://zachholman.com/talk/more-git-and-github-secrets/)
-
 ## Tools
-
-- https://verbalregex.com - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
-- https://jsbin.com/metukuzowi/edit?js,console - JSBin Playground
 
 ## Other Implementations
 
