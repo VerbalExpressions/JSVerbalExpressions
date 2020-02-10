@@ -8,7 +8,7 @@ import {or} from "../../src/or";
 import {VerEx} from "../../src/verex";
 import "../custom-matchers";
 
-test("dates", () => {
+describe("dates", () => {
   // Please.
   // Don't do this in production.
   //
@@ -71,7 +71,6 @@ test("dates", () => {
   );
 
   expect(completeDate).toMatchString("1920-JAN-31");
-  expect(completeDate).toMatchString("1920-FEB-29");
   expect(completeDate).toMatchString("2001-NOV-21");
   expect(completeDate).toMatchString("2016-NOV-09");
   expect(completeDate).toMatchString("2024-AUG-31");
@@ -80,20 +79,40 @@ test("dates", () => {
   expect(completeDate).toMatchString("9920-FEB-28");
   expect(completeDate).toMatchString("2920-FEB-28");
 
-  const {groups} = completeDate.exec("1971-JAN-01");
+  it("should verify leap days", () => {
+    expect(completeDate).toMatchString("1920-FEB-29");
+    expect(completeDate).not.toMatchString("1921-FEB-29");
+    expect(completeDate).not.toMatchString("1900-FEB-29");
+    expect(completeDate).not.toMatchString("2900-FEB-29");
+    expect(completeDate).toMatchString("2000-FEB-29");
+  });
 
-  expect(groups.year).toEqual("1971");
-  expect(groups.month).toEqual("JAN");
-  expect(groups.date).toEqual("01");
+  it("should not match invalid days", () => {
+    expect(completeDate).not.toMatchString("1920-NOV-00");
+    expect(completeDate).not.toMatchString("1920-JAN-35");
+  });
 
-  expect(completeDate).not.toMatchString("2900-FEB-29");
-  expect(completeDate).not.toMatchString("1921-FEB-29");
-  expect(completeDate).not.toMatchString("1920-JAN-35");
-  expect(completeDate).not.toMatchString("1920-FEB-30");
-  expect(completeDate).not.toMatchString("1920-FEB-31");
-  expect(completeDate).not.toMatchString("1920-FOO-28");
-  expect(completeDate).not.toMatchString("1920-APR-31");
-  expect(completeDate).not.toMatchString("1820-NOV-02");
-  expect(completeDate).not.toMatchString("1920-NOV-00");
-  expect(completeDate).not.toMatchString("1857-JAN-01");
+  it("should not match invalid months", () => {
+    expect(completeDate).not.toMatchString("1920-FOO-28");
+  });
+
+  it("should not match days out of month range", () => {
+    expect(completeDate).not.toMatchString("1920-FEB-30");
+    expect(completeDate).not.toMatchString("1920-FEB-31");
+    expect(completeDate).not.toMatchString("1920-APR-31");
+  });
+
+  it("should not match dates beyond the year limits", () => {
+    expect(completeDate).not.toMatchString("1820-NOV-02");
+    expect(completeDate).not.toMatchString("1857-JAN-01");
+    expect(completeDate).not.toMatchString("10000-JAN-01");
+  });
+
+  it("should correctly group components", () => {
+    const {groups} = completeDate.exec("1971-JAN-01");
+
+    expect(groups.year).toEqual("1971");
+    expect(groups.month).toEqual("JAN");
+    expect(groups.date).toEqual("01");
+  });
 });

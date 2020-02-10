@@ -38,4 +38,12 @@ test("24 hour time", () => {
   expect(time).not.toMatchString("13:70");
   expect(time).not.toMatchString("9:60");
   expect(time).not.toMatchString("12:24:63");
+
+  const [, ...matches] = time.exec("12:24:02");
+  expect(matches).toEqual(["12", "24", "02"]);
+
+  time.lastIndex = 0;
+
+  const [, ...matches_] = time.exec("02:37");
+  expect(matches_).toEqual(["02", "37", undefined]);
 });
