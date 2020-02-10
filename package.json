@@ -8,7 +8,7 @@
   ],
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^24.9.1",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "@wessberg/rollup-plugin-ts": "^1.1.78",
@@ -18,7 +18,7 @@
     "pretty-format": "^24.9.0",
     "rollup": "^1.27.0",
     "rollup-plugin-multi-entry": "^2.1.0",
-    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-terser": "^5.2.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3",
     "xo": "^0.25.3"
