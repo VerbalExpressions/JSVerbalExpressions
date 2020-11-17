@@ -9,7 +9,7 @@
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
-    "ava": "^2.1.0",
+    "ava": "^3.13.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
     "eslint": "^7.13.0",
@@ -25,7 +25,7 @@
     "grunt-markdownlint": "^3.1.0",
     "grunt-sourcemap-localize": "^0.1.0",
     "grunt-umd": "^3.0.0",
-    "nyc": "^14.1.1"
+    "nyc": "^15.1.0"
   },
   "repository": {
     "type": "git",
