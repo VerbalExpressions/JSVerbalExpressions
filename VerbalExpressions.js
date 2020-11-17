@@ -381,7 +381,7 @@ class VerbalExpression extends RegExp {
      */
     repeatPrevious(...quantity) {
         const isInteger = /\d+/;
-        const values = quantity.filter(argument => isInteger.test(argument));
+        const values = quantity.filter((argument) => isInteger.test(argument));
 
         if (values.length === 0 || values.length > 2) {
             return this;

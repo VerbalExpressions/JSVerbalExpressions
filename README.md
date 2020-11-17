@@ -141,8 +141,8 @@ Check out these slide decks for handy Github & git tips:
 
 ## Tools
 
-- https://verbalregex.com - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
-- https://jsbin.com/metukuzowi/edit?js,console - JSBin Playground
+- <https://verbalregex.com> - it's a wrapper of JSVerbalExpressions; users can write down the code and compile to regex
+- <https://jsbin.com/metukuzowi/edit?js,console> - JSBin Playground
 
 ## Other Implementations
 
