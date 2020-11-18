@@ -19,7 +19,7 @@
     "blanks-around-headings": true,
     "heading-start-left": true,
     "no-duplicate-heading": true,
-    "single-h1": true,
+    "single-h1": false,
     "no-trailing-punctuation": true,
     "ol-prefix": { "style": "ordered" },
     "list-marker-space": 1,
