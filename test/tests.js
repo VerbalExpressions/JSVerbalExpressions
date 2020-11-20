@@ -1,5 +1,5 @@
-import test from 'ava';
-import VerEx from '../dist/verbalexpressions';
+const test = require('ava');
+const VerEx = require('../dist/verbalexpressions');
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test#Using_test()_on_a_regex_with_the_global_flag
 function resetLastIndex(regex) {

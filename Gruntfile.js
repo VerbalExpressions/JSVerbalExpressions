@@ -27,9 +27,7 @@ module.exports = function gruntConfig(grunt) {
         babel: {
             options: {
                 sourceMap: true,
-                presets: [
-                    ['env', { modules: false }],
-                ],
+                presets: [['@babel/preset-env', { modules: false }]],
                 plugins: [
                     ['transform-builtin-extend', { globals: ['RegExp'] }],
                 ],
@@ -54,17 +52,20 @@ module.exports = function gruntConfig(grunt) {
 
         uglify: {
             options: {
-                banner: '/*!\n'
-                    + '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n'
-                    + '* <%= pkg.homepage %>\n'
-                    + '*\n'
-                    + '* Released under the <%= pkg.license %> license\n'
-                    + '*/\n',
+                banner:
+                    '/*!\n' +
+                    '* <%= pkg.name %> JavaScript Library v<%= pkg.version %>\n' +
+                    '* <%= pkg.homepage %>\n' +
+                    '*\n' +
+                    '* Released under the <%= pkg.license %> license\n' +
+                    '*/\n',
                 sourceMap: true,
             },
             dist: {
                 files: {
-                    'dist/verbalexpressions.min.js': ['dist/verbalexpressions.js'],
+                    'dist/verbalexpressions.min.js': [
+                        'dist/verbalexpressions.js',
+                    ],
                 },
             },
         },
@@ -97,8 +98,18 @@ module.exports = function gruntConfig(grunt) {
     grunt.loadNpmTasks('grunt-markdownlint');
 
     grunt.registerTask('default', ['test']);
-    grunt.registerTask('test', ['compile', 'eslint', 'markdownlint', 'ava:test']);
+    grunt.registerTask('test', [
+        'compile',
+        'eslint',
+        'markdownlint',
+        'ava:test',
+    ]);
     grunt.registerTask('test:verbose', ['compile', 'eslint', 'ava:verbose']);
     grunt.registerTask('compile', ['babel', 'umd:all']);
-    grunt.registerTask('build', ['compile', 'ava:test', 'uglify', 'sourcemap_localize']);
+    grunt.registerTask('build', [
+        'compile',
+        'ava:test',
+        'uglify',
+        'sourcemap_localize',
+    ]);
 };
