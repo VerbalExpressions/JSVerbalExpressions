@@ -61,6 +61,37 @@ This will run [Babel](https://babeljs.io) on `VerbalExpressions.js` and output t
 
 A source map will also be created in `dist`, so you can use the original "un-babelified", unminified source file for debugging purposes.
 
+## Building the docs/ folder
+
+The `docs/` folder uses Jekyll for building the static HTML and is hosted at
+gh-pages.
+
+To install the Ruby dependencies, run:
+
+```
+cd docs/
+bundle install
+```
+
+This installs all needed Ruby dependencies locally
+
+After you've installed dependencies, you can run:
+
+```
+bundle exec jekyll build
+```
+
+This builds all static files to `docs/_site/` folder.
+
+If you want to develop the files locally, you can run:
+
+```
+bundle exec jekyll serve
+```
+
+This starts a local development web server and starts watching your files for
+changes.
+
 ## API documentation
 
 You can find the API documentation at [verbalexpressions.github.io/JSVerbalExpressions](https://verbalexpressions.github.io/JSVerbalExpressions). You can find the source code for the docs in [`docs`](docs/).

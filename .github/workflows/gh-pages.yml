@@ -1,0 +1,17 @@
+name: Build docs/ folder
+on: pull_request
+jobs:
+    test:
+        name: Build docs/ folder
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-ruby@v1
+            - run: |
+                  cd docs
+                  gem install bundler --version '~> 1'
+                  bundle install
+                  bundle exec jekyll build
+            - run: |
+                  git add -A                      # Make sure new files are accounted
+                  git diff --exit-code --cached   # Expect no changes in git
