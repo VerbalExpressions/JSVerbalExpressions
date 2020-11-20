@@ -2,15 +2,22 @@ name: Run tests
 on: pull_request
 jobs:
     test:
-        name: Run tests on Node.js ${{ matrix.node_version }}
-        runs-on: ubuntu-latest
+        name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
         strategy:
             matrix:
-                node-version: ['15', '14', '13', '12', '11', '10']
+                node_version: ['8', '10', '12']
+                os: [ubuntu-latest, windows-latest, macOS-latest]
+
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-node@v1
+            - uses: actions/checkout@v1
+            - name: Use Node.js ${{ matrix.node_version }}
+              uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node-version }}
-            - run: npm ci
-            - run: npm run test:verbose
+                  node-version: ${{ matrix.node_version }}
+
+            - name: npm install, build and test
+              run: |
+                  npm install
+                  npm run build --if-present
+                  npm test
