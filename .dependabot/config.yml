@@ -7,7 +7,7 @@ update_configs:
       - match:
           dependency_type: 'all'
           update_type: 'all'
-  - package_manager: 'ruby'
+  - package_manager: 'ruby:bundler'
     directory: '/docs'
     update_schedule: 'live'
     automerged_updates:
