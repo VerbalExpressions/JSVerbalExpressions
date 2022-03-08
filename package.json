@@ -9,7 +9,7 @@
   "homepage": "https://github.com/VerbalExpressions/JSVerbalExpressions",
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
-    "ava": "^3.13.0",
+    "ava": "^4.1.0",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
     "eslint": "^7.13.0",
