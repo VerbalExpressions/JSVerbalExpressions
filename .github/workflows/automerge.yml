@@ -1,0 +1,46 @@
+name: Dependabot auto-merge
+on: pull_request
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Enable auto-merge for Dependabot PRs
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          function get_pending_jobs() {
+            gh pr view "$PR_URL" --json statusCheckRollup --jq '.statusCheckRollup | map(select(.name != "dependabot")) | map(select(.status != "COMPLETED")).[]'
+          }
+
+          function get_failed_jobs() {
+            gh pr view "$PR_URL" --json statusCheckRollup --jq '.statusCheckRollup | map(select(.name != "dependabot")) | map(select(.conclusion != "SUCCESS")).[]'
+          }
+
+          function wait_until_completed() {
+            while [[ $(get_pending_jobs) ]]
+            do
+              sleep 5
+            done
+          }
+
+          function fail_if_unsuccessful() {
+            if [[ $(get_failed_jobs) ]]; then
+              echo "Some jobs failed, unable to automerge"
+              exit 1
+            fi
+          }
+
+          function auto_merge() {
+            gh pr merge --auto --rebase "$PR_URL"
+          }
+
+          wait_until_completed && \
+          fail_if_unsuccessful && \
+          auto_merge
