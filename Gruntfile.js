@@ -3,9 +3,6 @@ module.exports = function gruntConfig(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         eslint: {
-            options: {
-                configFile: '.eslintrc',
-            },
             target: ['VerbalExpressions.js', 'test/tests.js', 'Gruntfile.js'],
         },
 
