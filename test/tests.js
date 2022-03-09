@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved -- For some reason ESLint does not detect AVA's require()
 const test = require('ava');
 const VerEx = require('../dist/verbalexpressions');
 
