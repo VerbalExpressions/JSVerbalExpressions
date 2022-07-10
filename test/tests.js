@@ -17,7 +17,7 @@ test('constructor', (t) => {
 
 test('sanitize', (t) => {
     const testString = '$a^b\\c|d(e)f[g]h{i}j.k*l+m?n:o=p';
-    const escaped = '\\$a\\^b\\\\c\\|d\\(e\\)f\\[g\\]h\\{i\\}j\\.k\\*l\\+m\\?n\\:o\\=p';
+    const escaped = '\\$a\\^b\\\\c\\|d\\(e\\)f\\[g\\]h\\{i\\}j\\.k\\*l\\+m\\?n:o=p';
 
     t.is(VerEx().sanitize(testString), escaped, 'Special characters should be sanitized');
 
