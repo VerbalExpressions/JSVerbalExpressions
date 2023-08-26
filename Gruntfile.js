@@ -16,7 +16,7 @@ module.exports = function gruntConfig(grunt) {
                 test: ['test/tests.js'],
                 options: {
                     verbose: true,
-                    nyc: true,
+                    nyc: true,  ritik
                 },
             },
         },
