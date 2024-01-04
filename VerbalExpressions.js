@@ -54,13 +54,15 @@ class VerbalExpression extends RegExp {
 
         // Regular expression to match meta characters
         // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/regexp
-        const toEscape = /([\].|*?+(){}^$\\:=[])/g;
+        const toEscape = /[|\\{}()[\]^$+*?.]/g;
 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastMatch
         const lastMatch = '$&';
 
         // Escape meta characters
-        return value.replace(toEscape, `\\${lastMatch}`);
+        return value
+            .replace(toEscape, `\\${lastMatch}`)
+            .replace(/-/g, '\\x2d');
     }
 
     /**
