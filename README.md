@@ -5,6 +5,10 @@
 [![jsDelivr](https://img.shields.io/badge/dynamic/json.svg?label=jsDelivr&url=https%3A%2F%2Fdata.jsdelivr.com%2Fv1%2Fpackage%2Fnpm%2Fverbal-expressions&query=%24..tags.latest&colorB=blue&prefix=v)](https://www.jsdelivr.com/package/npm/verbal-expressions)
 [![License](https://img.shields.io/github/license/VerbalExpressions/JSVerbalExpressions.svg)](LICENSE)
 
+
+hahahahahaha
+
+
 ## JavaScript Regular Expressions made easy
 
 VerbalExpressions is a JavaScript library that helps construct difficult regular expressions.
